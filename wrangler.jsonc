@@ -1,0 +1,46 @@
+/**
+ * Wrangler configuration for summon MCP server
+ * https://developers.cloudflare.com/workers/wrangler/configuration/
+ *
+ * Secrets to set:
+ * npx wrangler secret put GITHUB_CLIENT_ID
+ * npx wrangler secret put GITHUB_CLIENT_SECRET
+ * npx wrangler secret put COOKIE_ENCRYPTION_KEY
+ */
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "summon-mcp",
+	"main": "src/index.ts",
+	"compatibility_date": "2025-03-10",
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
+	"migrations": [
+		{
+			"new_sqlite_classes": [
+				"SummonMCP"
+			],
+			"tag": "v1"
+		}
+	],
+	"durable_objects": {
+		"bindings": [
+			{
+				"class_name": "SummonMCP",
+				"name": "MCP_OBJECT"
+			}
+		]
+	},
+	"kv_namespaces": [
+		{
+			"binding": "OAUTH_KV",
+			"id": "2e23d02ad00444cdb282858b2a4cf7db"
+		}
+	],
+	"observability": {
+		"enabled": true
+	},
+	"dev": {
+		"port": 8788
+	}
+}
