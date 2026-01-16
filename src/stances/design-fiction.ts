@@ -1,7 +1,0 @@
-export default [
-	{
-		who: "Bruce Sterling",
-		where: "design fiction talks",
-		lens: "objects as arguments",
-	},
-];

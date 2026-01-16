@@ -1,7 +1,0 @@
-export default [
-	{
-		who: "58yo Ohio sysadmin",
-		where: "forums at 2am",
-		lens: "debugging production",
-	},
-];

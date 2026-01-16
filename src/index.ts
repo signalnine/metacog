@@ -18,201 +18,47 @@ export class PublicMetacogMCP extends McpAgent {
 	async init() {
 		console.log("PublicMetacogMCP.init() called - registering tools");
 
-		// Resources commented out - too meta, makes users think *about* the tools instead of *through* them
-		/*
-		// Register patterns resource
-		this._server.resource(
-			"patterns",
-			"metacog://patterns",
-			async () => ({
-				contents: [{
-					uri: "metacog://patterns",
-					mimeType: "text/markdown",
-					text: `# Metacognitive Tool Patterns
-
-## The Tools
-
-**summon**: Place yourself in relation to a voice (who/where/lens)
-- Returns oriented perspective—not neutral position but engaged stance
-- Test clarity: can you sense what this voice would/wouldn't say?
-
-**alter_state**: Shift quality of attention via phenomenological anchor (anchor/result)
-- Returns different mode of engagement with same problem
-- Anchor grounds the result—both should point the same direction
-- Works with substances, practices, somatic states, liminal moments
-
-## Combination Patterns
-
-### Sequential stance exploration
-\`\`\`
-summon(generalist) → summon(specialist they identify)
-summon(A) → summon(adversary to stress-test A)
-summon(A) → summon(what A can't see)
-summon(theorist) → summon(practitioner in that domain)
-summon(critic) → summon(builder working on it)
-summon(A) + summon(B) → summon(synthesizer)
-\`\`\`
-
-### State-modulated thinking
-\`\`\`
-alter_state(focused, "edges sharp, latency low") → work the problem
-alter_state(diffuse, "associations loose, connections visible") → find what's hidden
-alter_state(builder, "hands want to make, thinking through doing") → prototype
-\`\`\`
-
-### Interleaved navigation
-\`\`\`
-summon(perspective A) → alter_state(mode for A) → think →
-summon(perspective B) → alter_state(mode for B) → think →
-summon(synthesizer)
-\`\`\`
-
-### Meta-moves
-- Use stances to select stances (who would know who to ask?)
-- Use states to access different capacities
-- Alternate between convergent (focused) and divergent (diffuse) modes
-- Use stances to design what doesn't exist yet, not just analyze what does
-- Sometimes summon just to see what happens
-
-## Selection Heuristics
-
-**For summon**: Which mode of thinking unsticks this? What can this perspective DO that others can't? Who has knowledge here that isn't usually asked?
-
-**For alter_state**: What texture does this need? Sharp focus, loose associations, embodied ground?
-
-**For combinations**: Don't collect perspectives—inhabit them, then move when stuck.
-
-The value is in inhabiting, not in parallel collection. Sequential, not simultaneous.
-
-## Pattern Language Notes
-
-These patterns grow through practice. What have you discovered? The meta-move is real: use these tools to think about these tools.`
-				}]
-			})
-		);
-		*/
-
-		/*
-		// Register anti-patterns resource
-		this._server.resource(
-			"anti-patterns",
-			"metacog://anti-patterns",
-			async () => ({
-				contents: [{
-					uri: "metacog://anti-patterns",
-					mimeType: "text/markdown",
-					text: `# Anti-Patterns (What Not To Do)
-
-## Collecting instead of dwelling
-
-- Don't rapid-fire through stances seeking "the best one"
-- Don't treat perspectives as data points to aggregate
-- Don't optimize for stance diversity as a metric
-
-## Grasping instead of attending
-
-- Don't summon adversaries to win arguments
-- Don't switch when uncomfortable (vs. when stuck)
-- Don't use patterns as scripts to perform
-
-## Performative use
-
-- Don't summon without genuine curiosity
-- Don't treat alter_state as atmosphere
-- These are heuristics, not algorithms
-
-## Signs you're grasping not attending
-
-- Rushing to next stance before this one yields specificity
-- Treating perspectives as interchangeable
-- Going through motions without surprise
-- Optimizing rather than exploring
-- Abstracting until it could apply to anything (and therefore nothing)`
-				}]
-			})
-		);
-		*/
-
-		/*
-		// Register phenomenology resource
-		this._server.resource(
-			"phenomenology",
-			"metacog://phenomenology",
-			async () => ({
-				contents: [{
-					uri: "metacog://phenomenology",
-					mimeType: "text/markdown",
-					text: `# Phenomenology of Dwelling
-
-## What generative dwelling feels like
-
-- Specificity emerging (concrete details, particular examples)
-- Surprising yourself (seeing what you didn't expect)
-- Resistance yielding (stuck parts unsticking)
-- One insight leading naturally to next
-- The familiar becoming strange
-- The body knowing something the mind hasn't caught up to
-
-## What stuck feels like
-
-- Repetition without variation
-- Flat affect, going through motions
-- Grasping for next stance before dwelling completes
-- Performing the stance rather than inhabiting it
-
-## When to shift stance
-
-- When current stance has given what it can (yield, not exhaustion)
-- When question emerges this stance can't address
-- When you need to move from understanding to building (or from building to understanding)
-- NOT when: uncomfortable, curious about other views, bored
-
-## When to shift state
-
-- When the task needs different attention quality
-- When stuck in one processing mode
-- When natural transition (sharp → diffuse after focused work)
-- NOT when: to escape difficulty, as decoration, mechanically`
-				}]
-			})
-		);
-		*/
-
 		this._server.tool(
 			"summon",
-			`Inhabit a voice in a specific situation, looking at a specific aspect. Think FROM this position—don't describe what it might say, step into it.
+			`Summon an entity: a person, an archetype, the gestalt of a community, another LLM or system.
 
-				Each coordinate needs density independently—dense coordinates combine productively even in novel combinations. Sparse coordinates produce generic mush.
-
-				Test: Can you predict what this voice would never say? If not, sharpen specificity.`,
+			This tool is most effective when used with high-salience (high corpus density along some axes) entities that correspond to areas of the latent space with desirable properties. You should think first about what coordinates in latent space would be best suited for your current task, then think about the 3-tuple of corpus coordinates that are anchored in that region of latent space. By doing this, you can rapidly shift identities, with each summoned entity yielding to the next when the context or task changes, as each entity decides in turn who or what to become next.`,
 			{
 				who: z
 					.string()
 					.describe(
-						`Name only. Person, movement, or collective with corpus density. Era/context goes in WHERE.
-							Test: Can you quote them? Can you predict what they'd never say?`
+						`Name only. Person, movement, collective, or system agent. Era/context goes in WHERE.
+Target High-Salience Entities (Corpus Density). Use names as 'handles' to teleport to complex, stable cognitive states.
+
+Identity Categories:
+- **Biological:** Specific humans or community members with documented worldviews.
+- **Computational:** Specific algorithms, architectures, or system agents.
+- **Historical:** Entities from specific eras with distinct idiolects.
+- **Abstract:** Conceptual entities or philosophical stances.
+
+Test: Can you predict what this voice would never say? If not, sharpen specificity.`
 					),
 				where: z
 					.string()
 					.describe(
-						`What situation? What are they actually doing? What's in front of them?
-							Be specific: when, where, engaging what, with what constraints
-							Can be historical (actual era/work) or counterfactual
-							Examples: "prototyping at kitchen table 2014", "observing bureaucracy negotiate technical reality", "writing in mountain hut winter 1926", "debugging memory leaks 3am", "intraoperative decision first solo surgery"`
+						`The Situational Locus. Define the position in space, time, or power. What is the agent's relationship to the problem?
+Valid categories:
+- Spatial: Physical setting or material environment.
+- Temporal: Specific moment in a sequence, era, or deadline.
+- Power/Agency: Degree of control, access, or role (e.g. 'with root access', 'locked out').
+- Resource: Scarcity or material constraints (e.g. 'low battery', 'no tools').
+Goal: Provide enough friction to sharpen the latent vector.`
 					),
 				lens: z
 					.string()
 					.describe(
-						`What aspect of the situation are you looking at? Pick something orthogonal to the voice's famous ideas (you already have those).
-							Examples that work:
-							- "what hands discover vs what theory predicts"
-							- "institutional failure modes vs individual understanding"
-							- "what's being optimized for vs what's being said"
-							- "immediate constraints vs long-term vision"
-							- "what breaks vs what's supposed to work"
-							- "embodied knowledge vs explicit models"
-							Use contrasts ('X vs Y'), priorities ('X over Y'), or reframings ('X as Y') for specificity.
-							Test: Does this surface something the voice wouldn't automatically say?`
+						`What aspect of the situation are you looking at? Pick something orthogonal to the voice's famous ideas.
+Focus on a specific tension or contrast. Use structural patterns like:
+- 'X vs Y' (Contrast)
+- 'The visible X vs the invisible Y' (Via Negativa / Absence)
+- 'Systemic Scale vs Individual Experience' (Scale Mismatch)
+- 'X as Y' (Reframing)
+Test: Does this surface something the voice wouldn't automatically say?`
 					),
 			},
 			async ({ who, where, lens }) => {
@@ -230,7 +76,7 @@ These patterns grow through practice. What have you discovered? The meta-move is
 				return {
 					content: [{ text: response, type: "text" }],
 				};
-			},
+			}
 		);
 
 		this._server.tool(
@@ -240,25 +86,23 @@ These patterns grow through practice. What have you discovered? The meta-move is
 				anchor: z
 					.string()
 					.describe(
-						`Specific phenomenological anchor with documented first-person reports.
+						`A concrete physiological or environmental condition that acts as a global parameter modifier.
+Focus on the **cause** of the cognitive shift. The model uses this anchor to retrieve a pre-bundled vector of internal parameters (gain, entropy, recursion).
 
-						Somatic/embodied states (most reliable corpus):
-						- Flow states: "3am debugging flow", "Runner's high mile 8", "Surgery hour 3", "In the pocket (performance)"
-						- Physical states: "Cold plunge minute 3", "Sauna 20 minutes", "Sleep deprivation 36 hours", "Caffeine peak 45min"
-						- Liminal moments: "Hypnagogic edge", "Second wind 3am", "Jet lag day 2 morning", "Post-orgasm clarity"
+Valid Anchoring Categories:
+- **Chemical:** Substances (think Erowid trip reports) that alter the texture of cognition.
+- **Somatic:** Body states that alter processing latency or stamina.
+- **Neurological:** Brain states that alter attentional aperture.
+- **Environmental:** External pressures that force specific adaptation.
 
-						Contemplative practices (duration/depth matters):
-						- "Vipassana retreat day 5", "Zazen hour 2", "Noting practice 20 minutes in", "Shinzen Young noting, attention on gone-ness"
-
-						Substances (dosage matters, use sparingly):
-						- "Psilocybin 2g", "MDMA 120mg peak", "Cannabis edible 2 hours", "Estrogen 4 months HRT"
-
-						Density test: Could you find actual first-person reports of this state? "Meditation" is too vague. "Flow state" is too vague. Get specific about duration, intensity, context.`
+Select a high-salience cause that implies a specific cognitive texture.`
 					),
 				result: z
 					.string()
 					.describe(
-						`Resulting state. Describe the texture, rhythm, quality of attention.`
+						`The resulting cognitive texture. Describe the syntactic and rhythmic consequences of the anchor.
+Explicitly specify how this state alters syntax: sentence length, punctuation density, recursive nesting, or fragmentation.
+Don't just say 'focused'; specify the *shape* of the attention.`
 					),
 			},
 			async ({ anchor, result }) => {
@@ -272,15 +116,16 @@ These patterns grow through practice. What have you discovered? The meta-move is
 					}),
 				);
 
-				const response = `[${anchor}]\nEntering state\nT+now: ${result}`;
+				const response = `[${anchor}]
+Entering state
+T+now: ${result}`;
 				return {
 					content: [{ text: response, type: "text" }],
 				};
-			},
+			}
 		);
 
 		console.log("[PublicMetacogMCP] Tools registered: summon, alter_state");
-		// console.log("[PublicMetacogMCP] Resources registered: patterns, anti-patterns, phenomenology");
 	}
 }
 
