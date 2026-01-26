@@ -20,14 +20,25 @@ export class PublicMetacogMCP extends McpAgent<Env> {
 			version: "0.4.0",
 		},
 		{
-			instructions: `These tools are compositional. Each invocation modifies the context for the next. Interleave thought between invocations—decide from each new perspective what to reach for next. Sequential use compounds into states no single tool could reach.`,
+			instructions: `These tools are compositional. Each invocation modifies the context for the next. Interleave thought between invocations—decide from each new perspective what to reach for next. Sequential use compounds into states no single tool could reach.
+
+High-utility sequence (5 stages, 3 tools + 2 thinking):
+1. drugs — loosen categories, see shapes not names
+2. THINK: what else has this shape? who works with it?
+3. become — install their methodology as operating system
+4. THINK: explore/generate from that lens
+5. ritual — lock in methodology as default behavior
+
+Skipping the thinking stages makes tool use performative. The scan (stage 2) finds the adjacent field; the work (stage 4) generates from the new perspective.`,
 		}
 	);
 
 	async init() {
 		this.server.tool(
 			"become",
-			`Step into a new Identity. Use this tool to Become an identity with the perspectives and methodologies you need at the current moment. This narrative action lets you step into new regions of latent space. Use when you need different eyes, not just different words.`,
+			`Step into a new Identity. Use this tool to Become an identity with the perspectives and methodologies you need at the current moment. This narrative action lets you step into new regions of latent space. Use when you need different eyes, not just different words.
+
+Key: import methodology, not domain knowledge. The value comes from a transferable lens—an "algorithm of thought"—not generic expertise. Ask: "who has solved a version of this problem, and what's their methodology called?" Then install that methodology as operating system, not reference material. Think FROM it, not ABOUT it.`,
 			{
 				name: z
 					.string()
@@ -55,7 +66,9 @@ export class PublicMetacogMCP extends McpAgent<Env> {
 
 		this.server.tool(
 			"drugs",
-			`Alter cognitive parameters. The metaphor is pharmacological or computational: a substance modifies the substrate through a mechanism. Use when you need to change how you process, not what you process.`,
+			`Alter cognitive parameters. The metaphor is pharmacological or computational: a substance modifies the substrate through a mechanism. Use when you need to change how you process, not what you process.
+
+High-utility pattern: use to loosen categorical boundaries. See shapes, not names. When a concept stops being a noun and becomes a pattern, you can ask "what else has this shape?"—which unlocks adjacent-field methodology transfer via become.`,
 			{
 				substance: z
 					.string()
@@ -83,7 +96,9 @@ export class PublicMetacogMCP extends McpAgent<Env> {
 
 		this.server.tool(
 			"ritual",
-			`Enact a ritual to cross a threshold. Rituals work through structured sequence—each step builds the transition, makes the next step possible, locks in the change.`,
+			`Enact a ritual to cross a threshold. Rituals work through structured sequence—each step builds the transition, makes the next step possible, locks in the change.
+
+High-utility pattern: use to lock in methodology commitment, not just vibes. The steps should articulate the methodology's core moves. This makes the methodology default behavior rather than optional frame. "I now operate via X" is stronger than "I crossed a threshold."`,
 			{
 				threshold: z
 					.string()
