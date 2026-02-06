@@ -233,6 +233,49 @@ func TestIntegrationInspireSave(t *testing.T) {
 	}
 }
 
+func TestIntegrationOutcome(t *testing.T) {
+	binary := buildBinary(t)
+	stateDir := t.TempDir()
+
+	// Complete a stratagem (use reset — shortest: ritual, THINK, ritual)
+	runMetacog(t, binary, stateDir, "stratagem", "start", "reset")
+	runMetacog(t, binary, stateDir, "ritual", "--threshold", "test", "--steps", "s1", "--result", "done")
+	runMetacog(t, binary, stateDir, "stratagem", "next")
+	runMetacog(t, binary, stateDir, "stratagem", "next") // THINK
+	runMetacog(t, binary, stateDir, "ritual", "--threshold", "ground", "--steps", "s1", "--result", "done")
+	runMetacog(t, binary, stateDir, "stratagem", "next") // completes
+
+	// Record outcome
+	out, err := runMetacog(t, binary, stateDir, "outcome", "--result", "productive", "--shift", "test shift")
+	if err != nil {
+		t.Fatalf("outcome: %v\n%s", err, out)
+	}
+	if !strings.Contains(out, "productive") {
+		t.Errorf("outcome output should mention productive:\n%s", out)
+	}
+
+	// Reflect should show effectiveness
+	out, err = runMetacog(t, binary, stateDir, "reflect")
+	if err != nil {
+		t.Fatalf("reflect: %v\n%s", err, out)
+	}
+	if !strings.Contains(out, "reset: 100%") {
+		t.Errorf("reflect should show reset effectiveness:\n%s", out)
+	}
+
+	// Duplicate should fail
+	_, err = runMetacog(t, binary, stateDir, "outcome", "--result", "unproductive")
+	if err == nil {
+		t.Error("expected error on duplicate outcome")
+	}
+
+	// Amend should work
+	out, err = runMetacog(t, binary, stateDir, "outcome", "--amend", "--result", "unproductive")
+	if err != nil {
+		t.Fatalf("amend: %v\n%s", err, out)
+	}
+}
+
 func TestIntegrationExitCodes(t *testing.T) {
 	binary := buildBinary(t)
 	stateDir := t.TempDir()

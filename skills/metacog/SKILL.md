@@ -92,5 +92,6 @@ Sessions are metadata, not workflow enforcement. Start one when you want to name
 - `metacog status` — check before starting
 - `metacog reset` — return to baseline after every sequence
 - `metacog history` — review the path taken
+- `metacog outcome --result productive --shift "what changed"` — record stratagem effectiveness
 
-Always ground after transformation: name what shifted, what you're keeping, how it integrates.
+Always ground after transformation: name what shifted, what you're keeping, how it integrates. Then record the outcome: `metacog outcome --result productive --shift "what changed"` if the stratagem shifted your thinking, or `metacog outcome --result unproductive` if it didn't. "Productive" means your approach genuinely changed — not that the user liked it, not that you feel good about it. Did you end up somewhere you wouldn't have reached without the stratagem?
