@@ -11,7 +11,7 @@ import (
 	"github.com/google/uuid"
 )
 
-const MaxHistoryEntries = 100
+const MaxHistoryEntries = 500
 
 type Identity struct {
 	Name string `json:"name"`
@@ -63,24 +63,23 @@ func (s *State) AddHistory(entry HistoryEntry) {
 		entry.Timestamp = time.Now().UTC().Format(time.RFC3339)
 	}
 	s.History = append(s.History, entry)
-	if len(s.History) > MaxHistoryEntries {
-		s.History = s.History[len(s.History)-MaxHistoryEntries:]
-	}
 }
 
 type StateManager struct {
-	dir      string
-	filePath string
-	lockPath string
-	logPath  string
+	dir         string
+	filePath    string
+	lockPath    string
+	logPath     string
+	archivePath string
 }
 
 func NewStateManager(dir string) *StateManager {
 	return &StateManager{
-		dir:      dir,
-		filePath: filepath.Join(dir, "state.json"),
-		lockPath: filepath.Join(dir, ".state.lock"),
-		logPath:  filepath.Join(dir, "history.jsonl"),
+		dir:         dir,
+		filePath:    filepath.Join(dir, "state.json"),
+		lockPath:    filepath.Join(dir, ".state.lock"),
+		logPath:     filepath.Join(dir, "history.jsonl"),
+		archivePath: filepath.Join(dir, "history-archive.jsonl"),
 	}
 }
 
@@ -159,8 +158,33 @@ func (sm *StateManager) Save(s *State) error {
 	return sm.saveUnlocked(s)
 }
 
+func (sm *StateManager) archiveAndTrim(s *State) {
+	if len(s.History) <= MaxHistoryEntries {
+		return
+	}
+	overflow := s.History[:len(s.History)-MaxHistoryEntries]
+	s.History = s.History[len(s.History)-MaxHistoryEntries:]
+
+	os.MkdirAll(sm.dir, 0755)
+	f, err := os.OpenFile(sm.archivePath, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Warning: could not open archive: %v\n", err)
+		return
+	}
+	defer f.Close()
+	for _, e := range overflow {
+		data, err := json.Marshal(e)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Warning: could not marshal archive entry: %v\n", err)
+			continue
+		}
+		fmt.Fprintf(f, "%s\n", data)
+	}
+}
+
 func (sm *StateManager) saveUnlocked(s *State) error {
 	os.MkdirAll(sm.dir, 0755)
+	sm.archiveAndTrim(s)
 
 	data, err := json.MarshalIndent(s, "", "  ")
 	if err != nil {

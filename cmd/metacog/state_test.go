@@ -2,8 +2,10 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 	"path/filepath"
+	"strings"
 	"sync"
 	"testing"
 )
@@ -132,8 +134,12 @@ func TestHistoryRotation(t *testing.T) {
 	sm := NewStateManager(dir)
 
 	s := NewState()
-	for i := 0; i < 150; i++ {
+	for i := 0; i < 600; i++ {
 		s.AddHistory(HistoryEntry{Action: "become", Params: map[string]string{"i": "test"}})
+	}
+
+	if len(s.History) != 600 {
+		t.Fatalf("expected 600 entries before save, got %d", len(s.History))
 	}
 
 	err := sm.Save(s)
@@ -145,8 +151,33 @@ func TestHistoryRotation(t *testing.T) {
 	if err != nil {
 		t.Fatalf("load failed: %v", err)
 	}
-	if len(loaded.History) > 100 {
-		t.Errorf("history should cap at 100, got %d", len(loaded.History))
+	if len(loaded.History) > MaxHistoryEntries {
+		t.Errorf("history should cap at %d, got %d", MaxHistoryEntries, len(loaded.History))
+	}
+}
+
+func TestHistoryArchive(t *testing.T) {
+	dir := t.TempDir()
+	sm := NewStateManager(dir)
+
+	s := NewState()
+	for i := 0; i < 510; i++ {
+		s.AddHistory(HistoryEntry{Action: "become", Params: map[string]string{"i": fmt.Sprintf("%d", i)}})
+	}
+
+	err := sm.Save(s)
+	if err != nil {
+		t.Fatalf("save failed: %v", err)
+	}
+
+	archivePath := filepath.Join(dir, "history-archive.jsonl")
+	data, err := os.ReadFile(archivePath)
+	if err != nil {
+		t.Fatalf("archive file should exist: %v", err)
+	}
+	lines := strings.Split(strings.TrimSpace(string(data)), "\n")
+	if len(lines) != 10 {
+		t.Errorf("archive should have exactly 10 rotated entries, got %d", len(lines))
 	}
 }
 
