@@ -9,7 +9,11 @@ import (
 
 func FormatStatus(s *State) string {
 	var b strings.Builder
-	b.WriteString(fmt.Sprintf("Session: %s\n\n", s.SessionID))
+	b.WriteString(fmt.Sprintf("Session: %s\n", s.SessionID))
+	if s.Session != "" {
+		b.WriteString(fmt.Sprintf("Active session: %s\n", s.Session))
+	}
+	b.WriteString("\n")
 
 	if s.Identity != nil {
 		b.WriteString(fmt.Sprintf("Identity: %s\n  Lens: %s\n  Environment: %s\n\n", s.Identity.Name, s.Identity.Lens, s.Identity.Env))
@@ -83,6 +87,7 @@ var resetCmd = &cobra.Command{
 }
 
 var historyFull bool
+var historySession string
 
 var historyCmd = &cobra.Command{
 	Use:   "history",
@@ -93,7 +98,13 @@ var historyCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
-		fmt.Println(FormatOutput(jsonOutput, FormatHistory(s), nil))
+		var output string
+		if historySession != "" {
+			output = FormatHistoryFiltered(s, historySession)
+		} else {
+			output = FormatHistory(s)
+		}
+		fmt.Println(FormatOutput(jsonOutput, output, nil))
 		return nil
 	},
 }
@@ -114,6 +125,7 @@ var repairCmd = &cobra.Command{
 
 func init() {
 	historyCmd.Flags().BoolVar(&historyFull, "full", false, "Show full history from log file")
+	historyCmd.Flags().StringVar(&historySession, "session", "", "Filter history by session name")
 	rootCmd.AddCommand(statusCmd)
 	rootCmd.AddCommand(resetCmd)
 	rootCmd.AddCommand(historyCmd)

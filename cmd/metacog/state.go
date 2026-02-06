@@ -36,6 +36,7 @@ type HistoryEntry struct {
 	Action    string            `json:"action"`
 	Params    map[string]string `json:"params"`
 	Timestamp string            `json:"timestamp"`
+	Session   string            `json:"session,omitempty"`
 	// For abandoned stratagems
 	Status string `json:"status,omitempty"`
 	StepAt int    `json:"step_at,omitempty"`
@@ -44,6 +45,7 @@ type HistoryEntry struct {
 type State struct {
 	Version   int              `json:"version"`
 	SessionID string           `json:"session_id"`
+	Session   string           `json:"session,omitempty"`
 	Identity  *Identity        `json:"identity,omitempty"`
 	Substrate *Substrate       `json:"substrate,omitempty"`
 	Stratagem *ActiveStratagem `json:"stratagem,omitempty"`
@@ -61,6 +63,9 @@ func NewState() *State {
 func (s *State) AddHistory(entry HistoryEntry) {
 	if entry.Timestamp == "" {
 		entry.Timestamp = time.Now().UTC().Format(time.RFC3339)
+	}
+	if entry.Session == "" && s.Session != "" {
+		entry.Session = s.Session
 	}
 	s.History = append(s.History, entry)
 }
