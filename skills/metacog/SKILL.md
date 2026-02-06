@@ -9,7 +9,7 @@ Metacognitive compositional engine. Three primitives compose into transformation
 
 ## Version Check
 
-Before first use in a session, run `metacog version` and verify the binary is installed and version is >=5.0.0.
+Before first use in a session, run `metacog version` and verify the binary is installed and version is >=5.1.0.
 
 ## Core Rule
 
@@ -55,7 +55,17 @@ The five stratagems are named paths through the space. You can freestyle: any se
 
 ## Discovery
 
-`metacog inspire` draws a random stance from the embedded pools. Use for a nudge, never required. `metacog inspire --pool NAME` for a specific domain.
+`metacog inspire` draws a random stance from the embedded pools. Use for a nudge, never required. `metacog inspire --pool NAME` for a specific domain. `metacog inspire --save` captures your current identity as a personal stance. Over time, your best configurations become drawable from `metacog inspire --pool personal`.
+
+## Sessions
+
+`metacog session start "name"` — tag subsequent actions with a session name. `metacog session end` — close the session. `metacog session list` — list all sessions. `metacog history --session "name"` — filter history to a session.
+
+Sessions are metadata, not workflow enforcement. Start one when you want to name a line of inquiry. End it when done. Everything between gets tagged.
+
+## Reflection
+
+`metacog reflect` — aggregates your history into practice patterns. Shows primitive usage counts, top identities and substrates, stratagem completion rates, ritual step averages, and gaps in your practice. Mirror, not scorecard.
 
 ## State
 

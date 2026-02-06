@@ -160,6 +160,79 @@ func TestIntegrationJSONOutput(t *testing.T) {
 	}
 }
 
+func TestIntegrationReflect(t *testing.T) {
+	binary := buildBinary(t)
+	stateDir := t.TempDir()
+
+	runMetacog(t, binary, stateDir, "become", "--name", "Ada", "--lens", "logic", "--env", "lab")
+	runMetacog(t, binary, stateDir, "drugs", "--substance", "caffeine", "--method", "antagonism", "--qualia", "sharp")
+	runMetacog(t, binary, stateDir, "ritual", "--threshold", "test", "--steps", "s1", "--steps", "s2", "--result", "done")
+
+	out, err := runMetacog(t, binary, stateDir, "reflect")
+	if err != nil {
+		t.Fatalf("reflect: %v\n%s", err, out)
+	}
+	if !strings.Contains(out, "become: 1") {
+		t.Errorf("reflect should show become count:\n%s", out)
+	}
+}
+
+func TestIntegrationSession(t *testing.T) {
+	binary := buildBinary(t)
+	stateDir := t.TempDir()
+
+	out, err := runMetacog(t, binary, stateDir, "session", "start", "test-session")
+	if err != nil {
+		t.Fatalf("session start: %v\n%s", err, out)
+	}
+
+	runMetacog(t, binary, stateDir, "become", "--name", "Ada", "--lens", "logic", "--env", "lab")
+
+	out, err = runMetacog(t, binary, stateDir, "session", "end")
+	if err != nil {
+		t.Fatalf("session end: %v\n%s", err, out)
+	}
+
+	out, err = runMetacog(t, binary, stateDir, "session", "list")
+	if err != nil {
+		t.Fatalf("session list: %v\n%s", err, out)
+	}
+	if !strings.Contains(out, "test-session") {
+		t.Errorf("session list should contain 'test-session':\n%s", out)
+	}
+
+	out, err = runMetacog(t, binary, stateDir, "history", "--session", "test-session")
+	if err != nil {
+		t.Fatalf("history --session: %v\n%s", err, out)
+	}
+	if !strings.Contains(out, "Ada") {
+		t.Errorf("filtered history should contain Ada:\n%s", out)
+	}
+}
+
+func TestIntegrationInspireSave(t *testing.T) {
+	binary := buildBinary(t)
+	stateDir := t.TempDir()
+
+	runMetacog(t, binary, stateDir, "become", "--name", "Ada", "--lens", "logic", "--env", "lab")
+
+	out, err := runMetacog(t, binary, stateDir, "inspire", "--save")
+	if err != nil {
+		t.Fatalf("inspire --save: %v\n%s", err, out)
+	}
+	if !strings.Contains(out, "Ada") {
+		t.Errorf("save output should mention identity:\n%s", out)
+	}
+
+	out, err = runMetacog(t, binary, stateDir, "inspire", "--pool", "personal")
+	if err != nil {
+		t.Fatalf("inspire --pool personal: %v\n%s", err, out)
+	}
+	if !strings.Contains(out, "Ada") {
+		t.Errorf("personal pool should contain Ada:\n%s", out)
+	}
+}
+
 func TestIntegrationExitCodes(t *testing.T) {
 	binary := buildBinary(t)
 	stateDir := t.TempDir()
