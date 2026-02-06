@@ -55,9 +55,3 @@ func applyBecome(s *State, name, lens, env string) {
 		Params: map[string]string{"name": name, "lens": lens, "env": env},
 	})
 }
-
-// ValidatePrimitiveForStratagem is a stub until the stratagem engine is implemented in Task 6.
-// It will be moved to stratagem.go when that task is completed.
-func ValidatePrimitiveForStratagem(s *State, primitive string) {
-	// Stub - implemented in Task 6
-}
