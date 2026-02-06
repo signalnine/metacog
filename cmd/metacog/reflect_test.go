@@ -84,3 +84,54 @@ func TestReflectRitualStepAverage(t *testing.T) {
 		t.Errorf("expected average 4.0 steps in output:\n%s", output)
 	}
 }
+
+func TestReflectEffectiveness(t *testing.T) {
+	s := NewState()
+
+	// pivot: 2 productive, 1 unproductive = 66%
+	s.AddHistory(HistoryEntry{Action: "stratagem", Params: map[string]string{"name": "pivot", "event": "completed"}})
+	s.AddHistory(HistoryEntry{Action: "outcome", Params: map[string]string{"result": "productive", "stratagem": "pivot", "shift": "reframed"}})
+	s.AddHistory(HistoryEntry{Action: "stratagem", Params: map[string]string{"name": "pivot", "event": "completed"}})
+	s.AddHistory(HistoryEntry{Action: "outcome", Params: map[string]string{"result": "productive", "stratagem": "pivot"}})
+	s.AddHistory(HistoryEntry{Action: "stratagem", Params: map[string]string{"name": "pivot", "event": "completed"}})
+	s.AddHistory(HistoryEntry{Action: "outcome", Params: map[string]string{"result": "unproductive", "stratagem": "pivot"}})
+
+	// stack: 1 productive = 100% [provisional]
+	s.AddHistory(HistoryEntry{Action: "stratagem", Params: map[string]string{"name": "stack", "event": "completed"}})
+	s.AddHistory(HistoryEntry{Action: "outcome", Params: map[string]string{"result": "productive", "stratagem": "stack"}})
+
+	// mirror: completed but no outcome = unmeasured
+	s.AddHistory(HistoryEntry{Action: "stratagem", Params: map[string]string{"name": "mirror", "event": "completed"}})
+
+	output := FormatReflection(s)
+
+	if !strings.Contains(output, "self-reported") {
+		t.Errorf("expected 'self-reported' framing in output:\n%s", output)
+	}
+	if !strings.Contains(output, "pivot: 66%") && !strings.Contains(output, "pivot: 67%") {
+		t.Errorf("expected 'pivot: 66%%' or 'pivot: 67%%' in output:\n%s", output)
+	}
+	if !strings.Contains(output, "stack: 100%") {
+		t.Errorf("expected 'stack: 100%%' in output:\n%s", output)
+	}
+	if !strings.Contains(output, "[provisional]") {
+		t.Errorf("expected '[provisional]' tag for stack:\n%s", output)
+	}
+	if !strings.Contains(output, "unmeasured") {
+		t.Errorf("expected 'unmeasured' for mirror:\n%s", output)
+	}
+	if !strings.Contains(output, "Overall:") {
+		t.Errorf("expected Overall rate in output:\n%s", output)
+	}
+}
+
+func TestReflectNoOutcomes(t *testing.T) {
+	s := NewState()
+	s.AddHistory(HistoryEntry{Action: "become", Params: map[string]string{"name": "test"}})
+
+	output := FormatReflection(s)
+	// Should not contain effectiveness section when no outcomes exist
+	if strings.Contains(output, "effectiveness") {
+		t.Errorf("should not show effectiveness with no outcomes:\n%s", output)
+	}
+}

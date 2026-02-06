@@ -122,6 +122,77 @@ func FormatReflection(s *State) string {
 		b.WriteString(fmt.Sprintf("  Never completed: %s\n", strings.Join(neverCompleted, ", ")))
 	}
 
+	// Effectiveness section — only show if outcomes exist
+	type outcomeStats struct {
+		productive   int
+		unproductive int
+	}
+	outcomesByStratagem := map[string]*outcomeStats{}
+	for _, h := range s.History {
+		if h.Action == "outcome" {
+			name := h.Params["stratagem"]
+			if name == "" {
+				continue
+			}
+			if outcomesByStratagem[name] == nil {
+				outcomesByStratagem[name] = &outcomeStats{}
+			}
+			if h.Params["result"] == "productive" {
+				outcomesByStratagem[name].productive++
+			} else {
+				outcomesByStratagem[name].unproductive++
+			}
+		}
+	}
+
+	if len(outcomesByStratagem) > 0 {
+		type effectivenessEntry struct {
+			Name       string
+			Rate       float64
+			Productive int
+			Total      int
+		}
+		var entries []effectivenessEntry
+		totalProductive := 0
+		totalOutcomes := 0
+		for name, stats := range outcomesByStratagem {
+			total := stats.productive + stats.unproductive
+			rate := float64(stats.productive) / float64(total) * 100
+			entries = append(entries, effectivenessEntry{name, rate, stats.productive, total})
+			totalProductive += stats.productive
+			totalOutcomes += total
+		}
+		sort.Slice(entries, func(i, j int) bool {
+			if entries[i].Rate != entries[j].Rate {
+				return entries[i].Rate > entries[j].Rate
+			}
+			return entries[i].Total > entries[j].Total
+		})
+
+		b.WriteString("\nStratagem effectiveness (self-reported):\n")
+		for _, e := range entries {
+			tag := ""
+			if e.Total < 3 {
+				tag = " [provisional]"
+			}
+			b.WriteString(fmt.Sprintf("  %s: %.0f%% productive (%d/%d)%s\n", e.Name, e.Rate, e.Productive, e.Total, tag))
+		}
+
+		// Unmeasured: completed but no outcomes
+		for _, name := range allStratagems {
+			if _, hasOutcome := outcomesByStratagem[name]; !hasOutcome {
+				if _, completed := stratagemCompleted[name]; completed {
+					b.WriteString(fmt.Sprintf("  %s: unmeasured (%d completions, 0 outcomes)\n", name, stratagemCompleted[name]))
+				}
+			}
+		}
+
+		if totalOutcomes > 0 {
+			overallRate := float64(totalProductive) / float64(totalOutcomes) * 100
+			b.WriteString(fmt.Sprintf("\n  Overall: %.0f%% productive (%d/%d)\n", overallRate, totalProductive, totalOutcomes))
+		}
+	}
+
 	totalSteps := 0
 	ritualCount := 0
 	for _, h := range s.History {
