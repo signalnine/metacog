@@ -21,7 +21,7 @@ var versionCmd = &cobra.Command{
 	Use:   "version",
 	Short: "Print version information",
 	Run: func(cmd *cobra.Command, args []string) {
-		output := fmt.Sprintf("metacog v%s\nstate schema: v%d\nstratagems: pivot mirror stack anchor reset invocation veil banishing scrying sacrifice", Version, StateSchemaVersion)
+		output := fmt.Sprintf("metacog v%s\nstate schema: v%d\nstratagems: pivot mirror stack anchor reset invocation veil banishing scrying sacrifice drift fool inversion gift error", Version, StateSchemaVersion)
 		fmt.Println(FormatOutput(jsonOutput, output, nil))
 	},
 }

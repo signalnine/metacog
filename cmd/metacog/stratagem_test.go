@@ -5,7 +5,7 @@ import (
 )
 
 func TestStratagemDefinitions(t *testing.T) {
-	names := []string{"pivot", "mirror", "stack", "anchor", "reset", "invocation", "veil", "banishing", "scrying", "sacrifice"}
+	names := []string{"pivot", "mirror", "stack", "anchor", "reset", "invocation", "veil", "banishing", "scrying", "sacrifice", "drift", "fool", "inversion", "gift", "error"}
 	for _, name := range names {
 		def, ok := Stratagems[name]
 		if !ok {

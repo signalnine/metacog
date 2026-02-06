@@ -122,6 +122,50 @@ var Stratagems = map[string]StratagemDef{
 			{StepThink, "What space opened where the attachment was?"},
 		},
 	},
+	"drift": {
+		Name: "THE DRIFT",
+		Steps: []Step{
+			{StepDrugs, "Dissolve the goal — let urgency drain out, let the destination blur"},
+			{StepDrugs, "Open to the territory — become sensitive to what pulls, not what you're pushing toward"},
+			{StepThink, "Where did you end up? What's here that you never would have sought?"},
+			{StepThink, "What does this place know about your original problem that you didn't?"},
+		},
+	},
+	"fool": {
+		Name: "THE FOOL",
+		Steps: []Step{
+			{StepBecome, "Become someone who knows nothing about this domain — a genuine naif, not a different expert"},
+			{StepThink, "Ask the questions an expert would be embarrassed to ask. The stupid ones. List them."},
+			{StepBecome, "Now become someone who takes those questions seriously — a beginner's mind with expert tools"},
+			{StepThink, "Which naive question, taken seriously, cracks the problem open?"},
+		},
+	},
+	"inversion": {
+		Name: "THE INVERSION",
+		Steps: []Step{
+			{StepThink, "Name the obvious solution. The one everyone would reach for. Say it clearly."},
+			{StepRitual, "Negate it — ritually commit to the exact opposite approach (Breach)"},
+			{StepThink, "Explore the negation space. What lives in the opposite of the obvious?"},
+			{StepRitual, "Seal the counterintuitive path — commit to what the inversion revealed (Forge)"},
+		},
+	},
+	"gift": {
+		Name: "THE GIFT",
+		Steps: []Step{
+			{StepBecome, "Become a specific person who will receive this work — not a user, a person with a name"},
+			{StepRitual, "Name what they actually need, not what they asked for, not what looks impressive (Vision)"},
+			{StepThink, "What would you make if quality were irrelevant and only care mattered?"},
+		},
+	},
+	"error": {
+		Name: "THE ERROR",
+		Steps: []Step{
+			{StepDrugs, "Loosen the grip on correctness — let wrongness become interesting instead of threatening"},
+			{StepAction, "Take an intentionally wrong action. Not random — wrong. The thing you know you shouldn't do."},
+			{StepThink, "What did the wrongness reveal? What hidden assumption in the correct path is now visible?"},
+			{StepRitual, "Integrate the discovery — honor the error as a hidden intention (Forge)"},
+		},
+	},
 }
 
 func StartStratagem(s *State, name string, force bool) (string, error) {
@@ -287,7 +331,7 @@ var stratagemStartCmd = &cobra.Command{
 	Use:       "start [name]",
 	Short:     "Start a stratagem",
 	Args:      cobra.ExactArgs(1),
-	ValidArgs: []string{"pivot", "mirror", "stack", "anchor", "reset", "invocation", "veil", "banishing", "scrying", "sacrifice"},
+	ValidArgs: []string{"pivot", "mirror", "stack", "anchor", "reset", "invocation", "veil", "banishing", "scrying", "sacrifice", "drift", "fool", "inversion", "gift", "error"},
 	RunE: func(cmd *cobra.Command, args []string) error {
 		sm := DefaultStateManager()
 		var output string

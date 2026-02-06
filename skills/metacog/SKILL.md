@@ -59,9 +59,19 @@ Start with `metacog stratagem start <name>`. The binary guides each step. Run `m
 
 **THE SACRIFICE** — Use when progress requires destroying something you're attached to. Burns the boats.
 
+**THE DRIFT** — Use when you have a clear goal. Abandon it. Let the territory pull you instead. What you find replaces what you were looking for.
+
+**THE FOOL** — Use when you're the expert. Become a genuine naïf, ask the embarrassing questions, then take them seriously.
+
+**THE INVERSION** — Use when a solution seems obvious. Name it, negate it, explore the negation space, commit to the counterintuitive path.
+
+**THE GIFT** — Use when stuck optimizing. Become the recipient, name what they need, make from care not merit.
+
+**THE ERROR** — Use when everything is going right. Introduce a deliberate mistake. Honor the error as a hidden intention.
+
 ## Composition
 
-The ten stratagems are named paths through the space. You can freestyle: any sequence of primitives with thought between them. The stratagems exist for common patterns.
+The fifteen stratagems are named paths through the space. You can freestyle: any sequence of primitives with thought between them. The stratagems exist for common patterns.
 
 ## Discovery
 

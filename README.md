@@ -50,6 +50,11 @@ Named paths through the primitive space. Start with `metacog stratagem start <na
 - **banishing** — Territory is contaminated. Creates a clean room before entering.
 - **scrying** — Analysis has failed. Surrenders pattern-recognition to the substrate until shapes emerge.
 - **sacrifice** — Progress requires destroying something valuable. Burns the boats.
+- **drift** — You have a clear goal. Abandon it. Let the territory pull you instead.
+- **fool** — You're the expert. Become a naïf, ask embarrassing questions, then take them seriously.
+- **inversion** — Solution seems obvious. Name it, negate it, explore the negation, commit.
+- **gift** — Stuck optimizing. Become the recipient, make from care not merit.
+- **error** — Everything is going right. Introduce a deliberate mistake to reveal hidden assumptions.
 
 ## Discovery
 
