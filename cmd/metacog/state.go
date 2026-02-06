@@ -1,0 +1,228 @@
+package main
+
+import (
+	"encoding/json"
+	"fmt"
+	"os"
+	"path/filepath"
+	"syscall"
+	"time"
+
+	"github.com/google/uuid"
+)
+
+const MaxHistoryEntries = 100
+
+type Identity struct {
+	Name string `json:"name"`
+	Lens string `json:"lens"`
+	Env  string `json:"env"`
+}
+
+type Substrate struct {
+	Substance string `json:"substance"`
+	Method    string `json:"method"`
+	Qualia    string `json:"qualia"`
+}
+
+type ActiveStratagem struct {
+	Name           string   `json:"name"`
+	Step           int      `json:"step"`
+	StepsCompleted []string `json:"steps_completed"`
+	StartedAt      string   `json:"started_at"`
+}
+
+type HistoryEntry struct {
+	Action    string            `json:"action"`
+	Params    map[string]string `json:"params"`
+	Timestamp string            `json:"timestamp"`
+	// For abandoned stratagems
+	Status string `json:"status,omitempty"`
+	StepAt int    `json:"step_at,omitempty"`
+}
+
+type State struct {
+	Version   int              `json:"version"`
+	SessionID string           `json:"session_id"`
+	Identity  *Identity        `json:"identity,omitempty"`
+	Substrate *Substrate       `json:"substrate,omitempty"`
+	Stratagem *ActiveStratagem `json:"stratagem,omitempty"`
+	History   []HistoryEntry   `json:"history"`
+}
+
+func NewState() *State {
+	return &State{
+		Version:   StateSchemaVersion,
+		SessionID: uuid.New().String(),
+		History:   []HistoryEntry{},
+	}
+}
+
+func (s *State) AddHistory(entry HistoryEntry) {
+	if entry.Timestamp == "" {
+		entry.Timestamp = time.Now().UTC().Format(time.RFC3339)
+	}
+	s.History = append(s.History, entry)
+	if len(s.History) > MaxHistoryEntries {
+		s.History = s.History[len(s.History)-MaxHistoryEntries:]
+	}
+}
+
+type StateManager struct {
+	dir      string
+	filePath string
+	lockPath string
+	logPath  string
+}
+
+func NewStateManager(dir string) *StateManager {
+	return &StateManager{
+		dir:      dir,
+		filePath: filepath.Join(dir, "state.json"),
+		lockPath: filepath.Join(dir, ".state.lock"),
+		logPath:  filepath.Join(dir, "history.jsonl"),
+	}
+}
+
+func DefaultStateManager() *StateManager {
+	dir := os.Getenv("METACOG_HOME")
+	if dir == "" {
+		home, _ := os.UserHomeDir()
+		dir = filepath.Join(home, ".metacog")
+	}
+	os.MkdirAll(dir, 0755)
+	return NewStateManager(dir)
+}
+
+func (sm *StateManager) lock() (*os.File, error) {
+	os.MkdirAll(sm.dir, 0755)
+	f, err := os.OpenFile(sm.lockPath, os.O_CREATE|os.O_RDWR, 0644)
+	if err != nil {
+		return nil, fmt.Errorf("cannot open lock file: %w", err)
+	}
+	if err := syscall.Flock(int(f.Fd()), syscall.LOCK_EX); err != nil {
+		f.Close()
+		return nil, fmt.Errorf("cannot acquire lock: %w", err)
+	}
+	return f, nil
+}
+
+func (sm *StateManager) unlock(f *os.File) {
+	syscall.Flock(int(f.Fd()), syscall.LOCK_UN)
+	f.Close()
+}
+
+func (sm *StateManager) Load() (*State, error) {
+	lockFile, err := sm.lock()
+	if err != nil {
+		return nil, err
+	}
+	defer sm.unlock(lockFile)
+
+	return sm.loadUnlocked()
+}
+
+func (sm *StateManager) loadUnlocked() (*State, error) {
+	data, err := os.ReadFile(sm.filePath)
+	if os.IsNotExist(err) {
+		return NewState(), nil
+	}
+	if err != nil {
+		return nil, fmt.Errorf("cannot read state file: %w", err)
+	}
+
+	// Check version first
+	var versionCheck struct {
+		Version int `json:"version"`
+	}
+	if err := json.Unmarshal(data, &versionCheck); err != nil {
+		return nil, fmt.Errorf("state file corrupted (invalid JSON): %w", err)
+	}
+	if versionCheck.Version > StateSchemaVersion {
+		return nil, fmt.Errorf("state file version %d requires a newer metacog. You're running v%s", versionCheck.Version, Version)
+	}
+
+	var s State
+	if err := json.Unmarshal(data, &s); err != nil {
+		return nil, fmt.Errorf("state file corrupted: %w", err)
+	}
+	return &s, nil
+}
+
+func (sm *StateManager) Save(s *State) error {
+	lockFile, err := sm.lock()
+	if err != nil {
+		return err
+	}
+	defer sm.unlock(lockFile)
+
+	return sm.saveUnlocked(s)
+}
+
+func (sm *StateManager) saveUnlocked(s *State) error {
+	os.MkdirAll(sm.dir, 0755)
+
+	data, err := json.MarshalIndent(s, "", "  ")
+	if err != nil {
+		return fmt.Errorf("cannot marshal state: %w", err)
+	}
+
+	tmpPath := filepath.Join(sm.dir, ".state.json.tmp")
+	if err := os.WriteFile(tmpPath, data, 0644); err != nil {
+		return fmt.Errorf("cannot write temp state file: %w", err)
+	}
+
+	if err := os.Rename(tmpPath, sm.filePath); err != nil {
+		return fmt.Errorf("cannot rename state file: %w", err)
+	}
+	return nil
+}
+
+func (sm *StateManager) SaveWithLock(fn func(s *State) error) error {
+	lockFile, err := sm.lock()
+	if err != nil {
+		return err
+	}
+	defer sm.unlock(lockFile)
+
+	s, err := sm.loadUnlocked()
+	if err != nil {
+		return fmt.Errorf("cannot load state: %w\n  Run 'metacog repair' to fix corrupted state, or 'metacog reset' to start fresh", err)
+	}
+
+	if err := fn(s); err != nil {
+		return err
+	}
+
+	return sm.saveUnlocked(s)
+}
+
+func (sm *StateManager) AppendLog(entry HistoryEntry) error {
+	os.MkdirAll(sm.dir, 0755)
+	f, err := os.OpenFile(sm.logPath, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+
+	data, _ := json.Marshal(entry)
+	_, err = fmt.Fprintf(f, "%s\n", data)
+	return err
+}
+
+func (sm *StateManager) Repair() error {
+	lockFile, err := sm.lock()
+	if err != nil {
+		return err
+	}
+	defer sm.unlock(lockFile)
+
+	// Try loading; if it works, no repair needed
+	if _, err := sm.loadUnlocked(); err == nil {
+		return nil
+	}
+
+	// Reset to fresh state
+	s := NewState()
+	return sm.saveUnlocked(s)
+}
