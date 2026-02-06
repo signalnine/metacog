@@ -100,7 +100,7 @@ func FormatReflection(s *State) string {
 	}
 
 	b.WriteString("\nStratagem completions:\n")
-	allStratagems := []string{"pivot", "mirror", "stack", "anchor", "reset"}
+	allStratagems := []string{"pivot", "mirror", "stack", "anchor", "reset", "invocation", "veil", "banishing", "scrying", "sacrifice"}
 	hasAny := false
 	for _, name := range allStratagems {
 		if c, ok := stratagemCompleted[name]; ok {

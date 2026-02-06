@@ -49,9 +49,19 @@ Start with `metacog stratagem start <name>`. The binary guides each step. Run `m
 
 **THE RESET** — Use when you need to return to baseline. Releases, integrates artifacts, re-grounds.
 
+**THE INVOCATION** — Use when you need a perspective that can't be reached by choosing. Opens a channel rather than donning an identity.
+
+**THE VEIL** — Use when direct analysis kills the phenomenon. Forces indirect perception through deliberate defocusing.
+
+**THE BANISHING** — Use before entering dangerous or contaminated territory. Creates a clean room for the work ahead.
+
+**THE SCRYING** — Use when analysis has failed. Surrenders pattern-recognition to the substrate until shapes emerge from noise.
+
+**THE SACRIFICE** — Use when progress requires destroying something you're attached to. Burns the boats.
+
 ## Composition
 
-The five stratagems are named paths through the space. You can freestyle: any sequence of primitives with thought between them. The stratagems exist for common patterns.
+The ten stratagems are named paths through the space. You can freestyle: any sequence of primitives with thought between them. The stratagems exist for common patterns.
 
 ## Discovery
 

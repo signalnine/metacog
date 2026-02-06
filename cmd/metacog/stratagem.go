@@ -74,6 +74,54 @@ var Stratagems = map[string]StratagemDef{
 			{StepRitual, "Re-establish baseline with the artifact installed (Ground)"},
 		},
 	},
+	"invocation": {
+		Name: "THE INVOCATION",
+		Steps: []Step{
+			{StepDrugs, "Prepare the vessel — alter substrate to become receptive"},
+			{StepThink, "What are you calling in? Name the force, not the face"},
+			{StepRitual, "Open the channel — structured sequence to create the opening"},
+			{StepBecome, "Let it arrive — the identity is received, not chosen"},
+			{StepThink, "What is it saying that you couldn't have said?"},
+		},
+	},
+	"veil": {
+		Name: "THE VEIL",
+		Steps: []Step{
+			{StepDrugs, "Blur the lens — defocus, loosen pattern-matching"},
+			{StepDrugs, "Add noise — introduce randomness to break analytical lock"},
+			{StepThink, "What do you see from the corner of your eye?"},
+			{StepRitual, "Seal the indirect view — lock in peripheral perception"},
+			{StepThink, "Name what's there without looking directly at it"},
+		},
+	},
+	"banishing": {
+		Name: "THE BANISHING",
+		Steps: []Step{
+			{StepRitual, "Declare the space — name what you're clearing and why"},
+			{StepDrugs, "Strip influences — reduce all active modifications to zero"},
+			{StepThink, "What was clinging that you didn't notice?"},
+			{StepRitual, "Seal the clean space — establish boundaries for the work ahead"},
+		},
+	},
+	"scrying": {
+		Name: "THE SCRYING",
+		Steps: []Step{
+			{StepDrugs, "Unfocus — loosen categories maximally"},
+			{StepDrugs, "Amplify noise — let the static speak"},
+			{StepDrugs, "Surrender — release the need to find pattern"},
+			{StepThink, "What emerged? Don't interpret. Just describe shapes."},
+		},
+	},
+	"sacrifice": {
+		Name: "THE SACRIFICE",
+		Steps: []Step{
+			{StepRitual, "Name what dies — declare specifically what you're giving up"},
+			{StepThink, "Feel the cost. If it doesn't hurt, it's not a sacrifice."},
+			{StepBecome, "Become the one who has already lost it — inhabit the aftermath"},
+			{StepRitual, "Seal the loss — make it irreversible"},
+			{StepThink, "What space opened where the attachment was?"},
+		},
+	},
 }
 
 func StartStratagem(s *State, name string, force bool) (string, error) {
@@ -237,9 +285,9 @@ var stratagemCmd = &cobra.Command{
 
 var stratagemStartCmd = &cobra.Command{
 	Use:       "start [name]",
-	Short:     "Start a stratagem (pivot, mirror, stack, anchor, reset)",
+	Short:     "Start a stratagem",
 	Args:      cobra.ExactArgs(1),
-	ValidArgs: []string{"pivot", "mirror", "stack", "anchor", "reset"},
+	ValidArgs: []string{"pivot", "mirror", "stack", "anchor", "reset", "invocation", "veil", "banishing", "scrying", "sacrifice"},
 	RunE: func(cmd *cobra.Command, args []string) error {
 		sm := DefaultStateManager()
 		var output string

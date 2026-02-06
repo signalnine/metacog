@@ -20,7 +20,7 @@ Three primitives, all ritual by design — they modify state and return template
 
 **ritual(threshold, steps, result)** — Threshold crossing. Records step sequence.
 
-Five stratagems compose primitives into named sequences: pivot, mirror, stack, anchor, reset.
+Ten stratagems compose primitives into named sequences: pivot, mirror, stack, anchor, reset, invocation, veil, banishing, scrying, sacrifice.
 
 ## Key files
 

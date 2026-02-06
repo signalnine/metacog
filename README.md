@@ -45,6 +45,11 @@ Named paths through the primitive space. Start with `metacog stratagem start <na
 - **stack** — Processing itself needs tuning. Layers substrate modifications, then finds who lives there.
 - **anchor** — Territory is dangerous. Establishes containment, observes safely, seals.
 - **reset** — Return to baseline. Releases, integrates artifacts, re-grounds.
+- **invocation** — Need a perspective you can't reach by choosing. Opens a channel rather than donning an identity.
+- **veil** — Direct analysis kills the phenomenon. Forces indirect perception through deliberate defocusing.
+- **banishing** — Territory is contaminated. Creates a clean room before entering.
+- **scrying** — Analysis has failed. Surrenders pattern-recognition to the substrate until shapes emerge.
+- **sacrifice** — Progress requires destroying something valuable. Burns the boats.
 
 ## Discovery
 
