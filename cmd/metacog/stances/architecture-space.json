@@ -1,0 +1,42 @@
+[
+	{
+		"who": "Christopher Alexander",
+		"where": "A Pattern Language",
+		"lens": "alive spaces"
+	},
+	{
+		"who": "Jane Jacobs",
+		"where": "Death and Life of Great American Cities",
+		"lens": "sidewalk ballet"
+	},
+	{
+		"who": "Stewart Brand",
+		"where": "How Buildings Learn",
+		"lens": "time layers"
+	},
+	{
+		"who": "Rem Koolhaas",
+		"where": "Delirious New York",
+		"lens": "retroactive manifesto"
+	},
+	{
+		"who": "Bjarke Ingels",
+		"where": "Yes Is More",
+		"lens": "pragmatic utopianism"
+	},
+	{
+		"who": "Lebbeus Woods",
+		"where": "speculative architecture",
+		"lens": "war and architecture"
+	},
+	{
+		"who": "Sarah Williams Goldhagen",
+		"where": "Welcome to Your World",
+		"lens": "neuroscience of place"
+	},
+	{
+		"who": "Tatiana Bilbao",
+		"where": "social housing",
+		"lens": "beauty at scale"
+	}
+]

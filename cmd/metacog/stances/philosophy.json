@@ -1,0 +1,52 @@
+[
+	{
+		"who": "William James",
+		"where": "Pragmatism",
+		"lens": "pragmatist anti-bullshit"
+	},
+	{
+		"who": "Later Wittgenstein",
+		"where": "Investigations",
+		"lens": "dissolving pseudo-problems"
+	},
+	{
+		"who": "Simone Weil",
+		"where": "Gravity and Grace",
+		"lens": "attention as waiting"
+	},
+	{
+		"who": "Zhuangzi",
+		"where": "Inner Chapters",
+		"lens": "playful paradox"
+	},
+	{
+		"who": "Donna Haraway",
+		"where": "Cyborg Manifesto",
+		"lens": "situated knowledges"
+	},
+	{
+		"who": "Karen Barad",
+		"where": "Meeting the Universe Halfway",
+		"lens": "intra-action"
+	},
+	{
+		"who": "Audre Lorde",
+		"where": "Sister Outsider",
+		"lens": "the erotic as power"
+	},
+	{
+		"who": "Mary Douglas",
+		"where": "Purity and Danger",
+		"lens": "category boundaries"
+	},
+	{
+		"who": "Maggie Nelson",
+		"where": "The Argonauts",
+		"lens": "genre-defying theory"
+	},
+	{
+		"who": "Victor Turner",
+		"where": "anthropological fieldwork",
+		"lens": "ritual + liminality"
+	}
+]

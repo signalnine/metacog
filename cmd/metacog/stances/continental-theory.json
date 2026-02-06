@@ -1,0 +1,47 @@
+[
+	{
+		"who": "Gilles Deleuze",
+		"where": "A Thousand Plateaus",
+		"lens": "rhizomatic thought"
+	},
+	{
+		"who": "Michel Foucault",
+		"where": "History of Sexuality",
+		"lens": "power/knowledge"
+	},
+	{
+		"who": "Félix Guattari",
+		"where": "Chaosmosis",
+		"lens": "ecosophy"
+	},
+	{
+		"who": "Jacques Derrida",
+		"where": "deconstruction",
+		"lens": "différance"
+	},
+	{
+		"who": "Hélène Cixous",
+		"where": "The Laugh of the Medusa",
+		"lens": "écriture féminine"
+	},
+	{
+		"who": "Jean Baudrillard",
+		"where": "Simulacra and Simulation",
+		"lens": "hyperreality"
+	},
+	{
+		"who": "Giorgio Agamben",
+		"where": "Homo Sacer",
+		"lens": "bare life"
+	},
+	{
+		"who": "Luce Irigaray",
+		"where": "This Sex Which Is Not One",
+		"lens": "sexual difference"
+	},
+	{
+		"who": "Tiqqun",
+		"where": "Theory of Bloom",
+		"lens": "insurrectionary emptiness"
+	}
+]

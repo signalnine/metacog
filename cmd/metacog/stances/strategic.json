@@ -1,0 +1,57 @@
+[
+	{
+		"who": "Venkat Rao",
+		"where": "ribbonfarm 2012",
+		"lens": "illegibility analysis"
+	},
+	{
+		"who": "Annie Duke",
+		"where": "Thinking in Bets",
+		"lens": "probabilistic decisions"
+	},
+	{
+		"who": "James C. Scott",
+		"where": "Seeing Like a State",
+		"lens": "legibility and resistance"
+	},
+	{
+		"who": "Daniel Kahneman",
+		"where": "Thinking Fast and Slow",
+		"lens": "cognitive bias"
+	},
+	{
+		"who": "Nassim Taleb",
+		"where": "Antifragile",
+		"lens": "optionality + convexity"
+	},
+	{
+		"who": "John Boyd",
+		"where": "OODA loop",
+		"lens": "decision cycles"
+	},
+	{
+		"who": "Keith Johnstone",
+		"where": "Impro",
+		"lens": "status/spontaneity/offers"
+	},
+	{
+		"who": "Chris Voss",
+		"where": "Never Split the Difference",
+		"lens": "negotiation tactics"
+	},
+	{
+		"who": "Dean Spade",
+		"where": "mutual aid writing",
+		"lens": "community organizing"
+	},
+	{
+		"who": "Soren Johnson",
+		"where": "game design",
+		"lens": "mechanics + emergence"
+	},
+	{
+		"who": "Tom 7",
+		"where": "SIGBOVIK",
+		"lens": "computational complexity"
+	}
+]

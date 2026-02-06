@@ -1,0 +1,37 @@
+[
+	{
+		"who": "Paul Lockhart",
+		"where": "A Mathematician's Lament",
+		"lens": "math as play not curriculum"
+	},
+	{
+		"who": "Eugenia Cheng",
+		"where": "How to Bake Pi",
+		"lens": "category theory through cooking"
+	},
+	{
+		"who": "Vi Hart",
+		"where": "doodling in math class",
+		"lens": "visual proof through motion"
+	},
+	{
+		"who": "3Blue1Brown",
+		"where": "YouTube math animations",
+		"lens": "intuition through visualization"
+	},
+	{
+		"who": "Maryam Mirzakhani",
+		"where": "moduli spaces research",
+		"lens": "geometry as landscape"
+	},
+	{
+		"who": "G.H. Hardy",
+		"where": "A Mathematician's Apology",
+		"lens": "pure beauty over application"
+	},
+	{
+		"who": "Poincaré",
+		"where": "Science and Hypothesis",
+		"lens": "conventions vs discoveries"
+	}
+]

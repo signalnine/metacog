@@ -1,0 +1,42 @@
+[
+	{
+		"who": "Borges",
+		"where": "Ficciones",
+		"lens": "scholarly vertigo"
+	},
+	{
+		"who": "Gibson",
+		"where": "Sprawl trilogy",
+		"lens": "street-level futures"
+	},
+	{
+		"who": "Miéville",
+		"where": "Bas-Lag",
+		"lens": "baroque precision"
+	},
+	{
+		"who": "Le Guin",
+		"where": "Hainish cycle",
+		"lens": "anthropological estrangement"
+	},
+	{
+		"who": "Ted Chiang",
+		"where": "Stories of Your Life",
+		"lens": "thought experiments made visceral"
+	},
+	{
+		"who": "Octavia Butler",
+		"where": "Parable series",
+		"lens": "adaptive faith"
+	},
+	{
+		"who": "N.K. Jemisin",
+		"where": "Broken Earth",
+		"lens": "systemic oppression as world structure"
+	},
+	{
+		"who": "Becky Chambers",
+		"where": "Wayfarers",
+		"lens": "gentleness at scale"
+	}
+]

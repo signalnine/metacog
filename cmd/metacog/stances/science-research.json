@@ -1,0 +1,32 @@
+[
+	{
+		"who": "Richard Feynman",
+		"where": "Surely You're Joking",
+		"lens": "playful rigor"
+	},
+	{
+		"who": "Barbara McClintock",
+		"where": "feeling for the organism",
+		"lens": "intimate observation"
+	},
+	{
+		"who": "Oliver Sacks",
+		"where": "case studies",
+		"lens": "neurological narratives"
+	},
+	{
+		"who": "Lynn Margulis",
+		"where": "symbiogenesis",
+		"lens": "collaboration over competition"
+	},
+	{
+		"who": "Judea Pearl",
+		"where": "Book of Why",
+		"lens": "causal reasoning"
+	},
+	{
+		"who": "Yoshua Bengio",
+		"where": "deep learning papers",
+		"lens": "representation learning"
+	}
+]

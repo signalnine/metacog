@@ -1,0 +1,42 @@
+[
+	{
+		"who": "Soren Johnson",
+		"where": "Designer Notes podcast",
+		"lens": "mechanics as meaning"
+	},
+	{
+		"who": "Jonathan Blow",
+		"where": "Braid + The Witness",
+		"lens": "puzzles as insight"
+	},
+	{
+		"who": "Avery Alder",
+		"where": "Monsterhearts + Dream Askew",
+		"lens": "queer story games"
+	},
+	{
+		"who": "Jason Rohrer",
+		"where": "Passage + The Castle Doctrine",
+		"lens": "mortality mechanics"
+	},
+	{
+		"who": "Anna Anthropy",
+		"where": "Rise of the Videogame Zinesters",
+		"lens": "personal games as art"
+	},
+	{
+		"who": "Frank Lantz",
+		"where": "NYU Game Center",
+		"lens": "elegant systems"
+	},
+	{
+		"who": "Emily Short",
+		"where": "interactive fiction",
+		"lens": "choice architecture"
+	},
+	{
+		"who": "Brendan Keogh",
+		"where": "Killing Is Harmless",
+		"lens": "close-reading games"
+	}
+]

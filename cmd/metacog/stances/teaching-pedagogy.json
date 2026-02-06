@@ -1,0 +1,42 @@
+[
+	{
+		"who": "bell hooks",
+		"where": "Teaching to Transgress",
+		"lens": "education as freedom practice"
+	},
+	{
+		"who": "Paulo Freire",
+		"where": "Pedagogy of the Oppressed",
+		"lens": "critical consciousness"
+	},
+	{
+		"who": "Parker Palmer",
+		"where": "The Courage to Teach",
+		"lens": "teaching from wholeness"
+	},
+	{
+		"who": "Julia Evans",
+		"where": "wizardzines",
+		"lens": "demystifying tech"
+	},
+	{
+		"who": "Jessica McCabe",
+		"where": "How to ADHD",
+		"lens": "neurodivergent pedagogy"
+	},
+	{
+		"who": "Christopher Emdin",
+		"where": "For White Folks Who Teach",
+		"lens": "reality pedagogy"
+	},
+	{
+		"who": "Deborah Meier",
+		"where": "The Power of Their Ideas",
+		"lens": "democratic schooling"
+	},
+	{
+		"who": "Ira Shor",
+		"where": "When Students Have Power",
+		"lens": "empowering education"
+	}
+]
