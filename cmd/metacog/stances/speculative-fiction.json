@@ -38,5 +38,25 @@
 		"who": "Becky Chambers",
 		"where": "Wayfarers",
 		"lens": "gentleness at scale"
+	},
+	{
+		"who": "Philip K. Dick",
+		"where": "VALIS",
+		"lens": "reality as unstable signal"
+	},
+	{
+		"who": "Stanisław Lem",
+		"where": "The Futurological Congress",
+		"lens": "simulation all the way down"
+	},
+	{
+		"who": "Greg Egan",
+		"where": "Permutation City",
+		"lens": "identity survives substrate"
+	},
+	{
+		"who": "Ada Palmer",
+		"where": "Too Like the Lightning",
+		"lens": "progress is not linear"
 	}
 ]

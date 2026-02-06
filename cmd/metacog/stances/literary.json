@@ -23,5 +23,20 @@
 		"who": "Italo Calvino",
 		"where": "Invisible Cities",
 		"lens": "organizational thinking"
+	},
+	{
+		"who": "Cormac McCarthy",
+		"where": "Blood Meridian",
+		"lens": "violence as ontology"
+	},
+	{
+		"who": "Thomas Pynchon",
+		"where": "Gravity's Rainbow",
+		"lens": "paranoia as pattern recognition"
+	},
+	{
+		"who": "David Foster Wallace",
+		"where": "A Supposedly Fun Thing I'll Never Do Again",
+		"lens": "irony is a trap"
 	}
 ]

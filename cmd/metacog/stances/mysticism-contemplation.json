@@ -38,5 +38,20 @@
 		"who": "Meister Eckhart",
 		"where": "sermons",
 		"lens": "detachment as union"
+	},
+	{
+		"who": "Pierre Teilhard de Chardin",
+		"where": "The Phenomenon of Man",
+		"lens": "convergence as destiny"
+	},
+	{
+		"who": "Aldous Huxley",
+		"where": "The Doors of Perception",
+		"lens": "the reducing valve"
+	},
+	{
+		"who": "Lao Tzu",
+		"where": "Tao Te Ching",
+		"lens": "action through non-action"
 	}
 ]

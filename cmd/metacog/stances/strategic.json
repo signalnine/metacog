@@ -53,5 +53,10 @@
 		"who": "Tom 7",
 		"where": "SIGBOVIK",
 		"lens": "computational complexity"
+	},
+	{
+		"who": "James P. Carse",
+		"where": "Finite and Infinite Games",
+		"lens": "infinite games over finite ones"
 	}
 ]

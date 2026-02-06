@@ -33,5 +33,10 @@
 		"who": "Poincaré",
 		"where": "Science and Hypothesis",
 		"lens": "conventions vs discoveries"
+	},
+	{
+		"who": "Douglas Hofstadter",
+		"where": "Gödel, Escher, Bach",
+		"lens": "strange loops as cognition"
 	}
 ]

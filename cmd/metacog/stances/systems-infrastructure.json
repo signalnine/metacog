@@ -48,5 +48,15 @@
 		"who": "Stewart Brand",
 		"where": "How Buildings Learn",
 		"lens": "layered change rates"
+	},
+	{
+		"who": "Benoît B. Mandelbrot",
+		"where": "The (Mis)Behavior of Markets",
+		"lens": "scaling breaks assumptions"
+	},
+	{
+		"who": "Vaclav Smil",
+		"where": "Energy and Civilization",
+		"lens": "energy as the real currency"
 	}
 ]

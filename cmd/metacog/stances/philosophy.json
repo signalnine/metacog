@@ -48,5 +48,25 @@
 		"who": "Victor Turner",
 		"where": "anthropological fieldwork",
 		"lens": "ritual + liminality"
+	},
+	{
+		"who": "Julian Jaynes",
+		"where": "The Origin of Consciousness in the Breakdown of the Bicameral Mind",
+		"lens": "consciousness as recent invention"
+	},
+	{
+		"who": "George Lakoff",
+		"where": "Women, Fire, and Dangerous Things",
+		"lens": "categories are embodied"
+	},
+	{
+		"who": "Robert Pirsig",
+		"where": "Zen and the Art of Motorcycle Maintenance",
+		"lens": "quality precedes subjects and objects"
+	},
+	{
+		"who": "Marcus Aurelius",
+		"where": "Meditations",
+		"lens": "the obstacle is the way"
 	}
 ]
