@@ -75,12 +75,13 @@ var statusCmd = &cobra.Command{
 
 var resetCmd = &cobra.Command{
 	Use:   "reset",
-	Short: "Clear all state",
+	Short: "Clear identity, substrate, and stratagem (preserves session and history)",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		sm := DefaultStateManager()
 		return sm.SaveWithLock(func(s *State) error {
-			fresh := NewState()
-			*s = *fresh
+			s.Identity = nil
+			s.Substrate = nil
+			s.Stratagem = nil
 			return nil
 		})
 	},
