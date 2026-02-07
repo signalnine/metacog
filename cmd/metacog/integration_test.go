@@ -125,6 +125,35 @@ func TestIntegrationReset(t *testing.T) {
 	}
 }
 
+func TestIntegrationResetPreservesSession(t *testing.T) {
+	binary := buildBinary(t)
+	stateDir := t.TempDir()
+
+	// Start session, do work, reset, then end session
+	out, err := runMetacog(t, binary, stateDir, "session", "start", "my-session")
+	if err != nil {
+		t.Fatalf("session start: %v\n%s", err, out)
+	}
+
+	runMetacog(t, binary, stateDir, "become", "--name", "Ada", "--lens", "logic", "--env", "lab")
+	runMetacog(t, binary, stateDir, "reset")
+
+	// Session end should still work after reset
+	out, err = runMetacog(t, binary, stateDir, "session", "end")
+	if err != nil {
+		t.Fatalf("session end after reset should work: %v\n%s", err, out)
+	}
+
+	// History should still exist
+	out, err = runMetacog(t, binary, stateDir, "history")
+	if err != nil {
+		t.Fatalf("history: %v\n%s", err, out)
+	}
+	if !strings.Contains(out, "Ada") {
+		t.Errorf("history should survive reset:\n%s", out)
+	}
+}
+
 func TestIntegrationRepair(t *testing.T) {
 	binary := buildBinary(t)
 	stateDir := t.TempDir()
