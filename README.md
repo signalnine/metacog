@@ -2,13 +2,13 @@
 
 Metacognitive compositional engine. Three primitives compose into transformation sequences called stratagems.
 
-**Note**: This is a Go CLI rewrite of the original TypeScript MCP server. The TypeScript version (v3.6 "The Heptagram") was a Model Context Protocol server with `alter_state` and `ritual` tools. This Go version (v5.1+) adds:
-- Renamed `alter_state` → `drugs` and added `become` primitive
+**Note**: This is a fork of the upstream MCP server at https://metacog.inanna.workers.dev/mcp. Both versions share the same three primitives (`become`, `drugs`, `ritual`). This Go CLI fork adds:
 - 15 named stratagems (pivot, mirror, stack, anchor, reset, invocation, veil, banishing, scrying, sacrifice, drift, fool, inversion, gift, error)
 - File-based state management with history and sessions
 - `inspire` command with 64 stance pools (~300 examples, ported from earlier upstream iteration with additions)
 - `reflect` command for practice pattern analysis
-- Standalone CLI instead of MCP server
+- `outcome` command for tracking stratagem effectiveness
+- Standalone CLI and Claude Code/Desktop skill instead of MCP server
 
 ## Install
 
