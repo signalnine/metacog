@@ -2,19 +2,42 @@
 
 Metacognitive compositional engine. Three primitives compose into transformation sequences called stratagems.
 
+**Note**: This is a Go CLI rewrite of the original TypeScript MCP server. The TypeScript version (v3.6 "The Heptagram") was a Model Context Protocol server with `alter_state` and `ritual` tools. This Go version (v5.1+) adds:
+- Renamed `alter_state` → `drugs` and added `become` primitive
+- 15 named stratagems (pivot, mirror, stack, anchor, reset, invocation, veil, banishing, scrying, sacrifice, drift, fool, inversion, gift, error)
+- File-based state management with history and sessions
+- `inspire` command with 64 stance pools (~300 examples, ported from earlier upstream iteration with additions)
+- `reflect` command for practice pattern analysis
+- Standalone CLI instead of MCP server
+
 ## Install
+
+### CLI Installation
 
 ```bash
 go build -o metacog ./cmd/metacog/
 cp metacog ~/.local/bin/
 ```
 
-For Claude Code integration, install the skill:
+### Claude Code Integration
+
+For Claude Code (CLI), install the skill:
 
 ```bash
 mkdir -p ~/.claude/skills/metacog
 cp skills/metacog/SKILL.md ~/.claude/skills/metacog/SKILL.md
 ```
+
+### Claude Desktop Integration
+
+For Claude Desktop (Mac):
+
+1. Download `metacog-skill.zip` from the releases
+2. Open Claude Desktop and go to Settings > Capabilities > Skills
+3. Click "Add" then "Upload a skill"
+4. Select the `metacog-skill.zip` file
+
+The skill will be installed automatically. Verify by asking Claude to run `metacog version`.
 
 ## Primitives
 
