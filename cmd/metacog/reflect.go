@@ -232,6 +232,168 @@ func FormatRecentInsights(entries []JournalEntry, n int) string {
 	return b.String()
 }
 
+func FormatAdvisories(s *State, journal []JournalEntry) string {
+	if len(s.History) == 0 {
+		return ""
+	}
+
+	var advisories []string
+
+	// 1. Unproductive streak — scan backward for consecutive unproductive outcomes
+	var streak int
+	var streakNames []string
+	for i := len(s.History) - 1; i >= 0; i-- {
+		h := s.History[i]
+		if h.Action != "outcome" {
+			continue
+		}
+		if h.Params["result"] == "unproductive" {
+			streak++
+			name := h.Params["stratagem"]
+			if name == "" {
+				name = "unknown"
+			}
+			streakNames = append(streakNames, name)
+		} else {
+			break
+		}
+	}
+	if streak >= 3 {
+		advisories = append(advisories, fmt.Sprintf("!! %d unproductive outcomes in a row (last: %s)", streak, strings.Join(streakNames, ", ")))
+	} else if streak == 2 {
+		advisories = append(advisories, fmt.Sprintf("-- 2 unproductive outcomes in a row (last: %s)", strings.Join(streakNames, ", ")))
+	}
+
+	// 2. Low effectiveness — stratagems/freestyle with 3+ outcomes and <50% productive
+	type outcomeStats struct {
+		productive   int
+		unproductive int
+	}
+	outcomesByName := map[string]*outcomeStats{}
+	for _, h := range s.History {
+		if h.Action == "outcome" {
+			name := h.Params["stratagem"]
+			if name == "" {
+				continue
+			}
+			if outcomesByName[name] == nil {
+				outcomesByName[name] = &outcomeStats{}
+			}
+			if h.Params["result"] == "productive" {
+				outcomesByName[name].productive++
+			} else {
+				outcomesByName[name].unproductive++
+			}
+		}
+	}
+	for name, stats := range outcomesByName {
+		total := stats.productive + stats.unproductive
+		if total < 3 {
+			continue
+		}
+		rate := float64(stats.productive) / float64(total) * 100
+		if rate < 33 {
+			advisories = append(advisories, fmt.Sprintf("!! %s: %.0f%% productive (%d/%d)", name, rate, stats.productive, total))
+		} else if rate < 50 {
+			advisories = append(advisories, fmt.Sprintf("-- %s: %.0f%% productive (%d/%d)", name, rate, stats.productive, total))
+		}
+	}
+
+	// 3. Never-tried stratagems — only flag if user has 5+ total completions
+	allStratagems := []string{"pivot", "mirror", "stack", "anchor", "reset", "invocation", "veil", "banishing", "scrying", "sacrifice", "drift", "fool", "inversion", "gift", "error"}
+	stratagemCompleted := map[string]int{}
+	totalCompletions := 0
+	for _, h := range s.History {
+		if h.Action == "stratagem" && h.Params["event"] == "completed" {
+			stratagemCompleted[h.Params["name"]]++
+			totalCompletions++
+		}
+	}
+	if totalCompletions >= 5 {
+		var neverTried []string
+		for _, name := range allStratagems {
+			if stratagemCompleted[name] == 0 {
+				neverTried = append(neverTried, name)
+			}
+		}
+		if len(neverTried) > 0 {
+			advisories = append(advisories, fmt.Sprintf("-- Never tried: %s", strings.Join(neverTried, ", ")))
+		}
+	}
+
+	// 4. Over-reliance — single identity >50% of last 20 becomes, or single substrate >50% of last 20 drugs
+	checkOverReliance := func(action, paramKey, label string) {
+		var recent []string
+		for i := len(s.History) - 1; i >= 0 && len(recent) < 20; i-- {
+			if s.History[i].Action == action {
+				val := s.History[i].Params[paramKey]
+				if val != "" {
+					recent = append(recent, val)
+				}
+			}
+		}
+		if len(recent) < 4 {
+			return
+		}
+		counts := map[string]int{}
+		for _, v := range recent {
+			counts[v]++
+		}
+		for val, count := range counts {
+			if float64(count)/float64(len(recent)) > 0.5 {
+				advisories = append(advisories, fmt.Sprintf("-- Over-reliance: %q used in %d of last %d %s", val, count, len(recent), label))
+			}
+		}
+	}
+	checkOverReliance("become", "name", "becomes")
+	checkOverReliance("drugs", "substance", "drugs")
+
+	// 5. Practice without reflection — count recent primitives/stratagem-completeds before hitting an outcome
+	unreflected := 0
+	for i := len(s.History) - 1; i >= 0; i-- {
+		h := s.History[i]
+		if h.Action == "outcome" {
+			break
+		}
+		switch h.Action {
+		case "become", "drugs", "ritual":
+			unreflected++
+		case "stratagem":
+			if h.Params["event"] == "completed" {
+				unreflected++
+			}
+		}
+	}
+	if unreflected >= 5 {
+		advisories = append(advisories, fmt.Sprintf("-- %d recent primitives with no outcome recorded", unreflected))
+	}
+
+	// 6. Journal friction — last 10 journal entries containing "stuck" or "unproductive"
+	if len(journal) > 0 {
+		start := 0
+		if len(journal) > 10 {
+			start = len(journal) - 10
+		}
+		for _, e := range journal[start:] {
+			lower := strings.ToLower(e.Insight)
+			if strings.Contains(lower, "stuck") || strings.Contains(lower, "unproductive") {
+				advisories = append(advisories, fmt.Sprintf("-- Journal friction: %q", e.Insight))
+			}
+		}
+	}
+
+	if len(advisories) == 0 {
+		return ""
+	}
+
+	var b strings.Builder
+	b.WriteString("\nAdvisories:\n")
+	for _, a := range advisories {
+		b.WriteString(fmt.Sprintf("  %s\n", a))
+	}
+	return b.String()
+}
+
 var reflectCmd = &cobra.Command{
 	Use:   "reflect",
 	Short: "Show practice patterns from history",
@@ -247,6 +409,8 @@ var reflectCmd = &cobra.Command{
 		if err == nil && len(journal) > 0 {
 			output += FormatRecentInsights(journal, 5)
 		}
+
+		output += FormatAdvisories(s, journal)
 
 		fmt.Println(FormatOutput(jsonOutput, output, nil))
 		return nil

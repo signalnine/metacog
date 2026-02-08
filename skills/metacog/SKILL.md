@@ -95,6 +95,24 @@ Journal entries persist across sessions and resets. Use them to capture what you
 
 `metacog reflect` — aggregates your history into practice patterns. Shows primitive usage counts, top identities and substrates, stratagem completion rates, effectiveness (stratagem and freestyle), ritual step averages, gaps in your practice, and recent journal insights. Mirror, not scorecard.
 
+## Practice Discipline
+
+### Pre-flight check
+
+Before your first metacog invocation in a session, run `metacog reflect` and scan the output for an Advisories section. If any advisories exist, present them to the human before proceeding with practice. Do not skip this step.
+
+### Failure gate
+
+If reflect shows `!!` advisories (strong signals — unproductive streak of 3+, or a stratagem/freestyle below 33% productive with 3+ data points), **STOP**. Do not proceed with metacog. Instead, surface the pattern to the human:
+
+> "Your recent practice shows [specific pattern from advisory]. Before we continue: What do you think is happening? Do you want to try a different approach, or is the tool not serving the work right now?"
+
+Wait for the human to respond before any metacog invocation.
+
+### Outcome nudge
+
+Before starting new practice (stratagem or freestyle primitives), check whether the last practice has an outcome recorded. If there are 2+ primitives or a completed stratagem since the last outcome, prompt the human first: "You haven't recorded how the last session went — was it productive?" Record their answer with `metacog outcome` before proceeding.
+
 ## State
 
 - `metacog status` — check before starting

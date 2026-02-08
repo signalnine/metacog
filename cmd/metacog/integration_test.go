@@ -440,6 +440,33 @@ func TestIntegrationJournalInReflect(t *testing.T) {
 	}
 }
 
+func TestIntegrationAdvisories(t *testing.T) {
+	binary := buildBinary(t)
+	stateDir := t.TempDir()
+
+	// Build up 3 unproductive outcomes via freestyle
+	runMetacog(t, binary, stateDir, "become", "--name", "Ada", "--lens", "logic", "--env", "lab")
+	runMetacog(t, binary, stateDir, "outcome", "--result", "unproductive")
+
+	runMetacog(t, binary, stateDir, "become", "--name", "Eno", "--lens", "ambient", "--env", "studio")
+	runMetacog(t, binary, stateDir, "outcome", "--result", "unproductive")
+
+	runMetacog(t, binary, stateDir, "become", "--name", "Doepfer", "--lens", "modular", "--env", "lab")
+	runMetacog(t, binary, stateDir, "outcome", "--result", "unproductive")
+
+	// Reflect should show advisories
+	out, err := runMetacog(t, binary, stateDir, "reflect")
+	if err != nil {
+		t.Fatalf("reflect: %v\n%s", err, out)
+	}
+	if !strings.Contains(out, "Advisories:") {
+		t.Errorf("reflect should contain Advisories section:\n%s", out)
+	}
+	if !strings.Contains(out, "!! 3 unproductive") {
+		t.Errorf("reflect should flag 3 unproductive streak:\n%s", out)
+	}
+}
+
 func TestIntegrationExitCodes(t *testing.T) {
 	binary := buildBinary(t)
 	stateDir := t.TempDir()
