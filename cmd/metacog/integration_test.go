@@ -467,6 +467,36 @@ func TestIntegrationAdvisories(t *testing.T) {
 	}
 }
 
+func TestIntegrationPracticePatterns(t *testing.T) {
+	binary := buildBinary(t)
+	stateDir := t.TempDir()
+
+	// Build productive outcomes with configs
+	runMetacog(t, binary, stateDir, "become", "--name", "Ada", "--lens", "logic", "--env", "lab")
+	runMetacog(t, binary, stateDir, "drugs", "--substance", "caffeine", "--method", "antagonism", "--qualia", "sharp")
+	runMetacog(t, binary, stateDir, "outcome", "--result", "productive", "--shift", "reframed the problem")
+
+	runMetacog(t, binary, stateDir, "become", "--name", "Eno", "--lens", "ambient", "--env", "studio")
+	runMetacog(t, binary, stateDir, "outcome", "--result", "productive", "--shift", "found new angle")
+
+	out, err := runMetacog(t, binary, stateDir, "reflect")
+	if err != nil {
+		t.Fatalf("reflect: %v\n%s", err, out)
+	}
+	if !strings.Contains(out, "Practice patterns:") {
+		t.Errorf("reflect should contain Practice patterns section:\n%s", out)
+	}
+	if !strings.Contains(out, "What worked") {
+		t.Errorf("reflect should contain What worked:\n%s", out)
+	}
+	if !strings.Contains(out, "Ada/logic") {
+		t.Errorf("reflect should show identity config:\n%s", out)
+	}
+	if !strings.Contains(out, "reframed the problem") {
+		t.Errorf("reflect should show shift text:\n%s", out)
+	}
+}
+
 func TestIntegrationExitCodes(t *testing.T) {
 	binary := buildBinary(t)
 	stateDir := t.TempDir()

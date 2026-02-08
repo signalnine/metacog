@@ -69,6 +69,23 @@ Start with `metacog stratagem start <name>`. The binary guides each step. Run `m
 
 **THE ERROR** — Use when everything is going right. Introduce a deliberate mistake. Honor the error as a hidden intention.
 
+## Selection
+
+The human is the practitioner. You are the facilitator. Never silently choose a stratagem — always present options and let the human decide.
+
+When practice seems appropriate, present 2-3 stratagems that fit the situation with a one-line reason for each. Always include freestyle as an option. For example:
+
+> Based on where you are, a few approaches:
+> - **pivot** — you seem locked in one frame, this loosens categories and imports a methodology
+> - **mirror** — there are two positions in tension, this inhabits both to find synthesis
+> - **freestyle** — skip the structure, just work with primitives directly
+>
+> Which of these resonates, or something else?
+
+Wait for the human to choose before invoking anything. If the human names a stratagem directly ("let's do a pivot"), proceed. If they describe what they want without naming one, map it to options and offer those.
+
+If reflect's Practice patterns section shows what has worked before in similar situations, mention it: "pivot with Ada/logic has been productive for you before." Data, not recommendation.
+
 ## Composition
 
 The fifteen stratagems are named paths through the space. You can freestyle: any sequence of primitives with thought between them. The stratagems exist for common patterns.

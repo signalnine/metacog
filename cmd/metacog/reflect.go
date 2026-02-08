@@ -232,6 +232,146 @@ func FormatRecentInsights(entries []JournalEntry, n int) string {
 	return b.String()
 }
 
+func FormatPracticePatterns(s *State) string {
+	if len(s.History) == 0 {
+		return ""
+	}
+
+	var b strings.Builder
+	hasContent := false
+
+	// What worked — collect productive outcomes with their active configs
+	type productiveEntry struct {
+		stratagem string
+		identity  string // "name/lens" or ""
+		substance string // or ""
+		shift     string // or ""
+	}
+	var productive []productiveEntry
+	for i, h := range s.History {
+		if h.Action != "outcome" || h.Params["result"] != "productive" {
+			continue
+		}
+		entry := productiveEntry{
+			stratagem: h.Params["stratagem"],
+			shift:     h.Params["shift"],
+		}
+		// Scan backward for nearest become
+		for j := i - 1; j >= 0; j-- {
+			if s.History[j].Action == "become" {
+				name := s.History[j].Params["name"]
+				lens := s.History[j].Params["lens"]
+				if name != "" {
+					if lens != "" {
+						entry.identity = name + "/" + lens
+					} else {
+						entry.identity = name
+					}
+				}
+				break
+			}
+		}
+		// Scan backward for nearest drugs
+		for j := i - 1; j >= 0; j-- {
+			if s.History[j].Action == "drugs" {
+				sub := s.History[j].Params["substance"]
+				if sub != "" {
+					entry.substance = sub
+				}
+				break
+			}
+		}
+		productive = append(productive, entry)
+	}
+
+	if len(productive) > 0 {
+		hasContent = true
+		total := len(productive)
+		show := productive
+		if len(show) > 5 {
+			show = show[len(show)-5:]
+		}
+
+		if total > 5 {
+			b.WriteString(fmt.Sprintf("\nPractice patterns:\n  What worked (last 5 of %d):\n", total))
+		} else {
+			b.WriteString("\nPractice patterns:\n  What worked:\n")
+		}
+
+		for _, e := range show {
+			// Build config portion
+			config := ""
+			if e.identity != "" && e.substance != "" {
+				config = e.identity + " + " + e.substance
+			} else if e.identity != "" {
+				config = e.identity
+			} else if e.substance != "" {
+				config = e.substance
+			}
+
+			stratLabel := e.stratagem
+			if stratLabel == "" {
+				stratLabel = "unknown"
+			}
+
+			if config != "" && e.shift != "" {
+				b.WriteString(fmt.Sprintf("    %s — %s — %q\n", stratLabel, config, e.shift))
+			} else if config != "" {
+				b.WriteString(fmt.Sprintf("    %s — %s\n", stratLabel, config))
+			} else if e.shift != "" {
+				b.WriteString(fmt.Sprintf("    %s — (no config) — %q\n", stratLabel, e.shift))
+			} else {
+				b.WriteString(fmt.Sprintf("    %s — (no config)\n", stratLabel))
+			}
+		}
+
+		if total > 5 {
+			b.WriteString(fmt.Sprintf("    (%d more productive outcomes in history)\n", total-5))
+		}
+	}
+
+	// Underused — flag primitives at <20% of total when total >= 5
+	primitiveCounts := map[string]int{}
+	for _, h := range s.History {
+		switch h.Action {
+		case "become", "drugs", "ritual":
+			primitiveCounts[h.Action]++
+		}
+	}
+	totalPrimitives := primitiveCounts["become"] + primitiveCounts["drugs"] + primitiveCounts["ritual"]
+
+	if totalPrimitives >= 5 {
+		descriptors := map[string]string{
+			"become": "identity shifting",
+			"drugs":  "substrate modification",
+			"ritual": "threshold-crossing",
+		}
+		var underused []string
+		for _, p := range []string{"become", "drugs", "ritual"} {
+			count := primitiveCounts[p]
+			pct := float64(count) / float64(totalPrimitives) * 100
+			if pct < 20 {
+				underused = append(underused, fmt.Sprintf("    %s is %.0f%% of your practice (%d of %d primitives) — %s is available", p, pct, count, totalPrimitives, descriptors[p]))
+			}
+		}
+		if len(underused) > 0 {
+			if !hasContent {
+				b.WriteString("\nPractice patterns:\n")
+			}
+			b.WriteString("\n  Underused:\n")
+			for _, u := range underused {
+				b.WriteString(u + "\n")
+			}
+			hasContent = true
+		}
+	}
+
+	if !hasContent {
+		return ""
+	}
+	return b.String()
+}
+
 func FormatAdvisories(s *State, journal []JournalEntry) string {
 	if len(s.History) == 0 {
 		return ""
@@ -410,6 +550,7 @@ var reflectCmd = &cobra.Command{
 			output += FormatRecentInsights(journal, 5)
 		}
 
+		output += FormatPracticePatterns(s)
 		output += FormatAdvisories(s, journal)
 
 		fmt.Println(FormatOutput(jsonOutput, output, nil))

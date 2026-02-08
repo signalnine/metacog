@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"strings"
 	"testing"
 )
@@ -281,5 +282,133 @@ func TestAdvisoriesMixedSeverity(t *testing.T) {
 	}
 	if !strings.Contains(output, "Over-reliance") {
 		t.Errorf("expected over-reliance in advisories:\n%s", output)
+	}
+}
+
+// --- Practice patterns tests ---
+
+func TestPracticePatternsWhatWorked(t *testing.T) {
+	s := NewState()
+	s.AddHistory(HistoryEntry{Action: "become", Params: map[string]string{"name": "Ada", "lens": "logic"}})
+	s.AddHistory(HistoryEntry{Action: "drugs", Params: map[string]string{"substance": "caffeine"}})
+	s.AddHistory(HistoryEntry{Action: "outcome", Params: map[string]string{"result": "productive", "stratagem": "pivot", "shift": "reframed the problem"}})
+
+	s.AddHistory(HistoryEntry{Action: "become", Params: map[string]string{"name": "Eno", "lens": "ambient"}})
+	s.AddHistory(HistoryEntry{Action: "outcome", Params: map[string]string{"result": "productive", "stratagem": "mirror", "shift": "found synthesis"}})
+
+	s.AddHistory(HistoryEntry{Action: "drugs", Params: map[string]string{"substance": "psilocybin"}})
+	s.AddHistory(HistoryEntry{Action: "outcome", Params: map[string]string{"result": "productive", "stratagem": "freestyle", "shift": "new angle"}})
+
+	output := FormatPracticePatterns(s)
+	if !strings.Contains(output, "What worked") {
+		t.Errorf("expected 'What worked' section:\n%s", output)
+	}
+	if !strings.Contains(output, "Ada/logic + caffeine") {
+		t.Errorf("expected identity+substance for pivot:\n%s", output)
+	}
+	if !strings.Contains(output, "Eno/ambient") {
+		t.Errorf("expected identity for mirror:\n%s", output)
+	}
+	if !strings.Contains(output, "reframed the problem") {
+		t.Errorf("expected shift text:\n%s", output)
+	}
+}
+
+func TestPracticePatternsOverflow(t *testing.T) {
+	s := NewState()
+	for i := 0; i < 7; i++ {
+		s.AddHistory(HistoryEntry{Action: "become", Params: map[string]string{"name": fmt.Sprintf("id%d", i), "lens": "test"}})
+		s.AddHistory(HistoryEntry{Action: "outcome", Params: map[string]string{"result": "productive", "stratagem": "pivot", "shift": fmt.Sprintf("shift%d", i)}})
+	}
+
+	output := FormatPracticePatterns(s)
+	if !strings.Contains(output, "last 5 of 7") {
+		t.Errorf("expected overflow header:\n%s", output)
+	}
+	if !strings.Contains(output, "2 more productive outcomes") {
+		t.Errorf("expected overflow note:\n%s", output)
+	}
+	// Should show the last 5 (id2-id6), not the first 5
+	if !strings.Contains(output, "id6") {
+		t.Errorf("expected most recent entry (id6):\n%s", output)
+	}
+}
+
+func TestPracticePatternsNoConfig(t *testing.T) {
+	s := NewState()
+	// Outcome with no prior become or drugs
+	s.AddHistory(HistoryEntry{Action: "outcome", Params: map[string]string{"result": "productive", "stratagem": "freestyle", "shift": "pure thought"}})
+
+	output := FormatPracticePatterns(s)
+	if !strings.Contains(output, "(no config)") {
+		t.Errorf("expected '(no config)' when no become/drugs:\n%s", output)
+	}
+	if !strings.Contains(output, "pure thought") {
+		t.Errorf("expected shift text:\n%s", output)
+	}
+}
+
+func TestPracticePatternsNoShift(t *testing.T) {
+	s := NewState()
+	s.AddHistory(HistoryEntry{Action: "become", Params: map[string]string{"name": "Ada", "lens": "logic"}})
+	s.AddHistory(HistoryEntry{Action: "outcome", Params: map[string]string{"result": "productive", "stratagem": "pivot"}})
+
+	output := FormatPracticePatterns(s)
+	if !strings.Contains(output, "Ada/logic") {
+		t.Errorf("expected identity:\n%s", output)
+	}
+	// Should not contain quotes (no shift to quote)
+	if strings.Contains(output, "\"\"") {
+		t.Errorf("should not show empty quotes:\n%s", output)
+	}
+}
+
+func TestPracticePatternsUnderused(t *testing.T) {
+	s := NewState()
+	// 10 becomes, 1 drugs, 0 rituals = ritual at 0%, drugs at 9%
+	for i := 0; i < 10; i++ {
+		s.AddHistory(HistoryEntry{Action: "become", Params: map[string]string{"name": "test"}})
+	}
+	s.AddHistory(HistoryEntry{Action: "drugs", Params: map[string]string{"substance": "caffeine"}})
+
+	output := FormatPracticePatterns(s)
+	if !strings.Contains(output, "Underused") {
+		t.Errorf("expected Underused section:\n%s", output)
+	}
+	if !strings.Contains(output, "ritual") {
+		t.Errorf("expected ritual flagged:\n%s", output)
+	}
+	if !strings.Contains(output, "threshold-crossing") {
+		t.Errorf("expected ritual descriptor:\n%s", output)
+	}
+	if !strings.Contains(output, "drugs") {
+		t.Errorf("expected drugs flagged:\n%s", output)
+	}
+}
+
+func TestPracticePatternsBalanced(t *testing.T) {
+	s := NewState()
+	// Roughly even: 3 become, 3 drugs, 3 ritual
+	for i := 0; i < 3; i++ {
+		s.AddHistory(HistoryEntry{Action: "become", Params: map[string]string{"name": "test"}})
+		s.AddHistory(HistoryEntry{Action: "drugs", Params: map[string]string{"substance": "caffeine"}})
+		s.AddHistory(HistoryEntry{Action: "ritual", Params: map[string]string{"threshold": "test", "steps": "s1"}})
+	}
+
+	output := FormatPracticePatterns(s)
+	if strings.Contains(output, "Underused") {
+		t.Errorf("balanced practice should not show Underused:\n%s", output)
+	}
+}
+
+func TestPracticePatternsEmpty(t *testing.T) {
+	s := NewState()
+	// Only 2 primitives (below threshold) and no productive outcomes
+	s.AddHistory(HistoryEntry{Action: "become", Params: map[string]string{"name": "test"}})
+	s.AddHistory(HistoryEntry{Action: "outcome", Params: map[string]string{"result": "unproductive", "stratagem": "freestyle"}})
+
+	output := FormatPracticePatterns(s)
+	if output != "" {
+		t.Errorf("expected empty output for no productive outcomes + few primitives, got:\n%s", output)
 	}
 }
