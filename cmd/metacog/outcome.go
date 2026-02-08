@@ -25,33 +25,87 @@ func hasOutcomeAfter(s *State, afterIdx int) bool {
 	return false
 }
 
+// findLastPrimitive scans backward for the last become/drugs/ritual entry
+// that isn't inside a stratagem span and doesn't already have an outcome after it.
+func findLastPrimitive(s *State) int {
+	for i := len(s.History) - 1; i >= 0; i-- {
+		h := s.History[i]
+		switch h.Action {
+		case "become", "drugs", "ritual":
+			// Check it's not covered by a stratagem span
+			if isInsideStratagemSpan(s, i) {
+				continue
+			}
+			// Check no outcome already covers it
+			if hasOutcomeAfter(s, i) {
+				continue
+			}
+			return i
+		}
+	}
+	return -1
+}
+
+// isInsideStratagemSpan checks if index i falls between a stratagem started
+// and its completed/abandoned/aborted event.
+func isInsideStratagemSpan(s *State, idx int) bool {
+	// Scan backward from idx for the nearest stratagem boundary
+	for i := idx - 1; i >= 0; i-- {
+		h := s.History[i]
+		if h.Action == "stratagem" {
+			event := h.Params["event"]
+			if event == "started" {
+				// We're inside an active stratagem span
+				return true
+			}
+			if event == "completed" || h.Status == "abandoned" || h.Status == "aborted" {
+				// The stratagem ended before our index
+				return false
+			}
+		}
+	}
+	return false
+}
+
+func recordOutcomeEntry(s *State, result, shift, stratagemName string) {
+	params := map[string]string{
+		"result":    result,
+		"stratagem": stratagemName,
+	}
+	if shift != "" {
+		params["shift"] = shift
+	}
+	s.AddHistory(HistoryEntry{
+		Action: "outcome",
+		Params: params,
+	})
+}
+
 func RecordOutcome(s *State, result, shift string) error {
 	if result != "productive" && result != "unproductive" {
 		return fmt.Errorf("result must be 'productive' or 'unproductive', got %q", result)
 	}
 
+	// Tier 1: completed stratagem without an outcome
 	name, idx := findLastCompletedStratagem(s)
-	if idx < 0 {
-		return fmt.Errorf("no completed stratagem found in history")
+	if idx >= 0 && !hasOutcomeAfter(s, idx) {
+		recordOutcomeEntry(s, result, shift, name)
+		return nil
 	}
 
-	if hasOutcomeAfter(s, idx) {
+	// Tier 2: freestyle primitives without an outcome
+	pidx := findLastPrimitive(s)
+	if pidx >= 0 {
+		recordOutcomeEntry(s, result, shift, "freestyle")
+		return nil
+	}
+
+	// If tier 1 found a stratagem but it already had an outcome
+	if idx >= 0 {
 		return fmt.Errorf("outcome already recorded for this stratagem. Use --amend to update")
 	}
 
-	params := map[string]string{
-		"result":    result,
-		"stratagem": name,
-	}
-	if shift != "" {
-		params["shift"] = shift
-	}
-
-	s.AddHistory(HistoryEntry{
-		Action: "outcome",
-		Params: params,
-	})
-	return nil
+	return fmt.Errorf("no completed stratagem or freestyle primitives found in history")
 }
 
 func AmendOutcome(s *State, result, shift string) error {
@@ -80,7 +134,7 @@ var outcomeAmend bool
 
 var outcomeCmd = &cobra.Command{
 	Use:   "outcome",
-	Short: "Record stratagem effectiveness",
+	Short: "Record effectiveness of stratagem or freestyle practice",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		sm := DefaultStateManager()
 		var output string
@@ -98,8 +152,9 @@ var outcomeCmd = &cobra.Command{
 			if err != nil {
 				return err
 			}
-			name, _ := findLastCompletedStratagem(s)
-			output = fmt.Sprintf("Outcome recorded: %s (%s).", outcomeResult, name)
+			// Find what was just recorded
+			last := s.History[len(s.History)-1]
+			output = fmt.Sprintf("Outcome recorded: %s (%s).", outcomeResult, last.Params["stratagem"])
 			return nil
 		})
 		if err != nil {

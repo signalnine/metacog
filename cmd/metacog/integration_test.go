@@ -305,6 +305,141 @@ func TestIntegrationOutcome(t *testing.T) {
 	}
 }
 
+func TestIntegrationFreestyleOutcome(t *testing.T) {
+	binary := buildBinary(t)
+	stateDir := t.TempDir()
+
+	// Freestyle: just primitives, no stratagem
+	runMetacog(t, binary, stateDir, "become", "--name", "Ada", "--lens", "logic", "--env", "lab")
+	runMetacog(t, binary, stateDir, "drugs", "--substance", "caffeine", "--method", "antagonism", "--qualia", "sharp")
+
+	// Record freestyle outcome
+	out, err := runMetacog(t, binary, stateDir, "outcome", "--result", "productive", "--shift", "found new angle")
+	if err != nil {
+		t.Fatalf("freestyle outcome: %v\n%s", err, out)
+	}
+	if !strings.Contains(out, "freestyle") {
+		t.Errorf("output should mention freestyle:\n%s", out)
+	}
+
+	// Reflect should show freestyle in effectiveness
+	out, err = runMetacog(t, binary, stateDir, "reflect")
+	if err != nil {
+		t.Fatalf("reflect: %v\n%s", err, out)
+	}
+	if !strings.Contains(out, "freestyle") {
+		t.Errorf("reflect should show freestyle effectiveness:\n%s", out)
+	}
+}
+
+func TestIntegrationJournal(t *testing.T) {
+	binary := buildBinary(t)
+	stateDir := t.TempDir()
+
+	// Record an insight
+	out, err := runMetacog(t, binary, stateDir, "journal", "identity shifts compound")
+	if err != nil {
+		t.Fatalf("journal: %v\n%s", err, out)
+	}
+	if !strings.Contains(out, "identity shifts compound") {
+		t.Errorf("output should contain insight:\n%s", out)
+	}
+
+	// Record with tags
+	out, err = runMetacog(t, binary, stateDir, "journal", "--tag", "practice", "--tag", "identity", "tagged insight")
+	if err != nil {
+		t.Fatalf("journal with tags: %v\n%s", err, out)
+	}
+
+	// List all
+	out, err = runMetacog(t, binary, stateDir, "journal", "list")
+	if err != nil {
+		t.Fatalf("journal list: %v\n%s", err, out)
+	}
+	if !strings.Contains(out, "identity shifts compound") {
+		t.Errorf("list should show first insight:\n%s", out)
+	}
+	if !strings.Contains(out, "tagged insight") {
+		t.Errorf("list should show tagged insight:\n%s", out)
+	}
+
+	// Filter by tag
+	out, err = runMetacog(t, binary, stateDir, "journal", "list", "--tag", "practice")
+	if err != nil {
+		t.Fatalf("journal list --tag: %v\n%s", err, out)
+	}
+	if strings.Contains(out, "identity shifts compound") {
+		t.Errorf("filtered list should not show untagged insight:\n%s", out)
+	}
+	if !strings.Contains(out, "tagged insight") {
+		t.Errorf("filtered list should show tagged insight:\n%s", out)
+	}
+
+	// List with --last
+	out, err = runMetacog(t, binary, stateDir, "journal", "list", "--last", "1")
+	if err != nil {
+		t.Fatalf("journal list --last: %v\n%s", err, out)
+	}
+	if strings.Contains(out, "identity shifts compound") {
+		t.Errorf("--last 1 should not show first insight:\n%s", out)
+	}
+}
+
+func TestIntegrationJournalWithSession(t *testing.T) {
+	binary := buildBinary(t)
+	stateDir := t.TempDir()
+
+	// Start session, record insight
+	runMetacog(t, binary, stateDir, "session", "start", "deep-dive")
+	out, err := runMetacog(t, binary, stateDir, "journal", "session-tagged insight")
+	if err != nil {
+		t.Fatalf("journal in session: %v\n%s", err, out)
+	}
+	if !strings.Contains(out, "deep-dive") {
+		t.Errorf("output should mention session:\n%s", out)
+	}
+
+	runMetacog(t, binary, stateDir, "session", "end")
+
+	// Record without session
+	runMetacog(t, binary, stateDir, "journal", "no-session insight")
+
+	// Filter by session
+	out, err = runMetacog(t, binary, stateDir, "journal", "list", "--session", "deep-dive")
+	if err != nil {
+		t.Fatalf("journal list --session: %v\n%s", err, out)
+	}
+	if !strings.Contains(out, "session-tagged") {
+		t.Errorf("should contain session-tagged insight:\n%s", out)
+	}
+	if strings.Contains(out, "no-session") {
+		t.Errorf("should not contain no-session insight:\n%s", out)
+	}
+}
+
+func TestIntegrationJournalInReflect(t *testing.T) {
+	binary := buildBinary(t)
+	stateDir := t.TempDir()
+
+	// Add some history so reflect has content
+	runMetacog(t, binary, stateDir, "become", "--name", "Ada", "--lens", "logic", "--env", "lab")
+
+	// Record a journal entry
+	runMetacog(t, binary, stateDir, "journal", "the pivot revealed a blind spot")
+
+	// Reflect should include recent insights
+	out, err := runMetacog(t, binary, stateDir, "reflect")
+	if err != nil {
+		t.Fatalf("reflect: %v\n%s", err, out)
+	}
+	if !strings.Contains(out, "Recent insights") {
+		t.Errorf("reflect should show Recent insights section:\n%s", out)
+	}
+	if !strings.Contains(out, "blind spot") {
+		t.Errorf("reflect should show journal entry:\n%s", out)
+	}
+}
+
 func TestIntegrationExitCodes(t *testing.T) {
 	binary := buildBinary(t)
 	stateDir := t.TempDir()

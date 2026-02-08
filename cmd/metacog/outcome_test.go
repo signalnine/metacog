@@ -80,16 +80,91 @@ func TestOutcomeAutoCaptures(t *testing.T) {
 	}
 }
 
-func TestOutcomeNoStratagem(t *testing.T) {
+func TestOutcomeFreestyle(t *testing.T) {
 	s := NewState()
-	s.AddHistory(HistoryEntry{Action: "become", Params: map[string]string{"name": "test"}})
+	// Freestyle: primitives without a stratagem
+	s.AddHistory(HistoryEntry{Action: "become", Params: map[string]string{"name": "Ada"}})
+	s.AddHistory(HistoryEntry{Action: "drugs", Params: map[string]string{"substance": "caffeine"}})
+
+	err := RecordOutcome(s, "productive", "reframed via freestyle")
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+
+	found := false
+	for _, h := range s.History {
+		if h.Action == "outcome" {
+			found = true
+			if h.Params["stratagem"] != "freestyle" {
+				t.Errorf("expected stratagem=freestyle, got %s", h.Params["stratagem"])
+			}
+			if h.Params["result"] != "productive" {
+				t.Errorf("expected result=productive, got %s", h.Params["result"])
+			}
+			if h.Params["shift"] != "reframed via freestyle" {
+				t.Errorf("expected shift text, got %s", h.Params["shift"])
+			}
+		}
+	}
+	if !found {
+		t.Error("outcome entry not found in history")
+	}
+}
+
+func TestOutcomeFreestyleAfterStratagem(t *testing.T) {
+	s := NewState()
+	// Completed stratagem with outcome already recorded
+	s.AddHistory(HistoryEntry{Action: "stratagem", Params: map[string]string{"name": "pivot", "event": "started"}})
+	s.AddHistory(HistoryEntry{Action: "drugs", Params: map[string]string{"substance": "test"}})
+	s.AddHistory(HistoryEntry{Action: "stratagem", Params: map[string]string{"name": "pivot", "event": "completed"}})
+	s.AddHistory(HistoryEntry{Action: "outcome", Params: map[string]string{"result": "productive", "stratagem": "pivot"}})
+	// Then freestyle primitives
+	s.AddHistory(HistoryEntry{Action: "become", Params: map[string]string{"name": "Ada"}})
+
+	err := RecordOutcome(s, "unproductive", "")
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+
+	// Should be a freestyle outcome, not duplicate stratagem
+	outcomeCount := 0
+	for _, h := range s.History {
+		if h.Action == "outcome" {
+			outcomeCount++
+			if outcomeCount == 2 {
+				if h.Params["stratagem"] != "freestyle" {
+					t.Errorf("expected second outcome as freestyle, got %s", h.Params["stratagem"])
+				}
+			}
+		}
+	}
+	if outcomeCount != 2 {
+		t.Errorf("expected 2 outcomes, got %d", outcomeCount)
+	}
+}
+
+func TestOutcomeNoPrimitives(t *testing.T) {
+	s := NewState()
+	// Empty history — no primitives at all
 
 	err := RecordOutcome(s, "productive", "")
 	if err == nil {
-		t.Error("expected error when no stratagem completed")
+		t.Error("expected error when no primitives or stratagems")
 	}
-	if !strings.Contains(err.Error(), "no completed stratagem") {
-		t.Errorf("expected 'no completed stratagem' error, got: %v", err)
+}
+
+func TestOutcomeFreestyleIgnoresStratagemPrimitives(t *testing.T) {
+	s := NewState()
+	// Primitives inside a stratagem span should not count as freestyle
+	s.AddHistory(HistoryEntry{Action: "stratagem", Params: map[string]string{"name": "pivot", "event": "started"}})
+	s.AddHistory(HistoryEntry{Action: "drugs", Params: map[string]string{"substance": "test"}})
+	s.AddHistory(HistoryEntry{Action: "become", Params: map[string]string{"name": "test"}})
+	s.AddHistory(HistoryEntry{Action: "stratagem", Params: map[string]string{"name": "pivot", "event": "completed"}})
+	s.AddHistory(HistoryEntry{Action: "outcome", Params: map[string]string{"result": "productive", "stratagem": "pivot"}})
+
+	err := RecordOutcome(s, "productive", "")
+	if err == nil {
+		t.Error("expected error — no freestyle primitives outside stratagem")
 	}
 }
 

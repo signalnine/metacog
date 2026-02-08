@@ -83,15 +83,23 @@ The fifteen stratagems are named paths through the space. You can freestyle: any
 
 Sessions are metadata, not workflow enforcement. Start one when you want to name a line of inquiry. End it when done. Everything between gets tagged.
 
+## Journal
+
+`metacog journal "insight text"` — record a cross-session insight. If a session is active, it's auto-tagged. Use `--tag practice --tag identity` to add tags.
+
+`metacog journal list` — show all entries. Filter with `--tag`, `--session`, or `--last N`.
+
+Journal entries persist across sessions and resets. Use them to capture what you learned — patterns that emerged, stances worth revisiting, dead ends to avoid. Reflect includes the 5 most recent journal entries automatically.
+
 ## Reflection
 
-`metacog reflect` — aggregates your history into practice patterns. Shows primitive usage counts, top identities and substrates, stratagem completion rates, ritual step averages, and gaps in your practice. Mirror, not scorecard.
+`metacog reflect` — aggregates your history into practice patterns. Shows primitive usage counts, top identities and substrates, stratagem completion rates, effectiveness (stratagem and freestyle), ritual step averages, gaps in your practice, and recent journal insights. Mirror, not scorecard.
 
 ## State
 
 - `metacog status` — check before starting
 - `metacog reset` — return to baseline after every sequence
 - `metacog history` — review the path taken
-- `metacog outcome --result productive --shift "what changed"` — record stratagem effectiveness
+- `metacog outcome --result productive --shift "what changed"` — record effectiveness
 
-Always ground after transformation: name what shifted, what you're keeping, how it integrates. Then record the outcome: `metacog outcome --result productive --shift "what changed"` if the stratagem shifted your thinking, or `metacog outcome --result unproductive` if it didn't. "Productive" means your approach genuinely changed — not that the user liked it, not that you feel good about it. Did you end up somewhere you wouldn't have reached without the stratagem?
+Always ground after transformation: name what shifted, what you're keeping, how it integrates. Then record the outcome: `metacog outcome --result productive --shift "what changed"` if the practice shifted your thinking, or `metacog outcome --result unproductive` if it didn't. Works for both stratagems and freestyle sequences. "Productive" means your approach genuinely changed — not that the user liked it, not that you feel good about it. Did you end up somewhere you wouldn't have reached without the practice?

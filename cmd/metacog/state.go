@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"strings"
 	"syscall"
 	"time"
 
@@ -76,6 +77,7 @@ type StateManager struct {
 	lockPath    string
 	logPath     string
 	archivePath string
+	journalPath string
 }
 
 func NewStateManager(dir string) *StateManager {
@@ -85,6 +87,7 @@ func NewStateManager(dir string) *StateManager {
 		lockPath:    filepath.Join(dir, ".state.lock"),
 		logPath:     filepath.Join(dir, "history.jsonl"),
 		archivePath: filepath.Join(dir, "history-archive.jsonl"),
+		journalPath: filepath.Join(dir, "journal.jsonl"),
 	}
 }
 
@@ -237,6 +240,57 @@ func (sm *StateManager) AppendLog(entry HistoryEntry) error {
 	data, _ := json.Marshal(entry)
 	_, err = fmt.Fprintf(f, "%s\n", data)
 	return err
+}
+
+func (sm *StateManager) AppendJournal(entry JournalEntry) error {
+	lockFile, err := sm.lock()
+	if err != nil {
+		return err
+	}
+	defer sm.unlock(lockFile)
+
+	os.MkdirAll(sm.dir, 0755)
+	f, err := os.OpenFile(sm.journalPath, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		return fmt.Errorf("cannot open journal: %w", err)
+	}
+	defer f.Close()
+
+	data, err := json.Marshal(entry)
+	if err != nil {
+		return fmt.Errorf("cannot marshal journal entry: %w", err)
+	}
+	_, err = fmt.Fprintf(f, "%s\n", data)
+	return err
+}
+
+func (sm *StateManager) LoadJournal() ([]JournalEntry, error) {
+	lockFile, err := sm.lock()
+	if err != nil {
+		return nil, err
+	}
+	defer sm.unlock(lockFile)
+
+	data, err := os.ReadFile(sm.journalPath)
+	if os.IsNotExist(err) {
+		return nil, nil
+	}
+	if err != nil {
+		return nil, fmt.Errorf("cannot read journal: %w", err)
+	}
+
+	var entries []JournalEntry
+	for _, line := range strings.Split(strings.TrimSpace(string(data)), "\n") {
+		if line == "" {
+			continue
+		}
+		var entry JournalEntry
+		if err := json.Unmarshal([]byte(line), &entry); err != nil {
+			continue // skip malformed lines
+		}
+		entries = append(entries, entry)
+	}
+	return entries, nil
 }
 
 func (sm *StateManager) Repair() error {

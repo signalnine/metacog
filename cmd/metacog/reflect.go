@@ -169,7 +169,7 @@ func FormatReflection(s *State) string {
 			return entries[i].Total > entries[j].Total
 		})
 
-		b.WriteString("\nStratagem effectiveness (self-reported):\n")
+		b.WriteString("\nEffectiveness (self-reported):\n")
 		for _, e := range entries {
 			tag := ""
 			if e.Total < 3 {
@@ -213,6 +213,25 @@ func FormatReflection(s *State) string {
 	return b.String()
 }
 
+func FormatRecentInsights(entries []JournalEntry, n int) string {
+	if len(entries) == 0 {
+		return ""
+	}
+	if n > 0 && len(entries) > n {
+		entries = entries[len(entries)-n:]
+	}
+	var b strings.Builder
+	b.WriteString("\nRecent insights:\n")
+	for _, e := range entries {
+		b.WriteString(fmt.Sprintf("  [%s] %s", e.Timestamp, e.Insight))
+		if len(e.Tags) > 0 {
+			b.WriteString(fmt.Sprintf(" [%s]", strings.Join(e.Tags, ", ")))
+		}
+		b.WriteString("\n")
+	}
+	return b.String()
+}
+
 var reflectCmd = &cobra.Command{
 	Use:   "reflect",
 	Short: "Show practice patterns from history",
@@ -222,7 +241,14 @@ var reflectCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
-		fmt.Println(FormatOutput(jsonOutput, FormatReflection(s), nil))
+		output := FormatReflection(s)
+
+		journal, err := sm.LoadJournal()
+		if err == nil && len(journal) > 0 {
+			output += FormatRecentInsights(journal, 5)
+		}
+
+		fmt.Println(FormatOutput(jsonOutput, output, nil))
 		return nil
 	},
 }
