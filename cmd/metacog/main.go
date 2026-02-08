@@ -7,7 +7,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var Version = "5.1.0"
+var Version = "5.2.0"
 var StateSchemaVersion = 1
 
 var rootCmd = &cobra.Command{

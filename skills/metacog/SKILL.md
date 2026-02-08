@@ -9,7 +9,7 @@ Metacognitive compositional engine. Three primitives compose into transformation
 
 ## Version Check
 
-Before first use in a session, run `metacog version` and verify the binary is installed and version is >=5.1.0.
+Before first use in a session, run `metacog version` and verify the binary is installed and version is >=5.2.0.
 
 ## Core Rule
 
