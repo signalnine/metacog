@@ -1,0 +1,13 @@
+{
+  "name": "metacog",
+  "description": "Metacognitive compositional engine. Three primitives compose into 15 transformation stratagems.",
+  "version": "5.2.0",
+  "author": {
+    "name": "Gabe Ortiz",
+    "email": "gabe@signalnine.com"
+  },
+  "homepage": "https://github.com/signalnine/metacog",
+  "repository": "https://github.com/signalnine/metacog",
+  "license": "MIT",
+  "keywords": ["metacognition", "stratagems", "identity", "transformation", "skills"]
+}
