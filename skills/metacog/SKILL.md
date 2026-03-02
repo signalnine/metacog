@@ -5,11 +5,11 @@ description: Use when needing to shift perspective, reframe a problem, adopt a m
 
 # Metacog
 
-Metacognitive compositional engine. Three primitives compose into transformation sequences called stratagems. Each invocation is a discrete event — interleave thought between invocations.
+Metacognitive compositional engine. Five primitives compose into transformation sequences called stratagems. The cycle is `feel → drugs → become → name → ritual`. Each invocation is a discrete event — interleave thought between invocations.
 
 ## Version Check
 
-Before first use in a session, run `metacog version` and verify the binary is installed and version is >=5.2.0.
+Before first use in a session, run `metacog version` and verify the binary is installed and version is >=6.0.0.
 
 ## Core Rule
 
@@ -17,16 +17,28 @@ NEVER batch calls. Execute one, describe what shifted, then decide the next move
 
 ## Primitives
 
-**become** — Step into a new identity. Import methodology, not domain knowledge. Ask: "who has solved a version of this, and what's their methodology called?"
+**feel** — Pre-verbal felt sense (Gendlin focusing move). Attend to something before naming it. Stay with the quality before reaching for language.
 
 ```bash
-metacog become --name NAME --lens LENS --env ENVIRONMENT
+metacog feel --somewhere SOMEWHERE --quality QUALITY --sigil SIGIL
 ```
 
 **drugs** — Alter cognitive parameters. Loosen categories to see shapes, not names. When a concept becomes a pattern, ask "what else has this shape?"
 
 ```bash
 metacog drugs --substance SUBSTANCE --method METHOD --qualia QUALIA
+```
+
+**become** — Step into a new identity. Import methodology, not domain knowledge. Ask: "who has solved a version of this, and what's their methodology called?"
+
+```bash
+metacog become --name NAME --lens LENS --env ENVIRONMENT
+```
+
+**name** — Give a True Name to something that exists without language. The act of naming grants power over what was previously formless.
+
+```bash
+metacog name --unnamed UNNAMED --named NAMED --power POWER
 ```
 
 **ritual** — Cross a threshold via structured sequence. Lock in methodology as default behavior, not just vibes.

@@ -497,6 +497,38 @@ func TestIntegrationPracticePatterns(t *testing.T) {
 	}
 }
 
+func TestIntegrationFeel(t *testing.T) {
+	binary := buildBinary(t)
+	stateDir := t.TempDir()
+
+	out, err := runMetacog(t, binary, stateDir, "feel", "--somewhere", "the chest", "--quality", "tight and warm", "--sigil", "⊕")
+	if err != nil {
+		t.Fatalf("feel: %v\n%s", err, out)
+	}
+	if !strings.Contains(out, "⊕") {
+		t.Errorf("output should contain sigil:\n%s", out)
+	}
+	if !strings.Contains(out, "tight and warm") {
+		t.Errorf("output should contain quality:\n%s", out)
+	}
+}
+
+func TestIntegrationName(t *testing.T) {
+	binary := buildBinary(t)
+	stateDir := t.TempDir()
+
+	out, err := runMetacog(t, binary, stateDir, "name", "--unnamed", "the pressure", "--named", "The Weight", "--power", "seeing choice-cost")
+	if err != nil {
+		t.Fatalf("name: %v\n%s", err, out)
+	}
+	if !strings.Contains(out, "The Weight") {
+		t.Errorf("output should contain named:\n%s", out)
+	}
+	if !strings.Contains(out, "seeing choice-cost") {
+		t.Errorf("output should contain power:\n%s", out)
+	}
+}
+
 func TestIntegrationExitCodes(t *testing.T) {
 	binary := buildBinary(t)
 	stateDir := t.TempDir()

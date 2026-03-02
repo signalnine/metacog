@@ -11,8 +11,10 @@ import (
 type StepKind string
 
 const (
+	StepFeel   StepKind = "feel"
 	StepBecome StepKind = "become"
 	StepDrugs  StepKind = "drugs"
+	StepName   StepKind = "name"
 	StepRitual StepKind = "ritual"
 	StepThink  StepKind = "THINK"
 	StepAction StepKind = "ACTION"

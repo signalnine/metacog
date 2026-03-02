@@ -388,10 +388,12 @@ func TestPracticePatternsUnderused(t *testing.T) {
 
 func TestPracticePatternsBalanced(t *testing.T) {
 	s := NewState()
-	// Roughly even: 3 become, 3 drugs, 3 ritual
+	// Roughly even: 3 of each primitive
 	for i := 0; i < 3; i++ {
+		s.AddHistory(HistoryEntry{Action: "feel", Params: map[string]string{"somewhere": "test", "quality": "test", "sigil": "⊕"}})
 		s.AddHistory(HistoryEntry{Action: "become", Params: map[string]string{"name": "test"}})
 		s.AddHistory(HistoryEntry{Action: "drugs", Params: map[string]string{"substance": "caffeine"}})
+		s.AddHistory(HistoryEntry{Action: "name", Params: map[string]string{"unnamed": "test", "named": "test", "power": "test"}})
 		s.AddHistory(HistoryEntry{Action: "ritual", Params: map[string]string{"threshold": "test", "steps": "s1"}})
 	}
 

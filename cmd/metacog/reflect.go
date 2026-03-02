@@ -18,13 +18,13 @@ func FormatReflection(s *State) string {
 	primitiveCounts := map[string]int{}
 	for _, h := range s.History {
 		switch h.Action {
-		case "become", "drugs", "ritual":
+		case "feel", "become", "drugs", "name", "ritual":
 			primitiveCounts[h.Action]++
 		}
 	}
 
 	b.WriteString("Primitive usage:\n")
-	for _, p := range []string{"become", "drugs", "ritual"} {
+	for _, p := range []string{"feel", "become", "drugs", "name", "ritual"} {
 		if c, ok := primitiveCounts[p]; ok {
 			b.WriteString(fmt.Sprintf("  %s: %d\n", p, c))
 		} else {
@@ -334,20 +334,22 @@ func FormatPracticePatterns(s *State) string {
 	primitiveCounts := map[string]int{}
 	for _, h := range s.History {
 		switch h.Action {
-		case "become", "drugs", "ritual":
+		case "feel", "become", "drugs", "name", "ritual":
 			primitiveCounts[h.Action]++
 		}
 	}
-	totalPrimitives := primitiveCounts["become"] + primitiveCounts["drugs"] + primitiveCounts["ritual"]
+	totalPrimitives := primitiveCounts["feel"] + primitiveCounts["become"] + primitiveCounts["drugs"] + primitiveCounts["name"] + primitiveCounts["ritual"]
 
 	if totalPrimitives >= 5 {
 		descriptors := map[string]string{
+			"feel":   "felt sensing",
 			"become": "identity shifting",
 			"drugs":  "substrate modification",
+			"name":   "true naming",
 			"ritual": "threshold-crossing",
 		}
 		var underused []string
-		for _, p := range []string{"become", "drugs", "ritual"} {
+		for _, p := range []string{"feel", "become", "drugs", "name", "ritual"} {
 			count := primitiveCounts[p]
 			pct := float64(count) / float64(totalPrimitives) * 100
 			if pct < 20 {
@@ -496,7 +498,7 @@ func FormatAdvisories(s *State, journal []JournalEntry) string {
 			break
 		}
 		switch h.Action {
-		case "become", "drugs", "ritual":
+		case "feel", "become", "drugs", "name", "ritual":
 			unreflected++
 		case "stratagem":
 			if h.Params["event"] == "completed" {
