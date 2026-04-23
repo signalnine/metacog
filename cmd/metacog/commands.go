@@ -78,12 +78,17 @@ var resetCmd = &cobra.Command{
 	Short: "Clear identity, substrate, and stratagem (preserves session and history)",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		sm := DefaultStateManager()
-		return sm.SaveWithLock(func(s *State) error {
+		err := sm.SaveWithLock(func(s *State) error {
 			s.Identity = nil
 			s.Substrate = nil
 			s.Stratagem = nil
 			return nil
 		})
+		if err != nil {
+			return err
+		}
+		fmt.Println(FormatOutput(jsonOutput, "State reset. Identity, substrate, and stratagem cleared.", nil))
+		return nil
 	},
 }
 

@@ -529,6 +529,27 @@ func TestIntegrationName(t *testing.T) {
 	}
 }
 
+func TestIntegrationResetConfirms(t *testing.T) {
+	binary := buildBinary(t)
+	stateDir := t.TempDir()
+
+	if _, err := runMetacog(t, binary, stateDir, "become", "--name", "Ada", "--lens", "logic", "--env", "lab"); err != nil {
+		t.Fatalf("become: %v", err)
+	}
+
+	out, err := runMetacog(t, binary, stateDir, "reset")
+	if err != nil {
+		t.Fatalf("reset: %v\n%s", err, out)
+	}
+	if strings.TrimSpace(out) == "" {
+		t.Errorf("reset should print a confirmation message on success, got empty output")
+	}
+	lower := strings.ToLower(out)
+	if !strings.Contains(lower, "reset") && !strings.Contains(lower, "clear") {
+		t.Errorf("reset output should indicate what happened, got: %q", out)
+	}
+}
+
 func TestIntegrationExitCodes(t *testing.T) {
 	binary := buildBinary(t)
 	stateDir := t.TempDir()
