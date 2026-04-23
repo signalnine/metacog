@@ -111,6 +111,52 @@ func TestOutcomeFreestyle(t *testing.T) {
 	}
 }
 
+func TestOutcomeFreestyleFeel(t *testing.T) {
+	s := NewState()
+	s.AddHistory(HistoryEntry{Action: "feel", Params: map[string]string{"somewhere": "chest", "quality": "tight", "sigil": "knot"}})
+
+	err := RecordOutcome(s, "productive", "attended to the felt sense")
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+
+	found := false
+	for _, h := range s.History {
+		if h.Action == "outcome" {
+			found = true
+			if h.Params["stratagem"] != "freestyle" {
+				t.Errorf("expected stratagem=freestyle, got %s", h.Params["stratagem"])
+			}
+		}
+	}
+	if !found {
+		t.Error("outcome entry not found in history")
+	}
+}
+
+func TestOutcomeFreestyleName(t *testing.T) {
+	s := NewState()
+	s.AddHistory(HistoryEntry{Action: "name", Params: map[string]string{"unnamed": "the hum", "named": "Resonance", "power": "invocation"}})
+
+	err := RecordOutcome(s, "productive", "found the true name")
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+
+	found := false
+	for _, h := range s.History {
+		if h.Action == "outcome" {
+			found = true
+			if h.Params["stratagem"] != "freestyle" {
+				t.Errorf("expected stratagem=freestyle, got %s", h.Params["stratagem"])
+			}
+		}
+	}
+	if !found {
+		t.Error("outcome entry not found in history")
+	}
+}
+
 func TestOutcomeFreestyleAfterStratagem(t *testing.T) {
 	s := NewState()
 	// Completed stratagem with outcome already recorded

@@ -1,2 +1,4 @@
 {"id":"int-a5982307","kind":"field_change","created_at":"2026-04-23T09:47:12.830037758Z","actor":"Gabe Ortiz","issue_id":"metacog-jol","extra":{"field":"status","new_value":"in_progress","old_value":"open"}}
 {"id":"int-cb6d1f96","kind":"field_change","created_at":"2026-04-23T09:48:50.639561087Z","actor":"Gabe Ortiz","issue_id":"metacog-jol","extra":{"field":"status","new_value":"closed","old_value":"in_progress","reason":"Closed"}}
+{"id":"int-4f3d109a","kind":"field_change","created_at":"2026-04-23T16:10:20.474515221Z","actor":"Gabe Ortiz","issue_id":"metacog-byw","extra":{"field":"status","new_value":"in_progress","old_value":"open"}}
+{"id":"int-1d5b2746","kind":"field_change","created_at":"2026-04-23T16:11:24.641233441Z","actor":"Gabe Ortiz","issue_id":"metacog-byw","extra":{"field":"status","new_value":"closed","old_value":"in_progress","reason":"Fixed findLastPrimitive to include feel and name primitives; tests added for both"}}

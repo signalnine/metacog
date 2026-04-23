@@ -25,13 +25,13 @@ func hasOutcomeAfter(s *State, afterIdx int) bool {
 	return false
 }
 
-// findLastPrimitive scans backward for the last become/drugs/ritual entry
+// findLastPrimitive scans backward for the last primitive entry
 // that isn't inside a stratagem span and doesn't already have an outcome after it.
 func findLastPrimitive(s *State) int {
 	for i := len(s.History) - 1; i >= 0; i-- {
 		h := s.History[i]
 		switch h.Action {
-		case "become", "drugs", "ritual":
+		case "feel", "become", "drugs", "name", "ritual":
 			// Check it's not covered by a stratagem span
 			if isInsideStratagemSpan(s, i) {
 				continue
