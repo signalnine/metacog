@@ -293,6 +293,29 @@ func (sm *StateManager) LoadJournal() ([]JournalEntry, error) {
 	return entries, nil
 }
 
+func (sm *StateManager) LoadHistoryArchive() ([]HistoryEntry, error) {
+	data, err := os.ReadFile(sm.archivePath)
+	if os.IsNotExist(err) {
+		return nil, nil
+	}
+	if err != nil {
+		return nil, fmt.Errorf("cannot read history archive: %w", err)
+	}
+
+	var entries []HistoryEntry
+	for _, line := range strings.Split(strings.TrimSpace(string(data)), "\n") {
+		if line == "" {
+			continue
+		}
+		var entry HistoryEntry
+		if err := json.Unmarshal([]byte(line), &entry); err != nil {
+			continue
+		}
+		entries = append(entries, entry)
+	}
+	return entries, nil
+}
+
 func (sm *StateManager) Repair() error {
 	lockFile, err := sm.lock()
 	if err != nil {

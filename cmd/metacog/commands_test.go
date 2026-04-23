@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+	"strings"
 	"testing"
 )
 
@@ -39,6 +41,40 @@ func TestFormatHistoryEmpty(t *testing.T) {
 	output := FormatHistory(s)
 	if output == "" {
 		t.Error("expected non-empty output for empty history")
+	}
+}
+
+func TestHistoryFullIncludesArchivedEntries(t *testing.T) {
+	dir := t.TempDir()
+	sm := NewStateManager(dir)
+
+	s := NewState()
+	for i := 0; i < 502; i++ {
+		s.AddHistory(HistoryEntry{Action: "become", Params: map[string]string{"i": fmt.Sprintf("%d", i)}})
+	}
+	if err := sm.Save(s); err != nil {
+		t.Fatalf("save failed: %v", err)
+	}
+
+	loaded, err := sm.Load()
+	if err != nil {
+		t.Fatalf("load failed: %v", err)
+	}
+
+	merged, err := mergeArchivedHistory(sm, loaded)
+	if err != nil {
+		t.Fatalf("merge failed: %v", err)
+	}
+	if len(merged.History) != 502 {
+		t.Errorf("merged history should have 502 entries, got %d", len(merged.History))
+	}
+
+	output := FormatHistory(merged)
+	if !strings.Contains(output, "i=0") {
+		t.Error("--full output should contain earliest archived entry (i=0)")
+	}
+	if !strings.Contains(output, "i=501") {
+		t.Error("--full output should contain newest entry (i=501)")
 	}
 }
 

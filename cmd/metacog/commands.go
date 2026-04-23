@@ -90,6 +90,19 @@ var resetCmd = &cobra.Command{
 var historyFull bool
 var historySession string
 
+func mergeArchivedHistory(sm *StateManager, s *State) (*State, error) {
+	archived, err := sm.LoadHistoryArchive()
+	if err != nil {
+		return nil, err
+	}
+	if len(archived) == 0 {
+		return s, nil
+	}
+	merged := *s
+	merged.History = append(archived, s.History...)
+	return &merged, nil
+}
+
 var historyCmd = &cobra.Command{
 	Use:   "history",
 	Short: "Show transformation history",
@@ -98,6 +111,12 @@ var historyCmd = &cobra.Command{
 		s, err := sm.Load()
 		if err != nil {
 			return err
+		}
+		if historyFull {
+			s, err = mergeArchivedHistory(sm, s)
+			if err != nil {
+				return err
+			}
 		}
 		var output string
 		if historySession != "" {

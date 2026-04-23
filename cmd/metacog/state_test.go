@@ -181,6 +181,61 @@ func TestHistoryArchive(t *testing.T) {
 	}
 }
 
+func TestLoadHistoryArchiveMissing(t *testing.T) {
+	dir := t.TempDir()
+	sm := NewStateManager(dir)
+
+	entries, err := sm.LoadHistoryArchive()
+	if err != nil {
+		t.Fatalf("missing archive should not error: %v", err)
+	}
+	if entries != nil {
+		t.Errorf("missing archive should return nil, got %v", entries)
+	}
+}
+
+func TestLoadHistoryArchiveWithEntries(t *testing.T) {
+	dir := t.TempDir()
+	sm := NewStateManager(dir)
+
+	s := NewState()
+	for i := 0; i < 503; i++ {
+		s.AddHistory(HistoryEntry{Action: "become", Params: map[string]string{"i": fmt.Sprintf("%d", i)}})
+	}
+	if err := sm.Save(s); err != nil {
+		t.Fatalf("save failed: %v", err)
+	}
+
+	entries, err := sm.LoadHistoryArchive()
+	if err != nil {
+		t.Fatalf("load archive failed: %v", err)
+	}
+	if len(entries) != 3 {
+		t.Errorf("expected 3 archived entries, got %d", len(entries))
+	}
+	if entries[0].Action != "become" || entries[0].Params["i"] != "0" {
+		t.Errorf("archive entries out of order: first=%+v", entries[0])
+	}
+}
+
+func TestLoadHistoryArchiveSkipsMalformedLines(t *testing.T) {
+	dir := t.TempDir()
+	sm := NewStateManager(dir)
+
+	archivePath := filepath.Join(dir, "history-archive.jsonl")
+	good := `{"action":"become","params":{"name":"Ada"},"timestamp":"2024-01-01T00:00:00Z"}`
+	bad := `not json`
+	os.WriteFile(archivePath, []byte(good+"\n"+bad+"\n"+good+"\n"), 0644)
+
+	entries, err := sm.LoadHistoryArchive()
+	if err != nil {
+		t.Fatalf("malformed lines should be skipped, not error: %v", err)
+	}
+	if len(entries) != 2 {
+		t.Errorf("expected 2 valid entries, got %d", len(entries))
+	}
+}
+
 func TestRepair(t *testing.T) {
 	dir := t.TempDir()
 	statePath := filepath.Join(dir, "state.json")
