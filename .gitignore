@@ -4,3 +4,5 @@ cmd/metacog/metacog
 
 # OS
 .DS_Store
+.dolt/
+*.db
