@@ -182,7 +182,7 @@ func StartStratagem(s *State, name string, force bool) (string, error) {
 
 	if s.Stratagem != nil {
 		if !force {
-			return "", fmt.Errorf("%s is active (step %d/%d).\n  Use 'metacog stratagem abort' to abandon it, or\n  Use 'metacog stratagem %s --force' to replace it",
+			return "", fmt.Errorf("%s is active (step %d/%d).\n  Use 'metacog stratagem abort' to abandon it, or\n  Use 'metacog stratagem start %s --force' to replace it",
 				Stratagems[s.Stratagem.Name].Name, s.Stratagem.Step+1, len(Stratagems[s.Stratagem.Name].Steps), name)
 		}
 		// Record abandoned stratagem
@@ -212,7 +212,7 @@ func StartStratagem(s *State, name string, force bool) (string, error) {
 
 func AdvanceStratagem(s *State) (string, error) {
 	if s.Stratagem == nil {
-		return "", fmt.Errorf("no active stratagem. Start one with 'metacog stratagem <name>'")
+		return "", fmt.Errorf("no active stratagem. Start one with 'metacog stratagem start <name>'")
 	}
 
 	def := Stratagems[s.Stratagem.Name]

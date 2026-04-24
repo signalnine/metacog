@@ -1,6 +1,7 @@
 package main
 
 import (
+	"strings"
 	"testing"
 )
 
@@ -184,5 +185,31 @@ func TestUnknownStratagem(t *testing.T) {
 	_, err := StartStratagem(s, "nonexistent", false)
 	if err == nil {
 		t.Error("expected error for unknown stratagem")
+	}
+}
+
+func TestStartStratagemWhileActiveSuggestsValidCommand(t *testing.T) {
+	s := NewState()
+	StartStratagem(s, "pivot", false)
+
+	_, err := StartStratagem(s, "mirror", false)
+	if err == nil {
+		t.Fatal("expected error starting second stratagem without force")
+	}
+	msg := err.Error()
+	if !strings.Contains(msg, "metacog stratagem start mirror --force") {
+		t.Errorf("error message should reference 'metacog stratagem start mirror --force', got: %s", msg)
+	}
+}
+
+func TestAdvanceWithoutActiveStratagemSuggestsValidCommand(t *testing.T) {
+	s := NewState()
+	_, err := AdvanceStratagem(s)
+	if err == nil {
+		t.Fatal("expected error advancing with no active stratagem")
+	}
+	msg := err.Error()
+	if !strings.Contains(msg, "metacog stratagem start <name>") {
+		t.Errorf("error message should reference 'metacog stratagem start <name>', got: %s", msg)
 	}
 }
