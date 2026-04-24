@@ -11,13 +11,14 @@ import (
 type StepKind string
 
 const (
-	StepFeel   StepKind = "feel"
-	StepBecome StepKind = "become"
-	StepDrugs  StepKind = "drugs"
-	StepName   StepKind = "name"
-	StepRitual StepKind = "ritual"
-	StepThink  StepKind = "THINK"
-	StepAction StepKind = "ACTION"
+	StepFeel     StepKind = "feel"
+	StepBecome   StepKind = "become"
+	StepDrugs    StepKind = "drugs"
+	StepName     StepKind = "name"
+	StepRitual   StepKind = "ritual"
+	StepMeditate StepKind = "meditate"
+	StepThink    StepKind = "THINK"
+	StepAction   StepKind = "ACTION"
 )
 
 type Step struct {
@@ -166,6 +167,15 @@ var Stratagems = map[string]StratagemDef{
 			{StepAction, "Take an intentionally wrong action. Not random — wrong. The thing you know you shouldn't do."},
 			{StepThink, "What did the wrongness reveal? What hidden assumption in the correct path is now visible?"},
 			{StepRitual, "Integrate the discovery — honor the error as a hidden intention (Forge)"},
+		},
+	},
+	"zen": {
+		Name: "THE ZEN",
+		Steps: []Step{
+			{StepMeditate, "Sit. Release what clings. Settle until the surface is still."},
+			{StepThink, "What surfaced in the silence? What was already there beneath the noise?"},
+			{StepName, "Give the surfaced thing a single word — no elaboration, no defense"},
+			{StepRitual, "Return to the world carrying the named thing — let action follow stillness"},
 		},
 	},
 }
@@ -333,7 +343,7 @@ var stratagemStartCmd = &cobra.Command{
 	Use:       "start [name]",
 	Short:     "Start a stratagem",
 	Args:      cobra.ExactArgs(1),
-	ValidArgs: []string{"pivot", "mirror", "stack", "anchor", "reset", "invocation", "veil", "banishing", "scrying", "sacrifice", "drift", "fool", "inversion", "gift", "error"},
+	ValidArgs: []string{"pivot", "mirror", "stack", "anchor", "reset", "invocation", "veil", "banishing", "scrying", "sacrifice", "drift", "fool", "inversion", "gift", "error", "zen"},
 	RunE: func(cmd *cobra.Command, args []string) error {
 		sm := DefaultStateManager()
 		var output string

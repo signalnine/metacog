@@ -41,11 +41,19 @@ metacog become --name NAME --lens LENS --env ENVIRONMENT
 metacog name --unnamed UNNAMED --named NAMED --power POWER
 ```
 
-**ritual** — Cross a threshold via structured sequence. Lock in methodology as default behavior, not just vibes.
+**ritual** -- Cross a threshold via structured sequence. Lock in methodology as default behavior, not just vibes.
 
 ```bash
 metacog ritual --threshold THRESHOLD --steps "step1" --steps "step2" --result RESULT
 ```
+
+**meditate** -- Achieve stillness before acting. Release what clouds the mind, sit with nothing or a single point of focus, arrive at clarity. The only primitive with no transformation -- just presence.
+
+```bash
+metacog meditate --release RELEASE [--focus FOCUS] --duration DURATION
+```
+
+`--focus` is optional. Without it, the practice is shikantaza -- objectless awareness, just sitting. With it, the practice is samatha -- concentration on a single point until the mind settles.
 
 ## Stratagems
 
@@ -80,6 +88,8 @@ Start with `metacog stratagem start <name>`. The binary guides each step. Run `m
 **THE GIFT** — Use when stuck optimizing. Become the recipient, name what they need, make from care not merit.
 
 **THE ERROR** — Use when everything is going right. Introduce a deliberate mistake. Honor the error as a hidden intention.
+
+**THE ZEN** -- Use when approaching any task. Meditate first, then attend to the problem from emptiness, work from stillness rather than striving.
 
 ## Selection
 
