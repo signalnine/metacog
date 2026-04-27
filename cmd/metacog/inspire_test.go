@@ -1,6 +1,7 @@
 package main
 
 import (
+	"strings"
 	"testing"
 )
 
@@ -89,5 +90,48 @@ func TestRandomStanceUnknownPool(t *testing.T) {
 	_, _, err = RandomStance(pools, "nonexistent-pool-xyz")
 	if err == nil {
 		t.Fatal("expected error for unknown pool, got nil")
+	}
+}
+
+func TestRandomStanceEmptyNamedPool(t *testing.T) {
+	pools := map[string]StancePool{
+		"empty": {Name: "empty", Stances: []Stance{}},
+	}
+	_, _, err := RandomStance(pools, "empty")
+	if err == nil {
+		t.Fatal("expected error for empty named pool, got nil")
+	}
+	if !strings.Contains(err.Error(), "no stances") {
+		t.Errorf("expected error mentioning 'no stances', got: %v", err)
+	}
+}
+
+func TestRandomStanceAllPoolsEmpty(t *testing.T) {
+	pools := map[string]StancePool{
+		"a": {Name: "a", Stances: []Stance{}},
+		"b": {Name: "b", Stances: []Stance{}},
+	}
+	_, _, err := RandomStance(pools, "")
+	if err == nil {
+		t.Fatal("expected error when all pools empty, got nil")
+	}
+}
+
+func TestRandomStanceUnnamedSkipsEmptyPools(t *testing.T) {
+	pools := map[string]StancePool{
+		"empty": {Name: "empty", Stances: []Stance{}},
+		"good":  {Name: "good", Stances: []Stance{{Who: "w", Where: "x", Lens: "y"}}},
+	}
+	for i := 0; i < 50; i++ {
+		stance, pool, err := RandomStance(pools, "")
+		if err != nil {
+			t.Fatalf("RandomStance failed on iteration %d: %v", i, err)
+		}
+		if pool != "good" {
+			t.Errorf("expected pool 'good', got %q", pool)
+		}
+		if stance == nil || stance.Who != "w" {
+			t.Errorf("unexpected stance: %+v", stance)
+		}
 	}
 }

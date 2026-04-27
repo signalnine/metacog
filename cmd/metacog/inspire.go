@@ -78,16 +78,24 @@ func RandomStance(pools map[string]StancePool, poolName string) (*Stance, string
 		if !ok {
 			return nil, "", fmt.Errorf("unknown pool %q. Use --list to see available pools", poolName)
 		}
+		if len(pool.Stances) == 0 {
+			return nil, "", fmt.Errorf("pool %q has no stances", poolName)
+		}
 		s := pool.Stances[rand.Intn(len(pool.Stances))]
 		return &s, poolName, nil
 	}
 
-	// Pick a random pool, then a random stance from it
 	names := ListPoolNames(pools)
-	if len(names) == 0 {
+	nonEmpty := make([]string, 0, len(names))
+	for _, n := range names {
+		if len(pools[n].Stances) > 0 {
+			nonEmpty = append(nonEmpty, n)
+		}
+	}
+	if len(nonEmpty) == 0 {
 		return nil, "", fmt.Errorf("no stance pools loaded")
 	}
-	chosen := names[rand.Intn(len(names))]
+	chosen := nonEmpty[rand.Intn(len(nonEmpty))]
 	pool := pools[chosen]
 	s := pool.Stances[rand.Intn(len(pool.Stances))]
 	return &s, chosen, nil
