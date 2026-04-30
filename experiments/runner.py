@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import fcntl
 import json
 import math
 import os
@@ -203,9 +204,17 @@ def already_done() -> set:
 
 
 def append_result(row: dict):
+    """Append one row to results.tsv under an exclusive flock so multiple
+    runner processes can write concurrently (one per recipe) without
+    interleaving partial rows."""
     with RESULTS_FILE.open("a", newline="") as f:
-        w = csv.writer(f, delimiter="\t")
-        w.writerow([row[k] for k in RESULTS_HEADER])
+        fcntl.flock(f.fileno(), fcntl.LOCK_EX)
+        try:
+            w = csv.writer(f, delimiter="\t")
+            w.writerow([row[k] for k in RESULTS_HEADER])
+            f.flush()
+        finally:
+            fcntl.flock(f.fileno(), fcntl.LOCK_UN)
 
 
 def _row_is_control(row: dict) -> bool:

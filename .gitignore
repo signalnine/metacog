@@ -15,4 +15,5 @@ experiments/results.tsv
 experiments/results.tsv.bak
 experiments/results.tsv.bak*
 experiments/run.log
+experiments/run-*.log
 experiments/trials/
