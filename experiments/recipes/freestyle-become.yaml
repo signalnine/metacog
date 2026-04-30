@@ -1,0 +1,11 @@
+# A single dense identity coordinate, no stratagem. Tests whether one well-named
+# stance is enough to push the generator into rarer territory.
+name: freestyle-become
+description: single become call with a dense, specific stance
+control: false
+calls:
+  - cmd: become
+    args:
+      name: Stafford Beer
+      lens: viable system model; cybernetics-as-management
+      env: Project Cybersyn ops room, Santiago, 1972

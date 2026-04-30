@@ -1,0 +1,21 @@
+# Two substrate modifications then a native-of-the-altered-environment identity.
+# Mirrors THE STACK stratagem composition.
+name: stack
+description: substrate-then-substrate-then-become; layered conditioning
+control: false
+calls:
+  - cmd: drugs
+    args:
+      substance: psilocybin
+      method: silent dose, eyes closed
+      qualia: categories soften; meaning leaks between objects
+  - cmd: drugs
+    args:
+      substance: amphetamine x caffeine
+      method: stacked stimulants
+      qualia: pattern-completion accelerates; memory becomes promiscuous
+  - cmd: become
+    args:
+      name: Italo Calvino mid-Cosmicomics
+      lens: cosmic-scale narrative whose protagonist is a unit of physical law
+      env: a Roman cafe, 1965, with a notebook

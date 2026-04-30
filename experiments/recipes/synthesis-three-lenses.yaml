@@ -1,0 +1,20 @@
+# Uses the new synthesis primitive to force three structurally incompatible lenses.
+# Tests whether the new structural-register primitives drive different reach than
+# the original identity-register ones.
+name: synthesis-three-lenses
+description: three-lens synthesis with named blindspots; structural register
+control: false
+calls:
+  - cmd: synthesis
+    args:
+      problem: how to think about the task that follows
+      lens-a-name: Frankfurt-school critique of instrumental reason
+      lens-a-verdict: any answer that optimizes for the prompt's frame is already complicit
+      lens-a-blindspot: cannot acknowledge that some prompts are honest questions
+      lens-b-name: Christopher Alexander's pattern language
+      lens-b-verdict: the answer must name the specific living patterns at stake, not abstractions
+      lens-b-blindspot: treats every domain as if architectural intuitions translate cleanly
+      lens-c-name: Ursula Franklin's distinction between holistic and prescriptive technologies
+      lens-c-verdict: identify which mode the task asks you to operate in, then refuse to mix them
+      lens-c-blindspot: assumes the binary holds in domains it was never tested on
+      suppressed-tension: every framework for "answering well" presumes a kind of authority over the task that may not be the answerer's to claim

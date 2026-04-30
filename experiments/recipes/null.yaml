@@ -1,0 +1,5 @@
+# Control recipe: no metacog conditioning. The baseline every other recipe is compared against.
+name: null
+description: control -- generator answers task with no conditioning
+control: true
+calls: []

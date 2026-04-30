@@ -1,0 +1,26 @@
+# Wraps the conditioning inside the pivot stratagem so the calls satisfy
+# stratagem steps. Tests whether stratagem-wrapped conditioning differs from
+# freestyle conditioning with the same calls.
+name: pivot-stratagem
+description: pivot stratagem -- loosen, find analogous methodology, install it
+control: false
+stratagem: pivot
+calls:
+  - cmd: drugs
+    args:
+      substance: nitrous oxide
+      method: shallow inhalation, eyes open
+      qualia: categories briefly become provisional; the felt edge between concepts thins
+  - cmd: become
+    args:
+      name: Lynn Margulis on symbiogenesis
+      lens: composite organisms; cooperation as the primary engine of novelty
+      env: lab notebooks at UMass Amherst, mid-1980s
+  - cmd: ritual
+    args:
+      threshold: from individualist framing to symbiogenetic framing
+      steps:
+        - "name the entities the question treats as primary"
+        - "ask which composites might be doing the work instead"
+        - "answer from the composite's perspective"
+      result: cooperative/composite framing installed as default

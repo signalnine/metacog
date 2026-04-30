@@ -1,0 +1,28 @@
+# Strip the task to mechanism via deconstruct, then inhabit a stance native to that mechanism.
+# Tests whether the response-gives-nothing pattern of deconstruct, followed by a dense
+# identity coordinate, lands somewhere different from become alone.
+name: deconstruct-then-become
+description: structural teardown then identity shift
+control: false
+calls:
+  - cmd: deconstruct
+    args:
+      subject: the task that is about to be asked
+      core-mechanic: a request for an answer that earns the asker the right to use it
+      structural-dependencies:
+        - the asker treats the answer as an object they can hold
+        - the answer is legible without knowing who said it
+      resource-inputs:
+        - attention
+        - the answerer's previous concept network
+      failure-modes:
+        - the answer fits the form of an answer but does no work
+        - the answerer hides behind generality
+      output-artifacts:
+        - text that can be quoted
+        - a residue of practice for the next task
+  - cmd: become
+    args:
+      name: Donna Haraway in conversation
+      lens: situated knowledges; staying with the trouble
+      env: an interview transcript, mid-thought, with the recorder still running
