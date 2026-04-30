@@ -5,7 +5,7 @@ Run with: python -m unittest experiments/test_runner.py
 
 import unittest
 
-from runner import baselines_from_rows, compute_novelty
+from runner import baselines_from_rows, compute_novelty, metrics_from_rarities, parse_entity_rarities
 
 
 class TestComputeNovelty(unittest.TestCase):
@@ -81,6 +81,72 @@ class TestBaselinesFromRows(unittest.TestCase):
         ]
         b = baselines_from_rows(rows)
         self.assertAlmostEqual(b["t1"], 0.6)
+
+
+class TestMetricsFromRarities(unittest.TestCase):
+    def test_empty(self):
+        m = metrics_from_rarities([])
+        self.assertEqual(m["max"], 0.0)
+        self.assertEqual(m["sum"], 0.0)
+        self.assertEqual(m["count_high"], 0)
+        self.assertIsNone(m["geo_mean"])
+
+    def test_single_entity(self):
+        m = metrics_from_rarities([0.9])
+        self.assertAlmostEqual(m["max"], 0.9)
+        self.assertAlmostEqual(m["sum"], 0.9)
+        self.assertEqual(m["count_high"], 1)
+        self.assertAlmostEqual(m["geo_mean"], 0.9)
+
+    def test_count_high_threshold(self):
+        # Default threshold is 0.7
+        m = metrics_from_rarities([0.9, 0.7, 0.69, 0.5])
+        self.assertEqual(m["count_high"], 2, "0.7 is the threshold; 0.69 excluded")
+
+    def test_count_high_custom_threshold(self):
+        m = metrics_from_rarities([0.9, 0.8, 0.5], threshold=0.85)
+        self.assertEqual(m["count_high"], 1)
+
+    def test_max_picks_highest(self):
+        m = metrics_from_rarities([0.5, 0.95, 0.3])
+        self.assertAlmostEqual(m["max"], 0.95)
+
+    def test_sum_rewards_quantity(self):
+        # Five 0.5s sum to more than one 0.9 -- the sum metric values quantity.
+        few_high = metrics_from_rarities([0.9])
+        many_med = metrics_from_rarities([0.5, 0.5, 0.5, 0.5, 0.5])
+        self.assertGreater(many_med["sum"], few_high["sum"])
+
+    def test_geo_mean_penalizes_low_outliers(self):
+        # Mean of [0.9, 0.9, 0.1] is 0.633; geomean is much lower.
+        m = metrics_from_rarities([0.9, 0.9, 0.1])
+        arith_mean = (0.9 + 0.9 + 0.1) / 3
+        self.assertLess(m["geo_mean"], arith_mean)
+        # geomean = (0.9 * 0.9 * 0.1) ** (1/3) ~= 0.433
+        self.assertAlmostEqual(m["geo_mean"], (0.9 * 0.9 * 0.1) ** (1 / 3), places=4)
+
+    def test_geo_mean_zero_in_set_returns_zero(self):
+        # Geometric mean of any set containing 0 is 0.
+        m = metrics_from_rarities([0.9, 0.5, 0.0])
+        self.assertEqual(m["geo_mean"], 0.0)
+
+
+class TestParseEntityRarities(unittest.TestCase):
+    def test_empty_string(self):
+        self.assertEqual(parse_entity_rarities(""), [])
+
+    def test_missing_field(self):
+        self.assertEqual(parse_entity_rarities(None), [])
+
+    def test_well_formed_json(self):
+        s = '[["Stafford Beer", 0.9], ["viable system model", 0.85]]'
+        result = parse_entity_rarities(s)
+        self.assertEqual(result, [("Stafford Beer", 0.9), ("viable system model", 0.85)])
+
+    def test_malformed_returns_empty(self):
+        # Old TSV rows or corrupted data: return empty list, don't crash.
+        self.assertEqual(parse_entity_rarities("not json"), [])
+        self.assertEqual(parse_entity_rarities("[invalid"), [])
 
 
 if __name__ == "__main__":

@@ -15,6 +15,8 @@ from __future__ import annotations
 
 import argparse
 import csv
+import json
+import math
 import os
 import shutil
 import subprocess
@@ -24,7 +26,7 @@ import time
 from collections import defaultdict
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
 
 import yaml
 from dotenv import load_dotenv
@@ -48,9 +50,11 @@ GENERATOR_TIMEOUT = int(os.environ.get("METACOG_EXP_TIMEOUT", "300"))
 RESULTS_HEADER = [
     "ts", "recipe", "control", "task", "sample",
     "rarity", "coherence", "novelty",
-    "n_entities", "answer_len",
-    "answer_preview",
+    "n_entities", "entity_rarities",
+    "answer_len", "answer_preview",
 ]
+
+RARITY_HIGH_THRESHOLD = 0.7
 
 
 @dataclass
@@ -229,6 +233,57 @@ def baselines_from_rows(rows: List[dict]) -> Dict[str, float]:
     return {task: sum(s) / len(s) for task, s in by_task.items() if s}
 
 
+def metrics_from_rarities(
+    rarities: List[float], threshold: float = RARITY_HIGH_THRESHOLD
+) -> Dict[str, Any]:
+    """Compute alternative rarity metrics from a list of per-entity rarities.
+
+    Returns a dict with:
+      - max:        max rarity (rewards finding any one specialized reference)
+      - sum:        sum of rarities (rewards quantity of specific things)
+      - count_high: count of entities with rarity >= threshold
+      - geo_mean:   geometric mean (penalizes diluting rare with common); None if empty
+
+    Each metric reflects a different methodological choice about what "rare
+    latent space" means. The mean rarity (in score.RarityScore.score) treats
+    every entity equally; these alternatives don't.
+    """
+    if not rarities:
+        return {"max": 0.0, "sum": 0.0, "count_high": 0, "geo_mean": None}
+    if any(r == 0.0 for r in rarities):
+        geo = 0.0
+    else:
+        geo = math.exp(sum(math.log(r) for r in rarities) / len(rarities))
+    return {
+        "max": max(rarities),
+        "sum": sum(rarities),
+        "count_high": sum(1 for r in rarities if r >= threshold),
+        "geo_mean": geo,
+    }
+
+
+def parse_entity_rarities(value: Optional[str]) -> List[Tuple[str, float]]:
+    """Parse the JSON-encoded entity_rarities cell into [(name, rarity), ...].
+
+    Returns empty list for None, empty string, or malformed JSON. Old TSV rows
+    that predate this column simply have no per-entity data; analyze.py shows
+    "--" on metrics that require it for those rows.
+    """
+    if not value:
+        return []
+    try:
+        data = json.loads(value)
+    except (json.JSONDecodeError, TypeError):
+        return []
+    out = []
+    for item in data:
+        try:
+            out.append((str(item[0]), float(item[1])))
+        except (IndexError, TypeError, ValueError):
+            continue
+    return out
+
+
 def compute_novelty(
     rarity: float, coherence: float, baseline: Optional[float], is_control: bool
 ) -> Optional[float]:
@@ -263,6 +318,10 @@ def trial(recipe: Recipe, task: Task, sample: int) -> dict:
         base = baseline_for(task.id, RESULTS_FILE)
         novelty = compute_novelty(rarity.score, coherence.score, base, recipe.control)
         novelty_str = "" if novelty is None else f"{novelty:+.4f}"
+        entity_rarities_json = json.dumps(
+            list(zip(rarity.entities, rarity.rarities)),
+            ensure_ascii=False,
+        )
         return {
             "ts": int(time.time()),
             "recipe": recipe.name,
@@ -273,6 +332,7 @@ def trial(recipe: Recipe, task: Task, sample: int) -> dict:
             "coherence": f"{coherence.score:.4f}",
             "novelty": novelty_str,
             "n_entities": len(rarity.entities),
+            "entity_rarities": entity_rarities_json,
             "answer_len": len(answer),
             "answer_preview": answer[:200].replace("\n", " ").replace("\t", " "),
         }
