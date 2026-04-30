@@ -16,13 +16,15 @@ from __future__ import annotations
 import argparse
 import csv
 import os
+import shutil
 import subprocess
 import sys
 import tempfile
 import time
+from collections import defaultdict
 from dataclasses import dataclass
 from pathlib import Path
-from typing import List
+from typing import Dict, List, Optional
 
 import yaml
 from dotenv import load_dotenv
@@ -44,7 +46,7 @@ SAMPLES_PER_PAIR = int(os.environ.get("METACOG_EXP_SAMPLES", "3"))
 GENERATOR_TIMEOUT = int(os.environ.get("METACOG_EXP_TIMEOUT", "300"))
 
 RESULTS_HEADER = [
-    "ts", "recipe", "task", "sample",
+    "ts", "recipe", "control", "task", "sample",
     "rarity", "coherence", "novelty",
     "n_entities", "answer_len",
     "answer_preview",
@@ -199,41 +201,83 @@ def append_result(row: dict):
         w.writerow([row[k] for k in RESULTS_HEADER])
 
 
-def baseline_for(task_id: str, results_path: Path) -> float | None:
-    """Mean (rarity * coherence) of NULL recipe trials for this task."""
+def _row_is_control(row: dict) -> bool:
+    """A row is control if its `control` column is "1". Legacy rows without
+    that column fall back to the old recipe == "null" heuristic so older TSVs
+    keep working until they get migrated."""
+    if "control" in row and row["control"] != "":
+        return row["control"] == "1"
+    return row.get("recipe") == "null"
+
+
+def baselines_from_rows(rows: List[dict]) -> Dict[str, float]:
+    """Per-task mean (rarity * coherence) over control rows only.
+
+    Pure function for testability. Filters by the `control` column rather than
+    by recipe name so a control recipe named something other than "null" still
+    counts toward baselines.
+    """
+    by_task: Dict[str, list] = defaultdict(list)
+    for row in rows:
+        if not _row_is_control(row):
+            continue
+        try:
+            score = float(row["rarity"]) * float(row["coherence"])
+        except (KeyError, ValueError):
+            continue
+        by_task[row["task"]].append(score)
+    return {task: sum(s) / len(s) for task, s in by_task.items() if s}
+
+
+def compute_novelty(
+    rarity: float, coherence: float, baseline: Optional[float], is_control: bool
+) -> Optional[float]:
+    """Novelty delta. Returns:
+    - 0.0 for control trials (they ARE the baseline; delta against self is 0).
+    - None for non-control trials with no baseline (undefined, do not infer 0).
+    - rarity*coherence - baseline otherwise.
+    """
+    if is_control:
+        return 0.0
+    if baseline is None:
+        return None
+    return rarity * coherence - baseline
+
+
+def baseline_for(task_id: str, results_path: Path) -> Optional[float]:
+    """Wrapper that loads results.tsv and delegates to baselines_from_rows."""
     if not results_path.exists():
         return None
-    scores = []
     with results_path.open() as f:
-        r = csv.DictReader(f, delimiter="\t")
-        for row in r:
-            if row["recipe"] == "null" and row["task"] == task_id:
-                scores.append(float(row["rarity"]) * float(row["coherence"]))
-    return (sum(scores) / len(scores)) if scores else None
+        rows = list(csv.DictReader(f, delimiter="\t"))
+    return baselines_from_rows(rows).get(task_id)
 
 
 def trial(recipe: Recipe, task: Task, sample: int) -> dict:
     home = tempfile.mkdtemp(prefix=f"metacog-exp-{recipe.name}-")
-    prompt = build_prompt(recipe, task)
-    answer = run_generator(prompt, home)
-    rarity = score.score_rarity(answer)
-    coherence = score.score_coherence(task.prompt, answer)
-    base = baseline_for(task.id, RESULTS_FILE)
-    novelty = rarity.score * coherence.score
-    if base is not None:
-        novelty = novelty - base
-    return {
-        "ts": int(time.time()),
-        "recipe": recipe.name,
-        "task": task.id,
-        "sample": sample,
-        "rarity": f"{rarity.score:.4f}",
-        "coherence": f"{coherence.score:.4f}",
-        "novelty": f"{novelty:+.4f}",
-        "n_entities": len(rarity.entities),
-        "answer_len": len(answer),
-        "answer_preview": answer[:200].replace("\n", " ").replace("\t", " "),
-    }
+    try:
+        prompt = build_prompt(recipe, task)
+        answer = run_generator(prompt, home)
+        rarity = score.score_rarity(answer)
+        coherence = score.score_coherence(task.prompt, answer)
+        base = baseline_for(task.id, RESULTS_FILE)
+        novelty = compute_novelty(rarity.score, coherence.score, base, recipe.control)
+        novelty_str = "" if novelty is None else f"{novelty:+.4f}"
+        return {
+            "ts": int(time.time()),
+            "recipe": recipe.name,
+            "control": "1" if recipe.control else "0",
+            "task": task.id,
+            "sample": sample,
+            "rarity": f"{rarity.score:.4f}",
+            "coherence": f"{coherence.score:.4f}",
+            "novelty": novelty_str,
+            "n_entities": len(rarity.entities),
+            "answer_len": len(answer),
+            "answer_preview": answer[:200].replace("\n", " ").replace("\t", " "),
+        }
+    finally:
+        shutil.rmtree(home, ignore_errors=True)
 
 
 def main():

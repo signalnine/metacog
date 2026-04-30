@@ -36,7 +36,26 @@ uv pip install -r requirements.txt
 python runner.py                          # run full suite
 python runner.py --recipe pivot           # one recipe, all tasks
 python runner.py --recipe null --task 0   # one (recipe, task) pair
+
+python analyze.py                         # post-hoc summary from full pool
+python analyze.py --detail                # per-recipe x task breakdown
+
+python -m unittest test_runner.py         # pure-function tests
 ```
+
+## Reading results
+
+`results.tsv` stores raw measurements (rarity, coherence, n_entities) plus a
+trial-time `novelty` snapshot. **Use `analyze.py` for the authoritative
+read** -- it recomputes per-task baselines from the full current pool of
+control rows, so deltas are stable regardless of trial order. The `novelty`
+column in the TSV is preserved for trace-keeping but should be treated as a
+snapshot, not a metric to compare across recipes.
+
+Control rows always have novelty `+0.0000` (the delta vs the baseline they
+compose is definitionally zero). Non-control rows with no baseline available
+at trial time have novelty empty -- run more control trials, then re-derive
+deltas with `analyze.py`.
 
 ## Iterating
 
