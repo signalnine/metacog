@@ -8,6 +8,15 @@ import (
 	"github.com/spf13/cobra"
 )
 
+func allStratagemNames() []string {
+	names := make([]string, 0, len(Stratagems))
+	for name := range Stratagems {
+		names = append(names, name)
+	}
+	sort.Strings(names)
+	return names
+}
+
 func FormatReflection(s *State) string {
 	if len(s.History) == 0 {
 		return "No history to reflect on."
@@ -100,7 +109,7 @@ func FormatReflection(s *State) string {
 	}
 
 	b.WriteString("\nStratagem completions:\n")
-	allStratagems := []string{"pivot", "mirror", "stack", "anchor", "reset", "invocation", "veil", "banishing", "scrying", "sacrifice", "drift", "fool", "inversion", "gift", "error"}
+	allStratagems := allStratagemNames()
 	hasAny := false
 	for _, name := range allStratagems {
 		if c, ok := stratagemCompleted[name]; ok {
@@ -442,7 +451,7 @@ func FormatAdvisories(s *State, journal []JournalEntry) string {
 	}
 
 	// 3. Never-tried stratagems — only flag if user has 5+ total completions
-	allStratagems := []string{"pivot", "mirror", "stack", "anchor", "reset", "invocation", "veil", "banishing", "scrying", "sacrifice", "drift", "fool", "inversion", "gift", "error"}
+	allStratagems := allStratagemNames()
 	stratagemCompleted := map[string]int{}
 	totalCompletions := 0
 	for _, h := range s.History {

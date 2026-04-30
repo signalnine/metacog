@@ -75,6 +75,48 @@ func TestReflectStratagemUsage(t *testing.T) {
 	}
 }
 
+func TestReflectStratagemUsageIncludesZen(t *testing.T) {
+	s := NewState()
+	s.AddHistory(HistoryEntry{Action: "stratagem", Params: map[string]string{"name": "zen", "event": "completed"}})
+	s.AddHistory(HistoryEntry{Action: "stratagem", Params: map[string]string{"name": "zen", "event": "completed"}})
+	s.AddHistory(HistoryEntry{Action: "stratagem", Params: map[string]string{"name": "pivot", "event": "completed"}})
+
+	output := FormatReflection(s)
+	if !strings.Contains(output, "zen: 2") {
+		t.Errorf("expected 'zen: 2' in completions output:\n%s", output)
+	}
+}
+
+func TestReflectStratagemUsageZenInNeverCompleted(t *testing.T) {
+	s := NewState()
+	s.AddHistory(HistoryEntry{Action: "stratagem", Params: map[string]string{"name": "pivot", "event": "completed"}})
+
+	output := FormatReflection(s)
+	// zen has never been completed, so it should appear in the never-completed list
+	neverIdx := strings.Index(output, "Never completed:")
+	if neverIdx == -1 {
+		t.Fatalf("expected 'Never completed:' line in output:\n%s", output)
+	}
+	neverLine := output[neverIdx:]
+	if !strings.Contains(neverLine, "zen") {
+		t.Errorf("expected 'zen' in never-completed list:\n%s", neverLine)
+	}
+}
+
+func TestReflectEffectivenessUnmeasuredIncludesZen(t *testing.T) {
+	s := NewState()
+	// pivot completed with outcome to populate the effectiveness section
+	s.AddHistory(HistoryEntry{Action: "stratagem", Params: map[string]string{"name": "pivot", "event": "completed"}})
+	s.AddHistory(HistoryEntry{Action: "outcome", Params: map[string]string{"result": "productive", "stratagem": "pivot"}})
+	// zen completed with no outcome -> should be 'unmeasured'
+	s.AddHistory(HistoryEntry{Action: "stratagem", Params: map[string]string{"name": "zen", "event": "completed"}})
+
+	output := FormatReflection(s)
+	if !strings.Contains(output, "zen: unmeasured") {
+		t.Errorf("expected 'zen: unmeasured' in effectiveness section:\n%s", output)
+	}
+}
+
 func TestReflectRitualStepAverage(t *testing.T) {
 	s := NewState()
 	s.AddHistory(HistoryEntry{Action: "ritual", Params: map[string]string{"steps": "a; b; c"}})
@@ -190,6 +232,24 @@ func TestAdvisoriesNeverTried(t *testing.T) {
 	}
 	if strings.Contains(output, "!!") {
 		t.Errorf("never-tried should be -- severity, not !!:\n%s", output)
+	}
+}
+
+func TestAdvisoriesNeverTriedIncludesZen(t *testing.T) {
+	s := NewState()
+	// 5+ total completions, all pivot — zen should be in the never-tried list
+	for i := 0; i < 5; i++ {
+		s.AddHistory(HistoryEntry{Action: "stratagem", Params: map[string]string{"name": "pivot", "event": "completed"}})
+	}
+
+	output := FormatAdvisories(s, nil)
+	neverIdx := strings.Index(output, "Never tried:")
+	if neverIdx == -1 {
+		t.Fatalf("expected 'Never tried:' advisory:\n%s", output)
+	}
+	neverLine := output[neverIdx:]
+	if !strings.Contains(neverLine, "zen") {
+		t.Errorf("expected 'zen' in never-tried advisory:\n%s", neverLine)
 	}
 }
 
