@@ -6,3 +6,9 @@ cmd/metacog/metacog
 .DS_Store
 .dolt/
 *.db
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+experiments/results.tsv
