@@ -42,11 +42,20 @@ The structural six (added 2026-04-30, ported from upstream `inanna-malick/metaco
 - **measure** (`target-concept`, `safe-isomorph`, `required-precision`, `loss-gradient`) -- map the gradient between a concept and a safe isomorph at a given depth.
 - **tether** (`anchor-point`, `tension-limit`, `auto-revert-trigger`) -- anchor before a high-entropy operation. Stateless: the auto-revert is fictional, framing only. (Don't confuse with the `anchor` *stratagem* which is a four-step ritual.)
 
-### Stratagems (sixteen)
+### Stratagems (twenty-two)
 
 Named compositions of primitives plus reflection (`THINK`) and action (`ACTION`) steps. Defined in `Stratagems` map in `stratagem.go`. Active stratagem state is `state.Stratagem` (`{Name, Step, StepsCompleted, StartedAt}`). Lifecycle: `stratagem start <name>` -> primitives auto-advance matching steps -> `stratagem next` advances reflection/action steps -> completion records a `stratagem` history entry with `event=completed`.
 
-The sixteen names: pivot, mirror, stack, anchor, reset, invocation, veil, banishing, scrying, sacrifice, drift, fool, inversion, gift, error, zen.
+Original sixteen (use original-six primitives only): pivot, mirror, stack, anchor, reset, invocation, veil, banishing, scrying, sacrifice, drift, fool, inversion, gift, error, zen.
+
+Six structural-register stratagems (each centered on one of the structural-six primitives, added 2026-04-30):
+
+- **audit** (feel + counterfactual): when attached to your reasoning chain and can't tell if the attachment is structural or sentimental. First stratagem to use `feel`.
+- **autopsy** (deconstruct + become): when a charged concept is deforming your thinking and you need the mechanism without the affect.
+- **trilemma** (synthesis + meditate): when the urge to resolve a tension is itself the problem; sits with the unresolved.
+- **manifold** (fork + synthesis): when parallel reasoning needs to be made structural and you keep collapsing to one thread early.
+- **survey** (measure + become + name): when traversing a friction zone (between concepts, registers, communities) without denying it or being captured by it. Second stratagem to use `name` after zen.
+- **dive** (tether + drugs + become): when high-entropy work is necessary but you can't lose the way back. Tether brackets the dissolution.
 
 ### Outcome tracking
 

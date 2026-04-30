@@ -184,6 +184,62 @@ var Stratagems = map[string]StratagemDef{
 			{StepRitual, "Return to the world carrying the named thing — let action follow stillness"},
 		},
 	},
+	"audit": {
+		Name: "THE AUDIT",
+		Steps: []Step{
+			{StepFeel, "Attend to where the attachment to your current reasoning lives — don't name it yet, hold the felt sense"},
+			{StepCounterfactual, "Inventory load-bearing walls, prune dead branches, defend the inverse of one surviving wall"},
+			{StepThink, "What did the inverse position teach that you couldn't learn from where you were standing?"},
+			{StepRitual, "Install the surviving structure plus the lesson from the inverse — the new ground"},
+		},
+	},
+	"autopsy": {
+		Name: "THE AUTOPSY",
+		Steps: []Step{
+			{StepDeconstruct, "Disassemble the charged concept into atoms — no judgment, no framing"},
+			{StepBecome, "Inhabit someone whose tradition would describe these atoms in a different register entirely"},
+			{StepThink, "What does this lens see that the original framing was hiding?"},
+			{StepRitual, "Install the new framing — name what's structurally different about how you now hold it"},
+		},
+	},
+	"trilemma": {
+		Name: "THE TRILEMMA",
+		Steps: []Step{
+			{StepSynthesis, "Three irreconcilable lenses with named blindspots; name the suppressed tension"},
+			{StepMeditate, "Sit with the tension. Do not work it. Let it remain unresolved"},
+			{StepThink, "From inside the unresolved tension, what is now obvious that wasn't before?"},
+			{StepRitual, "Name what you can now do because you stopped trying to resolve it"},
+		},
+	},
+	"manifold": {
+		Name: "THE MANIFOLD",
+		Steps: []Step{
+			{StepFork, "Declare parallel threads, divergence vector, per-thread sacrifice conditions"},
+			{StepThink, "Run each thread to its conclusion or sacrifice point — no blending, no premature collapse"},
+			{StepSynthesis, "Treat surviving threads as lenses; name what they fight about"},
+			{StepRitual, "Commit to what the suppressed tension reveals — not a thread, the tension itself"},
+		},
+	},
+	"survey": {
+		Name: "THE SURVEY",
+		Steps: []Step{
+			{StepMeasure, "Map the gradient between target concept and safe isomorph; name the friction texture"},
+			{StepBecome, "Inhabit someone native to the friction zone, not either coordinate"},
+			{StepThink, "What is visible from the friction itself that's invisible from either side?"},
+			{StepName, "Give a True Name to the artifact you can carry back across the gradient"},
+			{StepRitual, "Move along the gradient with the named artifact — direction is now navigable"},
+		},
+	},
+	"dive": {
+		Name: "THE DIVE",
+		Steps: []Step{
+			{StepTether, "Set anchor, tension limit, auto-revert trigger before any dissolution"},
+			{StepDrugs, "Dissolve the substrate the anchored self required"},
+			{StepBecome, "Inhabit someone or something the anchored self could not become"},
+			{StepThink, "What surfaced that the anchored self had no apparatus to detect?"},
+			{StepRitual, "Return via the tether — bring the artifact back; the anchor reasserts"},
+		},
+	},
 }
 
 func StartStratagem(s *State, name string, force bool) (string, error) {
@@ -349,7 +405,7 @@ var stratagemStartCmd = &cobra.Command{
 	Use:       "start [name]",
 	Short:     "Start a stratagem",
 	Args:      cobra.ExactArgs(1),
-	ValidArgs: []string{"pivot", "mirror", "stack", "anchor", "reset", "invocation", "veil", "banishing", "scrying", "sacrifice", "drift", "fool", "inversion", "gift", "error", "zen"},
+	ValidArgs: []string{"pivot", "mirror", "stack", "anchor", "reset", "invocation", "veil", "banishing", "scrying", "sacrifice", "drift", "fool", "inversion", "gift", "error", "zen", "audit", "autopsy", "trilemma", "manifold", "survey", "dive"},
 	RunE: func(cmd *cobra.Command, args []string) error {
 		sm := DefaultStateManager()
 		var output string
