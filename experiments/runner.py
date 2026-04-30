@@ -25,8 +25,12 @@ from pathlib import Path
 from typing import List
 
 import yaml
+from dotenv import load_dotenv
 
-import score
+# Load ~/.env first so ANTHROPIC_API_KEY is available before score imports the SDK.
+load_dotenv(Path.home() / ".env")
+
+import score  # noqa: E402  # must come after load_dotenv
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 METACOG_BIN = REPO_ROOT / "metacog"

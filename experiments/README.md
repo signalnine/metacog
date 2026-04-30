@@ -31,7 +31,8 @@ Each trial spins a fresh `METACOG_HOME=$(mktemp -d)` so prior conditioning doesn
 cd experiments
 uv venv && source .venv/bin/activate
 uv pip install -r requirements.txt
-export ANTHROPIC_API_KEY=...
+# ANTHROPIC_API_KEY is loaded automatically from ~/.env via python-dotenv.
+# If you keep it elsewhere, export it manually before running.
 python runner.py                          # run full suite
 python runner.py --recipe pivot           # one recipe, all tasks
 python runner.py --recipe null --task 0   # one (recipe, task) pair
