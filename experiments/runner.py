@@ -151,6 +151,9 @@ def run_generator(prompt: str, metacog_home: str) -> str:
     """Invoke `claude -p` and return stdout (the model's final answer)."""
     env = os.environ.copy()
     env["METACOG_HOME"] = metacog_home
+    # SKILL.md checks this to suppress wait-for-human gates and offer
+    # autonomous selection. Required for any non-interactive run.
+    env["METACOG_HEADLESS"] = "1"
 
     cmd = [
         "claude",

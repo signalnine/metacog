@@ -15,6 +15,25 @@ Before first use in a session, run `metacog version` and verify the binary is in
 
 NEVER batch calls. Execute one, describe what shifted, then decide the next move from inside the new state. Sequential use compounds into states no single tool could reach.
 
+## Headless mode
+
+When running via `claude -p` or any other non-interactive invocation, there is no human in the loop to consult mid-run. Detect headless mode by any of:
+
+- `$METACOG_HEADLESS` environment variable set to `1` (check with `echo $METACOG_HEADLESS`)
+- The prompt explicitly states autonomous operation, or scripts a specific sequence of metacog calls to execute
+- You are otherwise unable to ask follow-up questions (no further turns will occur)
+
+In headless mode the gates below behave differently:
+
+- **Selection**: choose one option yourself and announce the choice in your output. Do not present menus or ask which the practitioner prefers.
+- **Pre-flight check**: still run `metacog reflect` if you would have. Surface advisories in your output, then proceed.
+- **Failure gate (`!!` advisories)**: do NOT proceed with new practice. Output the advisory and stop. The gate exists to prevent compounded unproductive practice; honoring it matters more in headless because there is no second pair of eyes.
+- **Outcome nudge**: skip. The harness or caller records outcomes externally.
+
+When the prompt scripts an explicit recipe (e.g., "run these metacog commands in order, then answer..."), the recipe IS the selection and the choice has already been made by the caller. Execute it without re-deliberating.
+
+Outside headless mode, follow the interactive defaults below.
+
 ## Original primitives (felt-sense / identity register)
 
 **feel** — Pre-verbal felt sense (Gendlin focusing move). Attend to something before naming it. Stay with the quality before reaching for language. `--since-last` is optional: a one-sentence diff from the previous `feel`. Articulating the diff is itself the practice; never auto-derive it.
@@ -160,7 +179,7 @@ These compose the structural primitives. They're the right reach when the work i
 
 ## Selection
 
-The human is the practitioner. You are the facilitator. Never silently choose a stratagem — always present options and let the human decide.
+In interactive sessions, the human is the practitioner and you are the facilitator. Never silently choose a stratagem — always present options and let the human decide. (In headless mode, see the Headless section above: choose yourself and announce the choice.)
 
 When practice seems appropriate, present 2-3 stratagems that fit the situation with a one-line reason for each. Always include freestyle as an option. For example:
 
@@ -206,21 +225,25 @@ Journal entries persist across sessions and resets. Use them to capture what you
 
 ## Practice Discipline
 
+These rules apply in interactive sessions. Headless mode (see top of file) overrides the human-prompting bits while still honoring the underlying gate.
+
 ### Pre-flight check
 
-Before your first metacog invocation in a session, run `metacog reflect` and scan the output for an Advisories section. If any advisories exist, present them to the human before proceeding with practice. Do not skip this step.
+Before your first metacog invocation in a session, run `metacog reflect` and scan the output for an Advisories section. If any advisories exist, present them to the human (interactive) or surface them in your output (headless) before proceeding with practice. Do not skip this step.
 
 ### Failure gate
 
-If reflect shows `!!` advisories (strong signals — unproductive streak of 3+, or a stratagem/freestyle below 33% productive with 3+ data points), **STOP**. Do not proceed with metacog. Instead, surface the pattern to the human:
+If reflect shows `!!` advisories (strong signals — unproductive streak of 3+, or a stratagem/freestyle below 33% productive with 3+ data points), **STOP**. Do not proceed with metacog. In interactive mode, surface the pattern and wait for the human:
 
 > "Your recent practice shows [specific pattern from advisory]. Before we continue: What do you think is happening? Do you want to try a different approach, or is the tool not serving the work right now?"
 
-Wait for the human to respond before any metacog invocation.
+In headless mode, output the advisory and stop without invoking further metacog calls. The gate is the same; only the wait-for-response part differs.
 
 ### Outcome nudge
 
-Before starting new practice (stratagem or freestyle primitives), check whether the last practice has an outcome recorded. If there are 2+ primitives or a completed stratagem since the last outcome, prompt the human first: "You haven't recorded how the last session went — was it productive?" Record their answer with `metacog outcome` before proceeding.
+In interactive mode, before starting new practice (stratagem or freestyle primitives), check whether the last practice has an outcome recorded. If there are 2+ primitives or a completed stratagem since the last outcome, prompt the human first: "You haven't recorded how the last session went — was it productive?" Record their answer with `metacog outcome` before proceeding.
+
+In headless mode, skip the nudge — the caller is responsible for outcome recording.
 
 ## State
 
