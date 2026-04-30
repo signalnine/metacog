@@ -42,6 +42,9 @@ EXP_DIR = Path(__file__).resolve().parent
 RECIPES_DIR = EXP_DIR / "recipes"
 TASKS_FILE = EXP_DIR / "tasks.yaml"
 RESULTS_FILE = EXP_DIR / "results.tsv"
+TRIALS_DIR = EXP_DIR / "trials"
+
+TRIAL_SCHEMA_VERSION = 1
 
 GENERATOR_MODEL = os.environ.get("METACOG_EXP_GENERATOR", "claude-sonnet-4-6")
 SAMPLES_PER_PAIR = int(os.environ.get("METACOG_EXP_SAMPLES", "3"))
@@ -50,7 +53,7 @@ GENERATOR_TIMEOUT = int(os.environ.get("METACOG_EXP_TIMEOUT", "300"))
 RESULTS_HEADER = [
     "ts", "recipe", "control", "task", "sample",
     "rarity", "coherence", "novelty",
-    "n_entities", "entity_rarities",
+    "n_entities", "entity_rarities", "trial_path",
     "answer_len", "answer_preview",
 ]
 
@@ -233,6 +236,35 @@ def baselines_from_rows(rows: List[dict]) -> Dict[str, float]:
     return {task: sum(s) / len(s) for task, s in by_task.items() if s}
 
 
+def cosine_distance(a: List[float], b: List[float]) -> float:
+    """Cosine distance in [0, 2]. Returns 0 for zero vectors (defensive).
+
+    cos_sim(a,b) = dot(a,b) / (|a| * |b|); cos_dist = 1 - cos_sim.
+    Range: 0 (identical direction) to 2 (opposite direction).
+    """
+    if len(a) != len(b):
+        raise ValueError(f"vector lengths differ: {len(a)} vs {len(b)}")
+    dot = sum(x * y for x, y in zip(a, b))
+    na = math.sqrt(sum(x * x for x in a))
+    nb = math.sqrt(sum(y * y for y in b))
+    if na == 0.0 or nb == 0.0:
+        return 0.0
+    return 1.0 - dot / (na * nb)
+
+
+def centroid(vectors: List[List[float]]) -> Optional[List[float]]:
+    """Componentwise mean of a list of vectors. None on empty input."""
+    if not vectors:
+        return None
+    n = len(vectors)
+    dim = len(vectors[0])
+    out = [0.0] * dim
+    for v in vectors:
+        for i, x in enumerate(v):
+            out[i] += x
+    return [x / n for x in out]
+
+
 def metrics_from_rarities(
     rarities: List[float], threshold: float = RARITY_HIGH_THRESHOLD
 ) -> Dict[str, Any]:
@@ -308,13 +340,56 @@ def baseline_for(task_id: str, results_path: Path) -> Optional[float]:
     return baselines_from_rows(rows).get(task_id)
 
 
+def trial_sidecar_path(recipe_name: str, task_id: str, sample: int) -> Path:
+    """Where the per-trial JSON lives. Stable filename so re-running the same
+    (recipe, task, sample) overwrites the same sidecar."""
+    return TRIALS_DIR / f"{recipe_name}-{task_id}-{sample}.json"
+
+
+def write_sidecar(
+    recipe: Recipe, task: Task, sample: int, ts: int,
+    prompt: str, answer: str,
+    rarity: "score.RarityScore", coherence: "score.CoherenceScore",
+) -> Path:
+    """Persist the full trial payload (prompt, answer, scoring detail) so
+    later analysis can re-score, embed, or read the actual output without
+    re-running the generator. Embeddings are added later by analyze.py."""
+    TRIALS_DIR.mkdir(parents=True, exist_ok=True)
+    path = trial_sidecar_path(recipe.name, task.id, sample)
+    payload = {
+        "schema": TRIAL_SCHEMA_VERSION,
+        "ts": ts,
+        "recipe": recipe.name,
+        "control": recipe.control,
+        "task": task.id,
+        "sample": sample,
+        "prompt": prompt,
+        "answer": answer,
+        "rarity": {
+            "score": rarity.score,
+            "entities": rarity.entities,
+            "rarities": rarity.rarities,
+        },
+        "coherence": {
+            "score": coherence.score,
+            "rationale": coherence.rationale,
+        },
+        # embedding: list[float] keyed by model name, populated lazily by analyze.py
+        "embeddings": {},
+    }
+    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2))
+    return path
+
+
 def trial(recipe: Recipe, task: Task, sample: int) -> dict:
     home = tempfile.mkdtemp(prefix=f"metacog-exp-{recipe.name}-")
+    ts = int(time.time())
     try:
         prompt = build_prompt(recipe, task)
         answer = run_generator(prompt, home)
         rarity = score.score_rarity(answer)
         coherence = score.score_coherence(task.prompt, answer)
+        sidecar = write_sidecar(recipe, task, sample, ts, prompt, answer, rarity, coherence)
         base = baseline_for(task.id, RESULTS_FILE)
         novelty = compute_novelty(rarity.score, coherence.score, base, recipe.control)
         novelty_str = "" if novelty is None else f"{novelty:+.4f}"
@@ -323,7 +398,7 @@ def trial(recipe: Recipe, task: Task, sample: int) -> dict:
             ensure_ascii=False,
         )
         return {
-            "ts": int(time.time()),
+            "ts": ts,
             "recipe": recipe.name,
             "control": "1" if recipe.control else "0",
             "task": task.id,
@@ -333,6 +408,7 @@ def trial(recipe: Recipe, task: Task, sample: int) -> dict:
             "novelty": novelty_str,
             "n_entities": len(rarity.entities),
             "entity_rarities": entity_rarities_json,
+            "trial_path": str(sidecar.relative_to(EXP_DIR)),
             "answer_len": len(answer),
             "answer_preview": answer[:200].replace("\n", " ").replace("\t", " "),
         }

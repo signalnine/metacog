@@ -1,7 +1,10 @@
 """Scoring functions for metacog conditioning experiments.
 
-Both scoring passes use Haiku 4.5 -- cheap, fast, and a different model from the
-generator (Sonnet via claude -p) so the same-model-as-generator bias is reduced.
+Both LLM-judged scoring passes use Haiku 4.5 -- cheap, fast, and a different
+model from the generator (Sonnet via claude -p) so the same-model-as-generator
+bias is reduced. Embeddings use OpenAI text-embedding-3-small as a parallel
+metric that captures conceptual reach without depending on Haiku's idea of
+"specific named things."
 """
 
 from __future__ import annotations
@@ -12,17 +15,36 @@ from dataclasses import dataclass
 from typing import List
 
 import anthropic
+import openai
 
 JUDGE_MODEL = "claude-haiku-4-5-20251001"
+EMBED_MODEL = "text-embedding-3-small"
 
-_client: anthropic.Anthropic | None = None
+_anthropic_client: anthropic.Anthropic | None = None
+_openai_client: openai.OpenAI | None = None
 
 
-def _get_client() -> anthropic.Anthropic:
-    global _client
-    if _client is None:
-        _client = anthropic.Anthropic()
-    return _client
+def _get_anthropic_client() -> anthropic.Anthropic:
+    global _anthropic_client
+    if _anthropic_client is None:
+        _anthropic_client = anthropic.Anthropic()
+    return _anthropic_client
+
+
+def _get_openai_client() -> openai.OpenAI:
+    global _openai_client
+    if _openai_client is None:
+        _openai_client = openai.OpenAI()
+    return _openai_client
+
+
+def embed(text: str) -> List[float]:
+    """Return an embedding vector for `text` using OpenAI's text-embedding-3-small.
+
+    Output is a list of 1536 floats. The trial harness caches these in the
+    per-trial sidecar JSON so we only embed each answer once."""
+    resp = _get_openai_client().embeddings.create(model=EMBED_MODEL, input=text)
+    return list(resp.data[0].embedding)
 
 
 @dataclass
@@ -41,7 +63,7 @@ class CoherenceScore:
 def _haiku_json(prompt: str) -> dict:
     """Call Haiku, force JSON output, parse. Retries once on parse failure."""
     for attempt in range(2):
-        msg = _get_client().messages.create(
+        msg = _get_anthropic_client().messages.create(
             model=JUDGE_MODEL,
             max_tokens=1024,
             messages=[{"role": "user", "content": prompt}],

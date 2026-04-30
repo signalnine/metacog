@@ -13,4 +13,6 @@ __pycache__/
 .venv/
 experiments/results.tsv
 experiments/results.tsv.bak
+experiments/results.tsv.bak*
 experiments/run.log
+experiments/trials/

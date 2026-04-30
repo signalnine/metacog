@@ -5,7 +5,14 @@ Run with: python -m unittest experiments/test_runner.py
 
 import unittest
 
-from runner import baselines_from_rows, compute_novelty, metrics_from_rarities, parse_entity_rarities
+from runner import (
+    baselines_from_rows,
+    centroid,
+    compute_novelty,
+    cosine_distance,
+    metrics_from_rarities,
+    parse_entity_rarities,
+)
 
 
 class TestComputeNovelty(unittest.TestCase):
@@ -147,6 +154,41 @@ class TestParseEntityRarities(unittest.TestCase):
         # Old TSV rows or corrupted data: return empty list, don't crash.
         self.assertEqual(parse_entity_rarities("not json"), [])
         self.assertEqual(parse_entity_rarities("[invalid"), [])
+
+
+class TestCosineDistance(unittest.TestCase):
+    def test_identical_vectors_distance_zero(self):
+        self.assertAlmostEqual(cosine_distance([1.0, 0.0, 0.0], [1.0, 0.0, 0.0]), 0.0)
+
+    def test_orthogonal_distance_one(self):
+        self.assertAlmostEqual(cosine_distance([1.0, 0.0], [0.0, 1.0]), 1.0)
+
+    def test_opposite_distance_two(self):
+        self.assertAlmostEqual(cosine_distance([1.0, 0.0], [-1.0, 0.0]), 2.0)
+
+    def test_scale_invariance(self):
+        # Cosine ignores magnitude; scaling shouldn't change distance.
+        d1 = cosine_distance([1.0, 1.0], [2.0, 2.0])
+        d2 = cosine_distance([1.0, 1.0], [10.0, 10.0])
+        self.assertAlmostEqual(d1, 0.0)
+        self.assertAlmostEqual(d2, 0.0)
+
+    def test_zero_vector_returns_zero(self):
+        # Defensive: zero vector has undefined cosine; we return 0 (no signal).
+        self.assertEqual(cosine_distance([0.0, 0.0], [1.0, 0.0]), 0.0)
+
+
+class TestCentroid(unittest.TestCase):
+    def test_single_vector(self):
+        self.assertEqual(centroid([[1.0, 2.0, 3.0]]), [1.0, 2.0, 3.0])
+
+    def test_multiple_vectors(self):
+        c = centroid([[1.0, 2.0], [3.0, 4.0], [5.0, 6.0]])
+        self.assertAlmostEqual(c[0], 3.0)
+        self.assertAlmostEqual(c[1], 4.0)
+
+    def test_empty_returns_none(self):
+        self.assertIsNone(centroid([]))
 
 
 if __name__ == "__main__":

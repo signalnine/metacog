@@ -22,17 +22,27 @@ from __future__ import annotations
 
 import argparse
 import csv
+import json
 import statistics
 from collections import defaultdict
 from pathlib import Path
-from typing import List, Optional
+from typing import Dict, List, Optional
+
+from dotenv import load_dotenv
+
+# Embedding step needs OPENAI_API_KEY; load before score is imported.
+load_dotenv(Path.home() / ".env")
 
 from runner import (
+    EXP_DIR,
     _row_is_control,
     baselines_from_rows,
+    centroid,
+    cosine_distance,
     metrics_from_rarities,
     parse_entity_rarities,
 )
+import score
 
 RESULTS = Path(__file__).resolve().parent / "results.tsv"
 
@@ -42,6 +52,77 @@ def load_rows(path: Path) -> list[dict]:
         return []
     with path.open() as f:
         return list(csv.DictReader(f, delimiter="\t"))
+
+
+def load_sidecar(row: dict) -> Optional[dict]:
+    """Load and return the per-trial sidecar JSON, or None if no path or
+    file missing. Legacy rows have empty trial_path."""
+    path_str = row.get("trial_path") or ""
+    if not path_str:
+        return None
+    path = EXP_DIR / path_str
+    if not path.exists():
+        return None
+    try:
+        return json.loads(path.read_text())
+    except (json.JSONDecodeError, OSError):
+        return None
+
+
+def ensure_embedding(row: dict, sidecar: dict, model: str = score.EMBED_MODEL) -> Optional[List[float]]:
+    """Return the embedding for this trial, computing and caching it on the
+    sidecar if not already present. Returns None if the answer is unavailable."""
+    if "embeddings" not in sidecar:
+        sidecar["embeddings"] = {}
+    cached = sidecar["embeddings"].get(model)
+    if cached is not None:
+        return cached
+    answer = sidecar.get("answer")
+    if not answer:
+        return None
+    vec = score.embed(answer)
+    sidecar["embeddings"][model] = vec
+    # Persist back to disk so we only embed once.
+    path = EXP_DIR / row["trial_path"]
+    path.write_text(json.dumps(sidecar, ensure_ascii=False, indent=2))
+    return vec
+
+
+def embedding_centroids_per_task(rows: List[dict]) -> Dict[str, List[float]]:
+    """Compute per-task centroids of NULL/control trial embeddings.
+
+    Embeds answers as needed, caching to sidecars. Tasks with no control
+    embeddings available get no entry.
+    """
+    by_task: Dict[str, List[List[float]]] = defaultdict(list)
+    for row in rows:
+        if not _row_is_control(row):
+            continue
+        sidecar = load_sidecar(row)
+        if sidecar is None:
+            continue
+        vec = ensure_embedding(row, sidecar)
+        if vec is None:
+            continue
+        by_task[row["task"]].append(vec)
+    return {t: centroid(v) for t, v in by_task.items() if v}
+
+
+def embedding_distance_for(row: dict, centroids: Dict[str, List[float]]) -> Optional[float]:
+    """Cosine distance from this trial's embedding to its task's NULL centroid.
+
+    Returns None if the trial lacks a sidecar/embedding, or its task has no
+    centroid (no control embeddings yet)."""
+    centroid_vec = centroids.get(row["task"])
+    if centroid_vec is None:
+        return None
+    sidecar = load_sidecar(row)
+    if sidecar is None:
+        return None
+    vec = ensure_embedding(row, sidecar)
+    if vec is None:
+        return None
+    return cosine_distance(vec, centroid_vec)
 
 
 def trial_metrics(row: dict) -> Optional[dict]:
@@ -63,7 +144,8 @@ def safe_mean(xs: List[float]) -> Optional[float]:
     return statistics.mean(xs) if xs else None
 
 
-def per_recipe(rows: List[dict], baselines: dict[str, float]):
+def per_recipe(rows: List[dict], baselines: dict[str, float],
+               embed_centroids: Dict[str, List[float]]):
     grouped: dict[str, list[dict]] = defaultdict(list)
     for r in rows:
         grouped[r["recipe"]].append(r)
@@ -80,10 +162,10 @@ def per_recipe(rows: List[dict], baselines: dict[str, float]):
             base = baselines.get(t["task"])
             if base is None:
                 continue
-            score = float(t["rarity"]) * float(t["coherence"])
-            deltas.append(0.0 if _row_is_control(t) else score - base)
+            sc = float(t["rarity"]) * float(t["coherence"])
+            deltas.append(0.0 if _row_is_control(t) else sc - base)
 
-        # Alternative metrics: only over trials with per-entity data
+        # Alternative entity metrics: only over trials with per-entity data
         max_vals, sum_vals, hi_vals, geo_vals = [], [], [], []
         for t in trials:
             m = trial_metrics(t)
@@ -95,12 +177,22 @@ def per_recipe(rows: List[dict], baselines: dict[str, float]):
             if m["geo_mean"] is not None:
                 geo_vals.append(m["geo_mean"])
 
+        # Embedding distance: cosine distance from this task's NULL centroid.
+        # Control trials by definition have ~0 expected mean (vs themselves),
+        # but stdev within control is the natural noise floor.
+        emb_dists = []
+        for t in trials:
+            d = embedding_distance_for(t, embed_centroids)
+            if d is not None:
+                emb_dists.append(d)
+
         is_ctl = any(_row_is_control(t) for t in trials)
         out.append({
             "recipe": recipe,
             "control": is_ctl,
             "n": len(trials),
             "n_metrics": len(max_vals),
+            "n_emb": len(emb_dists),
             "rarity": statistics.mean(rarities),
             "rar_coh": statistics.mean(products),
             "delta": safe_mean(deltas),
@@ -109,6 +201,8 @@ def per_recipe(rows: List[dict], baselines: dict[str, float]):
             "sum": safe_mean(sum_vals),
             "hi": safe_mean(hi_vals),
             "geo": safe_mean(geo_vals),
+            "emb_dist": safe_mean(emb_dists),
+            "emb_stdev": statistics.stdev(emb_dists) if len(emb_dists) > 1 else None,
             "ents": statistics.mean(ents),
         })
     return out
@@ -180,17 +274,28 @@ def main():
         print(f"  {task:<30} {b:.3f}")
     print()
 
+    print("computing embedding centroids from control trials (may embed if uncached)...")
+    embed_centroids = embedding_centroids_per_task(rows)
+    if embed_centroids:
+        print(f"  centroids ready for {len(embed_centroids)} task(s): "
+              f"{', '.join(sorted(embed_centroids))}")
+    else:
+        print("  no centroids available (no control sidecars yet -- rerun NULL baseline)")
+    print()
+
     print("=== per recipe (averaged across tasks) ===")
     print(f"{'recipe':<26} {'ctl':>3} {'n':>3} {'rar*coh':>7} {'delta':>7}  "
-          f"{'max':>5} {'sum':>5} {'hi':>4} {'geo':>5}  {'ents':>4}  {'(n)':>4}")
-    print("-" * 90)
-    for r in per_recipe(rows, baselines):
+          f"{'max':>5} {'sum':>5} {'hi':>4} {'geo':>5}  "
+          f"{'emb_d':>6}  {'ents':>4}  {'(n)':>4} {'(e)':>4}")
+    print("-" * 105)
+    for r in per_recipe(rows, baselines, embed_centroids):
         print(
             f"{r['recipe']:<26} {'y' if r['control'] else 'n':>3} {r['n']:>3} "
             f"{fmt_pos(r['rar_coh'], 7)} {fmt_delta(r['delta']):>7}  "
             f"{fmt_pos(r['max'], 5)} {fmt_pos(r['sum'], 5, 2)} "
             f"{fmt_pos(r['hi'], 4, 1)} {fmt_pos(r['geo'], 5)}  "
-            f"{r['ents']:>4.1f}  {r['n_metrics']:>4}"
+            f"{fmt_pos(r['emb_dist'], 6)}  "
+            f"{r['ents']:>4.1f}  {r['n_metrics']:>4} {r['n_emb']:>4}"
         )
     print()
     print("Column key:")
@@ -198,10 +303,13 @@ def main():
     print("  delta   = mean (rar*coh) - per-task baseline (control rows define baseline)")
     print("  max     = mean of per-trial max(entity_rarity); rewards finding ONE specialized name")
     print("  sum     = mean of per-trial sum(entity_rarity); rewards quantity of specifics")
-    print("  hi      = mean of per-trial count(rarity >= 0.7); density at the rare end")
+    print("  hi      = mean of per-trial count(rarity >= 0.7); density at the rare end)")
     print("  geo     = mean of per-trial geometric mean of rarities; penalizes dilution")
+    print("  emb_d   = mean cosine distance from this task's NULL embedding centroid")
+    print("            (captures conceptual reach beyond proper-noun citations)")
     print("  ents    = mean entity count per trial")
     print("  (n)     = trials with per-entity data available (legacy rows excluded from max/sum/hi/geo)")
+    print("  (e)     = trials with embeddings available (legacy rows excluded from emb_d)")
 
     if args.detail:
         print()
