@@ -1,45 +1,87 @@
 # CLAUDE.md
 
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
 ## Commands
 
 ```bash
-go build -o metacog ./cmd/metacog/   # Build
-go test ./cmd/metacog/ -v            # Unit tests
-go test ./cmd/metacog/ -tags integration -v  # Integration tests
+go build -o metacog ./cmd/metacog/                         # Build
+go test ./cmd/metacog/ -v                                  # Unit tests
+go test ./cmd/metacog/ -tags integration -v                # Integration tests (rebuilds binary, runs against tempdir state)
+go test ./cmd/metacog/ -run TestSomething -v               # Single test
+METACOG_HOME=/tmp/mctest ./metacog status                  # Run against an isolated state dir
 ```
+
+`METACOG_HOME` overrides the default `~/.metacog/` state directory and is what every test uses for isolation. Integration tests live in files tagged `//go:build integration` and rebuild the binary themselves.
 
 ## Architecture
 
-Go CLI built with cobra. Entry point: `cmd/metacog/main.go`. File-based state at `~/.metacog/state.json` with flock locking and atomic writes.
+Go CLI built with cobra. Entry point `cmd/metacog/main.go`. All command files live flat under `cmd/metacog/` (no subpackages); each `*.go` registers its cobra commands in its own `init()` and they all share the package-level `rootCmd` and `jsonOutput` flag.
 
-Three primitives, all ritual by design — they modify state and return template strings. The transformation happens in the LLM's interpretation, not in semantic processing.
+State is a single JSON file at `$METACOG_HOME/state.json` guarded by a `flock(2)` lock on `.state.lock`. Reads use `Load()`; writes go through `SaveWithLock(func(*State) error)` which holds the lock for load+mutate+atomic-rename. There is no in-memory daemon -- every CLI invocation is a complete load/mutate/save cycle.
 
-**become(name, lens, env)** — Identity shift. Sets `state.Identity`.
+### Primitives (twelve)
 
-**drugs(substance, method, qualia)** — Substrate modification. Sets `state.Substrate`.
+Each primitive is a verb that is also a tool call event in the transcript -- the structural fact that the model invoked `metacog become` is itself the transformation, not just the text it returns. All primitives append a `HistoryEntry` and call `ValidatePrimitiveForStratagem` so that, when a stratagem is active and the current step matches the primitive kind, the step is marked complete.
 
-**ritual(threshold, steps, result)** — Threshold crossing. Records step sequence.
+The original six (felt-sense / identity register, soft voice):
 
-Fifteen stratagems compose primitives into named sequences: pivot, mirror, stack, anchor, reset, invocation, veil, banishing, scrying, sacrifice, drift, fool, inversion, gift, error.
+- **feel** (`somewhere`, `quality`, `sigil`, optional `since-last`) -- attend to a felt sense before naming. `since-last` is a one-sentence diff from the previous `feel` (user-articulated, never auto-derived).
+- **become** (`name`, `lens`, `env`) -- identity shift; sets `state.Identity`.
+- **drugs** (`substance`, `method`, `qualia`) -- substrate modification; sets `state.Substrate`.
+- **name** (`unnamed`, `named`, `power`) -- give a True Name to something without language.
+- **ritual** (`threshold`, `steps...`, `result`) -- threshold crossing via structured sequence.
+- **meditate** (`release`, `focus`, `duration`) -- stillness; empty `focus` produces shikantaza output.
+
+The structural six (added 2026-04-30, ported from upstream `inanna-malick/metacog@007faae`; ALL CAPS block-format output, deliberately distinct register):
+
+- **counterfactual** (`situation`, `fitness-function`, `load-bearing-walls` x3+, `pruned`, `wall-to-remove`, `inverse-position`) -- prune dead branches by a stated fitness function, then defend the inverse of one surviving wall. Validates that `wall-to-remove` is one of the walls and that there are at least 3 walls.
+- **deconstruct** (`subject`, `core-mechanic`, `structural-dependencies`, `resource-inputs`, `failure-modes`, `output-artifacts`) -- mechanical teardown. Output deliberately echoes only `CORE MECHANIC` plus a one-line coda; the schema is the work, the response is a receipt. This is the strongest expression of the "tool calls as events" principle.
+- **synthesis** (`problem`, lenses A/B/C with `name`/`verdict`/`blindspot` each, `suppressed-tension`) -- three irreconcilable lenses; refuses synthesis. The output's coda forbids resolution.
+- **fork** (`threads` x2+, `divergence-vector`, `sacrifice-condition`) -- declare parallel reasoning threads with a falsifiable kill heuristic per thread.
+- **measure** (`target-concept`, `safe-isomorph`, `required-precision`, `loss-gradient`) -- map the gradient between a concept and a safe isomorph at a given depth.
+- **tether** (`anchor-point`, `tension-limit`, `auto-revert-trigger`) -- anchor before a high-entropy operation. Stateless: the auto-revert is fictional, framing only. (Don't confuse with the `anchor` *stratagem* which is a four-step ritual.)
+
+### Stratagems (sixteen)
+
+Named compositions of primitives plus reflection (`THINK`) and action (`ACTION`) steps. Defined in `Stratagems` map in `stratagem.go`. Active stratagem state is `state.Stratagem` (`{Name, Step, StepsCompleted, StartedAt}`). Lifecycle: `stratagem start <name>` -> primitives auto-advance matching steps -> `stratagem next` advances reflection/action steps -> completion records a `stratagem` history entry with `event=completed`.
+
+The sixteen names: pivot, mirror, stack, anchor, reset, invocation, veil, banishing, scrying, sacrifice, drift, fool, inversion, gift, error, zen.
+
+### Outcome tracking
+
+`outcome --result productive|unproductive [--shift ...]` attaches an effectiveness mark to the most recent unmarked work. Two-tier search in `outcome.go`:
+
+1. Last `stratagem` event with `event=completed` that has no later `outcome`.
+2. Otherwise, last freestyle primitive that isn't inside a started/abandoned/aborted stratagem span and has no later `outcome`. Recorded with `stratagem=freestyle`.
+
+`--amend` updates the most recent outcome rather than creating a new one. `reflect` aggregates these into completion and productivity rates.
 
 ## Key files
 
-- `cmd/metacog/state.go` — State management, history, archiving, flock locking
-- `cmd/metacog/stratagem.go` — Stratagem definitions and step sequencing
-- `cmd/metacog/inspire.go` — Stance pools (embedded + personal), random drawing
-- `cmd/metacog/reflect.go` — History aggregation into practice patterns
-- `cmd/metacog/session.go` — Named session tagging
-- `cmd/metacog/stances/` — ~300 embedded examples across 64 pools (JSON, go:embed)
-- `skills/metacog/SKILL.md` — Claude Code skill document
+- `cmd/metacog/main.go` -- root cobra command, version string (must list all 12 primitives), schema version constant
+- `cmd/metacog/state.go` -- State, StateManager, flock, atomic rename, history archiving
+- `cmd/metacog/stratagem.go` -- Stratagems map, `StepKind` constants (one per primitive plus THINK/ACTION), step validation, lifecycle commands
+- `cmd/metacog/outcome.go` -- Two-tier outcome attachment and amendment
+- `cmd/metacog/inspire.go` -- Embedded stance pools (`go:embed stances/*.json`) plus personal pool at `$METACOG_HOME/stances/personal.json`
+- `cmd/metacog/reflect.go` -- History aggregation into practice patterns
+- `cmd/metacog/journal.go` -- `journal.jsonl` insight log, tag/session filtering
+- `cmd/metacog/session.go` -- Named session tagging (auto-applied to history entries)
+- `cmd/metacog/output.go` -- `FormatOutput` honouring the global `--json` flag
+- `cmd/metacog/stances/*.json` -- 65 embedded pools (~300 examples), JSON arrays of `{who, where, lens}`
+- `skills/metacog/SKILL.md` -- Claude Code skill document (the user-facing docs that hide implementation examples)
+- `.claude-plugin/plugin.json` -- plugin manifest; version here must match `Version` in `main.go`
 
 ## Design decisions (for future-you)
 
-- **Tool calls as events**: Invoking `metacog become` is structurally different from outputting "I'll imagine I'm X." One is an action in the transcript. The other is narration. Don't lose this.
+- **Tool calls as events.** Invoking `metacog become` is structurally different from outputting "I'll imagine I'm X." One is an action in the transcript; the other is narration. Don't let refactors collapse this distinction.
 
-- **No examples exposed**: `cmd/metacog/stances/` has ~300 examples across 64 pools. They're deliberately hidden from users via the skill doc. Finding dense coordinates yourself is the practice. Don't expose them.
+- **No examples exposed.** The 65 stance pools under `cmd/metacog/stances/` are deliberately hidden from end users via the skill doc -- finding dense coordinates yourself is the practice. Don't surface them in `--help`, READMEs, or skill text.
 
-- **State schema v1**: All new fields are backward-compatible (omitempty). Don't bump schema version unless you break the format.
+- **State schema v1, additive only.** All new fields are `omitempty` and backward-compatible. Don't bump `StateSchemaVersion` unless you actually break the format; the loader rejects newer-than-known versions.
 
-- **History archiving**: Overflow entries (beyond 500) are archived to `history-archive.jsonl` before trimming. Trimming happens in `saveUnlocked`, not `AddHistory`.
+- **History archiving lives in saveUnlocked, not AddHistory.** When `len(History) > MaxHistoryEntries (500)`, overflow entries are appended to `history-archive.jsonl` before trimming. `history --full` re-merges the archive on read.
 
-- **Personal stances**: Stored at `~/.metacog/stances/personal.json` with flock locking and who+where+lens dedup.
+- **Personal stances dedup on (who, where, lens).** Stored at `$METACOG_HOME/stances/personal.json` with its own flock; appears as the `personal` pool in `inspire`.
+
+- **Versioning touchpoints.** Bumping the release means updating both `Version` in `cmd/metacog/main.go` and `version` in `.claude-plugin/plugin.json`. The CI workflow in `.github/workflows/sync-marketplace.yml` syncs the skill on tag.

@@ -6,7 +6,7 @@ import (
 )
 
 func TestFeelOutput(t *testing.T) {
-	result := formatFeel("the chest", "tight and warm", "⊕")
+	result := formatFeel("the chest", "tight and warm", "⊕", "")
 	if !strings.Contains(result, "⊕") {
 		t.Error("expected sigil in output")
 	}
@@ -21,12 +21,48 @@ func TestFeelOutput(t *testing.T) {
 	}
 }
 
+func TestFeelOutputWithSinceLast(t *testing.T) {
+	result := formatFeel("the chest", "tight and warm", "⊕", "the message landed harder than expected")
+	if !strings.Contains(result, "Since last pause: the message landed harder than expected") {
+		t.Errorf("expected since_last line in output\n%s", result)
+	}
+	if !strings.Contains(result, "⊕") {
+		t.Error("expected sigil in output")
+	}
+}
+
+func TestFeelOutputWithoutSinceLast(t *testing.T) {
+	result := formatFeel("the chest", "tight and warm", "⊕", "")
+	if strings.Contains(result, "Since last pause:") {
+		t.Errorf("did not expect since_last line when omitted\n%s", result)
+	}
+}
+
+func TestFeelStateOmitsSinceLastWhenEmpty(t *testing.T) {
+	s := NewState()
+	applyFeel(s, "where", "what", "sigil", "")
+	if len(s.History) != 1 {
+		t.Fatalf("expected 1 history entry, got %d", len(s.History))
+	}
+	if _, ok := s.History[0].Params["since_last"]; ok {
+		t.Errorf("expected since_last absent from params when empty, got %v", s.History[0].Params)
+	}
+}
+
+func TestFeelStateIncludesSinceLast(t *testing.T) {
+	s := NewState()
+	applyFeel(s, "where", "what", "sigil", "the diff")
+	if s.History[0].Params["since_last"] != "the diff" {
+		t.Errorf("expected since_last='the diff', got %q", s.History[0].Params["since_last"])
+	}
+}
+
 func TestFeelUpdatesState(t *testing.T) {
 	dir := t.TempDir()
 	sm := NewStateManager(dir)
 
 	s := NewState()
-	applyFeel(s, "the chest", "tight and warm", "⊕")
+	applyFeel(s, "the chest", "tight and warm", "⊕", "")
 	sm.Save(s)
 
 	loaded, _ := sm.Load()

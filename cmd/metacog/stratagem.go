@@ -11,14 +11,20 @@ import (
 type StepKind string
 
 const (
-	StepFeel     StepKind = "feel"
-	StepBecome   StepKind = "become"
-	StepDrugs    StepKind = "drugs"
-	StepName     StepKind = "name"
-	StepRitual   StepKind = "ritual"
-	StepMeditate StepKind = "meditate"
-	StepThink    StepKind = "THINK"
-	StepAction   StepKind = "ACTION"
+	StepFeel           StepKind = "feel"
+	StepBecome         StepKind = "become"
+	StepDrugs          StepKind = "drugs"
+	StepName           StepKind = "name"
+	StepRitual         StepKind = "ritual"
+	StepMeditate       StepKind = "meditate"
+	StepCounterfactual StepKind = "counterfactual"
+	StepDeconstruct    StepKind = "deconstruct"
+	StepSynthesis      StepKind = "synthesis"
+	StepFork           StepKind = "fork"
+	StepMeasure        StepKind = "measure"
+	StepTether         StepKind = "tether"
+	StepThink          StepKind = "THINK"
+	StepAction         StepKind = "ACTION"
 )
 
 type Step struct {
