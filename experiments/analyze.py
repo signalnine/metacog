@@ -249,6 +249,35 @@ def per_recipe_per_task(rows: List[dict], baselines: dict[str, float]):
     return out
 
 
+def gap_trials(rows: List[dict], embed_centroids: Dict[str, List[float]]) -> List[dict]:
+    """Per-trial (emb_d - rar*coh) gap, sorted descending. High gap means the
+    embedding metric sees conceptual reach the entity-rarity judge missed --
+    these are the trials where understanding *what* the recipe is doing
+    requires reading the answer, not the score.
+
+    Skips control trials (their gap is uninteresting) and trials missing
+    embeddings or sidecars."""
+    out = []
+    for r in rows:
+        if _row_is_control(r):
+            continue
+        d = embedding_distance_for(r, embed_centroids)
+        if d is None:
+            continue
+        rc = float(r["rarity"]) * float(r["coherence"])
+        out.append({
+            "recipe": r["recipe"],
+            "task": r["task"],
+            "sample": int(r["sample"]),
+            "rar_coh": rc,
+            "emb_d": d,
+            "gap": d - rc,
+            "trial_path": r.get("trial_path", ""),
+        })
+    out.sort(key=lambda x: x["gap"], reverse=True)
+    return out
+
+
 def fmt_delta(x):
     return "  --  " if x is None else f"{x:+.3f}"
 
@@ -262,6 +291,11 @@ def fmt_pos(x, width=6, prec=3):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--detail", action="store_true", help="show per-recipe x task breakdown")
+    ap.add_argument("--gap", action="store_true",
+                    help="show top trials where emb_d outruns rar*coh (full answers)")
+    ap.add_argument("--top", type=int, default=5, help="how many trials to show in --gap mode")
+    ap.add_argument("--chars", type=int, default=0,
+                    help="truncate answer to this many chars in --gap (0 = full)")
     args = ap.parse_args()
 
     rows = load_rows(RESULTS)
@@ -310,6 +344,27 @@ def main():
     print("  ents    = mean entity count per trial")
     print("  (n)     = trials with per-entity data available (legacy rows excluded from max/sum/hi/geo)")
     print("  (e)     = trials with embeddings available (legacy rows excluded from emb_d)")
+
+    if args.gap:
+        print()
+        print(f"=== top {args.top} gap trials (emb_d - rar*coh, descending) ===")
+        print("Recipes whose conceptual reach exceeds their citation density.")
+        print()
+        gaps = gap_trials(rows, embed_centroids)
+        for i, g in enumerate(gaps[:args.top]):
+            sidecar_path = EXP_DIR / g["trial_path"] if g["trial_path"] else None
+            print(f"--- #{i+1}  {g['recipe']} x {g['task']} #{g['sample']}  "
+                  f"rar*coh={g['rar_coh']:.3f}  emb_d={g['emb_d']:.3f}  "
+                  f"gap={g['gap']:+.3f} ---")
+            if sidecar_path and sidecar_path.exists():
+                sc = json.loads(sidecar_path.read_text())
+                ents = sc["rarity"]["entities"]
+                print(f"entities cited: {ents if ents else '(none)'}")
+                answer = sc.get("answer", "")
+                if args.chars > 0 and len(answer) > args.chars:
+                    answer = answer[:args.chars] + "..."
+                print(answer)
+            print()
 
     if args.detail:
         print()
