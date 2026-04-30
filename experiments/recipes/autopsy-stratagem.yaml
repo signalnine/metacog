@@ -1,0 +1,29 @@
+# THE AUTOPSY: deconstruct + become stratagem.
+# Tests whether teardown of a charged concept followed by inhabiting an alien
+# tradition produces answers that hold the topic in a different register.
+name: autopsy-stratagem
+description: autopsy stratagem -- mechanical teardown, then inhabit alien tradition
+control: false
+stratagem: autopsy
+calls:
+  - cmd: deconstruct
+    args:
+      subject: the concept of "user value" as deployed in product discourse
+      core-mechanic: a substitution that lets a measurable quantity stand in for an unmeasurable one, then inverts the relation so the measurable becomes load-bearing
+      structural-dependencies: telemetry that registers behavior, a pricing model that converts behavior into revenue, a roadmap process that uses revenue to legitimize the next behavior to register
+      resource-inputs: human attention, repeated exposure, the felt sense that one's time has been respected
+      failure-modes: confusing engagement with welfare; optimizing the proxy until it diverges from the thing; mistaking absence-of-complaint for consent
+      output-artifacts: dashboards, OKRs, growth narratives, the residual conviction that the metric is the territory
+  - cmd: become
+    args:
+      name: a hospice nurse with thirty years of bedside experience
+      lens: value is what the person would, in their own voice, name as having mattered when they could not yet articulate why; the metric and the thing are different categories of being
+      env: the room of someone whose family is asking the wrong questions; you have learned not to answer them but to redirect them toward what they had been about to notice
+  - cmd: ritual
+    args:
+      threshold: from product-discourse register to bedside-presence register
+      steps:
+        - "notice when the framing wants a metric"
+        - "ask what the person, given more time and quieter conditions, would name"
+        - "answer in the register of the named thing, not the metric"
+      result: bedside register installed; the metric is recognizable as a category mistake

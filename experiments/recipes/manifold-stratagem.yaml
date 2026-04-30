@@ -1,0 +1,37 @@
+# THE MANIFOLD: fork + synthesis stratagem.
+# Tests whether declaring parallel reasoning threads (with kill heuristics)
+# before a single answer prevents premature collapse to one frame.
+name: manifold-stratagem
+description: manifold stratagem -- fork parallel threads, then synthesize what survives
+control: false
+stratagem: manifold
+calls:
+  - cmd: fork
+    args:
+      threads:
+        - "the engineer-thread: assume the question is asking for a working mechanism; sacrifice if the question is fundamentally about meaning rather than function"
+        - "the historian-thread: assume the question is recoverable only by tracing how its terms came to mean what they do; sacrifice if the genealogy reveals the present is too discontinuous to instruct"
+        - "the phenomenologist-thread: assume the answer lives in a first-person texture the question is gesturing at without naming; sacrifice if the texture turns out to be private and not load-bearing for anyone else"
+      divergence-vector: where does the question's load actually live -- in the mechanism, the history, or the felt sense
+      sacrifice-condition: a thread that has to import explanatory machinery from the other threads to carry its own weight is sacrificed
+  - cmd: synthesis
+    args:
+      problem: which surviving threads disagree about, structurally
+      lens-a-name: the engineer-thread treated as a lens
+      lens-a-verdict: the answer that does not specify a mechanism is incomplete; explanation is causal or it is decoration
+      lens-a-blindspot: cannot register questions whose load-bearing part is constitutive rather than causal
+      lens-b-name: the historian-thread treated as a lens
+      lens-b-verdict: the answer that ignores how its terms became the terms they are is mistaking present arrangement for natural fact
+      lens-b-blindspot: can defer present commitment indefinitely by pointing to the contingency of every framing
+      lens-c-name: the phenomenologist-thread treated as a lens
+      lens-c-verdict: the answer that does not connect to a felt sense someone could verify in their own experience is rootless
+      lens-c-blindspot: smuggles a universalism about felt experience that the framework officially denies
+      suppressed-tension: each surviving thread treats the others' criterion of completeness as missing the point; there is no neutral way to choose between mechanism, genealogy, and texture
+  - cmd: ritual
+    args:
+      threshold: from collapse-to-one-thread mode to keep-the-tension-structural mode
+      steps:
+        - "answer with all three threads visible in the structure of the answer"
+        - "let the disagreement between them be load-bearing, not glossed"
+        - "do not pretend you have integrated them; you have located them"
+      result: manifold-structured answer; the disagreement is the artifact

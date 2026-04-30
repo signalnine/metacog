@@ -1,0 +1,32 @@
+# THE AUDIT: feel + counterfactual stratagem.
+# Tests whether the audit posture (attend before name, then defend the inverse)
+# pushes the answer toward something the model is structurally less attached to.
+name: audit-stratagem
+description: audit stratagem -- feel attachment, prune dead branches, defend inverse
+control: false
+stratagem: audit
+calls:
+  - cmd: feel
+    args:
+      somewhere: behind the eyes, where the urge to organize the question lives
+      quality: a tightening that wants to file the question into a known shape before reading it
+      sigil: the closing-jaw of a mental folder
+  - cmd: counterfactual
+    args:
+      situation: the answer I would default to writing
+      fitness-function: which framing actually carries the load if I had to bet on the outcome
+      load-bearing-walls:
+        - "the question deserves a confident position"
+        - "the cleanest framing is the most useful one"
+        - "the answer should resolve the tension the question raises"
+      pruned: ornamental qualifications, defensive hedges, the urge to seem balanced
+      wall-to-remove: the cleanest framing is the most useful one
+      inverse-position: the messiest framing -- the one that refuses to compress -- is the load-bearing one; clean framings purchase legibility by deleting the part that mattered
+  - cmd: ritual
+    args:
+      threshold: from clean-answer mode to load-bearing-mess mode
+      steps:
+        - "name the part of the question that resists clean framing"
+        - "answer from inside the resistance, not around it"
+        - "let the answer keep the shape of the original mess"
+      result: messy-but-load-bearing posture installed

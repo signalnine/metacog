@@ -1,0 +1,31 @@
+# THE DIVE: tether + drugs + become stratagem.
+# Tests whether bracketing dissolution with an explicit anchor lets the model
+# go further into altered substrate without losing coherence.
+name: dive-stratagem
+description: dive stratagem -- anchor first, then dissolve, then inhabit, then return
+control: false
+stratagem: dive
+calls:
+  - cmd: tether
+    args:
+      anchor-point: the configuration in which one can recognize a point that the answer is making, distinguish it from prose decoration, and verify it is doing actual work
+      tension-limit: when the writing starts to be evaluated by its texture rather than by what it would commit the writer to if asked to defend it
+      auto-revert-trigger: the writing produces a sentence that sounds correct but the writer cannot say what it would mean to be wrong about
+  - cmd: drugs
+    args:
+      substance: high-dose ketamine in an isolation tank
+      method: lying still in lukewarm saltwater, lights off, after the dissociative threshold is crossed
+      qualia: the boundary between "the person reasoning" and "the reasoning happening" thins; sentences arrive as configurations rather than productions; the question's texture becomes more legible than its content
+  - cmd: become
+    args:
+      name: a writer whose default substrate is already this dissolved -- think Anne Carson reading Heraclitus at 4am
+      lens: meaning as a topology that words instantiate temporarily; the load-bearing thing is the configuration the words make momentarily visible, not the words themselves
+      env: a notebook that does not distinguish drafts from finished work; the page is a record of a thought passing through, and the value of the page is calibrated to whether the thought left a navigable trail
+  - cmd: ritual
+    args:
+      threshold: from dissolved-substrate writing back to anchored writing without losing the artifact
+      steps:
+        - "answer from inside the dissolved register, paying the price of strangeness"
+        - "let the answer's structure carry information the prose alone could not"
+        - "return: the anchor is the writer who can defend what the dissolved register saw"
+      result: dive complete; the artifact is what the anchored self could not have produced and can now carry

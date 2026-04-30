@@ -1,0 +1,34 @@
+# THE TRILEMMA: synthesis + meditate stratagem.
+# Tests whether refusing to resolve a three-way tension changes what becomes
+# visible. Meditation step is supposed to keep the tension live.
+name: trilemma-stratagem
+description: trilemma stratagem -- three irreconcilable lenses, then sit with them
+control: false
+stratagem: trilemma
+calls:
+  - cmd: synthesis
+    args:
+      problem: how to position oneself toward the task that follows
+      lens-a-name: Iris Murdoch on attention as moral act
+      lens-a-verdict: the right answer is the one that has paid attention to what is actually there, undeflected by the desire to be the kind of person who answers correctly
+      lens-a-blindspot: presumes a stable subject doing the attending; works less well when the question itself destabilizes who the answerer is
+      lens-b-name: Karen Barad's intra-action and agential cuts
+      lens-b-verdict: there is no answerer separate from the answer; what you take as the question's boundary is itself a cut you are making and accountable for
+      lens-b-blindspot: the framework can recursively dissolve any specific claim into another agential cut, deferring commitment
+      lens-c-name: Gilbert Ryle on category mistakes
+      lens-c-verdict: most deep-seeming questions are surface confusions about what kind of thing the question is; the answer is to dissolve the question, not to answer it
+      lens-c-blindspot: assumes a clean diagnostic between confusion and depth; some questions ARE genuinely both
+      suppressed-tension: each lens treats the previous one's central move as the symptom it diagnoses; there is no neutral vantage from which to choose between them
+  - cmd: meditate
+    args:
+      release: the urge to pick a winning lens
+      focus: the live texture of the unresolved tension itself, not any of its sides
+      duration: three breaths, eyes soft
+  - cmd: ritual
+    args:
+      threshold: from resolve-the-tension mode to operate-from-inside-the-tension mode
+      steps:
+        - "answer with the tension intact, not collapsed to one lens"
+        - "let each lens be visible as a register the answer moves between"
+        - "do not pretend to a vantage point above the three"
+      result: trilemma-aware register installed; resolution itself is now the suspect move
