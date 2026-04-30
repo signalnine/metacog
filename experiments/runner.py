@@ -164,6 +164,10 @@ def run_generator(prompt: str, metacog_home: str) -> str:
     # SKILL.md checks this to suppress wait-for-human gates and offer
     # autonomous selection. Required for any non-interactive run.
     env["METACOG_HEADLESS"] = "1"
+    # Strip ANTHROPIC_API_KEY so claude -p falls back to OAuth/subscription
+    # auth (Claude Pro/Max) instead of billing against API credits. The Haiku
+    # scoring calls in score.py run in the parent process and still see it.
+    env.pop("ANTHROPIC_API_KEY", None)
 
     cmd = [
         "claude",
