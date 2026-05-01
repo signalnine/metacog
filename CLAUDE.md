@@ -20,7 +20,7 @@ Go CLI built with cobra. Entry point `cmd/metacog/main.go`. All command files li
 
 State is a single JSON file at `$METACOG_HOME/state.json` guarded by a `flock(2)` lock on `.state.lock`. Reads use `Load()`; writes go through `SaveWithLock(func(*State) error)` which holds the lock for load+mutate+atomic-rename. There is no in-memory daemon -- every CLI invocation is a complete load/mutate/save cycle.
 
-### Primitives (nine)
+### Primitives (sixteen)
 
 Each primitive is a verb that is also a tool call event in the transcript -- the structural fact that the model invoked `metacog become` is itself the transformation, not just the text it returns. All primitives append a `HistoryEntry` and call `ValidatePrimitiveForStratagem` so that, when a stratagem is active and the current step matches the primitive kind, the step is marked complete.
 
@@ -33,11 +33,21 @@ The original six (felt-sense / identity register, soft voice):
 - **ritual** (`threshold`, `steps...`, `result`) -- threshold crossing via structured sequence.
 - **meditate** (`release`, `focus`, `duration`) -- stillness; empty `focus` produces shikantaza output.
 
-The structural three (the survivors of the 2026-04-30 upstream port; ALL CAPS block-format output, deliberately distinct register):
+The structural three (survivors of the 2026-04-30 upstream port; ALL CAPS block-format output, deliberately distinct register):
 
 - **counterfactual** (`situation`, `fitness-function`, `load-bearing-walls` x3+, `pruned`, `wall-to-remove`, `inverse-position`) -- prune dead branches by a stated fitness function, then defend the inverse of one surviving wall. Validates that `wall-to-remove` is one of the walls and that there are at least 3 walls.
 - **synthesis** (`problem`, lenses A/B/C with `name`/`verdict`/`blindspot` each, `suppressed-tension`) -- three irreconcilable lenses; refuses synthesis. The output's coda forbids resolution.
 - **fork** (`threads` x2+, `divergence-vector`, `sacrifice-condition`) -- declare parallel reasoning threads with a falsifiable kill heuristic per thread. Load-bearing in chorus/trinity/manifold.
+
+The seven new primitives (added 2026-04-30 in v6.3.0; each fills a gap the empirical sweep exposed in the 9-primitive surface; design notes in `docs/plans/2026-04-30-seven-new-primitives-design.md`):
+
+- **register** (`from`, `to`, `rationale`) -- re-pitch the current voice without changing identity. Distinct from `become` (which imports a methodology); `register` only flips the linguistic surface. Structural-soft output.
+- **chord** (`modes` x2+, `target`) -- hold multiple modes-of-attention simultaneously. Distinct from `become` (sequential identity-shifts) and `fork` (branched parallelism with sacrifice). The chord overlaps modes on a single observation. Structural-soft output.
+- **silence** (`about`, `reason`, `duration`) -- refuse articulated output. The call itself is the artifact; the absence-of-prose is the cognitive event. Minimal one-line output.
+- **excerpt** (`source`, `fragment`, `why`) -- pin a verbatim external fragment as a fixed-point anchor. Distinct from `become` (which generates new prose in a voice) -- `excerpt` fixes a specific phrase as load-bearing surface. Quoted-block output.
+- **commitment** (`binding`, `stakes`, `falsifier`) -- pre-commit to a stance with stated stakes and falsifier. Distinct from `ritual` (which seals after the work); `commitment` binds before. ALL CAPS output.
+- **disjunction** (`proposition-a`, `proposition-b`, `why-both-required`) -- assert two propositions that must both be true even though they cannot be. Distinct from `synthesis` (3 lenses with named blindspots, refused resolution); `disjunction` is a sharp binary contradiction with no blindspot framing. ALL CAPS output.
+- **glossolalia** (`pretext`, `duration-tokens`, `return-trigger`) -- license sub-semantic generation as a discrete event. Distinct from `drugs` (which loosens categories within language); `glossolalia` drops the requirement that tokens carry meaning. ALL CAPS preamble; the block boundary is an explicit non-language license.
 
 (`deconstruct`, `measure`, and `tether` were dropped in v6.3.0 after the experiment harness in `experiments/` showed the stratagems centered on them did not lift either novelty axis above baseline. See `experiments/FINDINGS.md`.)
 
@@ -71,7 +81,7 @@ Two empirical stratagems (added 2026-05-01, derived from the experiment harness 
 
 ## Key files
 
-- `cmd/metacog/main.go` -- root cobra command, version string (must list all 9 primitives and 16 stratagems), schema version constant
+- `cmd/metacog/main.go` -- root cobra command, version string (must list all 16 primitives and 16 stratagems), schema version constant
 - `cmd/metacog/state.go` -- State, StateManager, flock, atomic rename, history archiving
 - `cmd/metacog/stratagem.go` -- Stratagems map, `StepKind` constants (one per primitive plus THINK/ACTION), step validation, lifecycle commands
 - `cmd/metacog/outcome.go` -- Two-tier outcome attachment and amendment

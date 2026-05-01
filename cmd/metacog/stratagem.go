@@ -20,6 +20,13 @@ const (
 	StepCounterfactual StepKind = "counterfactual"
 	StepSynthesis      StepKind = "synthesis"
 	StepFork           StepKind = "fork"
+	StepRegister       StepKind = "register"
+	StepChord          StepKind = "chord"
+	StepSilence        StepKind = "silence"
+	StepExcerpt        StepKind = "excerpt"
+	StepCommitment     StepKind = "commitment"
+	StepDisjunction    StepKind = "disjunction"
+	StepGlossolalia    StepKind = "glossolalia"
 	StepThink          StepKind = "THINK"
 	StepAction         StepKind = "ACTION"
 )

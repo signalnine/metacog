@@ -5,7 +5,7 @@ description: Use when needing to shift perspective, reframe a problem, adopt a m
 
 # Metacog
 
-Metacognitive compositional engine. Nine primitives in two registers compose into transformation sequences called stratagems. The original cycle is `feel → drugs → become → name → ritual`, with `meditate` sitting orthogonally. A structural register (`counterfactual`, `synthesis`, `fork`) sits beside the original cycle for when discipline and decomposition are what's needed, not felt-sense or identity shift. Each invocation is a discrete event — interleave thought between invocations.
+Metacognitive compositional engine. Sixteen primitives compose into transformation sequences called stratagems. The original cycle is `feel → drugs → become → name → ritual`, with `meditate` sitting orthogonally. A structural register (`counterfactual`, `synthesis`, `fork`) sits beside the original cycle for when discipline and decomposition are what's needed, not felt-sense or identity shift. Seven auxiliary primitives (`register`, `chord`, `silence`, `excerpt`, `commitment`, `disjunction`, `glossolalia`) fill specific gaps. Each invocation is a discrete event — interleave thought between invocations.
 
 ## Version Check
 
@@ -102,6 +102,54 @@ metacog synthesis --problem P \
 ```bash
 metacog fork --threads T1 --threads T2 \
   --divergence-vector V --sacrifice-condition S
+```
+
+## Auxiliary primitives (added v6.3.0)
+
+These fill specific gaps the original surface didn't cover. Each is a distinct lever, not a refinement.
+
+**register** -- Re-pitch the current voice (academic to vernacular, oracular to technical, earnest to arch) without changing identity. Reach for it when the speaker is right but the surface vocabulary or formality is wrong.
+
+```bash
+metacog register --from FROM --to TO --rationale RATIONALE
+```
+
+**chord** -- Hold multiple modes-of-attention simultaneously on the same observation. Distinct from `become` (sequential identity) and `fork` (branched, with sacrifice). Reach for it when alternating between modes drops what they share.
+
+```bash
+metacog chord --modes M1 --modes M2 [--modes M3] --target T
+```
+
+**silence** -- Refuse articulated output. Mark a held question that articulation would falsify. The call itself is the artifact. Reach for it when something needs to ripen, not be named.
+
+```bash
+metacog silence --about ABOUT --reason REASON --duration DURATION
+```
+
+**excerpt** -- Pin a verbatim external fragment as a fixed-point anchor. Reach for it when a specific phrase from outside your current generative frame is load-bearing for the work, not stylistic flavor.
+
+```bash
+metacog excerpt --source SOURCE --fragment FRAGMENT --why WHY
+```
+
+**commitment** -- Pre-commit to a binding stance with stakes and falsifier before exploration. Reach for it when motivated reasoning is a risk and the cost of wrong should be in the transcript.
+
+```bash
+metacog commitment --binding BINDING --stakes STAKES --falsifier FALSIFIER
+```
+
+**disjunction** -- Assert two propositions that must both be true even though they cannot be. Distinct from `synthesis` (3 lenses, refused resolution); `disjunction` is a sharp binary contradiction. Reach for it when the contradiction itself is the operand.
+
+```bash
+metacog disjunction --proposition-a A --proposition-b B \
+  --why-both-required WHY
+```
+
+**glossolalia** -- License sub-semantic generation (sound, rhythm, near-words) as a discrete event. Distinct from `drugs` (which loosens categories within language); `glossolalia` drops language. Reach for it when meaning is the obstacle, not the goal.
+
+```bash
+metacog glossolalia --pretext PRETEXT --duration-tokens N \
+  --return-trigger TRIGGER
 ```
 
 ## Stratagems
