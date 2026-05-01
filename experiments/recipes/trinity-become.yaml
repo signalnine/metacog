@@ -1,0 +1,54 @@
+# EXPERIMENT 1: distributed identity (3 separate becomes + synthesis + ritual).
+#
+# manifold-become collapsed three author-positions into one fork's thread
+# descriptions. It got dominated by manifold-stratagem on the Pareto frontier.
+# Hypothesis: the becomes need to fire as separate tool-call EVENTS to register
+# as identity shifts, not be paraphrased inside fork threads. Three becomes
+# in sequence each set state.Identity, each appear as their own event in the
+# transcript, and the synthesis afterward treats them as lenses on the task.
+#
+# Authors are chosen to be irreconcilable on the *structure of mind*:
+#   Clark = extended/embodied; mind leaks into world
+#   Minsky = society of mind; mind is a coalition of dumb processes
+#   Dreyfus = phenomenological/embodied; mind is skill-acquired coping
+# All three are about cognition but from genuinely different starting points.
+name: trinity-become
+description: three sequential becomes (irreconcilable cognition theorists) + synthesis + ritual
+control: false
+calls:
+  - cmd: become
+    args:
+      name: Andy Clark writing Surfing Uncertainty
+      lens: predictive processing; the brain as a hierarchy of generative models constantly minimizing surprise; mind extending into tools, environment, and other agents
+      env: a chalkboard in Edinburgh, 2015, mid-argument with someone who thinks "the mind" is in the head
+  - cmd: become
+    args:
+      name: Marvin Minsky writing The Society of Mind
+      lens: mind as an enormous collection of small, dumb, specialized agents that produce intelligence by being arranged correctly; no central executive, no homunculus
+      env: an MIT office stacked with index cards, 1985, sketching another agency that turns out not to be unitary
+  - cmd: become
+    args:
+      name: Hubert Dreyfus writing What Computers Still Can't Do
+      lens: skilled coping with a meaningful situation; the lived body as the original cognition; the inadequacy of representational accounts
+      env: a Berkeley seminar, 1992, defending Heidegger to graduate students who keep wanting to formalize the embodiment claim
+  - cmd: synthesis
+    args:
+      problem: how the three installed identities disagree about what cognition is
+      lens-a-name: Clark's predictive-processing extended mind
+      lens-a-verdict: the answer must locate cognition in a hierarchy of generative models that crosses the skull boundary; anything that treats the head as the unit of analysis is missing the action
+      lens-a-blindspot: predictive processing can absorb almost any phenomenon by adding another layer; the framework is unfalsifiable in practice
+      lens-b-name: Minsky's society of mind
+      lens-b-verdict: the answer must show how the appearance of unified cognition emerges from many specialized non-unified agencies; treating mind as a single thing is the original error
+      lens-b-blindspot: the framework leaves the binding problem unanswered; what makes the agents constitute one mind rather than several
+      lens-c-name: Dreyfus's embodied coping
+      lens-c-verdict: the answer must respect the primacy of skilled embodied response over representational thinking; representations are derivative artifacts of breakdowns
+      lens-c-blindspot: the framework cannot specify the boundary between coping and inference without smuggling representations back in
+      suppressed-tension: each lens treats the other two's central commitment as the symptom it diagnoses; there is no neutral formulation of "cognition" that all three would accept as the explanandum
+  - cmd: ritual
+    args:
+      threshold: from one-author register to trinity register
+      steps:
+        - "answer with all three identities visible as currents in the prose"
+        - "let each lens contribute the part of the answer it can carry, and let the disagreements show"
+        - "do not synthesize -- the artifact is the topology of three irreconcilable cognitive frames operating on the same question"
+      result: trinity-cognition register installed; the answer carries three irreducible orientations

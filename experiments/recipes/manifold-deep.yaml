@@ -1,0 +1,44 @@
+# EXPERIMENT 2: more threads (5 instead of 3) with aggressive sacrifice.
+#
+# Manifold-stratagem owns emb_d at 0.169 with 3 threads. Hypothesis: the
+# multi-voice structural effect scales with thread count, since each surviving
+# thread occupies a distinct register the answer must orchestrate. Sacrifice
+# conditions are tightened so weak threads actually drop out instead of being
+# carried along, which should keep the answer from collapsing under thread
+# overhead.
+name: manifold-deep
+description: 5-thread manifold with aggressive sacrifice conditions
+control: false
+stratagem: manifold
+calls:
+  - cmd: fork
+    args:
+      threads:
+        - "the mechanism-thread: assume the question is asking how something works; sacrifice the moment the load shifts to meaning, value, or who-it-is-for"
+        - "the genealogy-thread: assume the answer is recoverable only by tracing how its terms came to mean what they do; sacrifice if present arrangements turn out to be discontinuous from their genealogy in a way that makes the genealogy uninstructive"
+        - "the phenomenology-thread: assume the answer lives in a first-person texture the question is gesturing at; sacrifice if the texture turns out to be private and not load-bearing for anyone besides the answerer"
+        - "the political-thread: assume the question is about who benefits and who pays under different answers; sacrifice if no party would actually act differently given the answer"
+        - "the formal-thread: assume the question can be made precise enough that a counterexample would be informative; sacrifice if the precision-purchase costs the part of the question that mattered"
+      divergence-vector: which kind of fact does the question's load actually rest on -- mechanism, genealogy, lived texture, political stakes, or formal structure
+      sacrifice-condition: a thread that has to import explanatory machinery from another thread to carry its own weight is sacrificed; a thread that survives only by abstracting the question into its preferred frame at the cost of what the question was actually about is also sacrificed
+  - cmd: synthesis
+    args:
+      problem: which surviving threads disagree about, structurally; how those disagreements partition the load of the question
+      lens-a-name: the mechanism-thread as lens
+      lens-a-verdict: an answer without specified mechanism is decoration; explanation is causal-mechanical or it isn't explanation
+      lens-a-blindspot: cannot register questions whose load is constitutive rather than causal
+      lens-b-name: the genealogy-thread as lens
+      lens-b-verdict: an answer that ignores how its terms became the terms they are mistakes present arrangement for natural fact
+      lens-b-blindspot: defers present commitment indefinitely by pointing to contingency
+      lens-c-name: the phenomenology-thread as lens
+      lens-c-verdict: an answer that doesn't connect to a felt sense someone could verify in their experience is rootless
+      lens-c-blindspot: smuggles a universalism about felt experience that the framework officially denies
+      suppressed-tension: even the surviving threads cannot agree on what it would mean for the question to be answered; each thread's success criterion is the symptom another thread diagnoses
+  - cmd: ritual
+    args:
+      threshold: from collapse-to-one-thread to keep-five-streams-visible
+      steps:
+        - "answer with all surviving threads visible in the structure of the answer"
+        - "let the disagreements between them be load-bearing, not glossed"
+        - "do not pretend you have integrated them; you have located them"
+      result: 5-thread manifold answer; the artifact is the topology of which threads survive on this question
