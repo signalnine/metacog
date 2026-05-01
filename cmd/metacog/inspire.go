@@ -110,9 +110,9 @@ type PersonalStance struct {
 	Qualia    string `json:"qualia,omitempty"`
 }
 
-func SavePersonalStance(metacogDir string, s *State) error {
+func SavePersonalStance(metacogDir string, s *State) (bool, error) {
 	if s.Identity == nil {
-		return fmt.Errorf("no identity set. Use 'metacog become' first")
+		return false, fmt.Errorf("no identity set. Use 'metacog become' first")
 	}
 
 	stance := PersonalStance{
@@ -133,35 +133,48 @@ func SavePersonalStance(metacogDir string, s *State) error {
 
 	lockFile, err := os.OpenFile(lockPath, os.O_CREATE|os.O_RDWR, 0644)
 	if err != nil {
-		return fmt.Errorf("cannot open personal pool lock: %w", err)
+		return false, fmt.Errorf("cannot open personal pool lock: %w", err)
 	}
 	defer func() {
 		syscall.Flock(int(lockFile.Fd()), syscall.LOCK_UN)
 		lockFile.Close()
 	}()
 	if err := syscall.Flock(int(lockFile.Fd()), syscall.LOCK_EX); err != nil {
-		return fmt.Errorf("cannot acquire personal pool lock: %w", err)
+		return false, fmt.Errorf("cannot acquire personal pool lock: %w", err)
 	}
 
 	var stances []PersonalStance
-	if data, err := os.ReadFile(poolPath); err == nil {
-		json.Unmarshal(data, &stances)
+	data, readErr := os.ReadFile(poolPath)
+	if readErr != nil && !os.IsNotExist(readErr) {
+		return false, fmt.Errorf("cannot read personal pool %s: %w", poolPath, readErr)
+	}
+	if readErr == nil && len(data) > 0 {
+		if err := json.Unmarshal(data, &stances); err != nil {
+			return false, fmt.Errorf("personal pool %s is corrupted (%w); refusing to overwrite. Move it aside or repair it before saving", poolPath, err)
+		}
 	}
 
 	for _, existing := range stances {
 		if existing.Who == stance.Who && existing.Where == stance.Where && existing.Lens == stance.Lens {
-			return nil
+			return false, nil
 		}
 	}
 
 	stances = append(stances, stance)
 
-	data, err := json.MarshalIndent(stances, "", "  ")
+	out, err := json.MarshalIndent(stances, "", "  ")
 	if err != nil {
-		return fmt.Errorf("cannot marshal stances: %w", err)
+		return false, fmt.Errorf("cannot marshal stances: %w", err)
 	}
 
-	return os.WriteFile(poolPath, data, 0644)
+	tmpPath := filepath.Join(stancesDir, ".personal.json.tmp")
+	if err := os.WriteFile(tmpPath, out, 0644); err != nil {
+		return false, fmt.Errorf("cannot write temp personal pool: %w", err)
+	}
+	if err := os.Rename(tmpPath, poolPath); err != nil {
+		return false, fmt.Errorf("cannot rename personal pool: %w", err)
+	}
+	return true, nil
 }
 
 func LoadStancePoolsWithPersonal(metacogDir string) (map[string]StancePool, error) {
@@ -200,11 +213,16 @@ var inspireCmd = &cobra.Command{
 			if err != nil {
 				return err
 			}
-			err = SavePersonalStance(sm.dir, s)
+			saved, err := SavePersonalStance(sm.dir, s)
 			if err != nil {
 				return err
 			}
-			output := fmt.Sprintf("Saved current identity as personal stance: %s", s.Identity.Name)
+			var output string
+			if saved {
+				output = fmt.Sprintf("Saved current identity as personal stance: %s", s.Identity.Name)
+			} else {
+				output = fmt.Sprintf("Already saved as personal stance: %s", s.Identity.Name)
+			}
 			fmt.Println(FormatOutput(jsonOutput, output, nil))
 			return nil
 		}

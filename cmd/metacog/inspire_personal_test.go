@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"os"
 	"path/filepath"
@@ -15,7 +16,7 @@ func TestSavePersonalStance(t *testing.T) {
 		Substrate: &Substrate{Substance: "caffeine", Method: "antagonism", Qualia: "sharp"},
 	}
 
-	err := SavePersonalStance(dir, s)
+	_, err := SavePersonalStance(dir, s)
 	if err != nil {
 		t.Fatalf("save personal stance failed: %v", err)
 	}
@@ -95,9 +96,67 @@ func TestSavePersonalStanceNoIdentity(t *testing.T) {
 	dir := t.TempDir()
 	s := &State{}
 
-	err := SavePersonalStance(dir, s)
+	_, err := SavePersonalStance(dir, s)
 	if err == nil {
 		t.Error("expected error when no identity is set")
+	}
+}
+
+func TestSavePersonalStanceCorruptedFileRefusesOverwrite(t *testing.T) {
+	dir := t.TempDir()
+	stancesDir := filepath.Join(dir, "stances")
+	if err := os.MkdirAll(stancesDir, 0755); err != nil {
+		t.Fatal(err)
+	}
+	poolPath := filepath.Join(stancesDir, "personal.json")
+	corrupted := []byte(`[{"who":"truncated`)
+	if err := os.WriteFile(poolPath, corrupted, 0644); err != nil {
+		t.Fatal(err)
+	}
+
+	s := &State{Identity: &Identity{Name: "New", Lens: "x", Env: "y"}}
+	_, err := SavePersonalStance(dir, s)
+
+	if err == nil {
+		t.Fatal("expected error when personal.json is corrupted, got nil")
+	}
+
+	data, readErr := os.ReadFile(poolPath)
+	if readErr != nil {
+		t.Fatalf("personal.json should still exist: %v", readErr)
+	}
+	if !bytes.Equal(data, corrupted) {
+		t.Errorf("corrupted file must not be overwritten;\nwant %q\ngot  %q", corrupted, data)
+	}
+}
+
+func TestSavePersonalStanceReturnsSavedTrueOnNew(t *testing.T) {
+	dir := t.TempDir()
+	s := &State{Identity: &Identity{Name: "Ada", Lens: "verification", Env: "lab"}}
+
+	saved, err := SavePersonalStance(dir, s)
+	if err != nil {
+		t.Fatalf("save failed: %v", err)
+	}
+	if !saved {
+		t.Error("first save should report saved=true")
+	}
+}
+
+func TestSavePersonalStanceReturnsSavedFalseOnDuplicate(t *testing.T) {
+	dir := t.TempDir()
+	s := &State{Identity: &Identity{Name: "Ada", Lens: "verification", Env: "lab"}}
+
+	if _, err := SavePersonalStance(dir, s); err != nil {
+		t.Fatalf("first save failed: %v", err)
+	}
+
+	saved, err := SavePersonalStance(dir, s)
+	if err != nil {
+		t.Fatalf("second save failed: %v", err)
+	}
+	if saved {
+		t.Error("duplicate save should report saved=false")
 	}
 }
 

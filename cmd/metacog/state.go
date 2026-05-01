@@ -75,7 +75,6 @@ type StateManager struct {
 	dir         string
 	filePath    string
 	lockPath    string
-	logPath     string
 	archivePath string
 	journalPath string
 }
@@ -85,7 +84,6 @@ func NewStateManager(dir string) *StateManager {
 		dir:         dir,
 		filePath:    filepath.Join(dir, "state.json"),
 		lockPath:    filepath.Join(dir, ".state.lock"),
-		logPath:     filepath.Join(dir, "history.jsonl"),
 		archivePath: filepath.Join(dir, "history-archive.jsonl"),
 		journalPath: filepath.Join(dir, "journal.jsonl"),
 	}
@@ -227,19 +225,6 @@ func (sm *StateManager) SaveWithLock(fn func(s *State) error) error {
 	}
 
 	return sm.saveUnlocked(s)
-}
-
-func (sm *StateManager) AppendLog(entry HistoryEntry) error {
-	os.MkdirAll(sm.dir, 0755)
-	f, err := os.OpenFile(sm.logPath, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
-	if err != nil {
-		return err
-	}
-	defer f.Close()
-
-	data, _ := json.Marshal(entry)
-	_, err = fmt.Fprintf(f, "%s\n", data)
-	return err
 }
 
 func (sm *StateManager) AppendJournal(entry JournalEntry) error {
