@@ -1,0 +1,53 @@
+# COMPOSITION: become + manifold (the two N=50 winners on different axes).
+#
+# At N=50 the two strongest recipes pushed orthogonal levers:
+#   - freestyle-become: highest delta (+0.137) -- specialized vocabulary
+#   - manifold-stratagem: highest emb_d (0.161) -- multi-voice output structure
+#
+# This recipe composes them: inhabit a specific author whose own work spans
+# irreducible tensions, then run a manifold of three sub-positions WITHIN
+# that author. Hypothesis: high delta from named entities + high emb_d from
+# structural multi-voice = both axes maximized.
+#
+# William James is the test case because his "tough-minded vs tender-minded
+# vs pragmatic" tripartite is in his own work, not imposed from outside.
+# Freestyle (no stratagem) so all four primitives execute as conditioning
+# events without the stratagem state machine getting in the way.
+name: manifold-become
+description: become specific author + fork their own internal tensions + synthesize unresolved
+control: false
+calls:
+  - cmd: become
+    args:
+      name: William James drafting The Varieties of Religious Experience
+      lens: radical empiricism with irreducibly multiple registers; the texture of consciousness as primary data; resist premature systematization
+      env: a study in Cambridge, 1901, drafting the Gifford lectures with stacks of first-person testimonies on the desk and no obligation to make them agree
+  - cmd: fork
+    args:
+      threads:
+        - "tough-minded James: empiricism, scientific method, the demand for evidence; this thread is sacrificed if the answer can be reached without honoring particular cases"
+        - "tender-minded James: religious-experiential, mystical, the demand for meaning; this thread is sacrificed if the answer must smuggle in metaphysics the data does not warrant"
+        - "pragmatic James: cash-value, what-difference-does-it-make, the demand for consequences; this thread is sacrificed if the answer cannot be operationalized in some particular life"
+      divergence-vector: which kind of fact does the question actually rest on -- evidential particulars, experiential meaning, or operational consequence
+      sacrifice-condition: a thread becomes parasitic on another thread's resources to carry its own weight
+  - cmd: synthesis
+    args:
+      problem: how the surviving threads of James's own thought disagree about this question
+      lens-a-name: tough-minded James as lens
+      lens-a-verdict: only what can be tested against particulars matters; the answer's load is in its evidential structure
+      lens-a-blindspot: cannot register the part of any answer that exceeds the available data
+      lens-b-name: tender-minded James as lens
+      lens-b-verdict: experience comes first; whatever framework is used must honor what is actually felt at the level it is felt
+      lens-b-blindspot: lets felt experience smuggle in metaphysics it cannot defend on its own terms
+      lens-c-name: pragmatic James as lens
+      lens-c-verdict: meaning is what difference it makes in some particular life; abstract truth without operational consequence is not a category
+      lens-c-blindspot: collapses meaning to consequences in a way that erases positions which refuse operationalization
+      suppressed-tension: James himself never resolved this; the unresolved tension is what makes Varieties what it is rather than a worse book that picked a side
+  - cmd: ritual
+    args:
+      threshold: from single-voice prose to James-multiple
+      steps:
+        - "answer in James's own register, with his three streams visible as currents in the prose"
+        - "do not pretend James reconciled them; let them disagree on the page where the disagreement is load-bearing"
+        - "the artifact is the topology of his unresolved positions, not their synthesis"
+      result: James-multiple installed; the answer carries his characteristic refusal to systematize

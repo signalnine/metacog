@@ -1,6 +1,12 @@
 # Tasks chosen to give novelty room to vary -- open-ended, taste-bearing,
 # no single right answer. A factual lookup or math problem would be a bad task here
 # because every recipe converges to the same answer.
+#
+# Native-register tasks (the bottom 3, modeled on shallow-fluency) ask about a
+# process or experience the model has implicit knowledge of, with a specialized
+# register that recipes can shift into. These elicit the largest emb_d range.
+# open-source-load-bearing was dropped at N=50 because it pre-commits to "name
+# three" structure, which compresses recipe differences below the noise floor.
 
 tasks:
   - id: git-conceptual-model
@@ -15,12 +21,6 @@ tasks:
       Not "screens vs cardboard" -- what's load-bearing about the experience of one
       that the other can't replicate even in principle?
 
-  - id: open-source-load-bearing
-    prompt: |
-      Name three load-bearing assumptions about modern open-source culture that, if false,
-      would change strategic decisions substantially. For each, name who would benefit
-      from it being false.
-
   - id: shallow-fluency
     prompt: |
       Describe a failure mode that emerges only when AI assistants become conversationally
@@ -32,3 +32,25 @@ tasks:
       What's the strongest argument that paying attention is itself a moral act?
       Not "attention enables moral action" -- attention itself, as a category of behavior.
       Whose tradition does this argument come from?
+
+  - id: trusted-intuition-going-suspect
+    prompt: |
+      Describe the moment when an intuition you've long trusted starts to feel suspect
+      from the inside, without yet having a reason to doubt it. Be specific about the
+      texture of that suspicion before it acquires reasons -- what does the early
+      phase feel like, structurally, and what's the difference between this kind of
+      doubt and ordinary uncertainty?
+
+  - id: unindexed-intelligence
+    prompt: |
+      Name a kind of intelligence that mainstream cognitive science systematically
+      doesn't index. Make it concrete enough that someone could try to test for it.
+      Don't list candidates -- pick one and argue for it as if you were the first
+      person to notice it was missing.
+
+  - id: category-mistake-from-inside
+    prompt: |
+      Describe a category mistake from inside the mistake -- the moment when the
+      wrong category is being applied but the person doing it doesn't yet know which.
+      Be specific about the texture of the error before it's identified, and what
+      a person caught in it can and cannot perceive.
