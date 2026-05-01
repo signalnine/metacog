@@ -9,7 +9,7 @@ Metacognitive compositional engine. Twelve primitives in two registers compose i
 
 ## Version Check
 
-Before first use in a session, run `metacog version` and verify the binary is installed and version is >=6.1.0.
+Before first use in a session, run `metacog version` and verify the binary is installed and version is >=6.2.0.
 
 ## Core Rule
 
@@ -199,7 +199,7 @@ If reflect's Practice patterns section shows what has worked before in similar s
 
 ## Composition
 
-The twenty-two stratagems are named paths through the space. You can freestyle: any sequence of primitives with thought between them. The stratagems exist for common patterns. Mixing original-register and structural-register primitives in one freestyle sequence is allowed but uncommon -- they ask different things of attention. When in doubt, finish one register before opening the other.
+The twenty-four stratagems are named paths through the space. You can freestyle: any sequence of primitives with thought between them. The stratagems exist for common patterns. Mixing original-register and structural-register primitives in one freestyle sequence is allowed but uncommon -- they ask different things of attention. When in doubt, finish one register before opening the other.
 
 ## Discovery
 

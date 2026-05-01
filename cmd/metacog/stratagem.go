@@ -240,6 +240,27 @@ var Stratagems = map[string]StratagemDef{
 			{StepRitual, "Return via the tether — bring the artifact back; the anchor reasserts"},
 		},
 	},
+	"chorus": {
+		Name: "THE CHORUS",
+		Steps: []Step{
+			{StepBecome, "Inhabit voice 1 — a named author from a register cross-domain to default"},
+			{StepBecome, "Inhabit voice 2 — a register orthogonal to voice 1's"},
+			{StepBecome, "Inhabit voice 3 — a register orthogonal to voices 1 and 2"},
+			{StepFork, "Open one thread per voice; declare divergence vector and per-thread sacrifice conditions"},
+			{StepRitual, "Lock the multi-voice answer; the disagreement is the artifact, refuse the synthesis the answer would otherwise default to"},
+		},
+	},
+	"trinity": {
+		Name: "THE TRINITY",
+		Steps: []Step{
+			{StepBecome, "Inhabit voice 1 — a named author from a register cross-domain to default"},
+			{StepBecome, "Inhabit voice 2 — a register orthogonal to voice 1's"},
+			{StepBecome, "Inhabit voice 3 — a register orthogonal to voices 1 and 2"},
+			{StepFork, "Open one thread per voice; declare divergence vector and per-thread sacrifice conditions"},
+			{StepSynthesis, "Treat the surviving voices as lenses; articulate what they disagree about, do not resolve"},
+			{StepRitual, "Lock the multi-voice answer; the disagreement remains load-bearing through the synthesis"},
+		},
+	},
 }
 
 func StartStratagem(s *State, name string, force bool) (string, error) {

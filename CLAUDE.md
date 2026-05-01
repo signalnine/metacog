@@ -42,7 +42,7 @@ The structural six (added 2026-04-30, ported from upstream `inanna-malick/metaco
 - **measure** (`target-concept`, `safe-isomorph`, `required-precision`, `loss-gradient`) -- map the gradient between a concept and a safe isomorph at a given depth.
 - **tether** (`anchor-point`, `tension-limit`, `auto-revert-trigger`) -- anchor before a high-entropy operation. Stateless: the auto-revert is fictional, framing only. (Don't confuse with the `anchor` *stratagem* which is a four-step ritual.)
 
-### Stratagems (twenty-two)
+### Stratagems (twenty-four)
 
 Named compositions of primitives plus reflection (`THINK`) and action (`ACTION`) steps. Defined in `Stratagems` map in `stratagem.go`. Active stratagem state is `state.Stratagem` (`{Name, Step, StepsCompleted, StartedAt}`). Lifecycle: `stratagem start <name>` -> primitives auto-advance matching steps -> `stratagem next` advances reflection/action steps -> completion records a `stratagem` history entry with `event=completed`.
 
@@ -56,6 +56,11 @@ Six structural-register stratagems (each centered on one of the structural-six p
 - **manifold** (fork + synthesis): when parallel reasoning needs to be made structural and you keep collapsing to one thread early.
 - **survey** (measure + become + name): when traversing a friction zone (between concepts, registers, communities) without denying it or being captured by it. Second stratagem to use `name` after zen.
 - **dive** (tether + drugs + become): when high-entropy work is necessary but you can't lose the way back. Tether brackets the dissolution.
+
+Two empirical stratagems (added 2026-05-01, derived from the experiment harness in `experiments/`; see `experiments/FINDINGS.md`):
+
+- **chorus** (3 becomes + fork + ritual): structural-axis champion. Three cross-domain becomes-as-events seed voice diversity, fork makes the disagreement structural, ritual locks the multi-voice answer. Deliberately omits synthesis -- the experiment found synthesis acts as a structural brake on embedding-distance.
+- **trinity** (3 becomes + fork + synthesis + ritual): balanced variant. Same multi-voice base as chorus but keeps synthesis for delta lift. Pareto-frontier point on both axes; chorus owns emb_d, trinity owns the balance.
 
 ### Outcome tracking
 
