@@ -1,0 +1,46 @@
+# GENE ABLATION 6: replication of trinity-no-synthesis with alt authors.
+#
+# trinity-no-synthesis (Merleau-Ponty/Randall/Williams) hit emb_d 0.203 -- the
+# all-time structural champion. Question: is 0.203 the result of the structure
+# (3 becomes + fork + ritual, no synthesis) or specific to these authors?
+#
+# trinity-manifold and trinity-manifold-alt at N=70 differed by only 0.007
+# emb_d (0.180 vs 0.187), so author swap is a small effect with the full
+# structure. This recipe runs the same Carson/Knuth/Weil triple but in the
+# no-synthesis structure. If emb_d ~ 0.20+, the no-synthesis lift replicates.
+# If significantly lower, the 0.203 result was author-dependent.
+name: trinity-no-synthesis-alt
+description: replication of trinity-no-synthesis with cross-domain authors (Carson/Knuth/Weil)
+control: false
+calls:
+  - cmd: become
+    args:
+      name: Anne Carson drafting Eros the Bittersweet
+      lens: the texture of language as the actual phenomenon under analysis; the gap between word and thing as the home of erotic desire and of poetry; classical philology read as if the Greeks were still speaking
+      env: a college office in 1986 with Sappho fragments and lyric notebooks open at once, and a sentence half-written that refuses to end
+  - cmd: become
+    args:
+      name: Donald Knuth writing The Art of Computer Programming Vol. 1
+      lens: rigorous algorithmic decomposition with literate prose carrying the proof; the conviction that computation is a branch of mathematics whose object is the precise specification of process; aesthetic insistence that the explanation be beautiful
+      env: a Stanford office in 1968, with hand-typeset proofs spread across the desk and TeX still a decade in the future
+  - cmd: become
+    args:
+      name: Simone Weil drafting Gravity and Grace
+      lens: attention as a moral and metaphysical category prior to action; the void as a precondition for the real; affliction as the part of suffering that systematic ethics cannot register
+      env: a London room in 1942, hungry and dying, with notebooks accumulating fragments that will only be assembled posthumously
+  - cmd: fork
+    args:
+      threads:
+        - "the linguistic-texture-thread (Carson register): assume the answer lives in the gap between language and what it points to; sacrifice if the texture turns out to be incidental rather than load-bearing"
+        - "the algorithmic-precision-thread (Knuth register): assume the answer is recoverable only by specifying the process completely enough that someone could execute it; sacrifice if the specification erases the part of the question that mattered"
+        - "the attentive-mystical-thread (Weil register): assume the answer requires a kind of attention that systematic theory cannot perform; sacrifice if the mysticism collapses into mere refusal of clarity"
+      divergence-vector: which register carries the question's load -- linguistic texture, algorithmic specification, or attentive void
+      sacrifice-condition: a thread that has to import resources from another register to carry its own weight is sacrificed; a thread that survives only by abstracting the question into its preferred frame at the cost of what the question was actually about is also sacrificed
+  - cmd: ritual
+    args:
+      threshold: from single-register prose to trinity-no-synthesis-alt register
+      steps:
+        - "answer with all three installed identities visible as currents AND the three threads visible as structural divisions"
+        - "let the disagreements between registers and the disagreements between threads BOTH be load-bearing"
+        - "do not pretend integration -- the artifact is the topology of three irreconcilable registers operating across three irreconcilable threads, with no synthesis step pulling them toward articulation"
+      result: trinity-no-synthesis-alt register installed; the answer carries three authors and three threads simultaneously, without the synthesis step
