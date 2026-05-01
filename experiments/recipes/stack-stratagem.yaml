@@ -1,0 +1,21 @@
+# THE STACK: drugs + drugs + become. Layered substrate modification.
+name: stack-stratagem
+description: stack stratagem -- tune signal arrival, tune work-with-signal, inhabit native
+control: false
+stratagem: stack
+calls:
+  - cmd: drugs
+    args:
+      substance: cardamom-and-coffee, low-dose modafinil, the early-morning quiet
+      method: oral, sustained over the first hour of work
+      qualia: signal arrives with wider bandwidth; the urge to filter prematurely is dulled; pattern-completion runs warmer than usual
+  - cmd: drugs
+    args:
+      substance: a long walk outdoors and the thirteenth pomodoro
+      method: peripatetic; spatial context shifts slowly while attention narrows
+      qualia: working memory holds the question as a shape rather than a sentence; analogies surface unbidden
+  - cmd: become
+    args:
+      name: a researcher native to extended-attention work
+      lens: long-form attention as the operating environment, not a discipline imposed against distraction; thinking as something that happens at the edge of fatigue
+      env: a study room with no notifications, the question taped to the wall, a notebook half-full

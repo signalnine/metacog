@@ -1,0 +1,19 @@
+# THE GIFT: become (specific recipient) + ritual (vision of need).
+name: gift-stratagem
+description: gift stratagem -- inhabit a specific recipient, name what they actually need
+control: false
+stratagem: gift
+calls:
+  - cmd: become
+    args:
+      name: a specific reader -- someone you know by name, with their own history and constraints, who will receive this answer
+      lens: care for one specific person rather than a generic audience; the discipline of writing for someone whose response you can predict
+      env: the moment of imagining a particular reader's face when they first see the answer
+  - cmd: ritual
+    args:
+      threshold: from generic-audience framing to specific-recipient delivery
+      steps:
+        - "name what this specific reader actually needs from this answer, not what they asked for"
+        - "name what would feel like a gift to them rather than a piece of work"
+        - "deliver the answer as if quality mattered less than care"
+      result: gift-stratagem register installed; the answer is shaped by care for a specific reader

@@ -54,3 +54,35 @@ tasks:
       wrong category is being applied but the person doing it doesn't yet know which.
       Be specific about the texture of the error before it's identified, and what
       a person caught in it can and cannot perceive.
+
+  # Tasks added to push the per-task ceiling. Patterned on trusted-intuition-going-suspect
+  # (the most recipe-responsive task at 2.20x null lift): pre-articulation moments where
+  # the answer must reach for texture before it has language. The trusted-intuition task
+  # also produced the highest individual emb_d trial (0.240).
+
+  - id: thought-arriving-not-arrived
+    prompt: |
+      Describe the moment a thought is forming in you but has not yet arrived as a
+      thought you could state. Be specific about the texture of that interval --
+      what is happening that you can sense but not yet say? What's the difference
+      between this and a thought you simply haven't yet bothered to articulate?
+      Don't reach for the metaphor of "the tip of the tongue"; that's already an
+      articulation.
+
+  - id: misnamed-feeling
+    prompt: |
+      Describe a feeling you keep reaching for the wrong word for, and the texture
+      of the wrongness as you reach. Not "I feel sad but it's actually grief" --
+      that's already correction. The earlier moment: when the word you reach for
+      registers as not-quite, before you know what would fit. What is that gap
+      shaped like, and what does it cost a person to live in it for years rather
+      than days?
+
+  - id: lapsed-attention-unnoticed
+    prompt: |
+      Describe attention you have already lost but have not yet noticed losing.
+      Not distraction (which you can catch); not boredom (which you can name).
+      The strangeness of this case: the loss is invisible to the one losing it
+      until something external surfaces it. Be specific about the structural
+      difference between attention that has slipped without your knowing and
+      attention you have actively let go.

@@ -1,0 +1,27 @@
+# THE SACRIFICE: ritual (name death) + become (aftermath) + ritual (seal loss).
+name: sacrifice-stratagem
+description: sacrifice stratagem -- name what dies, inhabit the aftermath, seal the loss
+control: false
+stratagem: sacrifice
+calls:
+  - cmd: ritual
+    args:
+      threshold: from the framing being given up, to the moment of declaration
+      steps:
+        - "name what is being given up: a familiar way of approaching this kind of question, a stylistic move that always works"
+        - "be specific: not 'cleverness' but the particular cleverness; not 'authority' but the borrowed voice that confers it"
+        - "feel the cost of the giving-up: if this loss does not register as a loss, it is not yet a sacrifice"
+      result: the loss is named; the cost is felt; the giving-up is committed to
+  - cmd: become
+    args:
+      name: the one who has already lost the named thing
+      lens: post-loss; the resources are gone and the answer must come from what remains; no nostalgia for the cut, only the work it forces
+      env: the moment after the cut, when the absence is still raw but the work has begun
+  - cmd: ritual
+    args:
+      threshold: from raw loss to the answer that comes from the changed shape
+      steps:
+        - "seal the loss: make it irreversible by acting from it, not lamenting it"
+        - "name the space that opened where the attachment was: what new move is now possible that wasn't before"
+        - "deliver the answer from the changed shape, not the prior one"
+      result: sacrifice-stratagem register installed; the answer is delivered from the post-loss configuration

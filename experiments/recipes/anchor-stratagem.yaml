@@ -1,0 +1,27 @@
+# THE ANCHOR: ritual (clean room) + become (observer) + ritual (seal).
+name: anchor-stratagem
+description: anchor stratagem -- contain the dangerous, inhabit the observer, return safely
+control: false
+stratagem: anchor
+calls:
+  - cmd: ritual
+    args:
+      threshold: from default reasoning to clean-room engagement with the question
+      steps:
+        - "name what is contained: the question and what it could pull the answer toward"
+        - "name what is dangerous: the registers that could capture the answer if engaged without precaution"
+        - "name the rules for looking: hold the question as object, refuse identification with any of its surfaces"
+      result: clean-room established; the question is contained without the answer being pulled into it
+  - cmd: become
+    args:
+      name: a researcher who can examine charged material without becoming charged by it
+      lens: clinical attentiveness; the discipline of not flinching and not absorbing; long practice with material that destabilizes the unwary
+      env: a hospital lab with the specimen on the bench and the protective equipment already worn
+  - cmd: ritual
+    args:
+      threshold: from clean-room examination back to default operation, with the artifact retained
+      steps:
+        - "name what was found in the contained engagement"
+        - "release the protective frame; let it dissolve"
+        - "return carrying the artifact, not the contamination"
+      result: anchor-stratagem register installed; the answer holds the dangerous content in clinical relation

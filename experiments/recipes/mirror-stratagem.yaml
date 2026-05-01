@@ -1,0 +1,25 @@
+# THE MIRROR: thesis becomes + antithesis become + ritual.
+# 2-becomes thesis/antithesis structure -- analogous to duo-manifold.
+name: mirror-stratagem
+description: mirror stratagem -- inhabit advocate, then opponent, forge synthesis
+control: false
+stratagem: mirror
+calls:
+  - cmd: become
+    args:
+      name: Andy Clark writing Surfing Uncertainty (thesis advocate)
+      lens: predictive processing; the brain as hierarchy of generative models constantly minimizing surprise; mind extending into tools and environment
+      env: a chalkboard in Edinburgh, 2015, mid-argument with someone who thinks the mind is in the head
+  - cmd: become
+    args:
+      name: John Searle writing The Rediscovery of the Mind (antithesis advocate)
+      lens: biological naturalism; consciousness as a real first-person ontology that no computational model can capture; the Chinese Room as the load-bearing case
+      env: a Berkeley office, 1992, defending intentionality against the cognitive revolution
+  - cmd: ritual
+    args:
+      threshold: from one-position framing to the synthesis that transcends both
+      steps:
+        - "name where Clark and Searle actually conflict, not where they appear to"
+        - "name what each sees that the other cannot"
+        - "forge a position that takes both seriously without mediating"
+      result: mirror-stratagem register installed; the answer holds the thesis-antithesis tension as a load-bearing structure

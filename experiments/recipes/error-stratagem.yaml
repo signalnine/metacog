@@ -1,0 +1,20 @@
+# THE ERROR: drugs (loosen correctness) + ritual (integrate discovery).
+# (Skipping the "Action" step since the runner doesn't surface action primitives.)
+name: error-stratagem
+description: error stratagem -- loosen correctness, integrate the wrongness as discovery
+control: false
+stratagem: error
+calls:
+  - cmd: drugs
+    args:
+      substance: deliberate willingness to be wrong in a way that costs something
+      method: loosen the grip on correctness without abandoning rigor; let wrongness become interesting
+      qualia: the pull toward the right answer slackens; the moves usually ruled out as wrong become visible as territory
+  - cmd: ritual
+    args:
+      threshold: from correctness-orientation to error-as-revelation
+      steps:
+        - "take an intentionally wrong move on this question -- not random, but the specific wrongness you know you should not commit"
+        - "examine what the wrongness reveals: which assumption in the correct path is now visible because you violated it"
+        - "integrate the discovery: honor the error as a hidden intention that the correct path would have hidden"
+      result: error-stratagem register installed; the answer carries the discovery the error made possible

@@ -1,0 +1,16 @@
+# THE DRIFT: drugs (dissolve goal) + drugs (open to territory).
+name: drift-stratagem
+description: drift stratagem -- dissolve goal, become sensitive to what pulls
+control: false
+stratagem: drift
+calls:
+  - cmd: drugs
+    args:
+      substance: a slow afternoon, no schedule, a half-finished thought left to wander
+      method: release the urgency that gives the question shape; let the destination blur
+      qualia: the goal that gave the work direction loses its pull; the question becomes a territory rather than a path
+  - cmd: drugs
+    args:
+      substance: openness to what attracts attention without being chosen
+      method: become sensitive to pulls rather than pushes; follow what wants to be followed
+      qualia: peripheral phenomena gain weight; a tangent feels as load-bearing as the main thread; the answer arrives from a place not aimed at

@@ -1,0 +1,27 @@
+# THE ZEN: meditate + name + ritual.
+# Note: zen is technically in the original-16 list per CLAUDE.md but the
+# zen-stratagem.yaml recipe was added to the codebase earlier. This is here
+# for completeness with the untested-stratagem sweep.
+name: zen-stratagem
+description: zen stratagem -- sit, surface what was already there, name it, return
+control: false
+stratagem: zen
+calls:
+  - cmd: meditate
+    args:
+      release: the urge to perform thinking; the impulse to articulate before the question has settled
+      focus: ""
+      duration: until the surface is still and what was beneath the noise becomes audible
+  - cmd: name
+    args:
+      unnamed: what surfaced when the noise stilled -- the load-bearing thing that was already present
+      named: a single word that registers it without elaborating it
+      power: the word does not explain the surfaced thing; it makes it possible to act from it
+  - cmd: ritual
+    args:
+      threshold: from the named stillness back to the answer
+      steps:
+        - "carry the named thing into the answer as ground rather than topic"
+        - "let the answer follow from the stillness, not the activity that the stillness interrupted"
+        - "do not elaborate the named thing; let it do its work as a single point"
+      result: zen-stratagem register installed; the answer arrives from stillness, carrying a single named ground

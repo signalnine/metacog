@@ -1,0 +1,22 @@
+# THE INVERSION: ritual (negate) + ritual (seal counter-intuitive).
+name: inversion-stratagem
+description: inversion stratagem -- ritually negate the obvious, seal what the negation reveals
+control: false
+stratagem: inversion
+calls:
+  - cmd: ritual
+    args:
+      threshold: from the obvious-solution framing to its committed negation
+      steps:
+        - "name the obvious solution to this question -- the move everyone would reach for, said clearly"
+        - "ritually commit to the exact opposite approach, not as devil's advocacy but as actual orientation"
+        - "let the inversion be a real position, not a thought experiment"
+      result: the inversion is committed to; the answer will come from the negation space
+  - cmd: ritual
+    args:
+      threshold: from negation-space exploration to its locked form
+      steps:
+        - "explore what lives in the opposite of the obvious -- the moves that the obvious framing rules out"
+        - "name what the negation reveals that the obvious framing was hiding"
+        - "seal the counterintuitive path: deliver the answer from the inverted position"
+      result: inversion-stratagem register installed; the answer comes from the negation of the obvious

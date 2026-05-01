@@ -1,0 +1,24 @@
+# THE VEIL: drugs + drugs + ritual. Defocused perception locked in.
+name: veil-stratagem
+description: veil stratagem -- defocus the lens, add noise, lock in peripheral vision
+control: false
+stratagem: veil
+calls:
+  - cmd: drugs
+    args:
+      substance: a half-doze, the moment before sleep where words still come but stop demanding to be sentences
+      method: relaxed posture; let the question hover rather than holding it
+      qualia: the lens defocuses; categories become provisional; the answer can be sensed before it can be said
+  - cmd: drugs
+    args:
+      substance: a deliberate drift of attention, a window open to outside noise, a half-overheard conversation in the next room
+      method: introduce randomness that breaks the analytical lock without dissolving the engagement
+      qualia: pattern-matching loosens further; what was certain wobbles; corner-of-the-eye perception sharpens
+  - cmd: ritual
+    args:
+      threshold: from defocused perception to its locked form in the answer
+      steps:
+        - "answer with the peripheral perception preserved as register, not translated to direct vision"
+        - "what is glimpsed sideways stays sideways in the prose; do not look directly at it"
+        - "name what is there without making it the subject of the sentence"
+      result: veil-stratagem register installed; the answer carries peripheral perception as load-bearing

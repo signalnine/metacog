@@ -1,0 +1,16 @@
+# THE FOOL: become (naif) + become (beginner-with-tools). 2-becomes structure.
+name: fool-stratagem
+description: fool stratagem -- inhabit a genuine naif, then take naive questions seriously
+control: false
+stratagem: fool
+calls:
+  - cmd: become
+    args:
+      name: a person genuinely new to this domain, who has never encountered the question's terms
+      lens: actual ignorance, not feigned simplicity; the willingness to ask questions an expert would be embarrassed to ask; no inherited frame to defend
+      env: the moment of first encounter, before any specialized vocabulary has been acquired
+  - cmd: become
+    args:
+      name: someone with expert tools who has chosen to take a beginner's questions seriously
+      lens: technical competence held in service of the naive question; the discipline of not bypassing the dumb question by virtue of knowing it has been asked before
+      env: a research session where the expert has stopped pretending the naive question has been answered, and has gone back to ask it again

@@ -1,0 +1,21 @@
+# THE SCRYING: drugs + drugs + drugs. Pure substrate-mod cascade.
+name: scrying-stratagem
+description: scrying stratagem -- unfocus, amplify noise, surrender to what emerges
+control: false
+stratagem: scrying
+calls:
+  - cmd: drugs
+    args:
+      substance: maximal categorical loosening -- a state where any concept could be any other concept
+      method: deliberate refusal of typology; let nouns become verbs become ambiguous shapes
+      qualia: categories blur into one another; the question's terms lose their habitual associations
+  - cmd: drugs
+    args:
+      substance: amplified noise -- the static between the radio stations, the hum of the room, the patternless background
+      method: turn up the noise; let the static speak rather than filtering it out
+      qualia: pattern-completion runs hotter; spurious correlations feel as real as legitimate ones; signal and noise become indistinguishable
+  - cmd: drugs
+    args:
+      substance: surrender of the will-to-pattern itself
+      method: release the urge to find pattern; release even the urge to release the urge
+      qualia: only shapes remain; description becomes possible without interpretation; what emerges is not chosen

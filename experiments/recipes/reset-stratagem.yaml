@@ -1,0 +1,22 @@
+# THE RESET: ritual (release) + ritual (ground). Clearing + re-baseline.
+name: reset-stratagem
+description: reset stratagem -- release the prior framing, integrate, re-ground
+control: false
+stratagem: reset
+calls:
+  - cmd: ritual
+    args:
+      threshold: from accumulated framings to clear ground
+      steps:
+        - "name the framings the question has been wearing: the analytic, the journalistic, the academic, the conversational"
+        - "name why each has served, and why each has worn out for this question"
+        - "let the framings pass; do not replace them yet"
+      result: framings released; the question stands without inherited shape
+  - cmd: ritual
+    args:
+      threshold: from cleared ground to the answer's own shape
+      steps:
+        - "let the question be what it is, without the framings"
+        - "let the answer rise from the question rather than be applied to it"
+        - "ground in the artifact that survives the release: what stays when the framings go"
+      result: reset-stratagem register installed; the answer is delivered from the ground that survives the clearing
