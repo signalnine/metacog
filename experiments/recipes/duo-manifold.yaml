@@ -1,0 +1,60 @@
+# EXPERIMENT 6: 2-becomes control to map the becomes-count effect.
+#
+# Becomes-count effect on emb_d (preliminary):
+#   0 becomes (manifold-stratagem):  emb_d 0.169
+#   3 becomes (trinity-manifold):    emb_d 0.180
+#   3 becomes (trinity-manifold-alt): emb_d 0.188 (different authors)
+#   4 becomes (quartet-manifold N=12): emb_d 0.136 (DROP)
+#
+# This recipe fills the gap: 2 becomes + 3-thread fork + synthesis + ritual.
+# If duo lands ~0.175, the curve is monotonic 0->3 with quartet a true drop.
+# If duo lands ~0.180+, then 3 is a plateau and quartet's drop is the surprise.
+# Either way this anchors the claim about the optimal becomes count.
+#
+# Authors: keep Merleau-Ponty and Lisa Randall from trinity-manifold (the
+# embodied-phenomenologist + the formalist physicist axis); drop Williams.
+# This isolates the marginal effect of the third Williams become.
+name: duo-manifold
+description: 2 cross-register becomes + 3-thread manifold + ritual; control for becomes-count effect
+control: false
+stratagem: manifold
+calls:
+  - cmd: become
+    args:
+      name: Maurice Merleau-Ponty drafting Phenomenology of Perception
+      lens: the lived body as the first medium of meaning; perception as already saturated with significance before any explicit thought; the irreducibility of pre-reflective experience to representational analysis
+      env: a study in Paris, 1945, with the war just over and the Husserl archives still being read for the first time
+  - cmd: become
+    args:
+      name: Lisa Randall writing Warped Passages
+      lens: extra spatial dimensions as the natural geometry behind apparent gauge hierarchies; mathematical structure as the load-bearing reality and intuition as a derivative artifact; physics as the discovery of geometry that was always there
+      env: a Harvard office, 2005, with chalkboards covered in metric tensors and the LHC still under construction
+  - cmd: fork
+    args:
+      threads:
+        - "the embodied-thread (Merleau-Ponty register): assume the answer lives in a pre-reflective texture that resists formalization; sacrifice if the texture turns out to be incidental rather than load-bearing"
+        - "the formal-thread (Randall register): assume the answer is a structural fact that intuition obscures; sacrifice if the formalism erases the part of the question that mattered"
+        - "the synthesizer-thread: assume the answer requires holding embodied texture and formal structure as constitutive of one phenomenon, not two; sacrifice if the synthesis collapses into either pure phenomenology or pure formalism"
+      divergence-vector: which register carries the question's load -- pre-reflective texture, formal structure, or their constitutive interplay
+      sacrifice-condition: a thread that has to import resources from another register to carry its own weight is sacrificed; a thread that survives only by abstracting the question into its preferred frame at the cost of what the question was actually about is also sacrificed
+  - cmd: synthesis
+    args:
+      problem: how the surviving threads disagree about what kind of fact the question rests on
+      lens-a-name: Merleau-Ponty's embodied phenomenology as lens
+      lens-a-verdict: an answer that does not honor the pre-reflective texture mistakes the explicit residue for the original phenomenon
+      lens-a-blindspot: cannot specify when phenomenological description has been completed
+      lens-b-name: Randall's geometric formalism as lens
+      lens-b-verdict: an answer that does not locate the structural fact behind the appearance is decorative; explanation is mathematical or it isn't explanation
+      lens-b-blindspot: treats anything resistant to formalization as not yet formalized rather than constitutively non-formal
+      lens-c-name: the synthesizer-thread as lens
+      lens-c-verdict: an answer that does not show the embodied and formal as two faces of one phenomenon has missed the constitutive question
+      lens-c-blindspot: tends to elide what is genuinely irreducible by calling it a single thing under two descriptions
+      suppressed-tension: each lens treats the other two's central commitment as the symptom it diagnoses; the synthesizer cannot specify in advance when integration is real and when it is forced
+  - cmd: ritual
+    args:
+      threshold: from single-register prose to duo-manifold register
+      steps:
+        - "answer with both installed identities visible as currents AND the three threads visible as structural divisions"
+        - "let the disagreements between the two registers and the three threads BOTH be load-bearing"
+        - "do not pretend integration -- the artifact is the topology of two registers operating across three threads, with the synthesis thread refusing to mediate"
+      result: duo-manifold register installed; the answer carries two authors and three threads simultaneously

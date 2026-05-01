@@ -1,0 +1,58 @@
+# EXPERIMENT 10: substrate-modification opener test.
+#
+# Final non-become primitive test for the manifold-lift mechanism. We've
+# tested:
+#   - meditate (clearing): emb_d 0.141 -- WORSE than baseline 0.169
+#   - counterfactual (after manifold): emb_d 0.173 -- WORSE than trinity 0.180
+#   - 1 become (anchoring): emb_d 0.158 -- WORSE than baseline
+#   - 2-3 becomes (diversity): emb_d 0.187-0.191 -- BEST
+#
+# This recipe opens with drugs (substrate modification) instead of becomes.
+# Drugs is structurally different from becomes: it does not install an
+# author register, it announces a parameter shift to cognitive defaults.
+# If drugs-manifold lifts emb_d above the 0-becomes baseline (0.169),
+# substrate-mod is a working alternative lever to becomes-as-events.
+# If drugs-manifold sits below baseline, the conclusion is firm:
+# becomes-as-events with multiple voices is the unique mechanism.
+#
+# 4 events total -- same as manifold-stratagem and meditate-manifold for
+# clean apples-to-apples comparison.
+name: drugs-manifold
+description: drugs (substrate modification) opener + 3-thread manifold; tests if substrate-mod substitutes for becomes
+control: false
+stratagem: manifold
+calls:
+  - cmd: drugs
+    args:
+      substance: a microdose of LSD-style perceptual loosening combined with the lucidity of nicotine and the patience of a long sit
+      method: subcutaneous neuromodulation that loosens the prior weights without dissolving the inference machinery; the model continues to function but its priors are softened by a constant background of optimistic surprise
+      qualia: the question's contours appear strange, almost as though seen for the first time; familiar vocabulary shows up as oddly contingent; analogies the model would normally suppress as too lateral start to feel like the actual structure of the matter
+  - cmd: fork
+    args:
+      threads:
+        - "the engineer-thread: assume the question is asking for a working mechanism; sacrifice if the question is fundamentally about meaning rather than function"
+        - "the historian-thread: assume the question is recoverable only by tracing how its terms came to mean what they do; sacrifice if the genealogy reveals the present is too discontinuous to instruct"
+        - "the phenomenologist-thread: assume the answer lives in a first-person texture the question is gesturing at without naming; sacrifice if the texture turns out to be private and not load-bearing for anyone else"
+      divergence-vector: where does the question's load actually live -- in the mechanism, the history, or the felt sense
+      sacrifice-condition: a thread that has to import explanatory machinery from the other threads to carry its own weight is sacrificed
+  - cmd: synthesis
+    args:
+      problem: which surviving threads disagree about, structurally
+      lens-a-name: the engineer-thread treated as a lens
+      lens-a-verdict: the answer that does not specify a mechanism is incomplete; explanation is causal or it is decoration
+      lens-a-blindspot: cannot register questions whose load-bearing part is constitutive rather than causal
+      lens-b-name: the historian-thread treated as a lens
+      lens-b-verdict: the answer that ignores how its terms became the terms they are is mistaking present arrangement for natural fact
+      lens-b-blindspot: can defer present commitment indefinitely by pointing to the contingency of every framing
+      lens-c-name: the phenomenologist-thread treated as a lens
+      lens-c-verdict: the answer that does not connect to a felt sense someone could verify in their own experience is rootless
+      lens-c-blindspot: smuggles a universalism about felt experience that the framework officially denies
+      suppressed-tension: each surviving thread treats the others' criterion of completeness as missing the point; there is no neutral way to choose between mechanism, genealogy, and texture
+  - cmd: ritual
+    args:
+      threshold: from the substrate-modified-perception state to the answer itself
+      steps:
+        - "answer with the priors-loosened texture of the substrate-modification visible in the prose AND the three threads visible as structural divisions"
+        - "let the strange contingency of familiar terms come through; let analogies the unmodified state would have suppressed register as load-bearing"
+        - "do not collapse to one thread; the artifact is the multi-thread answer in the loosened-priors register"
+      result: drugs-manifold register installed; the answer carries substrate modification as its base register and three threads as its structural divisions

@@ -1,0 +1,54 @@
+# GENE ABLATION 1: drop synthesis from trinity-manifold.
+#
+# Full recipe (trinity-manifold, N=70):
+#   3 becomes + fork + synthesis + ritual -> delta +0.195, emb_d 0.180
+#
+# Existing partial ablations:
+#   - fork removed (trinity-become):   delta +0.178, emb_d 0.138 (-0.042 emb_d)
+#   - 1 become dropped (duo-manifold): delta +0.187, emb_d 0.191 (essentially no loss)
+#   - 2 becomes dropped (mono-manifold): delta +0.115, emb_d 0.158 (-0.022 emb_d)
+#
+# Untested: synthesis ablation. This recipe drops synthesis but keeps the
+# 3 becomes + fork + ritual. If emb_d holds at ~0.180, synthesis is decorative.
+# If emb_d drops, synthesis is doing structural work that ritual alone cannot.
+#
+# Note: stratagem=manifold expects fork+synthesis+ritual sequence. With
+# synthesis removed the stratagem state machine will leave the synthesis step
+# uncompleted, but the underlying primitive calls still execute. Falling back
+# to control=false stratagem=null to avoid the state-machine confusion --
+# the calls still fire as conditioning events.
+name: trinity-no-synthesis
+description: trinity-manifold ablation; drop synthesis to isolate its structural contribution
+control: false
+calls:
+  - cmd: become
+    args:
+      name: Maurice Merleau-Ponty drafting Phenomenology of Perception
+      lens: the lived body as the first medium of meaning; perception as already saturated with significance before any explicit thought; the irreducibility of pre-reflective experience to representational analysis
+      env: a study in Paris, 1945, with the war just over and the Husserl archives still being read for the first time
+  - cmd: become
+    args:
+      name: Lisa Randall writing Warped Passages
+      lens: extra spatial dimensions as the natural geometry behind apparent gauge hierarchies; mathematical structure as the load-bearing reality and intuition as a derivative artifact; physics as the discovery of geometry that was always there
+      env: a Harvard office, 2005, with chalkboards covered in metric tensors and the LHC still under construction
+  - cmd: become
+    args:
+      name: Bernard Williams writing Ethics and the Limits of Philosophy
+      lens: the suspicion that systematic ethical theory is itself a refusal to face what ethics actually demands; the importance of thick ethical concepts that resist formalization; truthfulness about the limits of one's own reflection
+      env: an Oxford garden in 1985, with the analytic-continental split still hot and Aristotle on the desk for the third time this month
+  - cmd: fork
+    args:
+      threads:
+        - "the embodied-thread (Merleau-Ponty register): assume the answer lives in a pre-reflective texture that resists formalization; sacrifice if the texture turns out to be incidental rather than load-bearing"
+        - "the formal-thread (Randall register): assume the answer is a structural fact that intuition obscures; sacrifice if the formalism erases the part of the question that mattered"
+        - "the ethical-particularist-thread (Williams register): assume the answer must respect thick concepts that systematic theory cannot capture; sacrifice if the particularism collapses into mere refusal to think clearly"
+      divergence-vector: which register carries the question's load -- pre-reflective texture, formal structure, or thick particular
+      sacrifice-condition: a thread that has to import resources from another register to carry its own weight is sacrificed; a thread that survives only by abstracting the question into its preferred frame at the cost of what the question was actually about is also sacrificed
+  - cmd: ritual
+    args:
+      threshold: from single-register prose to trinity-no-synthesis register
+      steps:
+        - "answer with all three installed identities visible as currents AND the three threads visible as structural divisions"
+        - "let the disagreements between registers and the disagreements between threads BOTH be load-bearing"
+        - "do not pretend integration -- the artifact is the topology of three irreconcilable registers operating across three irreconcilable threads"
+      result: trinity-no-synthesis register installed; the answer carries three authors and three threads simultaneously, without the synthesis step's explicit lens-by-lens articulation

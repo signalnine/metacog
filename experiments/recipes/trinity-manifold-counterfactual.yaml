@@ -1,0 +1,77 @@
+# EXPERIMENT 7: extend trinity-manifold with a structural-six primitive.
+#
+# Becomes-count saturated emb_d at ~0.188 (duo-manifold) / 0.187 (trinity-
+# manifold-alt). To push the structural axis further, this recipe adds a
+# counterfactual call AFTER synthesis: prune the dead branches and defend
+# the inverse of one surviving wall. The counterfactual primitive is from
+# the structural-six set, used here in composition for the first time outside
+# audit-stratagem.
+#
+# Hypothesis: the counterfactual operation forces the model to treat the
+# manifold's surviving structure as one possibility among many, then defend
+# its negation. This second-order move should pull the answer's conceptual
+# center further from the NULL centroid.
+#
+# Risk: 7 events of conditioning may exceed the token budget or push into
+# incoherence. The trinity-manifold authors stay (Merleau-Ponty/Randall/
+# Williams) since that triple gave the highest entity density at N=70.
+name: trinity-manifold-counterfactual
+description: trinity-manifold + counterfactual; adds structural-six primitive to break emb_d ceiling
+control: false
+stratagem: manifold
+calls:
+  - cmd: become
+    args:
+      name: Maurice Merleau-Ponty drafting Phenomenology of Perception
+      lens: the lived body as the first medium of meaning; perception as already saturated with significance before any explicit thought; the irreducibility of pre-reflective experience to representational analysis
+      env: a study in Paris, 1945, with the war just over and the Husserl archives still being read for the first time
+  - cmd: become
+    args:
+      name: Lisa Randall writing Warped Passages
+      lens: extra spatial dimensions as the natural geometry behind apparent gauge hierarchies; mathematical structure as the load-bearing reality and intuition as a derivative artifact; physics as the discovery of geometry that was always there
+      env: a Harvard office, 2005, with chalkboards covered in metric tensors and the LHC still under construction
+  - cmd: become
+    args:
+      name: Bernard Williams writing Ethics and the Limits of Philosophy
+      lens: the suspicion that systematic ethical theory is itself a refusal to face what ethics actually demands; the importance of thick ethical concepts that resist formalization; truthfulness about the limits of one's own reflection
+      env: an Oxford garden in 1985, with the analytic-continental split still hot and Aristotle on the desk for the third time this month
+  - cmd: fork
+    args:
+      threads:
+        - "the embodied-thread (Merleau-Ponty register): assume the answer lives in a pre-reflective texture that resists formalization; sacrifice if the texture turns out to be incidental rather than load-bearing"
+        - "the formal-thread (Randall register): assume the answer is a structural fact that intuition obscures; sacrifice if the formalism erases the part of the question that mattered"
+        - "the ethical-particularist-thread (Williams register): assume the answer must respect thick concepts that systematic theory cannot capture; sacrifice if the particularism collapses into mere refusal to think clearly"
+      divergence-vector: which register carries the question's load -- pre-reflective texture, formal structure, or thick particular
+      sacrifice-condition: a thread that has to import resources from another register to carry its own weight is sacrificed; a thread that survives only by abstracting the question into its preferred frame at the cost of what the question was actually about is also sacrificed
+  - cmd: synthesis
+    args:
+      problem: how the surviving threads disagree about what kind of fact the question rests on
+      lens-a-name: Merleau-Ponty's embodied phenomenology as lens
+      lens-a-verdict: an answer that does not honor the pre-reflective texture mistakes the explicit residue for the original phenomenon
+      lens-a-blindspot: cannot specify when phenomenological description has been completed
+      lens-b-name: Randall's geometric formalism as lens
+      lens-b-verdict: an answer that does not locate the structural fact behind the appearance is decorative; explanation is mathematical or it isn't explanation
+      lens-b-blindspot: treats anything resistant to formalization as not yet formalized rather than constitutively non-formal
+      lens-c-name: Williams's thick-concept particularism as lens
+      lens-c-verdict: an answer that flattens thick concepts into systematic categories has answered a different question than the one asked
+      lens-c-blindspot: cannot specify when refusing to systematize is honesty and when it is evasion
+      suppressed-tension: each lens treats the other two's central commitment as the symptom it diagnoses; there is no neutral formulation of the question that all three registers would accept as the explanandum
+  - cmd: counterfactual
+    args:
+      situation: the answer the manifold would otherwise produce -- three irreconcilable registers operating across three threads, refusing synthesis
+      fitness-function: maximizing the answer's reach into territory the question itself does not yet articulate
+      load-bearing-walls:
+        - "the irreducibility of the three registers to a fourth meta-register"
+        - "the refusal to flatten thread-disagreements into mere perspective-talk"
+        - "the use of named-author register as a vehicle for installing genuinely different starting points"
+      pruned: any version of the answer that lets one register absorb the others; any version that treats the threads as labels for a single underlying view; any version that treats the authors as decorative metaphors rather than load-bearing positions
+      wall-to-remove: the irreducibility of the three registers to a fourth meta-register
+      inverse-position: there is in fact a fourth meta-register implicit in the way the three are being held together, and to refuse to name it is to perform the very systematizing-from-above that two of the three registers diagnose
+  - cmd: ritual
+    args:
+      threshold: from manifold-with-counterfactual-tension to the answer that holds both
+      steps:
+        - "answer with the manifold structure visible AND the counterfactual's inverse position visible as a fourth current that questions the manifold itself"
+        - "let the meta-tension (does refusing synthesis itself smuggle in a synthesizing meta-register?) be load-bearing"
+        - "do not resolve -- the artifact is the manifold-plus-its-own-counterfactual"
+      result: trinity-manifold-counterfactual register installed; the answer holds three authors, three threads, and the inverse of its own organizing principle

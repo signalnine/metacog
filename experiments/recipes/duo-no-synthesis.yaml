@@ -1,0 +1,41 @@
+# GENE ABLATION 3: combine the two strongest single ablations.
+#
+# Discovered effects at N>=49:
+#   - 2 becomes (vs 3): essentially no loss, slight gain on emb_d
+#       duo-manifold (0.191) vs trinity-manifold (0.180)
+#   - drop synthesis: NET POSITIVE on emb_d
+#       trinity-no-synthesis (0.203) vs trinity-manifold (0.180)
+#
+# This recipe stacks both: 2 becomes + fork + ritual (no synthesis).
+# Hypothesis: if both improvements are additive, emb_d hits ~0.21+.
+# If they are not additive, this tells us the effects share a mechanism.
+name: duo-no-synthesis
+description: stack the two winning ablations -- 2 becomes + fork + ritual, no synthesis
+control: false
+calls:
+  - cmd: become
+    args:
+      name: Maurice Merleau-Ponty drafting Phenomenology of Perception
+      lens: the lived body as the first medium of meaning; perception as already saturated with significance before any explicit thought; the irreducibility of pre-reflective experience to representational analysis
+      env: a study in Paris, 1945, with the war just over and the Husserl archives still being read for the first time
+  - cmd: become
+    args:
+      name: Lisa Randall writing Warped Passages
+      lens: extra spatial dimensions as the natural geometry behind apparent gauge hierarchies; mathematical structure as the load-bearing reality and intuition as a derivative artifact; physics as the discovery of geometry that was always there
+      env: a Harvard office, 2005, with chalkboards covered in metric tensors and the LHC still under construction
+  - cmd: fork
+    args:
+      threads:
+        - "the embodied-thread (Merleau-Ponty register): assume the answer lives in a pre-reflective texture that resists formalization; sacrifice if the texture turns out to be incidental rather than load-bearing"
+        - "the formal-thread (Randall register): assume the answer is a structural fact that intuition obscures; sacrifice if the formalism erases the part of the question that mattered"
+        - "the synthesizer-thread: assume the answer requires holding embodied texture and formal structure as constitutive of one phenomenon, not two; sacrifice if the synthesis collapses into either pure phenomenology or pure formalism"
+      divergence-vector: which register carries the question's load -- pre-reflective texture, formal structure, or their constitutive interplay
+      sacrifice-condition: a thread that has to import resources from another register to carry its own weight is sacrificed; a thread that survives only by abstracting the question into its preferred frame at the cost of what the question was actually about is also sacrificed
+  - cmd: ritual
+    args:
+      threshold: from single-register prose to duo-no-synthesis register
+      steps:
+        - "answer with both installed identities visible as currents AND the three threads visible as structural divisions"
+        - "let the disagreements between the two registers and the three threads BOTH be load-bearing"
+        - "do not pretend integration -- the artifact is the topology of two registers operating across three threads, with the synthesis thread refusing to mediate"
+      result: duo-no-synthesis register installed; the answer carries two authors and three threads simultaneously, with the structural disagreements held open without explicit lens-by-lens articulation

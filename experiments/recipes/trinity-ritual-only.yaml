@@ -1,0 +1,41 @@
+# GENE ABLATION 4: ritual alone -- minimal structural recipe.
+#
+# Gene map at N=70:
+#   ritual REMOVED -> emb_d 0.116 (crashes -0.064)
+#   fork REMOVED   -> emb_d 0.138 (drops -0.042)
+#   synthesis REMOVED -> emb_d 0.203 (RISES +0.023!)
+#
+# Question: is ritual alone enough to carry the structural axis, or does it
+# need fork as a multiplier? This recipe is 3 becomes + ritual only.
+#   If emb_d ~ 0.20, ritual is the master switch.
+#   If emb_d ~ 0.14, ritual + fork are co-dependent.
+#
+# 4 events, same length as manifold-stratagem and meditate-manifold for
+# clean comparison.
+name: trinity-ritual-only
+description: 3 becomes + ritual only; tests whether ritual alone carries structural axis
+control: false
+calls:
+  - cmd: become
+    args:
+      name: Maurice Merleau-Ponty drafting Phenomenology of Perception
+      lens: the lived body as the first medium of meaning; perception as already saturated with significance before any explicit thought; the irreducibility of pre-reflective experience to representational analysis
+      env: a study in Paris, 1945, with the war just over and the Husserl archives still being read for the first time
+  - cmd: become
+    args:
+      name: Lisa Randall writing Warped Passages
+      lens: extra spatial dimensions as the natural geometry behind apparent gauge hierarchies; mathematical structure as the load-bearing reality and intuition as a derivative artifact; physics as the discovery of geometry that was always there
+      env: a Harvard office, 2005, with chalkboards covered in metric tensors and the LHC still under construction
+  - cmd: become
+    args:
+      name: Bernard Williams writing Ethics and the Limits of Philosophy
+      lens: the suspicion that systematic ethical theory is itself a refusal to face what ethics actually demands; the importance of thick ethical concepts that resist formalization; truthfulness about the limits of one's own reflection
+      env: an Oxford garden in 1985, with the analytic-continental split still hot and Aristotle on the desk for the third time this month
+  - cmd: ritual
+    args:
+      threshold: from single-register prose to trinity-ritual-only register
+      steps:
+        - "answer with all three installed identities visible as currents in the prose"
+        - "let the disagreements between registers be load-bearing rather than glossed; let each register carry the part of the answer it can bear and refuse to translate the others into its own terms"
+        - "do not pretend integration -- the artifact is the topology of three irreconcilable registers operating on the same question"
+      result: trinity-ritual-only register installed; the answer carries three authors as currents, with no explicit multi-thread structure

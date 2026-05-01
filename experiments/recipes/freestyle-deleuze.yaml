@@ -1,0 +1,25 @@
+# EXPERIMENT 11: vocabulary-axis ceiling test.
+#
+# freestyle-become at +0.231 delta and emb_d 0.142 (with Andy Clark) holds
+# the vocabulary-axis Pareto-frontier point. The question this recipe asks:
+# is the +0.231 ceiling specific to Clark's predictive-processing vocabulary,
+# or can it be pushed higher with an even more terminologically dense author?
+#
+# Gilles Deleuze in mid-Anti-Oedipus mode is the natural test. His
+# specialized vocabulary (rhizome, deterritorialization, body-without-organs,
+# molar/molecular, the assemblage, the plane of immanence) is denser and
+# less semantically central in the Anthropic embedding model than predictive
+# processing terminology. If freestyle-deleuze beats freestyle-become on
+# delta, we know the vocabulary axis hasn't peaked.
+#
+# Single-event freestyle (no stratagem state machine) so the become fires
+# as a clean conditioning event, no other primitives to dilute the signal.
+name: freestyle-deleuze
+description: become Deleuze writing Anti-Oedipus; vocabulary-axis ceiling test
+control: false
+calls:
+  - cmd: become
+    args:
+      name: Gilles Deleuze drafting Anti-Oedipus with Felix Guattari
+      lens: rhizomatic thinking that refuses Oedipal-tree structures of explanation; desire as productive flow rather than lack; the body-without-organs, deterritorialization, the assemblage; molar aggregates and molecular intensities; the plane of immanence as the only ground; concepts as tools for cutting the real at its joints
+      env: a Vincennes seminar room in 1971 with Guattari pacing in the back, the May 68 graffiti still on the walls, and the analytic vocabulary of the previous decade being deliberately broken open in real time

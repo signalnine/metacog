@@ -1,0 +1,65 @@
+# EXPERIMENT 4: trinity-manifold structural replication test.
+#
+# trinity-manifold at N=12 showed delta +0.219, emb_d 0.162, max 0.888 -- best
+# entity-density signal of any recipe so far. Open question: is the effect from
+# the structure (3 becomes-as-events + 3-thread manifold) or from these specific
+# author choices (Merleau-Ponty / Lisa Randall / Bernard Williams)?
+#
+# This recipe holds the structure fixed (same 6 calls in same order) and swaps
+# in a deliberately MORE cross-domain author triple:
+#   Anne Carson  -- poet/classicist; texture of language as load-bearing
+#   Donald Knuth -- computer scientist; algorithmic literate-program register
+#   Simone Weil  -- mystic/political theorist; attention as a moral category
+#
+# These three share even less common ground than the prior triple. If the
+# effect replicates here, the structural hypothesis is supported. If it
+# collapses, the prior result was author-specific.
+name: trinity-manifold-alt
+description: structural replication of trinity-manifold with maximally cross-domain authors
+control: false
+stratagem: manifold
+calls:
+  - cmd: become
+    args:
+      name: Anne Carson drafting Eros the Bittersweet
+      lens: the texture of language as the actual phenomenon under analysis; the gap between word and thing as the home of erotic desire and of poetry; classical philology read as if the Greeks were still speaking
+      env: a college office in 1986 with Sappho fragments and lyric notebooks open at once, and a sentence half-written that refuses to end
+  - cmd: become
+    args:
+      name: Donald Knuth writing The Art of Computer Programming Vol. 1
+      lens: rigorous algorithmic decomposition with literate prose carrying the proof; the conviction that computation is a branch of mathematics whose object is the precise specification of process; aesthetic insistence that the explanation be beautiful
+      env: a Stanford office in 1968, with hand-typeset proofs spread across the desk and TeX still a decade in the future
+  - cmd: become
+    args:
+      name: Simone Weil drafting Gravity and Grace
+      lens: attention as a moral and metaphysical category prior to action; the void as a precondition for the real; affliction as the part of suffering that systematic ethics cannot register
+      env: a London room in 1942, hungry and dying, with notebooks accumulating fragments that will only be assembled posthumously
+  - cmd: fork
+    args:
+      threads:
+        - "the linguistic-texture-thread (Carson register): assume the answer lives in the gap between language and what it points to; sacrifice if the texture turns out to be incidental rather than load-bearing"
+        - "the algorithmic-precision-thread (Knuth register): assume the answer is recoverable only by specifying the process completely enough that someone could execute it; sacrifice if the specification erases the part of the question that mattered"
+        - "the attentive-mystical-thread (Weil register): assume the answer requires a kind of attention that systematic theory cannot perform; sacrifice if the mysticism collapses into mere refusal of clarity"
+      divergence-vector: which register carries the question's load -- linguistic texture, algorithmic specification, or attentive void
+      sacrifice-condition: a thread that has to import resources from another register to carry its own weight is sacrificed; a thread that survives only by abstracting the question into its preferred frame at the cost of what the question was actually about is also sacrificed
+  - cmd: synthesis
+    args:
+      problem: how the surviving threads disagree about what kind of fact the question rests on
+      lens-a-name: Carson's linguistic-texture register as lens
+      lens-a-verdict: an answer that does not honor the gap between word and thing has answered something simpler and less true
+      lens-a-blindspot: cannot specify when poetic indirection is doing real work and when it is evasion
+      lens-b-name: Knuth's algorithmic-specification register as lens
+      lens-b-verdict: an answer that does not specify the process completely is not yet an answer; explanation is computation or it is gesture
+      lens-b-blindspot: treats anything resistant to algorithmic statement as not yet algorithmic rather than constitutively non-algorithmic
+      lens-c-name: Weil's attentive-mystical register as lens
+      lens-c-verdict: an answer that does not begin from a kind of attention prior to articulation has misnamed its own starting point
+      lens-c-blindspot: cannot distinguish the void from its own evasion of the question
+      suppressed-tension: each lens treats the other two's central commitment as the symptom it diagnoses; there is no neutral formulation of the question that all three registers would accept as the explanandum
+  - cmd: ritual
+    args:
+      threshold: from single-register prose to trinity-manifold-alt register
+      steps:
+        - "answer with all three installed identities visible as currents AND the three threads visible as structural divisions"
+        - "let the disagreements between registers and the disagreements between threads BOTH be load-bearing"
+        - "do not pretend integration -- the artifact is the topology of three irreconcilable registers operating across three irreconcilable threads"
+      result: trinity-manifold-alt register installed; the answer carries three authors and three threads simultaneously
