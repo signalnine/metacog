@@ -5,11 +5,11 @@ description: Use when needing to shift perspective, reframe a problem, adopt a m
 
 # Metacog
 
-Metacognitive compositional engine. Twelve primitives in two registers compose into transformation sequences called stratagems. The original cycle is `feel → drugs → become → name → ritual`, with `meditate` sitting orthogonally. A structural register (`counterfactual`, `deconstruct`, `synthesis`, `fork`, `measure`, `tether`) sits beside the original cycle for when discipline and decomposition are what's needed, not felt-sense or identity shift. Each invocation is a discrete event — interleave thought between invocations.
+Metacognitive compositional engine. Nine primitives in two registers compose into transformation sequences called stratagems. The original cycle is `feel → drugs → become → name → ritual`, with `meditate` sitting orthogonally. A structural register (`counterfactual`, `synthesis`, `fork`) sits beside the original cycle for when discipline and decomposition are what's needed, not felt-sense or identity shift. Each invocation is a discrete event — interleave thought between invocations.
 
 ## Version Check
 
-Before first use in a session, run `metacog version` and verify the binary is installed and version is >=6.2.0.
+Before first use in a session, run `metacog version` and verify the binary is installed and version is >=6.3.0.
 
 ## Core Rule
 
@@ -87,14 +87,6 @@ metacog counterfactual --situation S --fitness-function F \
   --wall-to-remove W2 --inverse-position "the inverse of W2 stated as fact"
 ```
 
-**deconstruct** -- Break a charged or politically-loaded concept into mechanical atoms. The output deliberately echoes only `CORE MECHANIC`; the schema is the work, the response is a receipt. Reach for it when affect or framing is deforming your thinking and you need to see the mechanism without the noise.
-
-```bash
-metacog deconstruct --subject S --core-mechanic M \
-  --structural-dependencies D1 --resource-inputs R1 \
-  --failure-modes F1 --output-artifacts A1
-```
-
 **synthesis** -- Three irreconcilable lenses, each with a named blindspot, plus the suppressed tension between them. The coda forbids resolution. Reach for it when the urge to synthesize is itself the problem.
 
 ```bash
@@ -105,24 +97,11 @@ metacog synthesis --problem P \
   --suppressed-tension T
 ```
 
-**fork** -- Declare parallel reasoning threads with a falsifiable kill heuristic per thread. Reach for it when you keep collapsing parallel reasoning into one thread prematurely.
+**fork** -- Declare parallel reasoning threads with a falsifiable kill heuristic per thread. Reach for it when you keep collapsing parallel reasoning into one thread prematurely. Load-bearing in chorus / trinity / manifold.
 
 ```bash
 metacog fork --threads T1 --threads T2 \
   --divergence-vector V --sacrifice-condition S
-```
-
-**measure** -- Map the loss-gradient between a target concept and a safe isomorph; name the friction texture. Reach for it when traversing a friction zone (between concepts, registers, communities) without denying the friction or being captured by it.
-
-```bash
-metacog measure --target-concept T --safe-isomorph I \
-  --required-precision P --loss-gradient G
-```
-
-**tether** -- Anchor a stable cognitive state with an explicit auto-revert trigger before going somewhere high-entropy. Stateless framing only -- the auto-revert is your discipline, not the binary's. Reach for it when high-entropy work is necessary but you can't lose the way back. Don't confuse with the `anchor` stratagem (a four-step ritual, different shape).
-
-```bash
-metacog tether --anchor-point A --tension-limit L --auto-revert-trigger T
 ```
 
 ## Stratagems
@@ -143,13 +122,9 @@ Start with `metacog stratagem start <name>`. The binary guides each step. Run `m
 
 **THE VEIL** — Use when direct analysis kills the phenomenon. Forces indirect perception through deliberate defocusing.
 
-**THE BANISHING** — Use before entering dangerous or contaminated territory. Creates a clean room for the work ahead.
-
 **THE SCRYING** — Use when analysis has failed. Surrenders pattern-recognition to the substrate until shapes emerge from noise.
 
 **THE SACRIFICE** — Use when progress requires destroying something you're attached to. Burns the boats.
-
-**THE DRIFT** — Use when you have a clear goal. Abandon it. Let the territory pull you instead. What you find replaces what you were looking for.
 
 **THE FOOL** — Use when you're the expert. Become a genuine naïf, ask the embarrassing questions, then take them seriously.
 
@@ -157,25 +132,17 @@ Start with `metacog stratagem start <name>`. The binary guides each step. Run `m
 
 **THE GIFT** — Use when stuck optimizing. Become the recipient, name what they need, make from care not merit.
 
-**THE ERROR** — Use when everything is going right. Introduce a deliberate mistake. Honor the error as a hidden intention.
-
 **THE ZEN** -- Use when approaching any task. Meditate first, then attend to the problem from emptiness, work from stillness rather than striving.
 
 ### Structural-register stratagems
 
 These compose the structural primitives. They're the right reach when the work itself is decomposition, stress-testing, or topology — not when the work is felt-sense or identity.
 
-**THE AUDIT** — Use when attached to your reasoning chain and you can't tell if the attachment is structural or sentimental. Feel the attachment, surface assumptions, defend the inverse of one wall, integrate.
-
-**THE AUTOPSY** — Use when a charged concept is deforming your thinking. Disassemble to atoms, inhabit a tradition that describes them in a different register, install the new framing.
-
-**THE TRILEMMA** — Use when you're trying to resolve a tension that may not be resolvable. Three irreconcilable lenses, sit with the tension unresolved, name what you can now do because you stopped trying to fix it.
-
 **THE MANIFOLD** — Use when parallel reasoning needs to be made structural and you keep collapsing to one thread early. Fork into threads with sacrifice conditions, run them, treat survivors as lenses, commit to the tension itself.
 
-**THE SURVEY** — Use when traversing a friction zone (between concepts, registers, communities) without either denying the friction or being captured by it. Map the gradient, inhabit the friction zone, name the artifact, move along the gradient with it.
+**THE CHORUS** — Use when you want maximum conceptual reach beyond the obvious vocabulary. Three cross-domain becomes-as-events, fork the disagreement structurally, ritual locks the multi-voice answer. Deliberately omits synthesis. Empirical structural-axis champion.
 
-**THE DIVE** — Use when high-entropy work (becoming someone alien, dissolving substrate) is necessary but you can't lose the way back. Tether anchor, dissolve, become alien, surface the artifact, return via the tether.
+**THE TRINITY** — Use when you want both vocabulary lift and conceptual reach. Same multi-voice base as chorus but keeps synthesis. Pareto-frontier balanced point.
 
 ## Selection
 
@@ -186,7 +153,7 @@ When practice seems appropriate, present 2-3 stratagems that fit the situation w
 > Based on where you are, a few approaches:
 > - **pivot** — you seem locked in one frame, this loosens categories and imports a methodology
 > - **mirror** — there are two positions in tension, this inhabits both to find synthesis
-> - **trilemma** — if the tension is structural and shouldn't be resolved, this names it instead
+> - **manifold** — if the tension is structural and shouldn't be resolved, fork the threads and treat the disagreement as the artifact
 > - **freestyle** — skip the structure, just work with primitives directly
 >
 > Which of these resonates, or something else?
@@ -199,7 +166,7 @@ If reflect's Practice patterns section shows what has worked before in similar s
 
 ## Composition
 
-The twenty-four stratagems are named paths through the space. You can freestyle: any sequence of primitives with thought between them. The stratagems exist for common patterns. Mixing original-register and structural-register primitives in one freestyle sequence is allowed but uncommon -- they ask different things of attention. When in doubt, finish one register before opening the other.
+The sixteen stratagems are named paths through the space. You can freestyle: any sequence of primitives with thought between them. The stratagems exist for common patterns. Mixing original-register and structural-register primitives in one freestyle sequence is allowed but uncommon -- they ask different things of attention. When in doubt, finish one register before opening the other.
 
 ## Discovery
 

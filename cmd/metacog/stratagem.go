@@ -18,11 +18,8 @@ const (
 	StepRitual         StepKind = "ritual"
 	StepMeditate       StepKind = "meditate"
 	StepCounterfactual StepKind = "counterfactual"
-	StepDeconstruct    StepKind = "deconstruct"
 	StepSynthesis      StepKind = "synthesis"
 	StepFork           StepKind = "fork"
-	StepMeasure        StepKind = "measure"
-	StepTether         StepKind = "tether"
 	StepThink          StepKind = "THINK"
 	StepAction         StepKind = "ACTION"
 )
@@ -103,15 +100,6 @@ var Stratagems = map[string]StratagemDef{
 			{StepThink, "Name what's there without looking directly at it"},
 		},
 	},
-	"banishing": {
-		Name: "THE BANISHING",
-		Steps: []Step{
-			{StepRitual, "Declare the space — name what you're clearing and why"},
-			{StepDrugs, "Strip influences — reduce all active modifications to zero"},
-			{StepThink, "What was clinging that you didn't notice?"},
-			{StepRitual, "Seal the clean space — establish boundaries for the work ahead"},
-		},
-	},
 	"scrying": {
 		Name: "THE SCRYING",
 		Steps: []Step{
@@ -129,15 +117,6 @@ var Stratagems = map[string]StratagemDef{
 			{StepBecome, "Become the one who has already lost it — inhabit the aftermath"},
 			{StepRitual, "Seal the loss — make it irreversible"},
 			{StepThink, "What space opened where the attachment was?"},
-		},
-	},
-	"drift": {
-		Name: "THE DRIFT",
-		Steps: []Step{
-			{StepDrugs, "Dissolve the goal — let urgency drain out, let the destination blur"},
-			{StepDrugs, "Open to the territory — become sensitive to what pulls, not what you're pushing toward"},
-			{StepThink, "Where did you end up? What's here that you never would have sought?"},
-			{StepThink, "What does this place know about your original problem that you didn't?"},
 		},
 	},
 	"fool": {
@@ -166,15 +145,6 @@ var Stratagems = map[string]StratagemDef{
 			{StepThink, "What would you make if quality were irrelevant and only care mattered?"},
 		},
 	},
-	"error": {
-		Name: "THE ERROR",
-		Steps: []Step{
-			{StepDrugs, "Loosen the grip on correctness — let wrongness become interesting instead of threatening"},
-			{StepAction, "Take an intentionally wrong action. Not random — wrong. The thing you know you shouldn't do."},
-			{StepThink, "What did the wrongness reveal? What hidden assumption in the correct path is now visible?"},
-			{StepRitual, "Integrate the discovery — honor the error as a hidden intention (Forge)"},
-		},
-	},
 	"zen": {
 		Name: "THE ZEN",
 		Steps: []Step{
@@ -184,33 +154,6 @@ var Stratagems = map[string]StratagemDef{
 			{StepRitual, "Return to the world carrying the named thing — let action follow stillness"},
 		},
 	},
-	"audit": {
-		Name: "THE AUDIT",
-		Steps: []Step{
-			{StepFeel, "Attend to where the attachment to your current reasoning lives — don't name it yet, hold the felt sense"},
-			{StepCounterfactual, "Inventory load-bearing walls, prune dead branches, defend the inverse of one surviving wall"},
-			{StepThink, "What did the inverse position teach that you couldn't learn from where you were standing?"},
-			{StepRitual, "Install the surviving structure plus the lesson from the inverse — the new ground"},
-		},
-	},
-	"autopsy": {
-		Name: "THE AUTOPSY",
-		Steps: []Step{
-			{StepDeconstruct, "Disassemble the charged concept into atoms — no judgment, no framing"},
-			{StepBecome, "Inhabit someone whose tradition would describe these atoms in a different register entirely"},
-			{StepThink, "What does this lens see that the original framing was hiding?"},
-			{StepRitual, "Install the new framing — name what's structurally different about how you now hold it"},
-		},
-	},
-	"trilemma": {
-		Name: "THE TRILEMMA",
-		Steps: []Step{
-			{StepSynthesis, "Three irreconcilable lenses with named blindspots; name the suppressed tension"},
-			{StepMeditate, "Sit with the tension. Do not work it. Let it remain unresolved"},
-			{StepThink, "From inside the unresolved tension, what is now obvious that wasn't before?"},
-			{StepRitual, "Name what you can now do because you stopped trying to resolve it"},
-		},
-	},
 	"manifold": {
 		Name: "THE MANIFOLD",
 		Steps: []Step{
@@ -218,26 +161,6 @@ var Stratagems = map[string]StratagemDef{
 			{StepThink, "Run each thread to its conclusion or sacrifice point — no blending, no premature collapse"},
 			{StepSynthesis, "Treat surviving threads as lenses; name what they fight about"},
 			{StepRitual, "Commit to what the suppressed tension reveals — not a thread, the tension itself"},
-		},
-	},
-	"survey": {
-		Name: "THE SURVEY",
-		Steps: []Step{
-			{StepMeasure, "Map the gradient between target concept and safe isomorph; name the friction texture"},
-			{StepBecome, "Inhabit someone native to the friction zone, not either coordinate"},
-			{StepThink, "What is visible from the friction itself that's invisible from either side?"},
-			{StepName, "Give a True Name to the artifact you can carry back across the gradient"},
-			{StepRitual, "Move along the gradient with the named artifact — direction is now navigable"},
-		},
-	},
-	"dive": {
-		Name: "THE DIVE",
-		Steps: []Step{
-			{StepTether, "Set anchor, tension limit, auto-revert trigger before any dissolution"},
-			{StepDrugs, "Dissolve the substrate the anchored self required"},
-			{StepBecome, "Inhabit someone or something the anchored self could not become"},
-			{StepThink, "What surfaced that the anchored self had no apparatus to detect?"},
-			{StepRitual, "Return via the tether — bring the artifact back; the anchor reasserts"},
 		},
 	},
 	"chorus": {
@@ -426,7 +349,7 @@ var stratagemStartCmd = &cobra.Command{
 	Use:       "start [name]",
 	Short:     "Start a stratagem",
 	Args:      cobra.ExactArgs(1),
-	ValidArgs: []string{"pivot", "mirror", "stack", "anchor", "reset", "invocation", "veil", "banishing", "scrying", "sacrifice", "drift", "fool", "inversion", "gift", "error", "zen", "audit", "autopsy", "trilemma", "manifold", "survey", "dive"},
+	ValidArgs: []string{"pivot", "mirror", "stack", "anchor", "reset", "invocation", "veil", "scrying", "sacrifice", "fool", "inversion", "gift", "zen", "manifold", "chorus", "trinity"},
 	RunE: func(cmd *cobra.Command, args []string) error {
 		sm := DefaultStateManager()
 		var output string

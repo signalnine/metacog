@@ -20,7 +20,7 @@ Go CLI built with cobra. Entry point `cmd/metacog/main.go`. All command files li
 
 State is a single JSON file at `$METACOG_HOME/state.json` guarded by a `flock(2)` lock on `.state.lock`. Reads use `Load()`; writes go through `SaveWithLock(func(*State) error)` which holds the lock for load+mutate+atomic-rename. There is no in-memory daemon -- every CLI invocation is a complete load/mutate/save cycle.
 
-### Primitives (twelve)
+### Primitives (nine)
 
 Each primitive is a verb that is also a tool call event in the transcript -- the structural fact that the model invoked `metacog become` is itself the transformation, not just the text it returns. All primitives append a `HistoryEntry` and call `ValidatePrimitiveForStratagem` so that, when a stratagem is active and the current step matches the primitive kind, the step is marked complete.
 
@@ -33,34 +33,32 @@ The original six (felt-sense / identity register, soft voice):
 - **ritual** (`threshold`, `steps...`, `result`) -- threshold crossing via structured sequence.
 - **meditate** (`release`, `focus`, `duration`) -- stillness; empty `focus` produces shikantaza output.
 
-The structural six (added 2026-04-30, ported from upstream `inanna-malick/metacog@007faae`; ALL CAPS block-format output, deliberately distinct register):
+The structural three (the survivors of the 2026-04-30 upstream port; ALL CAPS block-format output, deliberately distinct register):
 
 - **counterfactual** (`situation`, `fitness-function`, `load-bearing-walls` x3+, `pruned`, `wall-to-remove`, `inverse-position`) -- prune dead branches by a stated fitness function, then defend the inverse of one surviving wall. Validates that `wall-to-remove` is one of the walls and that there are at least 3 walls.
-- **deconstruct** (`subject`, `core-mechanic`, `structural-dependencies`, `resource-inputs`, `failure-modes`, `output-artifacts`) -- mechanical teardown. Output deliberately echoes only `CORE MECHANIC` plus a one-line coda; the schema is the work, the response is a receipt. This is the strongest expression of the "tool calls as events" principle.
 - **synthesis** (`problem`, lenses A/B/C with `name`/`verdict`/`blindspot` each, `suppressed-tension`) -- three irreconcilable lenses; refuses synthesis. The output's coda forbids resolution.
-- **fork** (`threads` x2+, `divergence-vector`, `sacrifice-condition`) -- declare parallel reasoning threads with a falsifiable kill heuristic per thread.
-- **measure** (`target-concept`, `safe-isomorph`, `required-precision`, `loss-gradient`) -- map the gradient between a concept and a safe isomorph at a given depth.
-- **tether** (`anchor-point`, `tension-limit`, `auto-revert-trigger`) -- anchor before a high-entropy operation. Stateless: the auto-revert is fictional, framing only. (Don't confuse with the `anchor` *stratagem* which is a four-step ritual.)
+- **fork** (`threads` x2+, `divergence-vector`, `sacrifice-condition`) -- declare parallel reasoning threads with a falsifiable kill heuristic per thread. Load-bearing in chorus/trinity/manifold.
 
-### Stratagems (twenty-four)
+(`deconstruct`, `measure`, and `tether` were dropped in v6.3.0 after the experiment harness in `experiments/` showed the stratagems centered on them did not lift either novelty axis above baseline. See `experiments/FINDINGS.md`.)
+
+### Stratagems (sixteen)
 
 Named compositions of primitives plus reflection (`THINK`) and action (`ACTION`) steps. Defined in `Stratagems` map in `stratagem.go`. Active stratagem state is `state.Stratagem` (`{Name, Step, StepsCompleted, StartedAt}`). Lifecycle: `stratagem start <name>` -> primitives auto-advance matching steps -> `stratagem next` advances reflection/action steps -> completion records a `stratagem` history entry with `event=completed`.
 
-Original sixteen (use original-six primitives only): pivot, mirror, stack, anchor, reset, invocation, veil, banishing, scrying, sacrifice, drift, fool, inversion, gift, error, zen.
+Survivors of the original sixteen (use original-six primitives only): pivot, mirror, stack, anchor, reset, invocation, veil, scrying, sacrifice, fool, inversion, gift, zen.
 
-Six structural-register stratagems (each centered on one of the structural-six primitives, added 2026-04-30):
+(`banishing`, `drift`, `error` were dropped in v6.3.0 -- the all-stratagem sweep found them clustered at emb_d ~0.10 with the rest of the non-manifold-family pack.)
 
-- **audit** (feel + counterfactual): when attached to your reasoning chain and can't tell if the attachment is structural or sentimental. First stratagem to use `feel`.
-- **autopsy** (deconstruct + become): when a charged concept is deforming your thinking and you need the mechanism without the affect.
-- **trilemma** (synthesis + meditate): when the urge to resolve a tension is itself the problem; sits with the unresolved.
-- **manifold** (fork + synthesis): when parallel reasoning needs to be made structural and you keep collapsing to one thread early.
-- **survey** (measure + become + name): when traversing a friction zone (between concepts, registers, communities) without denying it or being captured by it. Second stratagem to use `name` after zen.
-- **dive** (tether + drugs + become): when high-entropy work is necessary but you can't lose the way back. Tether brackets the dissolution.
+The structural champion (uses fork + synthesis):
+
+- **manifold** (fork + synthesis): when parallel reasoning needs to be made structural and you keep collapsing to one thread early. The progenitor of chorus/trinity.
 
 Two empirical stratagems (added 2026-05-01, derived from the experiment harness in `experiments/`; see `experiments/FINDINGS.md`):
 
 - **chorus** (3 becomes + fork + ritual): structural-axis champion. Three cross-domain becomes-as-events seed voice diversity, fork makes the disagreement structural, ritual locks the multi-voice answer. Deliberately omits synthesis -- the experiment found synthesis acts as a structural brake on embedding-distance.
 - **trinity** (3 becomes + fork + synthesis + ritual): balanced variant. Same multi-voice base as chorus but keeps synthesis for delta lift. Pareto-frontier point on both axes; chorus owns emb_d, trinity owns the balance.
+
+(`audit`, `autopsy`, `trilemma`, `survey`, `dive` were also dropped in v6.3.0 alongside their load-bearing primitives -- they sat at emb_d 0.115-0.135 across the empirical sweep.)
 
 ### Outcome tracking
 
@@ -73,7 +71,7 @@ Two empirical stratagems (added 2026-05-01, derived from the experiment harness 
 
 ## Key files
 
-- `cmd/metacog/main.go` -- root cobra command, version string (must list all 12 primitives), schema version constant
+- `cmd/metacog/main.go` -- root cobra command, version string (must list all 9 primitives and 16 stratagems), schema version constant
 - `cmd/metacog/state.go` -- State, StateManager, flock, atomic rename, history archiving
 - `cmd/metacog/stratagem.go` -- Stratagems map, `StepKind` constants (one per primitive plus THINK/ACTION), step validation, lifecycle commands
 - `cmd/metacog/outcome.go` -- Two-tier outcome attachment and amendment

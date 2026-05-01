@@ -2,14 +2,11 @@ package main
 
 import "testing"
 
-func TestStepKindsForNewPrimitives(t *testing.T) {
+func TestStepKindsForStructuralPrimitives(t *testing.T) {
 	cases := map[StepKind]string{
 		StepCounterfactual: "counterfactual",
-		StepDeconstruct:    "deconstruct",
 		StepSynthesis:      "synthesis",
 		StepFork:           "fork",
-		StepMeasure:        "measure",
-		StepTether:         "tether",
 	}
 	for got, want := range cases {
 		if string(got) != want {
@@ -18,15 +15,14 @@ func TestStepKindsForNewPrimitives(t *testing.T) {
 	}
 }
 
-func TestValidatePrimitiveAdvancesNewPrimitives(t *testing.T) {
-	for _, primitive := range []string{"counterfactual", "deconstruct", "synthesis", "fork", "measure", "tether"} {
+func TestValidatePrimitiveAdvancesStructuralPrimitives(t *testing.T) {
+	for _, primitive := range []string{"counterfactual", "synthesis", "fork"} {
 		t.Run(primitive, func(t *testing.T) {
 			s := NewState()
 			s.Stratagem = &ActiveStratagem{
 				Name: "pivot",
 				Step: 0,
 			}
-			// Inject a custom stratagem that expects the primitive at step 0
 			Stratagems["__test_"+primitive] = StratagemDef{
 				Name:  "TEST",
 				Steps: []Step{{StepKind(primitive), "test step"}},
@@ -41,8 +37,8 @@ func TestValidatePrimitiveAdvancesNewPrimitives(t *testing.T) {
 	}
 }
 
-func TestOutcomeFreestyleNewPrimitives(t *testing.T) {
-	for _, primitive := range []string{"counterfactual", "deconstruct", "synthesis", "fork", "measure", "tether"} {
+func TestOutcomeFreestyleStructuralPrimitives(t *testing.T) {
+	for _, primitive := range []string{"counterfactual", "synthesis", "fork"} {
 		t.Run(primitive, func(t *testing.T) {
 			s := NewState()
 			s.AddHistory(HistoryEntry{Action: primitive, Params: map[string]string{"k": "v"}})

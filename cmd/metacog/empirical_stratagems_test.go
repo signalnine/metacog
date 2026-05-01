@@ -115,7 +115,7 @@ func TestStartEmpiricalStratagems(t *testing.T) {
 
 // Version output must list every empirical stratagem.
 func TestVersionListsEmpiricalStratagems(t *testing.T) {
-	expected := "stratagems: pivot mirror stack anchor reset invocation veil banishing scrying sacrifice drift fool inversion gift error zen audit autopsy trilemma manifold survey dive chorus trinity"
+	expected := "stratagems: pivot mirror stack anchor reset invocation veil scrying sacrifice fool inversion gift zen manifold chorus trinity"
 	for _, name := range []string{"chorus", "trinity"} {
 		if !strings.Contains(expected, name) {
 			t.Errorf("expected version line to contain %q", name)

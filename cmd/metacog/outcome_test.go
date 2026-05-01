@@ -37,7 +37,7 @@ func TestOutcomeRecordsResult(t *testing.T) {
 
 func TestOutcomeUnproductive(t *testing.T) {
 	s := NewState()
-	s.AddHistory(HistoryEntry{Action: "stratagem", Params: map[string]string{"name": "drift", "event": "completed"}})
+	s.AddHistory(HistoryEntry{Action: "stratagem", Params: map[string]string{"name": "manifold", "event": "completed"}})
 
 	err := RecordOutcome(s, "unproductive", "")
 	if err != nil {
@@ -52,8 +52,8 @@ func TestOutcomeUnproductive(t *testing.T) {
 			if h.Params["shift"] != "" {
 				t.Errorf("expected empty shift, got %s", h.Params["shift"])
 			}
-			if h.Params["stratagem"] != "drift" {
-				t.Errorf("expected stratagem=drift, got %s", h.Params["stratagem"])
+			if h.Params["stratagem"] != "manifold" {
+				t.Errorf("expected stratagem=manifold, got %s", h.Params["stratagem"])
 			}
 		}
 	}
