@@ -613,15 +613,17 @@ amplifier validation across two recipes (working and broken).
 
 **Final cross-mode, cross-model amplifier table:**
 
-| Model  | Recipe                         | Tool-call    | Text        | Diff       |
-|--------|--------------------------------|--------------|-------------|------------|
-| codex  | envoy-extreme (working)        | +0.245 (n=14)| +0.301 (n=6)| -0.055     |
-| codex  | envoy-extreme-alt2 (working)   | +0.286 (n=6) | +0.268 (n=6)| +0.018     |
-| sonnet | envoy-extreme-alt2 (working)   | +0.256 (n=30)| +0.238 (n=30)| +0.018    |
-| sonnet | counterpoint-biblical-duo (working) | +0.177 (n=30)| +0.088 (n=20)| **+0.089** |
-| codex  | chorus (mild-broken)           | -0.129 (n=6) | -0.028 (n=6)| **-0.101** |
-| codex  | counterpoint-biblical-duo (broken) | -0.228 (n=6)| +0.048 (n=6)| **-0.276** |
-| sonnet | chorus-with-chord-not-fork (broken) | -0.066 (n=29)| -0.000 (n=20)| -0.066 |
+| Model  | Recipe                              | Tool-call     | Text         | Diff       |
+|--------|-------------------------------------|---------------|--------------|------------|
+| sonnet | chorus-plus-disjunction (strong)    | +0.347 (n=70) | +0.140 (n=19)| **+0.208** |
+| sonnet | counterpoint-biblical-duo (working) | +0.177 (n=30) | +0.088 (n=20)| **+0.089** |
+| codex  | envoy-extreme (working)             | +0.245 (n=14) | +0.301 (n=6) | -0.055     |
+| codex  | envoy-extreme-alt2 (working)        | +0.286 (n=6)  | +0.268 (n=6) | +0.018     |
+| sonnet | envoy-extreme-alt2 (working)        | +0.256 (n=30) | +0.238 (n=30)| +0.018     |
+| sonnet | chorus-with-chord-not-fork (broken) | -0.066 (n=29) | -0.000 (n=20)| -0.066     |
+| codex  | chorus (mild-broken)                | -0.129 (n=6)  | -0.028 (n=6) | **-0.101** |
+| codex  | chorus-plus-disjunction (broken on codex) | -0.027 (n=6) | +0.117 (n=6) | **-0.143** |
+| codex  | counterpoint-biblical-duo (broken)  | -0.228 (n=6)  | +0.048 (n=6) | **-0.276** |
 
 **Working recipes** (4 cases): mean diff +0.018. Tool-call usually beats
 or ties text mode. The Sonnet CBD result (+0.089) is the largest
