@@ -5,16 +5,17 @@ the same writeup, post-conditioning. see `2026-05-02-teaching-claude-
 to-sound-less-like-itself.md` for the unconditioned baseline. the
 experiment in the doc, applied to the doc.)
 
-48 hours of experiments on `metacog`. v6.0.0 to v6.5.1. Generator was
-Claude Sonnet 4.6 throughout, judges were Claude Haiku 4.5. Findings
-here are Sonnet-specific -- the patterns may transfer, the magnitudes
-won't. Ended up with a Pareto frontier of recipes that push Claude's
-output well off default register, measured two ways. The biggest
-finding: switching the register-shift inside `envoy` from Victorian
-to King James biblical pushed embedding distance from 0.239 to 0.292,
-almost a 25% jump, with delta still positive. The model can write
-like the KJV. It just essentially never does, because nothing asks
-it to.
+48 hours of experiments on `metacog`. v6.0.0 → v6.6.0. Main generator
+was Claude Sonnet 4.6, judges were Claude Haiku 4.5; cross-model
+validation was against gpt-5.5 via the Codex CLI. Magnitudes are
+Sonnet-specific by default -- some structural mechanisms transfer to
+codex, others don't (see cross-model section). Ended up with a Pareto
+frontier of recipes that push the model well off default register,
+measured two ways. The biggest finding: switching the register-shift
+inside `envoy` from Victorian to King James biblical pushed embedding
+distance from 0.239 to 0.292, almost a 25% jump, with delta still
+positive. The model can write like the KJV. It just essentially never
+does, because nothing asks it to.
 
 ## The problem
 
@@ -31,7 +32,9 @@ answers. Events like "inhabit Anne Carson translating Sappho fragment
 31" or "shift register from contemporary online prose to late-
 Victorian periodical essay" or "operate inside this contradiction
 without resolving it." Tool calls, not chat hints. That distinction
-turns out to be the whole game (see section VIII).
+turns out to be most of the game, with a caveat about when the
+wrapper helps vs hurts (see "Why tool calls matter -- but only
+sometimes" below).
 
 ## The metric
 
@@ -176,24 +179,45 @@ tightest author-stability of any productionized recipe. When you
 want both axes lifted but don't want to max one at the other's
 expense, this is the move.
 
-## Why tool calls matter more than prompt text
+## Why tool calls matter -- but only sometimes
 
-Took me longest to see this. If I write "let's imagine you're Anne
-Carson translating Sappho" in chat, the model produces some
-Carson-flavored text but stays mostly itself, layering Carson on its
-default voice. If I run a separate tool that adds a structural entry
-to the transcript -- "ENTER VOICE: Anne Carson translating Sappho
-fragment 31, lens X, environment Y" -- and *then* ask the question,
-the model treats the entry as an event in the world, not a stylistic
-suggestion. Training contains huge amounts of structured text where
-events have consequences. A tool call is a structured event. The
-answer is conditioned on it having actually happened.
+Took me longest to see this and I had to walk part of it back.
 
-Whether the entry came from me typing it manually or from a real
-program is invisible to the model. The shape is what matters: a
-discrete structural event that changes the pre-conditions for the
-answer. Find events whose pre-conditions push the answer somewhere
-worth going. That's the whole game.
+Tool-call delivery changes behavior more than typing the same words
+in chat. But it isn't a fixed bonus. It's an asymmetric amplifier on
+whichever direction the recipe pulls.
+
+Added a `text-instructions` mode to the runner that delivers identical
+recipe content as plain prose inside the prompt body. Same words, same
+tasks, same N. Re-ran working and broken recipes in both modes on
+both Sonnet and gpt-5.5 (Codex CLI, low reasoning effort). Across
+nine (recipe, mode) comparisons:
+
+- **working recipes** (positive deltas): tool-call mode adds small
+  lift on average. Sometimes more -- chorus-plus-disjunction on
+  Sonnet went from +0.140 in text to +0.347 in tool-call.
+- **broken recipes** (negative deltas): tool-call mode hurts
+  proportional to brokenness. KJV biblical on codex went from +0.048
+  in text to **-0.228** in tool-call. 0.276 swing in the wrong
+  direction.
+
+Mech-interp story (Arditi et al. 2024, "Refusal in Language Models Is
+Mediated by a Single Direction" -- safety refusal operates via a
+single direction in activation space): same frame works here. A
+tool-call wrapper produces a stronger move along whichever direction
+the recipe pulls. Stronger move along a direction the model has =
+sharper, more committed output that the rarity judge rewards.
+Stronger move along a direction the model lacks = nonsense, locked in
+harder than text-instruction delivery does it.
+
+Practical rule: validate new recipes in text-instructions mode first.
+If text delta is positive, promote to tool-call (small lift). If
+negative or flat, do NOT promote -- tool-call will amplify the
+failure proportional to brokenness.
+
+The "tool calls as events" doctrine still holds. The wrapper shape
+matters. Just not as a bonus -- as a brake on recipes that don't fit
+the model.
 
 (this doc's other version was edited from a default-voice draft
 with the gabe style guide in context. this version was drafted
@@ -203,7 +227,7 @@ after `metacog become "gabe ortiz"`. read both.)
 
 ![Pareto frontier](figures/pareto-frontier.png)
 
-3000 trials, 50 recipes. Five productionized:
+3000 trials, 50 recipes. Six productionized:
 
 - **antinomy** -- max delta. Operates inside contradictions.
 - **envoy** -- max emb_d (productionizable). Register-shift on
@@ -212,10 +236,51 @@ after `metacog become "gabe ortiz"`. read both.)
 - **chorus**, **trinity** -- earlier multi-voice recipes with and
   without synthesis. Hold the frontier when register-shift isn't
   available.
+- **envoy-extreme** (v6.6.0) -- cross-model winner. Three hard-extreme
+  cross-domain author-becomes (Sun Ra/Octavia Butler/Hilma af Klint
+  scale, not Carson/Knuth scale) plus fork plus ritual, no register-
+  shift. Use when the target generator isn't Sonnet.
 
-Sixth point worth knowing: biblical register with multi-voice. Pushes
-emb_d higher than any productionized recipe at meaningful delta cost.
-Not a separate stratagem -- pass biblical register-args to envoy.
+Seventh point worth knowing: biblical register with multi-voice.
+Pushes emb_d higher than any productionized recipe at meaningful
+delta cost on Sonnet. Not a separate stratagem -- pass biblical
+register-args to envoy. *Sonnet-specific: biblical is catastrophic on
+gpt-5.5.*
+
+## Cross-model: what transfers, what doesn't
+
+Tested the productionized recipes against gpt-5.5 (Codex CLI, low
+reasoning effort) to see what generalized. The findings refine the
+picture.
+
+**Transfers:** cross-domain author-becomes. envoy-extreme on codex
+hit +0.310 delta -- *stronger* than the same recipe on Sonnet
+(+0.190). Hard-extreme cross-domain authors (Sun Ra, Octavia Butler,
+Hilma af Klint scale) seem to land on directions both models have.
+
+**Doesn't transfer:** register-shifts (biblical, scientific) and the
+disjunction primitive. counterpoint-biblical-duo (Sonnet champion at
++0.177) hit -0.228 on codex -- worst recipe tested. KJV biblical
+strips citations on gpt-5.5 without producing the embedding-distance
+compensation Sonnet provides.
+
+**Extremity threshold matters too.** Carson/Knuth/Weil works on
+Sonnet, too mild for codex (chorus with CKW: -0.129 on codex). Codex
+needs the harder-extreme cosmologists/world-builders to lift. Sonnet
+doesn't.
+
+Mech-interp story (same Arditi frame as section above): each model
+has its own geometry of voice-and-register directions. Author-becomes
+route through "writing-as-X" reps that are broadly distributed across
+pretraining -- every chat model has rich data on Sun Ra. Register-
+shift requires a *style-vs-topic decoupling* direction Sonnet has but
+codex apparently lacks. Recipes optimized for one generator's
+geometry don't transfer to another's, but the structural mechanisms
+(multi-voice conditioning) ride on shared directions.
+
+If you don't know the target generator, use envoy-extreme. If you
+know it's Sonnet, all six recipes are options; biblical-register
+variants push emb_d furthest.
 
 The interesting thing isn't the recipes. It's that the model has a
 much bigger range of voices than its default suggests, and small
@@ -380,7 +445,7 @@ the joint zone with greater author-stability than either parent.
 on emb_d. Tighter binary opposition fits disjunction's structure
 better than the 3-voice triad chorus/trinity/antinomy/envoy use.
 
-### End state (v6.5.1)
+### End state (v6.6.0)
 
 ![Ceiling progression](figures/ceiling-progression.png)
 
@@ -389,18 +454,19 @@ Structural-axis (emb_d) ceiling climbed from 0.169 at v6.1.0 through
 correct: counterpoint isn't a structural-axis push, it's a balanced
 Pareto point.
 
-- 16 primitives, 19 stratagems (5 empirically-derived: chorus,
-  trinity, antinomy, envoy, counterpoint).
-- envoy-extreme +0.190/0.257 (productionizable structural champion);
-  envoy-biblical +0.126/0.292 (register-pushed champion via ad-hoc
-  args); counterpoint +0.247/0.190 (balanced); antinomy +0.347/0.162
-  (vocabulary).
-- ~3000 trials, ~50 recipes preserved across the v6.0.0 → v6.5.1 arc.
+- 16 primitives, 20 stratagems (6 empirically-derived: chorus,
+  trinity, antinomy, envoy, counterpoint, envoy-extreme).
+- envoy-extreme +0.190/0.257 on Sonnet, +0.310 on codex (cross-model
+  champion); envoy-biblical +0.126/0.292 (Sonnet register-pushed
+  champion via ad-hoc args); counterpoint +0.247/0.190 (balanced);
+  antinomy +0.347/0.162 (vocabulary).
+- ~3000 trials, ~50 recipes preserved across the v6.0.0 → v6.6.0 arc.
 
-Net surface change: +11 primitives, +3 net stratagems. Surface went
+Net surface change: +11 primitives, +4 net stratagems. Surface went
 from "identity + felt-sense practice" to "identity + felt-sense +
 structural-register transformation engine with empirically-validated
-multi-voice/contradiction/register stratagems."
+multi-voice/contradiction/register stratagems and cross-model
+validation against gpt-5.5."
 
 ## Methodology
 
