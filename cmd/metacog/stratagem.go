@@ -224,6 +224,16 @@ var Stratagems = map[string]StratagemDef{
 			{StepRitual, "Lock the two-voice answer; reasoning operates inside the contradiction AND the imposed register simultaneously, neither surrendered"},
 		},
 	},
+	"envoy-extreme": {
+		Name: "THE ENVOY EXTREME",
+		Steps: []Step{
+			{StepBecome, "Inhabit voice 1 — a HARD-extreme cross-domain author building a cosmology, not a mild-extreme academic essayist (Sun Ra/Octavia Butler/Hilma af Klint-tier, not Carson/Knuth-tier); the more cross-domain the world-build, the more cleanly the conditioning lands"},
+			{StepBecome, "Inhabit voice 2 — a hard-extreme cross-domain author from a domain orthogonal to voice 1's (jazz mysticism / fugitive-Black-radical-theory / endosymbiotic-biology / cyborg-feminism / design-science scale)"},
+			{StepBecome, "Inhabit voice 3 — a hard-extreme cross-domain author from a domain orthogonal to both voices 1 and 2"},
+			{StepFork, "Open one thread per voice; declare divergence vector and per-thread sacrifice conditions"},
+			{StepRitual, "Lock the multi-voice answer; the three cosmologies remain audible to the final sentence"},
+		},
+	},
 }
 
 func StartStratagem(s *State, name string, force bool) (string, error) {
@@ -389,7 +399,7 @@ var stratagemStartCmd = &cobra.Command{
 	Use:       "start [name]",
 	Short:     "Start a stratagem",
 	Args:      cobra.ExactArgs(1),
-	ValidArgs: []string{"pivot", "mirror", "stack", "anchor", "reset", "invocation", "veil", "scrying", "sacrifice", "fool", "inversion", "gift", "zen", "manifold", "chorus", "trinity", "antinomy", "envoy", "counterpoint"},
+	ValidArgs: []string{"pivot", "mirror", "stack", "anchor", "reset", "invocation", "veil", "scrying", "sacrifice", "fool", "inversion", "gift", "zen", "manifold", "chorus", "trinity", "antinomy", "envoy", "counterpoint", "envoy-extreme"},
 	RunE: func(cmd *cobra.Command, args []string) error {
 		sm := DefaultStateManager()
 		var output string

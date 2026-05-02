@@ -7,7 +7,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var Version = "6.5.1"
+var Version = "6.6.0"
 var StateSchemaVersion = 1
 
 var rootCmd = &cobra.Command{
@@ -21,7 +21,7 @@ var versionCmd = &cobra.Command{
 	Use:   "version",
 	Short: "Print version information",
 	Run: func(cmd *cobra.Command, args []string) {
-		output := fmt.Sprintf("metacog v%s\nstate schema: v%d\nprimitives: feel drugs become name ritual meditate counterfactual synthesis fork register chord silence excerpt commitment disjunction glossolalia\nstratagems: pivot mirror stack anchor reset invocation veil scrying sacrifice fool inversion gift zen manifold chorus trinity antinomy envoy counterpoint", Version, StateSchemaVersion)
+		output := fmt.Sprintf("metacog v%s\nstate schema: v%d\nprimitives: feel drugs become name ritual meditate counterfactual synthesis fork register chord silence excerpt commitment disjunction glossolalia\nstratagems: pivot mirror stack anchor reset invocation veil scrying sacrifice fool inversion gift zen manifold chorus trinity antinomy envoy counterpoint envoy-extreme", Version, StateSchemaVersion)
 		fmt.Println(FormatOutput(jsonOutput, output, nil))
 	},
 }

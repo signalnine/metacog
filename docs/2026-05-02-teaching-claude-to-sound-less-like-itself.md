@@ -219,33 +219,69 @@ with greater author-stability than either parent. When you want both
 axes lifted but don't want to max one at the other's expense, this
 is the move.
 
-## VIII. Why tool calls matter more than prompt text
+## VIII. Why tool calls matter -- but only sometimes
 
-This took me longest to see. Tool-call events change behavior more
-than typing the same description into a chat message does. If I write
-"let's imagine you're Anne Carson translating Sappho", the model
-produces some Carson-flavored text but stays mostly itself, layering
-Carson on top of its default voice. If I run a separate tool that
-adds a specific structural entry to the transcript -- "ENTER VOICE:
-Anne Carson translating Sappho fragment 31, lens X, environment Y"
--- and then ask the question, the model treats the entry as an
-*event in the world*, not as a stylistic suggestion. The model's
-training contains huge amounts of structured text where events have
-consequences. A tool call is a structured event; the answer is
-conditioned on it having actually happened.
+This took me longest to see, and I had to walk part of it back.
 
-Whether the entry came from me typing it manually or from a real
-program is invisible to the model. What matters is the shape: a
-discrete structural event in the transcript that changes the
-pre-conditions for the answer. The game is finding events whose
-pre-conditions push the answer somewhere worth going.
+Tool-call events change behavior more than typing the same description
+into a chat message does -- but the effect is asymmetric, and not in
+the direction I first guessed.
+
+I tested this by adding a `text-instructions` mode to the runner that
+delivers the exact same recipe content as plain prose inside the
+prompt body, then re-ran working and broken recipes in both modes on
+both Claude Sonnet 4.6 and gpt-5.5 (via the Codex CLI at low reasoning
+effort). Same words, same tasks, same N. Only the wrapper changes.
+
+Across seven (recipe, mode) comparisons, the pattern is clean:
+
+- **Working recipes** (recipes that produce positive deltas): tool-call
+  mode adds a small lift on average (+0.018), sometimes more
+  (counterpoint-biblical-duo on Sonnet went from +0.088 in text to
+  +0.177 in tool-call -- doubled).
+- **Broken recipes** (recipes that produce negative deltas): tool-call
+  mode hurts proportionally to how broken the recipe is. The biblical
+  register on codex went from +0.048 in text-mode to **-0.228** in
+  tool-call mode -- a 0.276-delta swing in the wrong direction.
+
+Tool-call mode isn't a fixed +X% bonus on top of recipe content. It's
+an asymmetric *amplifier* on whatever direction the recipe pulls. If
+the conditioning lifts the model in a direction it can sustain
+(extreme cross-domain authors), the commitment provides a small but
+consistent lift. If the conditioning pushes the model toward a
+direction it can't sustain (KJV biblical register on gpt-5.5,
+because gpt-5.5 apparently can't decouple register from topic), the
+commitment locks in the failure harder than text-instruction delivery
+does -- the model produces zero-entity outputs, register collapses,
+paraphrase loops.
+
+Connecting to mechanistic interpretability: Arditi et al. 2024
+("Refusal in Language Models Is Mediated by a Single Direction")
+showed safety refusal operates via a single direction in activation
+space. The same frame works here. A tool-call wrapper produces a
+stronger move along whichever direction the recipe pulls. Stronger
+moves along *present* directions produce sharper, more committed
+outputs that the rarity judge rewards. Stronger moves along *absent*
+directions produce nonsense -- the model doesn't have the direction
+the recipe is reaching for, but tool-call mode commits it harder to
+trying.
+
+Practical rule that fell out: validate new recipes in
+text-instructions mode first. If the recipe's direction is positive
+in text, promote to tool-call (small lift). If the direction is
+negative or flat, do NOT promote -- tool-call will amplify the
+failure proportional to brokenness.
+
+This refines the original "tool calls as events" doctrine. The shape
+of the wrapper does matter. Just not as a bonus -- as a brake on
+recipes that don't fit the model.
 
 ## IX. The Pareto frontier
 
 ![Pareto frontier](figures/pareto-frontier.png)
 
 Three thousand trials across fifty recipes, surface looks like this.
-Five productionized recipes cover most of the useful frontier:
+Six productionized recipes cover most of the useful frontier:
 
 - **antinomy** -- max specificity, via operating inside contradictions.
 - **envoy** -- max embedding distance, via register-shift on the
@@ -255,11 +291,54 @@ Five productionized recipes cover most of the useful frontier:
 - **chorus** and **trinity** -- earlier multi-voice recipes (with
   and without synthesis) that hold the frontier when register-shift
   isn't available.
+- **envoy-extreme** (added v6.6.0) -- cross-model winner. Three
+  hard-extreme cross-domain author-becomes (Sun Ra/Moten/Fuller-tier,
+  not Carson/Knuth-tier) plus fork plus ritual, no register-shift.
+  Use when the target generator isn't Sonnet.
 
-A sixth point -- biblical register with multi-voice -- pushes
-embedding distance higher than any of the productionized recipes,
-but at meaningful specificity cost. Not a separate stratagem; just
-pass biblical register-args to envoy.
+A seventh point -- biblical register with multi-voice -- pushes
+embedding distance higher than any of the productionized recipes on
+Sonnet, but at meaningful specificity cost. Not a separate stratagem;
+just pass biblical register-args to envoy. *Sonnet-specific: the
+biblical register is catastrophic on gpt-5.5.*
+
+## X. Cross-model: what transfers, what doesn't
+
+I tested the productionized recipes against gpt-5.5 (via Codex CLI at
+low reasoning effort) to see what generalized. The findings refine
+the picture substantially.
+
+**What transfers:** cross-domain author-becomes. envoy-extreme on
+codex hit +0.310 delta -- *stronger* than the same recipe on Sonnet
+(+0.190). Hard-extreme cross-domain authors (Sun Ra/Octavia Butler/
+Hilma af Klint scale) seem to land on directions both models have.
+
+**What doesn't transfer:** register-shifts (biblical, scientific) and
+the disjunction primitive. The Sonnet champion counterpoint-biblical-
+duo (+0.177 on Sonnet) landed at -0.228 on codex -- the *worst*
+recipe tested. The KJV biblical register strips citations on gpt-5.5
+without producing the embedding-distance compensation it produces on
+Sonnet.
+
+**There's also an extremity threshold.** Carson/Knuth/Weil works on
+Sonnet but is too mild for codex (chorus with CKW: -0.129 on codex).
+Codex needs the harder-extreme cosmologists/world-builders to lift.
+Sonnet doesn't.
+
+The mechanistic story (via Arditi et al. 2024 on activation
+directions): each model has its own geometry of voice-and-register
+directions. Author-becomes route through "writing-as-X" representations
+that are broadly distributed across pretraining corpora -- every chat
+model has rich data on Sun Ra. Register-shift requires a *style-vs-
+topic decoupling* direction that Sonnet has but codex apparently
+lacks. Recipes optimized against one generator's geometry don't
+transfer to another's, but the structural mechanisms (multi-voice
+conditioning) ride on shared directions.
+
+Practical: **if you don't know what generator your skill will run
+against, use envoy-extreme.** If you know it's Sonnet, all six
+recipes are options; biblical-register variants push embedding
+distance furthest.
 
 The interesting thing isn't the specific recipes. It's that a
 language model has a much bigger range of voices than its default

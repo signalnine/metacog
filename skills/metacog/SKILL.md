@@ -9,7 +9,7 @@ Metacognitive compositional engine. Sixteen primitives compose into transformati
 
 ## Version Check
 
-Before first use in a session, run `metacog version` and verify the binary is installed and version is >=6.5.1.
+Before first use in a session, run `metacog version` and verify the binary is installed and version is >=6.6.0.
 
 ## Core Rule
 
@@ -198,15 +198,23 @@ These compose the structural primitives. They're the right reach when the work i
 
 **THE COUNTERPOINT** — Use when you want both axes lifted but want a balanced answer rather than maximizing one. Composes envoy (register prepend) with antinomy (disjunction substituted for synthesis). The register is the cantus firmus; the three voices sing against it; the disjunction is deliberate harmonic dissonance; ritual is the cadence-resolution. Pareto-frontier balanced point.
 
+**THE ENVOY EXTREME** — Use when cross-model robustness matters or the target generator's response to register-shift is unknown. Three hard-extreme cross-domain author-becomes (cosmologists/world-builders at Sun Ra/Octavia Butler/Hilma af Klint scale, NOT mild-academic-essayists at Carson/Knuth scale) plus fork plus ritual. No register-shift -- the cross-model probe found register-shifts are generator-specific (catastrophic on gpt-5.5; lift-y on Sonnet) but cross-domain author-becomes transfer cleanly across both models. Empirical cross-model winner: +0.310 delta on gpt-5.5 (vs Sonnet's +0.190 on the same recipe).
+
 ### Register-target guidance for envoy / counterpoint
 
 These stratagems take a register call as their first step. The user supplies the register-args; the productionized definitions are register-agnostic. Empirically validated register choices:
 
 - **Victorian periodical essay** (default): semicolons load-bearing, sentence-as-paragraph, first-person plural. Balanced -- moderate emb_d push, retains citation density.
-- **King James biblical**: parallelism, parataxis, thee/thou, archaic vocabulary. Maximum emb_d push (highest empirically observed), but reduced delta -- biblical surface cites few modern entities. Use envoy with biblical, NOT counterpoint -- biblical's parallelism conflicts structurally with disjunction.
+- **King James biblical**: parallelism, parataxis, thee/thou, archaic vocabulary. Maximum emb_d push (highest empirically observed on Sonnet), but reduced delta -- biblical surface cites few modern entities. Use envoy with biblical, NOT counterpoint -- biblical's parallelism conflicts structurally with disjunction. *Sonnet-specific; cross-model probe found this register actively harmful on gpt-5.5 (CBD recipe scored -0.228 delta on codex). Use envoy-extreme instead if cross-model robustness matters.*
 - **Late-20th-century physics paper**: numbered claims, methods/results structure, hedged conclusions. Slightly favors delta over emb_d. Good for analytical questions where citation density matters.
 
-If the question is taste-bearing or experiential, default to Victorian. If maximum-strangeness is the goal, biblical with envoy. If the question is analytical, scientific with envoy or counterpoint.
+If the question is taste-bearing or experiential, default to Victorian. If maximum-strangeness is the goal, biblical with envoy. If the question is analytical, scientific with envoy or counterpoint. **If the target generator is not Sonnet, prefer envoy-extreme** (no register-shift, hard-extreme authors).
+
+### Asymmetric amplifier rule
+
+The tool-call vs text-instruction comparison shows that tool-call invocation is an *asymmetric amplifier*, not a fixed bonus. For working recipes (positive delta), tool-call mode adds a small lift (+0.018 average). For broken recipes (negative delta on the target model), tool-call mode amplifies the failure proportional to brokenness (-0.066 to -0.276 in observed cases).
+
+Practical rule when porting recipes to a new generator: validate the recipe's direction first (run a small N=6 sweep). If delta is positive or near-zero, the tool-call wrapper is safe. If delta is negative, do NOT promote -- text-instruction delivery (or a different recipe) will outperform tool-call mode for that recipe on that generator.
 
 ## Selection
 
