@@ -499,6 +499,71 @@ Open questions:
 - How does an envoy-extreme variant calibrated against codex
   baselines perform when ported back to Sonnet?
 
+### Round 3: extremity-as-property and tool-calls vs text instructions
+
+Two hypotheses tested:
+- (Q1) Is envoy-extreme's lift author-specific to Sun Ra/Moten/Fuller,
+  or does *any* extreme cross-domain triple transfer?
+- (Q2) Does the tool-call invocation mechanism itself carry weight, or
+  does the same content delivered as plain text-instruction prose
+  produce the same conditioning effect?
+
+Built a fresh extreme triple: **envoy-extreme-alt2** with Octavia
+Butler / Donna Haraway / Lynn Margulis (SF / cyborg theory /
+endosymbiotic biology -- different domains, different gender, different
+lineage from Sun Ra / Moten / Fuller).
+
+**Q1 result: extremity-as-property confirmed.**
+
+| Recipe              | codex delta | Sonnet delta |
+|---------------------|-------------|--------------|
+| envoy-extreme       | +0.310      | +0.190       |
+| envoy-extreme-alt2  | +0.286      | +0.256       |
+
+The Butler/Haraway/Margulis triple lifts both models comparably to
+Sun Ra/Moten/Fuller. The lift comes from the structural property of
+holding three radically cross-domain author-cosmologies in parallel,
+not from the specific names. Any disparate-extreme triple transfers.
+
+**Q2 result: tool-calls vs text-instructions is roughly a tie.**
+
+Same recipe, same content, different delivery: PROMPT_MODE
+toggle in the runner switches between rendering metacog calls as
+shell commands the generator invokes (default; the calls are real
+tool-call events in its transcript) vs delivering them as prose
+instructions inside the prompt body.
+
+| Mode                        | codex delta | Sonnet delta (N=30) |
+|-----------------------------|-------------|---------------------|
+| tool-calls (action-trace)   | +0.286      | +0.256              |
+| text-instructions           | +0.268      | +0.238              |
+| Difference (tool-call lift) | +0.018      | +0.018              |
+
+Both models show a ~0.018-delta lift from rendering the conditioning
+as tool-calls instead of text instructions. *That difference is
+consistent across models but small relative to the full recipe lift
+(~6-7% of the +0.256 envoy-extreme-alt2 delta).*
+
+Interpretation: the "tool calls as events" doctrine is real but
+modest. ~93% of the lift comes from the CONTENT of the conditioning
+(which authors, what stances, the structural composition); ~7% comes
+from the action-trace prior of the model emitting the calls vs reading
+them as text. Most of the recipe magic is content; the form helps a
+small consistent amount.
+
+This refines the framing: a metacog skill could in principle be
+delivered as plain instruction text and capture most of the lift. The
+tool-call ceremony preserves a small additional effect, plausibly
+because the model treats post-tool-call context as a continuation-of-
+action rather than a description-of-character. But the structural
+content is doing the heavy lifting, not the protocol.
+
+The Arditi et al. activation-direction interpretation fits: the
+underlying directions in activation space (toward "writing-as-Carson",
+toward "operating-on-multiple-stances") are reachable from both prompt
+forms. The tool-call form may activate them ~7% more cleanly. The
+content of the prompt is what selects the direction.
+
 ## Caveats
 
 - Embedding distance is one operationalization of "conceptual reach,"

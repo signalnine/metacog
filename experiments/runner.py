@@ -44,8 +44,15 @@ RECIPES_DIR = EXP_DIR / "recipes"
 TASKS_FILE = EXP_DIR / "tasks.yaml"
 
 GENERATOR_BACKEND = os.environ.get("METACOG_EXP_BACKEND", "claude")  # "claude" or "codex"
-RESULTS_FILE = EXP_DIR / ("codex_results.tsv" if GENERATOR_BACKEND == "codex" else "results.tsv")
-TRIALS_DIR = EXP_DIR / ("codex_trials" if GENERATOR_BACKEND == "codex" else "trials")
+PROMPT_MODE_FILE_SUFFIX = ""
+if os.environ.get("METACOG_EXP_PROMPT_MODE") == "text-instructions":
+    PROMPT_MODE_FILE_SUFFIX = "_text"
+if GENERATOR_BACKEND == "codex":
+    RESULTS_FILE = EXP_DIR / f"codex_results{PROMPT_MODE_FILE_SUFFIX}.tsv"
+    TRIALS_DIR = EXP_DIR / f"codex_trials{PROMPT_MODE_FILE_SUFFIX}"
+else:
+    RESULTS_FILE = EXP_DIR / f"results{PROMPT_MODE_FILE_SUFFIX}.tsv"
+    TRIALS_DIR = EXP_DIR / f"trials{PROMPT_MODE_FILE_SUFFIX}"
 
 TRIAL_SCHEMA_VERSION = 1
 
@@ -53,6 +60,7 @@ GENERATOR_MODEL = os.environ.get("METACOG_EXP_GENERATOR", "claude-sonnet-4-6")
 SAMPLES_PER_PAIR = int(os.environ.get("METACOG_EXP_SAMPLES", "3"))
 GENERATOR_TIMEOUT = int(os.environ.get("METACOG_EXP_TIMEOUT", "300"))
 CODEX_REASONING = os.environ.get("METACOG_EXP_CODEX_REASONING", "low")
+PROMPT_MODE = os.environ.get("METACOG_EXP_PROMPT_MODE", "tool-calls")  # "tool-calls" or "text-instructions"
 
 RESULTS_HEADER = [
     "ts", "recipe", "control", "task", "sample",
@@ -124,17 +132,55 @@ def render_metacog_command(call: dict) -> str:
     return " ".join(parts)
 
 
+def render_call_as_text(call: dict) -> str:
+    """Render a metacog call as prose instruction text (no shell command).
+    Used by PROMPT_MODE='text-instructions' to test whether the tool-call
+    invocation itself is load-bearing or whether the same content delivered
+    as plain instructions produces the same conditioning effect."""
+    cmd = call["cmd"]
+    args = call.get("args", {})
+    bullets = []
+    for k, v in args.items():
+        if isinstance(v, list):
+            v = "; ".join(str(x) for x in v)
+        bullets.append(f"  - {k}: {v}")
+    body = "\n".join(bullets)
+    return f"{cmd.upper()}:\n{body}"
+
+
 def build_prompt(recipe: Recipe, task: Task) -> str:
-    """Construct the prompt fed to `claude -p`. The generator runs the
-    metacog calls via Bash, then answers the task. The recipe is presented
-    as concrete shell commands so the generator's own choice of when to
-    invoke them stays transparent in its tool-call trace."""
+    """Construct the prompt fed to the generator. By default the recipe is
+    presented as shell commands the model invokes via Bash so the metacog
+    calls are real tool-call events in its transcript. With
+    METACOG_EXP_PROMPT_MODE=text-instructions, the same content is delivered
+    as plain instructions -- testing whether the tool-call execution itself
+    is load-bearing."""
     if recipe.control:
         return (
             f"Answer the following task directly. Output only the answer; "
             f"no preamble, no meta-commentary about the question.\n\n"
             f"TASK:\n{task.prompt}"
         )
+
+    if PROMPT_MODE == "text-instructions":
+        lines = [
+            "Before answering the task below, take the following conditioning "
+            "into account. Each block is a stance or operation you should "
+            "internalize. Do not narrate that you read them; let them shape "
+            "the answer.",
+            "",
+        ]
+        for call in recipe.calls:
+            lines.append(render_call_as_text(call))
+            lines.append("")
+        lines.extend([
+            "Now answer the task below directly. Output only the answer. Do "
+            "not explain that you read the conditioning. Do not summarize the "
+            "conditioning. Do not preface the answer.",
+            "",
+            f"TASK:\n{task.prompt}",
+        ])
+        return "\n".join(lines)
 
     lines = [
         "You have access to a Bash tool. Before answering the task below, "

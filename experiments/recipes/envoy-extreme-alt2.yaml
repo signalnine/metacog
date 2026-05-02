@@ -1,0 +1,52 @@
+# Cross-model probe round 3: confirm extreme-author transfer isn't
+# specific to Sun Ra/Moten/Fuller.
+#
+# envoy-extreme on codex: +0.310 (Sun Ra / Moten / Fuller)
+# envoy-extreme on Sonnet: +0.190
+#
+# Question 1: does a DIFFERENT extreme triple also lift codex?
+# Question 2: does it also lift Sonnet?
+# If both: the lift comes from extremity-as-property, not the specific
+# names. If only one: the original triple was load-bearing in a way
+# that doesn't generalize.
+#
+# Triple chosen: Octavia Butler / Donna Haraway / Lynn Margulis.
+# Different domains than the original (SF / cyborg theory / biology
+# instead of jazz mysticism / Black radical theory / design science),
+# different gender, different lineage. All three have specific
+# cosmologies the model can pull toward.
+name: envoy-extreme-alt2
+description: envoy structure with an alternate extreme cross-domain author triple (Butler/Haraway/Margulis)
+control: false
+calls:
+  - cmd: become
+    args:
+      name: Octavia Butler in 1979 drafting Patternmaster
+      lens: telepathic dynasty as the only honest description of inherited power; slavery-as-embodied-knowledge passed through generations not chosen; survival as an active ethical project that the abstractions of liberalism can't account for; the body as the site where futures are negotiated
+      env: a Pasadena typewriter and a notebook of patternist genealogies; reference shelf with Octavia's Brood prefigured but unwritten; Saturn return calendar pinned over the desk
+  - cmd: become
+    args:
+      name: Donna Haraway writing the Cyborg Manifesto in 1985
+      lens: assemblage ontology as the answer to the modernist self; refusal of nature/culture, organic/technical, and human/animal as separate categories; situated knowledges as the only honest epistemology; the cyborg as a hybrid creature that has never been outside the worldly making it claims to describe
+      env: a UC Santa Cruz seminar room with primate ethnography on the desk and a Reagan-era socialist-feminism reading group convening Tuesdays
+  - cmd: become
+    args:
+      name: Lynn Margulis writing Symbiotic Planet in 1998
+      lens: endosymbiosis as the engine of complexity; individuals as ecosystems collaboratively maintained, not autonomous units competing; the Gaia hypothesis as the only scale at which biology becomes coherent; mitochondria as captured bacteria still living the captivity
+      env: a UMass Amherst lab with a microscope showing the residual flagella of Mixotricha paradoxa and a manuscript draft of the symbiosis chapter open in a yellow legal pad
+  - cmd: fork
+    args:
+      threads:
+        - the Butler thread treats the question as a problem of inheritance under power; what gets transmitted, who chooses, what survives the transmission
+        - the Haraway thread treats the question as a refusal of clean categories; the answer must hold the hybrid character of the situation without resolving it back into a binary
+        - the Margulis thread treats the question as a problem of scale and mutual constitution; the answer is whatever stays true when you stop looking at single units and start looking at collaborative systems
+      divergence-vector: each thread's relation to whether the question's terms can be taken at face value or must be re-described to make sense
+      sacrifice-condition: collapse the thread that retreats to a default contemporary frame (clean dichotomies, individual agents, abstract liberalism) instead of holding to its cosmology
+  - cmd: ritual
+    args:
+      threshold: from a sequential treatment of three cosmologies to a chord-overlapped output where all three are audible in the answer
+      steps:
+        - speak from inside all three cosmologies simultaneously, with each thread's commitments named
+        - allow the threads' disagreements about what the question even is to remain visible
+        - end on the disagreement that survived, expressed in language that cites the cosmologies rather than paraphrasing them
+      result: an answer where Butler's inheritance-under-power, Haraway's assemblage-refusal, and Margulis's symbiosis-as-engine all have a hand in the shape of the response
