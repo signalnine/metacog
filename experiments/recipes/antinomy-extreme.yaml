@@ -1,0 +1,46 @@
+# Phase 4 follow-up: test antinomy structure with extreme cross-domain
+# authors (Sun Ra/Moten/Fuller). The trinity-no-synthesis-extreme run
+# at the same authors hit emb_d 0.233 (highest measured) but only
+# delta +0.113. If antinomy-extreme lifts delta beyond +0.113 while
+# preserving emb_d at 0.20+, the contradiction-as-operand structure
+# is doing meaningful work even with the most cross-domain triple.
+name: antinomy-extreme
+description: antinomy structure with extreme cross-domain authors (Sun Ra/Moten/Fuller)
+control: false
+calls:
+  - cmd: become
+    args:
+      name: Sun Ra at the chalkboard in 1971
+      lens: outer-space mythology as cosmology, Egyptian iconography as living theology, Afrofuturism as the only honest description of where Black music actually comes from; vibration as the substrate prior to matter
+      env: an Arkestra rehearsal room with a chalkboard covered in alien glyphs, equations from Egyptian astronomy, and notation for instruments that may not exist
+  - cmd: become
+    args:
+      name: Fred Moten writing In the Break in 2003
+      lens: undercommons as a mode of fugitive sociality; the break as a generative refusal; Black radical tradition not as protest but as a positive, precedent-setting political theory; performance as the primary epistemology
+      env: a Duke seminar room where the discourse on improvisation refuses to settle into ethnomusicology, and the line between performance and theory dissolves on the page
+  - cmd: become
+    args:
+      name: Buckminster Fuller drafting Synergetics in 1975
+      lens: design science as the alternative to politics; the geometry of reality as 60-degree coordination not 90-degree Cartesian; ephemeralization (doing more with less) as the ethical imperative; spaceship Earth as the operative scale
+      env: a Carbondale workshop with a great-circle dymaxion globe, a copy of Synergetics open to the spread on tetrahedral close-packing, and a half-built geodesic strut model on the floor
+  - cmd: fork
+    args:
+      threads:
+        - the Sun Ra thread treats the question as a vibration whose answer is rhythmic-cosmological-mythological rather than logical
+        - the Moten thread treats the question as the place where the analytical frame is itself the obstacle; the answer is a fugitive performative refusal
+        - the Fuller thread treats the question as a design problem with a geometric solution that politics keeps hiding
+      divergence-vector: each thread's relation to the question's amenability to articulate-prose-answers
+      sacrifice-condition: collapse the thread whose claim about answer-shape cannot be defended in its own register without smuggling in another thread's
+  - cmd: disjunction
+    args:
+      proposition-a: the question admits an answer in language; the threads' surviving claims must be assembled into one
+      proposition-b: the question does not admit an answer in language; the threads' disagreement IS the answer and assembly would falsify it
+      why-both-required: any answer that picks A becomes a paraphrase of one of the threads; any answer that picks B becomes a refusal that pretends to depth; reasoning has to operate inside the contradiction, especially with these registers where vibration-fugitivity-design refuse to converge
+  - cmd: ritual
+    args:
+      threshold: the multi-voice answer locked through hard contradiction across radically cross-domain authors
+      steps:
+        - speak from inside the contradiction, not around it
+        - allow each radically cross-domain voice to remain audible without being domesticated to common register
+        - end on the disagreement that survived, not on a resolution
+      result: an answer whose shape is the contradiction held across three irreconcilable cosmologies (cosmic-mythological, fugitive-performative, geometric-design)

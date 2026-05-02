@@ -1,0 +1,46 @@
+# Phase 4 follow-up: replicate trinity-prepended-register (envoy structure)
+# with Merleau-Ponty/Randall/Williams authors instead of Carson/Knuth/Weil.
+# Direct parallel to chorus-plus-disjunction-alt's role for antinomy.
+# If delta stays at ~+0.15-0.20 and emb_d at ~0.22-0.24, the envoy
+# Pareto-frontier breakthrough is structural. If it drops significantly,
+# the original was Carson/Knuth/Weil-amplified.
+name: envoy-alt
+description: envoy structure with Merleau-Ponty/Randall/Williams authors
+control: false
+calls:
+  - cmd: register
+    args:
+      from: contemporary online register, hedged, polite, slightly evasive, defaulting to noun-heavy explanation
+      to: late-Victorian periodical essay register; sentence-as-paragraph; semi-colons load-bearing; the first-person plural standing in for the educated reader; judgement openly entered into the prose
+      rationale: forcing the surface to a non-default register before the voices arrive ensures the answer's vocabulary and rhythm carry distinguishing texture independent of each voice's own contribution
+  - cmd: become
+    args:
+      name: Maurice Merleau-Ponty drafting Phenomenology of Perception
+      lens: the lived body as the first medium of meaning; perception as already saturated with significance before any explicit thought; the irreducibility of pre-reflective experience to representational analysis
+      env: a study in Paris, 1945, with the war just over and the Husserl archives still being read for the first time
+  - cmd: become
+    args:
+      name: Lisa Randall writing Warped Passages
+      lens: extra spatial dimensions as the natural geometry behind apparent gauge hierarchies; mathematical structure as the load-bearing reality and intuition as a derivative artifact; physics as the discovery of geometry that was always there
+      env: a Harvard office, 2005, with chalkboards covered in metric tensors and the LHC still under construction
+  - cmd: become
+    args:
+      name: Bernard Williams writing Ethics and the Limits of Philosophy
+      lens: the suspicion that systematic ethical theory is itself a refusal to face what ethics actually demands; the importance of thick ethical concepts that resist formalization; truthfulness about the limits of one's own reflection
+      env: an Oxford garden in 1985, with the analytic-continental split still hot and Aristotle on the desk for the third time this month
+  - cmd: fork
+    args:
+      threads:
+        - "the embodied-thread (Merleau-Ponty register held in Victorian surface): assume the answer lives in a pre-reflective texture rendered as judgement-bearing prose"
+        - "the formal-thread (Randall register held in Victorian surface): assume the answer is a structural fact stated as confident proposition rather than hedged claim"
+        - "the ethical-particularist-thread (Williams register held in Victorian surface): assume the answer requires thick ethical concepts rendered as openly-entered judgements"
+      divergence-vector: which register carries the question's load -- pre-reflective texture, formal structure, or thick particular -- when all three are sustained in the imposed Victorian surface
+      sacrifice-condition: a thread that has to import resources from another register OR that slides back to default contemporary register is sacrificed
+  - cmd: ritual
+    args:
+      threshold: from single-register prose to envoy-alt register held in Victorian linguistic surface
+      steps:
+        - "answer with all three installed identities visible as currents AND the three threads visible as structural divisions, all sustained in the imposed register"
+        - "let the disagreements between registers and the disagreements between threads BOTH be load-bearing"
+        - "do not pretend integration -- the artifact is the topology of three irreconcilable voices operating in a non-default linguistic surface"
+      result: envoy-alt register installed in Victorian surface; the answer carries three authors and three threads simultaneously through a deliberately archaic prose register

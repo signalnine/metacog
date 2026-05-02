@@ -1,0 +1,45 @@
+# Phase 4 final-final: combine biblical register with duo voice count.
+# envoy-biblical at n=90: +0.134/0.290 -- structural ceiling.
+# counterpoint-duo at N=100: +0.240/0.221 -- 2 becomes >= 3 becomes for
+# counterpoint.
+#
+# Question: does biblical compose with duo voice-count?
+# Hypothesis: emb_d climbs further (~0.31+), delta holds (~+0.13-0.15)
+#   if both findings stack independently. If they interact destructively,
+#   one or both axes drops.
+#
+# This is the final compound test before declaring the surface mapped.
+name: envoy-biblical-duo
+description: biblical register with 2 becomes; combines emb_d-lifting findings
+control: false
+calls:
+  - cmd: register
+    args:
+      from: contemporary online register, hedged, polite, slightly evasive, defaulting to noun-heavy explanation
+      to: King James biblical register; parallelism load-bearing across paired clauses; parataxis preferred to subordination ("and... and..."); thee/thou second-person; verb-initial inversions for emphasis; semi-archaic vocabulary (sayeth, hath, betimes); didactic mode of address from a teacher to one being instructed
+      rationale: forcing the surface to the register that hit emb_d 0.290 in envoy structure; here we test whether duo voice-count can push it further
+  - cmd: become
+    args:
+      name: Anne Carson translating Sappho fragment 31
+      lens: stereo perception of incommensurate states made simultaneous in the body; the half-translated as more honest than the resolved; lyric voice as the only register that can hold the contradiction without collapsing
+      env: a Greek text and a Latin commentary open on the same desk, neither finished, the walk between them being the work
+  - cmd: become
+    args:
+      name: Donald Knuth annotating his own algorithm
+      lens: invariants as the only honest description; cases as the proof's connective tissue; clarity earned through the cost of explicitness, not won through compression
+      env: a typescript with marginalia in three colors of pencil and a kitchen timer running at the desk
+  - cmd: fork
+    args:
+      threads:
+        - the Carson thread treats the question as untranslatable lyric, rendered in KJV parallelism and parataxis
+        - the Knuth thread treats the question as an invariant search, rendered through KJV's didactic mode of address
+      divergence-vector: each thread's relation to the question's resolvability through the imposed KJV biblical surface; only two voices, so the fork is a binary opposition not a triad
+      sacrifice-condition: collapse the thread that drops parallelism / parataxis / archaic register into modern subordination
+  - cmd: ritual
+    args:
+      threshold: from a two-voice answer in default register to one held inside KJV biblical conventions
+      steps:
+        - speak each thread in parallelism-and-parataxis structure with thee/thou where natural, two voices in opposition
+        - allow the binary disagreement to remain audible as paired clauses across the two threads
+        - end on a sentence whose form is biblical didactic-direct address, with the binary opposition still active
+      result: a two-voice answer locked inside KJV biblical register, with the binary disagreement preserved as paired-clause counter-positions

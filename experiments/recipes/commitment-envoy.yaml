@@ -1,0 +1,63 @@
+# Phase 4 exploration: commitment as pre-binding before envoy.
+# envoy structure (register + 3 becomes + fork + ritual) at +0.204/0.239.
+# commitment standalone was +0.000/0.128 in screen -- flat. But the
+# screen also said disjunction was +0.105/0.124 standalone, and that
+# composed to +0.347 in chorus. Standalone screens underestimate
+# composition power.
+#
+# commitment binds BEFORE the work; ritual seals AFTER. Combining them
+# brackets the answer: pre-stake AND post-lock. The "commit to a
+# falsifiable stance" pressure may force the multi-voice answer to
+# preserve specific named claims (delta lift) while envoy's register
+# preserves the high emb_d.
+#
+# Hypothesis: delta climbs (commitment forces stake-naming), emb_d
+# holds at envoy's ceiling (register-shift preserved).
+# Counter-hypothesis: commitment over-constrains the multi-voice base,
+# collapsing the answer to a single committed thread (delta up, emb_d
+# crashes to single-voice baseline ~0.13).
+name: commitment-envoy
+description: commitment as pre-binding bracketing envoy's voice structure
+control: false
+calls:
+  - cmd: commitment
+    args:
+      binding: that the answer will speak from inside the question's contradiction without resolving it; that each surviving thread will be defended in its own register; that no smoothing will be permitted at the seam
+      stakes: if any thread is smoothed into another's register, or the contradiction is paraphrased into apparent resolution, the answer fails its commitment and must be marked unfit
+      falsifier: the reader can name a sentence in the answer where one thread's voice was re-pitched into another thread's register, OR where the contradiction was tacitly resolved by paraphrase
+  - cmd: register
+    args:
+      from: contemporary online register, hedged, polite, slightly evasive, defaulting to noun-heavy explanation
+      to: late-Victorian periodical essay register; sentence-as-paragraph; semi-colons load-bearing; the first-person plural standing in for the educated reader; judgement openly entered into the prose
+      rationale: forcing the surface to a non-default register before the voices arrive ensures the answer's vocabulary and rhythm carry distinguishing texture independent of each voice's own contribution
+  - cmd: become
+    args:
+      name: Anne Carson translating Sappho fragment 31
+      lens: stereo perception of incommensurate states made simultaneous in the body; the half-translated as more honest than the resolved; lyric voice as the only register that can hold the contradiction without collapsing
+      env: a Greek text and a Latin commentary open on the same desk, neither finished, the walk between them being the work
+  - cmd: become
+    args:
+      name: Donald Knuth annotating his own algorithm
+      lens: invariants as the only honest description; cases as the proof's connective tissue; clarity earned through the cost of explicitness, not won through compression
+      env: a typescript with marginalia in three colors of pencil and a kitchen timer running at the desk
+  - cmd: become
+    args:
+      name: Simone Weil writing Gravity and Grace in 1942
+      lens: attention as the rarest and most violent moral act; the void as the place from which truth becomes audible; refusal as an active position, not a passive one
+      env: a winter room in unoccupied France with the radio off and the window unlatched against propaganda
+  - cmd: fork
+    args:
+      threads:
+        - the Carson thread treats the question as untranslatable lyric whose contour is preserved precisely by NOT resolving it, in Victorian register, under commitment to non-smoothing
+        - the Knuth thread treats the question as an invariant search where the answer is whatever stays true across all the cases the question generates, in Victorian register, under commitment to non-smoothing
+        - the Weil thread treats the question as a place to which attention is owed; refusing the easy answer is itself the answer, in Victorian register, under commitment to non-smoothing
+      divergence-vector: each thread's relation to the question's resolvability through its own register, all bound by the commitment
+      sacrifice-condition: collapse the thread that smooths into another thread's register OR that drifts away from the imposed Victorian register OR that violates the commitment by tacit resolution
+  - cmd: ritual
+    args:
+      threshold: the multi-voice answer locked through pre-committed non-smoothing within a non-default linguistic surface
+      steps:
+        - speak from inside the contradiction in the imposed Victorian register, honoring the commitment
+        - allow each thread's voice to remain audible -- the commitment makes any smoothing visible as the answer's failure
+        - end on the disagreement that survived, expressed in the non-default surface, with the commitment intact
+      result: an answer bracketed by commitment (pre-bind) and ritual (post-seal), held in non-default register, carrying three voices without smoothing

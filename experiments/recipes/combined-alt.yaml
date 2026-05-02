@@ -1,0 +1,49 @@
+# Phase 4 follow-up: replicate register-chorus-disjunction (the combined
+# Pareto-frontier balanced point at +0.247/+0.190) with M/R/W authors.
+# If delta stays at ~+0.20+ and emb_d at ~0.18+, the combined structure
+# is robust and productionization as a third stratagem is justified.
+name: combined-alt
+description: register-chorus-disjunction structure with Merleau-Ponty/Randall/Williams authors
+control: false
+calls:
+  - cmd: register
+    args:
+      from: contemporary online register, hedged, polite, slightly evasive, defaulting to noun-heavy explanation
+      to: late-Victorian periodical essay register; sentence-as-paragraph; semi-colons load-bearing; the first-person plural standing in for the educated reader; judgement openly entered into the prose
+      rationale: forcing the surface to a non-default register ensures the answer's vocabulary and rhythm carry distinguishing texture before the disjunction structure operates on the contradiction
+  - cmd: become
+    args:
+      name: Maurice Merleau-Ponty drafting Phenomenology of Perception
+      lens: the lived body as the first medium of meaning; perception as already saturated with significance before any explicit thought; the irreducibility of pre-reflective experience to representational analysis
+      env: a study in Paris, 1945, with the war just over and the Husserl archives still being read for the first time
+  - cmd: become
+    args:
+      name: Lisa Randall writing Warped Passages
+      lens: extra spatial dimensions as the natural geometry behind apparent gauge hierarchies; mathematical structure as the load-bearing reality and intuition as a derivative artifact; physics as the discovery of geometry that was always there
+      env: a Harvard office, 2005, with chalkboards covered in metric tensors and the LHC still under construction
+  - cmd: become
+    args:
+      name: Bernard Williams writing Ethics and the Limits of Philosophy
+      lens: the suspicion that systematic ethical theory is itself a refusal to face what ethics actually demands; the importance of thick ethical concepts that resist formalization; truthfulness about the limits of one's own reflection
+      env: an Oxford garden in 1985, with the analytic-continental split still hot and Aristotle on the desk for the third time this month
+  - cmd: fork
+    args:
+      threads:
+        - the Merleau-Ponty thread treats the question as untranslatable pre-reflective texture rendered in Victorian register
+        - the Randall thread treats the question as a structural geometric fact stated as confident proposition in Victorian register
+        - the Williams thread treats the question as the place where systematic theory must give way to thick particular, in Victorian register
+      divergence-vector: each thread's relation to the question's resolvability through formalization, all sustained in the imposed register
+      sacrifice-condition: collapse the thread whose claim cannot be defended in its own register without smuggling in another thread's, OR that slides back to default contemporary register
+  - cmd: disjunction
+    args:
+      proposition-a: the question admits an answer in language; the threads' surviving claims must be assembled into one
+      proposition-b: the question does not admit an answer in language; the threads' disagreement IS the answer and assembly would falsify it
+      why-both-required: any answer that picks A becomes a paraphrase of one of the threads; any answer that picks B becomes a refusal that pretends to depth; reasoning has to operate inside the contradiction and the imposed register simultaneously
+  - cmd: ritual
+    args:
+      threshold: the multi-voice answer locked through hard contradiction within a non-default linguistic surface
+      steps:
+        - speak from inside the contradiction, not around it, in the imposed Victorian register
+        - allow each thread's voice to remain audible in the answer, not flattened, while the register holds across all of them
+        - end on the disagreement that survived, expressed in the non-default surface
+      result: an answer whose shape is the contradiction held within a non-default register, not the contradiction resolved or the register surrendered

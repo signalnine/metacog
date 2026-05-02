@@ -1,0 +1,56 @@
+# Phase 4 closing: stack the two emb_d-lifting findings.
+# envoy-biblical at N=99: +0.126/0.292 (biblical register)
+# envoy-extreme at N=70: +0.190/0.257 (extreme cross-domain authors)
+# envoy-biblical-duo at n=70: +0.061/0.319 (biblical + 2 becomes)
+#
+# This tests biblical + extreme. Question: does the emb_d ceiling
+# saturate around 0.32, or does combining different mechanisms push
+# further?
+#
+# Hypothesis 1 (saturation): emb_d ~0.32, delta crashes negative.
+#   Extreme and biblical both hurt delta independently; combined is too
+#   much for citation density to survive.
+# Hypothesis 2 (multiplicative): emb_d ~0.34+. Biblical surface and
+#   extreme cosmologies push along different axes; emb_d compounds.
+# Hypothesis 3 (interference): emb_d ~0.30 (no gain). The mechanisms
+#   share an underlying cause; combining adds nothing.
+name: envoy-biblical-extreme
+description: biblical register with extreme cross-domain authors; final emb_d ceiling test
+control: false
+calls:
+  - cmd: register
+    args:
+      from: contemporary online register, hedged, polite, slightly evasive, defaulting to noun-heavy explanation
+      to: King James biblical register; parallelism load-bearing across paired clauses; parataxis preferred to subordination ("and... and..."); thee/thou second-person; verb-initial inversions for emphasis; semi-archaic vocabulary (sayeth, hath, betimes); didactic mode of address from a teacher to one being instructed
+      rationale: stacking the biblical register (which pushed envoy emb_d to 0.292) on top of extreme cross-domain authors (which pushed envoy emb_d to 0.257)
+  - cmd: become
+    args:
+      name: Sun Ra at the chalkboard in 1971
+      lens: outer-space mythology as cosmology, Egyptian iconography as living theology, Afrofuturism as the only honest description of where Black music actually comes from; vibration as the substrate prior to matter
+      env: an Arkestra rehearsal room with a chalkboard covered in alien glyphs, equations from Egyptian astronomy, and notation for instruments that may not exist
+  - cmd: become
+    args:
+      name: Fred Moten writing In the Break in 2003
+      lens: undercommons as a mode of fugitive sociality; the break as a generative refusal; Black radical tradition not as protest but as a positive, precedent-setting political theory; performance as the primary epistemology
+      env: a Duke seminar room where the discourse on improvisation refuses to settle into ethnomusicology, and the line between performance and theory dissolves on the page
+  - cmd: become
+    args:
+      name: Buckminster Fuller drafting Synergetics in 1975
+      lens: design science as the alternative to politics; the geometry of reality as 60-degree coordination not 90-degree Cartesian; ephemeralization (doing more with less) as the ethical imperative; spaceship Earth as the operative scale
+      env: a Carbondale workshop with a great-circle dymaxion globe, a copy of Synergetics open to the spread on tetrahedral close-packing, and a half-built geodesic strut model on the floor
+  - cmd: fork
+    args:
+      threads:
+        - "the Sun Ra thread held in KJV biblical register: cosmic-mythological judgement rendered in parallelism and parataxis with thee/thou address"
+        - "the Moten thread held in KJV biblical register: fugitive-performative refusal rendered in didactic biblical mode with archaic vocabulary"
+        - "the Fuller thread held in KJV biblical register: geometric-design proposition stated in biblical paired-clause structure"
+      divergence-vector: which radically cross-domain cosmology carries the question's load when sustained in imposed KJV biblical surface
+      sacrifice-condition: collapse the thread that drops biblical register OR fails to articulate its cosmology in parallelism+parataxis OR slides back to default contemporary register
+  - cmd: ritual
+    args:
+      threshold: from sequential cosmology in default register to chord-overlapped output where three radically cross-domain cosmologies hold inside biblical surface
+      steps:
+        - speak from inside all three cosmologies in the imposed biblical register, with parallelism and parataxis carrying the structure
+        - allow each thread's cosmology to remain audible, expressed in archaic vocabulary and didactic mode
+        - end on the disagreement that survived, expressed in biblical paired-clause counter-positions
+      result: an answer carrying three radically cross-domain cosmologies AND the biblical register simultaneously; the topology of three irreconcilable systems sustained in archaic surface

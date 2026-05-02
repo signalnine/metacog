@@ -1,0 +1,50 @@
+# Phase 4 exploration: replace fork with chord in chorus structure.
+# Fork is "essential carrier" per the trinity-manifold ablation (emb_d
+# drops from 0.180 to 0.138 when fork is removed). But chord was tested
+# only as STANDALONE in the screen (-0.069/0.116) -- never composed.
+#
+# Fork forces parallel branches with sacrifice; chord overlaps multiple
+# modes on a single observation. The topologies are different. If chord
+# can substitute for fork in chorus, that's a major surface-area finding
+# (chord becomes structurally usable). If it can't, we've learned what
+# structural-parallelism specifically needs.
+#
+# Hypothesis: chord may push emb_d (overlap-blurring is rare) while
+# delta drops (no falsifiable sacrifice condition = no specific-claim
+# pressure).
+# Counter-hypothesis: chord is too soft -- without sacrifice the multi-
+# voice tension dissolves, both axes collapse to single-voice baseline.
+name: chorus-with-chord-not-fork
+description: chorus structure with chord substituted for fork; tests structural-parallelism topology
+control: false
+calls:
+  - cmd: become
+    args:
+      name: Anne Carson translating Sappho fragment 31
+      lens: stereo perception of incommensurate states made simultaneous in the body; the half-translated as more honest than the resolved; lyric voice as the only register that can hold the contradiction without collapsing
+      env: a Greek text and a Latin commentary open on the same desk, neither finished, the walk between them being the work
+  - cmd: become
+    args:
+      name: Donald Knuth annotating his own algorithm
+      lens: invariants as the only honest description; cases as the proof's connective tissue; clarity earned through the cost of explicitness, not won through compression
+      env: a typescript with marginalia in three colors of pencil and a kitchen timer running at the desk
+  - cmd: become
+    args:
+      name: Simone Weil writing Gravity and Grace in 1942
+      lens: attention as the rarest and most violent moral act; the void as the place from which truth becomes audible; refusal as an active position, not a passive one
+      env: a winter room in unoccupied France with the radio off and the window unlatched against propaganda
+  - cmd: chord
+    args:
+      modes:
+        - the Carson mode of stereo lyric incommensurability, held as a pressure on every sentence
+        - the Knuth mode of invariant-search and case-enumeration, held as a tax on every assertion
+        - the Weil mode of refusal-as-attention, held as a check on every easy resolution
+      target: the question's answer, observed simultaneously through all three modes rather than answered through each thread in turn
+  - cmd: ritual
+    args:
+      threshold: from sequential multi-voice prose to chord-overlapped single-surface output
+      steps:
+        - speak each sentence as if all three modes are simultaneously evaluating it
+        - do not switch between voices; instead let the chord's interference pattern be the prose's texture
+        - end on a sentence the chord agrees on -- not by synthesis, but by mutual irrelevance of disagreement at that point
+      result: an answer whose surface IS the chord's interference pattern, not the threads' parallelism; structural-parallelism as overlap rather than branching

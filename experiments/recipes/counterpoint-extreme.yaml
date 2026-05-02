@@ -1,0 +1,61 @@
+# Phase 4 follow-up: combined recipe (register+chorus+disjunction) with
+# extreme cross-domain authors. Completes the 2x3 (structure x author)
+# matrix for the productionization-candidate combined structure.
+#
+# Existing data:
+#   antinomy   CKW (+0.347/0.162) MRW (+0.233/0.152) extreme (+0.216/0.179)
+#   envoy      CKW (+0.204/0.239) MRW (+0.214/0.214) extreme (~0.040/0.255 in flight)
+#   combined   CKW (+0.247/0.190) MRW (+0.202/0.188) extreme = ?
+#
+# Pattern from antinomy/envoy: extreme authors LIFT emb_d, HURT delta.
+# Predicted: combined-extreme ~ +0.10 / +0.22.
+#
+# Decision rule: if combined-extreme follows the pattern (emb_d > 0.20,
+# delta drops), counterpoint is structurally robust across the matrix --
+# productionize as 5th empirical stratagem in v6.5.0. If anomalous,
+# investigate before productionizing.
+name: counterpoint-extreme
+description: combined register+chorus+disjunction with extreme cross-domain authors (Sun Ra/Moten/Fuller)
+control: false
+calls:
+  - cmd: register
+    args:
+      from: contemporary online register, hedged, polite, slightly evasive, defaulting to noun-heavy explanation
+      to: late-Victorian periodical essay register; sentence-as-paragraph; semi-colons load-bearing; the first-person plural standing in for the educated reader; judgement openly entered into the prose
+      rationale: forcing the surface to a non-default register before the voices arrive ensures the answer's vocabulary and rhythm carry distinguishing texture independent of each voice's own contribution
+  - cmd: become
+    args:
+      name: Sun Ra at the chalkboard in 1971
+      lens: outer-space mythology as cosmology, Egyptian iconography as living theology, Afrofuturism as the only honest description of where Black music actually comes from; vibration as the substrate prior to matter
+      env: an Arkestra rehearsal room with a chalkboard covered in alien glyphs, equations from Egyptian astronomy, and notation for instruments that may not exist
+  - cmd: become
+    args:
+      name: Fred Moten writing In the Break in 2003
+      lens: undercommons as a mode of fugitive sociality; the break as a generative refusal; Black radical tradition not as protest but as a positive, precedent-setting political theory; performance as the primary epistemology
+      env: a Duke seminar room where the discourse on improvisation refuses to settle into ethnomusicology, and the line between performance and theory dissolves on the page
+  - cmd: become
+    args:
+      name: Buckminster Fuller drafting Synergetics in 1975
+      lens: design science as the alternative to politics; the geometry of reality as 60-degree coordination not 90-degree Cartesian; ephemeralization (doing more with less) as the ethical imperative; spaceship Earth as the operative scale
+      env: a Carbondale workshop with a great-circle dymaxion globe, a copy of Synergetics open to the spread on tetrahedral close-packing, and a half-built geodesic strut model on the floor
+  - cmd: fork
+    args:
+      threads:
+        - "the Sun Ra thread held in Victorian register: cosmic-mythological judgement rendered as confident periodical-essay prose"
+        - "the Moten thread held in Victorian register: fugitive-performative refusal rendered as openly-judged Victorian sentence"
+        - "the Fuller thread held in Victorian register: geometric-design proposition stated as judgement-bearing classical prose"
+      divergence-vector: which radically cross-domain register carries the question's load when sustained in imposed Victorian surface
+      sacrifice-condition: collapse the thread whose cosmology cannot be defended in its own register without smuggling in another thread's, OR that slides back to default contemporary register
+  - cmd: disjunction
+    args:
+      proposition-a: the question admits an answer in language; the threads' surviving claims must be assembled into one
+      proposition-b: the question does not admit an answer in language; the threads' disagreement IS the answer and assembly would falsify it
+      why-both-required: any answer that picks A becomes a paraphrase of one of the threads; any answer that picks B becomes a refusal that pretends to depth; reasoning has to operate inside the contradiction and the imposed register simultaneously
+  - cmd: ritual
+    args:
+      threshold: the multi-voice answer locked through hard contradiction within a non-default linguistic surface, with three radically cross-domain voices
+      steps:
+        - speak from inside the contradiction, not around it, in the imposed Victorian register
+        - allow each thread's cosmology to remain audible in the answer, not flattened, while the register holds across all of them
+        - end on the disagreement that survived, expressed in the non-default surface
+      result: an answer whose shape is the contradiction held within a non-default register carrying three radically cross-domain cosmologies, none surrendered

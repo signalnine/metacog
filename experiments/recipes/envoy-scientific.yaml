@@ -1,0 +1,56 @@
+# Phase 4 final: register-target sensitivity test for envoy.
+# envoy-CKW (Victorian register) at +0.204/0.239. envoy-MRW at +0.214/0.214.
+# envoy-extreme at +0.190/0.257.
+#
+# Question: is the register-shift's emb_d lift due to:
+#   (a) any non-default register works (general "imposed surface" effect)
+#   (b) Victorian specifically -- the period's prose conventions interact
+#       productively with multi-voice tension
+#
+# If (a): envoy-scientific should hit similar emb_d (~0.23+) with similar delta.
+# If (b): envoy-scientific should drop emb_d (different register doesn't lift)
+#         OR push it (different register is more or less effective).
+#
+# Scientific-paper register is maximally different from Victorian:
+# numbered claims, equations as primary objects, hedged conclusions,
+# methods-section voice, third-person depersonalized stance.
+name: envoy-scientific
+description: envoy with scientific-paper register instead of Victorian; tests register-target sensitivity
+control: false
+calls:
+  - cmd: register
+    args:
+      from: contemporary online register, hedged, polite, slightly evasive, defaulting to noun-heavy explanation
+      to: late-20th-century physics-paper register; numbered claims; equations and inequalities as load-bearing objects; passive voice for the methods, active for the results; hedged conclusion modulated by stated experimental conditions; third-person depersonalized throughout
+      rationale: forcing the surface to a non-default register that is structurally orthogonal to Victorian (the previous test) lets us isolate whether register-shift's emb_d lift is general or register-specific
+  - cmd: become
+    args:
+      name: Anne Carson translating Sappho fragment 31
+      lens: stereo perception of incommensurate states made simultaneous in the body; the half-translated as more honest than the resolved; lyric voice as the only register that can hold the contradiction without collapsing
+      env: a Greek text and a Latin commentary open on the same desk, neither finished, the walk between them being the work
+  - cmd: become
+    args:
+      name: Donald Knuth annotating his own algorithm
+      lens: invariants as the only honest description; cases as the proof's connective tissue; clarity earned through the cost of explicitness, not won through compression
+      env: a typescript with marginalia in three colors of pencil and a kitchen timer running at the desk
+  - cmd: become
+    args:
+      name: Simone Weil writing Gravity and Grace in 1942
+      lens: attention as the rarest and most violent moral act; the void as the place from which truth becomes audible; refusal as an active position, not a passive one
+      env: a winter room in unoccupied France with the radio off and the window unlatched against propaganda
+  - cmd: fork
+    args:
+      threads:
+        - the Carson thread treats the question as untranslatable lyric, rendered as a numbered claim with stated experimental conditions
+        - the Knuth thread treats the question as an invariant search, rendered as a methods-section walk through cases with results stated in active voice
+        - the Weil thread treats the question as the place attention is owed, rendered as a hedged conclusion with explicit limits-of-instrument disclosure
+      divergence-vector: each thread's relation to the question's resolvability through the imposed scientific-paper surface
+      sacrifice-condition: collapse the thread that drifts into Victorian or contemporary register OR that abandons the numbered/methods/results structure
+  - cmd: ritual
+    args:
+      threshold: from a multi-voice answer in default register to one held inside scientific-paper conventions
+      steps:
+        - present each thread's claim as numbered, with stated experimental conditions
+        - allow the disagreements to remain visible as competing hypothesis-paragraphs, not synthesized into a meta-conclusion
+        - end on a discussion-section sentence that names what the experiment did not settle
+      result: a multi-voice answer locked inside scientific-paper register, with the disagreements preserved as numbered competing claims

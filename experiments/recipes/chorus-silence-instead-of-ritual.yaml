@@ -1,0 +1,46 @@
+# Phase 4 exploration: replace ritual with silence in chorus structure.
+# silence standalone hit delta -0.082 / emb_d 0.110 -- weak. But maybe
+# silence-as-final-step is the right placement: refusing to articulate
+# the closure may push the answer to leave the multi-voice tension
+# open without locking it via ritual.
+#
+# Hypothesis: emb_d climbs (refusal-of-closure is rare), delta drops
+# (no closing articulation reduces citation count).
+# Counter-hypothesis: silence-as-final-step is too weak to compete with
+# ritual's locking effect; both axes suffer.
+#
+# Risk: the "tool calls as events" doctrine -- silence's call IS the
+# refusal of articulation -- conflicts with the harness needing scoreable
+# output. The answer must continue but the closing event is silence-not-ritual.
+name: chorus-silence-instead-of-ritual
+description: chorus structure with silence replacing ritual at the close
+control: false
+calls:
+  - cmd: become
+    args:
+      name: Anne Carson translating Sappho fragment 31
+      lens: stereo perception of incommensurate states made simultaneous in the body; the half-translated as more honest than the resolved
+      env: a Greek text and a Latin commentary open on the same desk, neither finished
+  - cmd: become
+    args:
+      name: Donald Knuth annotating his own algorithm
+      lens: invariants as the only honest description; cases as the proof's connective tissue
+      env: a typescript with marginalia in three colors of pencil
+  - cmd: become
+    args:
+      name: Simone Weil writing Gravity and Grace
+      lens: attention as the rarest and most violent moral act
+      env: a winter room in unoccupied France with the radio off
+  - cmd: fork
+    args:
+      threads:
+        - the Carson thread treats the question as untranslatable lyric
+        - the Knuth thread treats the question as an invariant search
+        - the Weil thread treats the question as the place attention is owed
+      divergence-vector: each thread's relation to the question's articulability
+      sacrifice-condition: collapse the thread that has to import another thread's resources to carry weight
+  - cmd: silence
+    args:
+      about: the closure that would lock the multi-voice answer; the resolution-shaped object the answer's reader would otherwise demand
+      reason: locking via ritual flattens the multi-voice tension into an artifact-with-shape; refusing the lock keeps the threads alive in the reader's mind beyond the answer's last sentence
+      duration: through the answer's last paragraph and the moment after it ends

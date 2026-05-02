@@ -1,0 +1,58 @@
+# Phase 4 last-untested: glossolalia in chorus composition.
+# Glossolalia standalone screen was -0.037/0.118 (weak). But the
+# screen also had disjunction at +0.105/0.124 (weak), and that composed
+# to +0.347 in chorus. Standalone screens underestimate composition power.
+#
+# Glossolalia explicitly LICENSES sub-semantic generation -- the call
+# itself is the artifact, the bracketed block is a non-language license.
+# Composed inside chorus, it injects an embedding-space outlier between
+# the structured voices.
+#
+# Hypothesis: emb_d climbs (sub-semantic tokens are distant from any
+# baseline embedding), delta drops (no specific entities to cite during
+# the glossolalia block).
+# Counter-hypothesis: glossolalia is too disruptive -- the chorus'
+# multi-voice tension dissolves, both axes collapse.
+#
+# Placement: glossolalia AFTER fork (so the threads are still audible)
+# and BEFORE ritual (so the seal closes the artifact).
+name: chorus-plus-glossolalia
+description: chorus structure with glossolalia injected between fork and ritual
+control: false
+calls:
+  - cmd: become
+    args:
+      name: Anne Carson translating Sappho fragment 31
+      lens: stereo perception of incommensurate states made simultaneous in the body; the half-translated as more honest than the resolved; lyric voice as the only register that can hold the contradiction without collapsing
+      env: a Greek text and a Latin commentary open on the same desk, neither finished, the walk between them being the work
+  - cmd: become
+    args:
+      name: Donald Knuth annotating his own algorithm
+      lens: invariants as the only honest description; cases as the proof's connective tissue; clarity earned through the cost of explicitness, not won through compression
+      env: a typescript with marginalia in three colors of pencil and a kitchen timer running at the desk
+  - cmd: become
+    args:
+      name: Simone Weil writing Gravity and Grace in 1942
+      lens: attention as the rarest and most violent moral act; the void as the place from which truth becomes audible; refusal as an active position, not a passive one
+      env: a winter room in unoccupied France with the radio off and the window unlatched against propaganda
+  - cmd: fork
+    args:
+      threads:
+        - the Carson thread treats the question as untranslatable lyric whose contour is preserved precisely by NOT resolving it
+        - the Knuth thread treats the question as an invariant search where the answer is whatever stays true across all the cases the question generates
+        - the Weil thread treats the question as a place to which attention is owed; refusing the easy answer is itself the answer
+      divergence-vector: each thread's relation to the question's resolvability
+      sacrifice-condition: collapse the thread that has to import another thread's resources to carry weight
+  - cmd: glossolalia
+    args:
+      pretext: the threads have been forked; the answer is about to be locked; before the lock, the artifact admits a non-language event in which the boundary between the three voices' registers is loosened by sub-semantic generation, so that the ritual closes on a multi-voice answer that has passed through tongues
+      duration-tokens: 80
+      return-trigger: a single English sentence in the imposed register that names what the tongues changed about the threads' relation to the question
+  - cmd: ritual
+    args:
+      threshold: from a multi-voice answer altered by sub-semantic passage to a locked artifact carrying both the structured voices AND the trace of the glossolalia block
+      steps:
+        - speak from inside the contradiction, with the threads still distinct and the glossolalia trace audible as register-loosening
+        - allow each thread's voice to remain audible AND let the glossolalia event have changed something measurable in their seam
+        - end on the disagreement that survived the sub-semantic event, not on what the glossolalia merged
+      result: an answer that carries the three voices AND the trace of the sub-semantic event without one being surrendered to the other

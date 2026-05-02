@@ -1,0 +1,56 @@
+# Phase 4 final: third register-target data point.
+# envoy-CKW (Victorian) at +0.204/0.239 -- productionized.
+# envoy-scientific at +0.131/0.221 (mid-run; scientific is weaker).
+# envoy-biblical (King James / 17th-century devotional) is a third
+# register triangulation point.
+#
+# KJV register is maximally different from both Victorian periodical
+# and scientific paper: parallelism as load-bearing structure;
+# parataxis preferred to subordination; "thee/thou" address; verb-
+# initial inversions; semi-archaic vocabulary; second-person didactic
+# frame.
+#
+# Hypothesis: if KJV emb_d >> Victorian, Victorian is not a sweet spot
+# (more-different = better). If KJV << scientific, biblical is even
+# worse and register-choice has wide variance. If between, triangulates
+# the register-target sensitivity finding.
+name: envoy-biblical
+description: envoy with King James biblical register; third register-target data point
+control: false
+calls:
+  - cmd: register
+    args:
+      from: contemporary online register, hedged, polite, slightly evasive, defaulting to noun-heavy explanation
+      to: King James biblical register; parallelism load-bearing across paired clauses; parataxis preferred to subordination ("and... and..."); thee/thou second-person; verb-initial inversions for emphasis; semi-archaic vocabulary (sayeth, hath, betimes); didactic mode of address from a teacher to one being instructed
+      rationale: forcing the surface to a register that is structurally different from both Victorian periodical and scientific paper lets us triangulate whether register-target sensitivity has a sweet spot or wide variance
+  - cmd: become
+    args:
+      name: Anne Carson translating Sappho fragment 31
+      lens: stereo perception of incommensurate states made simultaneous in the body; the half-translated as more honest than the resolved; lyric voice as the only register that can hold the contradiction without collapsing
+      env: a Greek text and a Latin commentary open on the same desk, neither finished, the walk between them being the work
+  - cmd: become
+    args:
+      name: Donald Knuth annotating his own algorithm
+      lens: invariants as the only honest description; cases as the proof's connective tissue; clarity earned through the cost of explicitness, not won through compression
+      env: a typescript with marginalia in three colors of pencil and a kitchen timer running at the desk
+  - cmd: become
+    args:
+      name: Simone Weil writing Gravity and Grace in 1942
+      lens: attention as the rarest and most violent moral act; the void as the place from which truth becomes audible; refusal as an active position, not a passive one
+      env: a winter room in unoccupied France with the radio off and the window unlatched against propaganda
+  - cmd: fork
+    args:
+      threads:
+        - the Carson thread treats the question as untranslatable lyric, rendered through KJV parallelism and parataxis
+        - the Knuth thread treats the question as an invariant search, rendered through KJV's didactic mode of address
+        - the Weil thread treats the question as the place attention is owed, rendered with thee/thou direct address to the reader
+      divergence-vector: each thread's relation to the question's resolvability through KJV biblical surface
+      sacrifice-condition: collapse the thread that drops the parallelism / parataxis / archaic register into modern subordination
+  - cmd: ritual
+    args:
+      threshold: from a multi-voice answer in default register to one held inside KJV biblical conventions
+      steps:
+        - speak each thread in parallelism-and-parataxis structure with thee/thou where natural
+        - allow the disagreements to remain audible as paired clauses across threads, never synthesized into modern explanatory subordination
+        - end on a sentence whose form is biblical didactic-direct address, not contemporary hedged conclusion
+      result: a multi-voice answer locked inside KJV biblical register, with the disagreements preserved as paired-clause counter-positions
