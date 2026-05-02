@@ -296,11 +296,14 @@ def main():
     ap.add_argument("--top", type=int, default=5, help="how many trials to show in --gap mode")
     ap.add_argument("--chars", type=int, default=0,
                     help="truncate answer to this many chars in --gap (0 = full)")
+    ap.add_argument("--results", type=str, default=None,
+                    help="path to results.tsv (default: results.tsv)")
     args = ap.parse_args()
 
-    rows = load_rows(RESULTS)
+    results_path = Path(args.results).resolve() if args.results else RESULTS
+    rows = load_rows(results_path)
     if not rows:
-        print(f"no rows in {RESULTS}")
+        print(f"no rows in {results_path}")
         return
     baselines = baselines_from_rows(rows)
     print(f"loaded {len(rows)} rows; per-task baselines (rarity*coh):")

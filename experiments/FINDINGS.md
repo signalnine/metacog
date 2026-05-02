@@ -525,7 +525,7 @@ Sun Ra/Moten/Fuller. The lift comes from the structural property of
 holding three radically cross-domain author-cosmologies in parallel,
 not from the specific names. Any disparate-extreme triple transfers.
 
-**Q2 result: tool-calls vs text-instructions is roughly a tie.**
+**Q2 result: tool-calls win modestly on both axes.**
 
 Same recipe, same content, different delivery: PROMPT_MODE
 toggle in the runner switches between rendering metacog calls as
@@ -533,23 +533,27 @@ shell commands the generator invokes (default; the calls are real
 tool-call events in its transcript) vs delivering them as prose
 instructions inside the prompt body.
 
-| Mode                        | codex delta | Sonnet delta (N=30) |
-|-----------------------------|-------------|---------------------|
-| tool-calls (action-trace)   | +0.286      | +0.256              |
-| text-instructions           | +0.268      | +0.238              |
-| Difference (tool-call lift) | +0.018      | +0.018              |
+| Mode                        | codex delta | Sonnet delta | Sonnet emb_d |
+|-----------------------------|-------------|--------------|--------------|
+| tool-calls (action-trace)   | +0.286      | +0.256       | 0.192        |
+| text-instructions           | +0.268      | +0.238       | 0.168        |
+| Difference (tool-call lift) | +0.018      | +0.018       | +0.024       |
 
-Both models show a ~0.018-delta lift from rendering the conditioning
-as tool-calls instead of text instructions. *That difference is
-consistent across models but small relative to the full recipe lift
-(~6-7% of the +0.256 envoy-extreme-alt2 delta).*
+Tool-call mode wins by ~7% relative on delta and ~12% relative on
+emb_d. The action-trace prior matters *more* for embedding distance
+than for citation density. Tool-call mode pushes conceptual reach
+(emb_d) further than text-instruction mode produces the same recipe
+content delivered as prose.
 
 Interpretation: the "tool calls as events" doctrine is real but
-modest. ~93% of the lift comes from the CONTENT of the conditioning
-(which authors, what stances, the structural composition); ~7% comes
-from the action-trace prior of the model emitting the calls vs reading
-them as text. Most of the recipe magic is content; the form helps a
-small consistent amount.
+modest on the delta axis and slightly larger on the emb_d axis. ~88%
+of the recipe lift comes from CONTENT (which authors, what stances,
+the structural composition); ~12% comes from the action-trace prior
+of the model emitting the calls vs reading them as text. Tool-calls
+land the model in continuation-of-action mode where it inhabits the
+conditioning more fully, drifting further from default voice -- the
+delta effect is smaller because citations are mostly fixed by the
+named authors regardless of delivery mode.
 
 This refines the framing: a metacog skill could in principle be
 delivered as plain instruction text and capture most of the lift. The
