@@ -456,6 +456,47 @@ register-shift instead of biblical, and a single-author baseline.
 | chorus-plus-disjunction        | -0.027      | +0.347             | -0.08x         |
 | counterpoint-biblical-duo      | -0.228      | +0.177             | -1.29x         |
 
+### Cross-model Pareto-frontier (full delta + emb_d, both models)
+
+After round 4-5 added chorus, double-extreme, and envoy-extreme-alt2
+to the codex sweep, and after computing embedding distances against
+codex's own NULL centroids, the full cross-model picture is:
+
+| Recipe                       | Sonnet delta | Sonnet emb_d | codex delta | codex emb_d |
+|------------------------------|--------------|--------------|-------------|-------------|
+| envoy-extreme                | +0.190       | 0.257        | +0.245      | 0.233       |
+| envoy-extreme-alt2           | +0.256       | 0.192        | +0.286      | 0.223       |
+| envoy-alt                    | +0.214       | 0.214        | +0.118      | 0.210       |
+| envoy-scientific             | +0.220       | 0.231        | +0.081      | 0.180       |
+| trinity-no-synthesis-alt     | +0.194       | 0.226        | +0.035      | 0.157       |
+| chorus-plus-disjunction      | +0.347       | 0.162        | -0.027      | 0.148       |
+| chorus (CKW)                 | n/a          | n/a          | -0.129      | 0.147       |
+| double-extreme               | n/a          | n/a          | +0.060      | 0.171       |
+| freestyle-become             | +0.231       | n/a          | +0.049      | 0.143       |
+| counterpoint-biblical-duo    | +0.177       | 0.327        | **-0.228**  | **0.224**   |
+
+See `docs/figures/cross-model-pareto.png` for the visual: arrows
+connect each recipe's Sonnet point (circle) to its codex point
+(triangle). Three patterns are visible:
+
+1. **envoy-extreme variants** (blue): codex points sit RIGHT of
+   Sonnet -- codex actually beats Sonnet on delta for the cross-
+   domain author triples. emb_d is similar or slightly lower.
+2. **counterpoint-biblical-duo** (red): codex point sits FAR LEFT
+   AND DOWN from Sonnet. The biblical register collapses both axes
+   on codex; on Sonnet it's the emb_d champion at 0.327.
+3. **chorus-plus-disjunction** (purple): codex point sits FAR LEFT
+   of Sonnet on delta (+0.347 -> -0.027) but emb_d barely moves
+   (0.162 -> 0.148). The disjunction-driven citation density that
+   Sonnet rewards doesn't engage on codex, but the structural-
+   distance from default holds.
+
+Interesting note: codex's emb_d ceiling is around 0.23 (envoy-extreme,
+envoy-extreme-alt2, CBD), while Sonnet hits 0.327 on CBD. Codex's
+default voice is harder to escape on the embedding axis -- but
+when it IS pushed, the recipes that work on Sonnet are a poor guide
+to which recipes work on codex.
+
 **envoy-extreme transfers and overperforms.** Extreme cross-domain
 authors (Sun Ra at the chalkboard, Fred Moten on fugitive sociality,
 Buckminster Fuller drafting Synergetics) push gpt-5.5 to +0.310 delta

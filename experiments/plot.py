@@ -22,9 +22,9 @@ FIGURES_DIR = Path(__file__).parent.parent / "docs" / "figures"
 FIGURES_DIR.mkdir(parents=True, exist_ok=True)
 
 
-def aggregate_recipes() -> dict[str, dict]:
+def aggregate_recipes(results_path: Path | None = None) -> dict[str, dict]:
     """Return {recipe_name: {delta, emb_d, n}} averaged across tasks."""
-    rows = load_rows(RESULTS)
+    rows = load_rows(results_path or RESULTS)
     baselines = baselines_from_rows(rows)
     centroids = embedding_centroids_per_task(rows)
     out = {}
@@ -317,6 +317,85 @@ def plot_arc(recipes: dict[str, dict]) -> None:
     plt.close(fig)
 
 
+def plot_cross_model(sonnet: dict[str, dict], codex: dict[str, dict]) -> None:
+    """Show Sonnet vs codex on (delta, emb_d) for matched recipes.
+
+    Highlights the cross-model winner (envoy-extreme) and the cross-model
+    catastrophe (counterpoint-biblical-duo). Connects matched (recipe x
+    model) points with arrows to make the transfer (or anti-transfer) visible.
+    """
+    fig, ax = plt.subplots(figsize=(11, 8))
+
+    # Recipes present on both backends.
+    matched = sorted(set(sonnet) & set(codex))
+    pairs = []
+    for name in matched:
+        s = sonnet[name]
+        c = codex[name]
+        if s.get("control") or c.get("control"):
+            continue
+        pairs.append((name, s, c))
+
+    # Highlights.
+    HIGHLIGHTS = {
+        "envoy-extreme": ("#1f77b4", "cross-model winner"),
+        "envoy-extreme-alt2": ("#1f77b4", None),
+        "counterpoint-biblical-duo": ("#d62728", "cross-model catastrophe"),
+        "chorus-plus-disjunction": ("#9467bd", "Sonnet champion"),
+    }
+
+    for name, s, c in pairs:
+        color, _ = HIGHLIGHTS.get(name, ("#999999", None))
+        # Connect Sonnet (circle) -> codex (triangle) with an arrow.
+        ax.annotate(
+            "", xy=(c["delta"], c["emb_dist"]),
+            xytext=(s["delta"], s["emb_dist"]),
+            arrowprops=dict(arrowstyle="->", color=color, alpha=0.55, lw=1.4),
+            zorder=2,
+        )
+        # Sonnet point.
+        ax.scatter([s["delta"]], [s["emb_dist"]], c=color, s=110,
+                   marker="o", edgecolors="black", linewidths=0.9, zorder=4)
+        # Codex point.
+        ax.scatter([c["delta"]], [c["emb_dist"]], c=color, s=110,
+                   marker="^", edgecolors="black", linewidths=0.9, zorder=4)
+        # Label at the midpoint.
+        if name in HIGHLIGHTS:
+            mx = (s["delta"] + c["delta"]) / 2
+            my = (s["emb_dist"] + c["emb_dist"]) / 2
+            ax.annotate(name, (mx, my),
+                        xytext=(8, 8), textcoords="offset points",
+                        fontsize=9, fontweight="bold", color=color)
+
+    # Reference lines.
+    ax.axhline(0, color="#bbb", linestyle=":", linewidth=1, zorder=0)
+    ax.axvline(0, color="#bbb", linestyle=":", linewidth=1, zorder=0)
+
+    ax.set_xlabel("delta (rarity-weighted citation density above NULL baseline)",
+                  fontsize=11)
+    ax.set_ylabel("emb_d (cosine distance from per-task NULL embedding centroid)",
+                  fontsize=11)
+    ax.set_title(
+        "Cross-model: Sonnet (circle) -> codex (triangle), matched recipes\n"
+        "Author-becomes transfer (envoy-extreme); register-shifts and disjunction don't",
+        fontsize=12,
+    )
+
+    legend_handles = [
+        mpatches.Patch(color="#1f77b4", label="cross-model winner (envoy-extreme variants)"),
+        mpatches.Patch(color="#d62728", label="cross-model catastrophe (CBD)"),
+        mpatches.Patch(color="#9467bd", label="Sonnet-specific champion (chorus-plus-disjunction)"),
+        mpatches.Patch(color="#999999", label="other matched recipes"),
+    ]
+    ax.legend(handles=legend_handles, loc="upper left", fontsize=9)
+    ax.grid(True, alpha=0.3)
+    fig.tight_layout()
+    out = FIGURES_DIR / "cross-model-pareto.png"
+    fig.savefig(out, dpi=140)
+    print(f"wrote {out}")
+    plt.close(fig)
+
+
 def main():
     recipes = aggregate_recipes()
     print(f"loaded {len(recipes)} recipes")
@@ -324,6 +403,12 @@ def main():
     plot_matrix(recipes)
     plot_register_triangulation(recipes)
     plot_arc(recipes)
+
+    codex_path = Path(__file__).parent / "codex_results.tsv"
+    if codex_path.exists():
+        codex = aggregate_recipes(codex_path)
+        print(f"loaded {len(codex)} codex recipes")
+        plot_cross_model(recipes, codex)
 
 
 if __name__ == "__main__":
