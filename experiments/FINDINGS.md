@@ -562,41 +562,49 @@ because the model treats post-tool-call context as a continuation-of-
 action rather than a description-of-character. But the structural
 content is doing the heavy lifting, not the protocol.
 
-### Round 4: tool-call mode is an amplifier, not a fixed bonus
+### Round 4-5: tool-call mode is an asymmetric amplifier
 
-A second tool-call-vs-text comparison on codex, this time using the
-*broken* recipe counterpoint-biblical-duo (which scored -0.228 in
-tool-call mode):
+Tested both working and broken recipes in both modes on codex.
+Round 4 results suggested a uniform amplifier effect; round 5 added
+N=15 envoy-extreme tool-call data and showed the round-3 "tool-call
+adds +0.018" finding was N=6 noise.
 
-| Recipe                         | Tool-call delta | Text delta | Diff |
-|--------------------------------|-----------------|------------|------|
-| envoy-extreme-alt2 (working)   | +0.286          | +0.268     | +0.018 |
-| counterpoint-biblical-duo (broken) | -0.228      | +0.048     | **-0.276** |
+**Final cross-mode table on codex:**
 
-For a working recipe, tool-call mode adds a small ~0.018 delta lift
-(the round 3 finding). For a *broken* recipe on the same model,
-tool-call mode is catastrophic: -0.228 vs +0.048 in text mode -- a
-0.276-delta swing in the opposite direction.
+| Recipe                         | Tool-call (n)   | Text (n=6) | Diff   |
+|--------------------------------|-----------------|------------|--------|
+| envoy-extreme (working)        | +0.245 (n=14)   | +0.301     | -0.055 |
+| envoy-extreme-alt2 (working)   | +0.286 (n=6)    | +0.268     | +0.018 |
+| chorus (mild-broken)           | -0.129 (n=6)    | -0.028     | **-0.101** |
+| counterpoint-biblical-duo (broken) | -0.228 (n=6) | +0.048    | **-0.276** |
 
-**Tool-call mode is an amplifier, not a fixed bonus.** It intensifies
-whatever pull the recipe's content already has on the model. If the
-recipe lifts the model toward rarer citations and conceptual reach,
-tool-call mode lifts it slightly further. If the recipe pulls the
-model toward a register the model can't sustain (KJV biblical on
-codex), tool-call mode collapses the answer harder than text mode
-does. The "tool calls as events" doctrine isn't an additive bonus on
-top of recipe content -- it's a multiplier on the recipe's effect
-direction.
+For working recipes (envoy-extreme variants), the tool-call vs text
+difference is within noise (+0.018, -0.055) -- both modes converge to
+similar performance. For broken recipes, tool-call mode is consistently
+and substantially worse: chorus -0.101, CBD -0.276. The penalty scales
+with how broken the recipe is.
 
-This explains why register-shift recipes are so model-specific:
-register-shift in tool-call mode is forcing the model to *commit* to
-a surface it can't hold, where text-mode lets the model treat it as
-context to optionally lean into. The amplifier effect makes the
-recipe's failure mode louder.
+**Tool-call mode is an asymmetric amplifier.** It locks in the model's
+commitment to the conditioning. If the conditioning lifts the model
+in a direction it can sustain (extreme cross-domain authors), the
+two modes converge. If the conditioning pushes the model toward a
+direction it can't sustain (KJV biblical register on gpt-5.5;
+Carson/Knuth/Weil mild-extreme authors on codex), tool-call commits
+the model to that broken direction harder than text mode does.
 
-Practical recipe rule: validate recipes in *text-instructions* mode
-first to check the recipe's natural direction is positive on the
-target model. Only then promote to tool-call mode for the full lift.
+Mechanistic explanation in the Arditi et al. activation-direction
+frame: tool-call mode forces a stronger move along whichever direction
+the recipe is pulling. Working recipes pull along directions the model
+already has (extreme-author writing-as-X). Broken recipes pull along
+directions the model lacks (register decoupled from topic, on codex).
+Stronger moves along absent directions produce nonsense outputs --
+zero-entity returns, register collapses, paraphrases-of-paraphrases.
+
+**Practical recipe rule for new models:** validate in text-instructions
+mode first. If the recipe's direction is positive in text mode,
+promote to tool-call mode -- they'll converge. If the direction is
+negative or flat in text mode, do NOT promote -- tool-call mode will
+amplify the failure.
 
 ### Round 4 codex landscape (decomposing what works)
 
