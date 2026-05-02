@@ -425,6 +425,8 @@ samples), null baseline computed from gpt-5.5's own outputs (not
 Sonnet's). Tasks: git-conceptual-model, unindexed-intelligence,
 lapsed-attention-unnoticed.
 
+### Round 1 (initial probe)
+
 | Recipe                         | codex delta | Sonnet delta (ref) | codex / Sonnet |
 |--------------------------------|-------------|--------------------|----------------|
 | null                           | 0           | 0                  | -              |
@@ -433,39 +435,69 @@ lapsed-attention-unnoticed.
 | chorus-plus-disjunction        | -0.027      | +0.347             | -0.08x         |
 | counterpoint-biblical-duo      | **-0.228**  | **+0.177**         | -1.29x         |
 
-The recipes do not transfer. Findings:
+The Sonnet champion (counterpoint-biblical-duo) is the codex
+worst-case at -0.228 delta. Two trials returned zero entities. KJV
+biblical register strips citations on gpt-5.5 without producing the
+embedding-distance compensation it produces on Sonnet.
 
-1. **counterpoint-biblical-duo, the Sonnet champion, is the WORST
-   recipe on codex (-0.228 delta).** Two trials returned zero entities.
-   The KJV biblical register strips citations on gpt-5.5 without
-   producing the embedding-distance compensation it produces on
-   Sonnet. Codex's biblical voice goes more abstract instead of more
-   archaic-and-specific.
-2. **envoy-alt is the only recipe with meaningful lift on codex
-   (+0.118), at about half Sonnet's magnitude.** The Merleau-Ponty/
-   Randall/Williams author triple may be doing more of the work than
-   the structural composition.
-3. **chorus-plus-disjunction (Sonnet's biggest win at +0.347) is dead
-   on codex.** The disjunction-driven contradiction structure that
-   forces Sonnet to keep naming propositions doesn't have the same
-   citation-density effect on gpt-5.5.
+### Round 2 (decompose what works)
 
-The model-specificity caveat in the writeup is now empirical, not
-theoretical. Recipes optimized against one generator's habits don't
-necessarily lift another generator's habits, and the recipe that
-performs best on the target model can perform worst on a different
-model. Cross-model recipe transfer should be assumed broken until
-re-validated.
+To isolate which axis transfers, round 2 tested three more recipes:
+extreme cross-domain authors with no register-shift, scientific
+register-shift instead of biblical, and a single-author baseline.
 
-Open questions this didn't answer:
-- Does higher reasoning effort change codex's response to the
-  recipes? Low effort may bypass conditioning.
-- Does emb_d transfer better than delta? (Not measured here -- codex
-  trials weren't embedded against per-task NULL centroids.)
-- Are there recipes that transfer better because their structural
-  pattern lands the same way across models? envoy-alt's partial
-  transfer suggests author-prepended structures may be more robust
-  than register-shifted ones.
+| Recipe                         | codex delta | Sonnet delta (ref) | codex / Sonnet |
+|--------------------------------|-------------|--------------------|----------------|
+| **envoy-extreme**              | **+0.310**  | +0.190             | **1.63x**      |
+| envoy-alt                      | +0.118      | +0.214             | 0.55x          |
+| envoy-scientific               | +0.081      | +0.220             | 0.37x          |
+| freestyle-become               | +0.049      | +0.231             | 0.21x          |
+| trinity-no-synthesis-alt       | +0.035      | +0.194             | 0.18x          |
+| chorus-plus-disjunction        | -0.027      | +0.347             | -0.08x         |
+| counterpoint-biblical-duo      | -0.228      | +0.177             | -1.29x         |
+
+**envoy-extreme transfers and overperforms.** Extreme cross-domain
+authors (Sun Ra at the chalkboard, Fred Moten on fugitive sociality,
+Buckminster Fuller drafting Synergetics) push gpt-5.5 to +0.310 delta
+-- *stronger than the same recipe on Sonnet* (+0.190).
+
+The cross-model pattern:
+
+1. **Extreme cross-domain author-becomes transfer.** They overperform
+   on codex relative to Sonnet. The conditioning works as intended:
+   codex actually pulls toward the named cosmologies, citing them.
+2. **Mild academic authors transfer partially.** Envoy-alt
+   (Merleau-Ponty/Randall/Williams) lifts codex about half as much as
+   Sonnet. The names land but with less force.
+3. **Register-shifts (biblical or scientific) hurt codex.** Biblical
+   is catastrophic (-0.228); scientific is mildly positive (+0.081)
+   but still well below extreme-author lift. Codex's KJV voice goes
+   abstract rather than archaic-and-specific. Register doesn't carry
+   citation density on gpt-5.5 the way it does on Sonnet.
+4. **Disjunction is dead.** chorus-plus-disjunction (Sonnet's biggest
+   win at +0.347) is essentially null on codex (-0.027). The
+   contradiction-as-operand structure doesn't produce the
+   citation-naming pressure on gpt-5.5.
+
+**Cross-model recipe rule:** lean hard on cross-domain author-becomes;
+skip register-shifts and disjunction. The structural ceremony (fork,
+ritual, multiple becomes) is robust; the surface mechanisms are not.
+A codex-targeted productionized recipe would look like envoy-extreme:
+3 extreme becomes + fork + ritual, no register-shift, no disjunction.
+
+The model-specificity caveat is now empirically grounded. Recipes
+optimized against one generator's habits don't transfer cleanly --
+but a subset of mechanisms (cross-domain author conditioning) does
+transfer, while others (register-shift, disjunction) are
+generator-specific.
+
+Open questions:
+- Does higher reasoning effort change codex's response to register
+  and disjunction recipes? Low effort may bypass surface conditioning.
+- Does emb_d transfer match delta transfer? (Codex trials weren't
+  embedded against per-task NULL centroids; only delta is measured.)
+- How does an envoy-extreme variant calibrated against codex
+  baselines perform when ported back to Sonnet?
 
 ## Caveats
 
