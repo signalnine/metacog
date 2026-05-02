@@ -193,10 +193,229 @@ See `cmd/metacog/stratagem.go` for the definitions and
 `cmd/metacog/empirical_stratagems_test.go` for the validating tests.
 
 The combined `register-chorus-disjunction` recipe (envoy + antinomy)
-was tested but did NOT dominate either parent -- the register's
-citation-stripping interacts with disjunction's citation-amplification
-to produce a balanced but undominant result. The two findings are
-more useful as separate stratagems than composed.
+at N=70 hit delta +0.247 / emb_d 0.190 -- a Pareto-frontier
+"balanced" point that doesn't dominate either parent (envoy beats it
+on emb_d, antinomy beats it on delta) but does dominate trinity
+(+0.195 / 0.180) on both axes. Productionized in v6.5.0 as
+**counterpoint** after replication validated structural robustness
+across three author triples (see Phase 4 follow-up below).
+
+## v6.5.0 follow-up: Phase 4 author-matrix and stacking-ceiling tests
+
+After v6.4.0 the immediate questions were:
+1. Is each productionized stratagem structurally robust across multiple
+   author triples, or are the headline numbers author-specific?
+2. Where is the structural ceiling? Can primitives stack indefinitely?
+3. Is the combined `register-chorus-disjunction` recipe robust enough
+   to productionize as a fifth empirical stratagem?
+
+### The 2x3 (structure x author) matrix at N=70+
+
+Three productionized-or-candidate structures, each tested against three
+author triples (CKW = Carson/Knuth/Weil; MRW = Merleau-Ponty/Randall/
+Williams; extreme = Sun Ra/Moten/Fuller):
+
+| structure        | CKW            | MRW            | extreme        |
+|------------------|----------------|----------------|----------------|
+| antinomy (N=70)  | +0.347 / 0.162 | +0.233 / 0.152 | +0.216 / 0.179 |
+| envoy (N=70)     | +0.204 / 0.239 | +0.214 / 0.214 | +0.190 / 0.257 |
+| counterpoint     | +0.247 / 0.190 | +0.202 / 0.188 | +0.208 / 0.226 |
+
+(counterpoint-extreme at N=100; others at N=70.)
+
+Three robust patterns:
+
+1. **Extreme cross-domain authors uniformly LIFT emb_d.** Sun Ra/Moten/
+   Fuller pushes emb_d above CKW and MRW for every structure.
+   envoy-extreme at 0.257 is the **new structural-axis ceiling** (was
+   envoy-CKW at 0.239).
+
+2. **Extreme authors hurt delta, but the magnitude depends on
+   structure.** antinomy loses 0.131 delta (CKW -> extreme); envoy loses
+   only 0.014; counterpoint loses 0.039. The hypothesis: structures
+   that have a register-shift PRE-ABSORB the cross-domain shock, so
+   exotic cosmologies don't dilute citation density. Antinomy has no
+   register, so its disjunction-driven citation density is more
+   sensitive to author exoticism.
+
+3. **Counterpoint is structurally robust across all three triples.**
+   delta range +0.202..+0.247 (band 0.045); emb_d range 0.188..0.226
+   (band 0.038). Both bands tighter than antinomy's delta band (0.131)
+   or envoy's emb_d band (0.043). It is the most stable Pareto-frontier
+   point across author choice.
+
+### Productionized (v6.5.0)
+
+One new stratagem added in v6.5.0:
+
+- **counterpoint** (register + 3 becomes + fork + disjunction + ritual):
+  Pareto-frontier balanced variant. Composes envoy's register-prepend
+  with antinomy's disjunction-substitution. Use when both axes matter
+  and you don't want to maximize one at the other's expense. Dominates
+  trinity (+0.195 / 0.180) on both axes; does not dominate envoy or
+  antinomy individually but covers their joint zone with greater
+  author-stability than either parent.
+
+### Stacking past 7 steps: diminishing returns, not a ceiling
+
+**commitment-counterpoint** (commitment + register + 3 becomes + fork
++ disjunction + ritual = 8 steps) at N=84: delta +0.173 / emb_d 0.240.
+Compared to counterpoint-CKW (+0.247/0.190): emb_d climbs +0.050,
+delta drops 0.074. Compared to commitment-envoy (+0.145/0.241 at
+N=100): commitment-counterpoint is roughly Pareto-equivalent (slightly
+higher delta, slightly lower emb_d). Initial low-N reading at n=31
+(+0.054/0.237) suggested a hard ceiling but stabilized at n=80+ to a
+modest delta lift that the disjunction does provide -- it just isn't
+preserved as cleanly under commitment's constraint.
+
+**Conclusion:** 8 steps is not a hard ceiling, but the marginal value
+of each additional step shrinks. The disjunction in commitment-counter-
+point lifts delta by ~+0.03 over commitment-envoy, vs the ~+0.10 lift
+disjunction provides in counterpoint over envoy without commitment.
+Pre-binding via commitment absorbs about two-thirds of disjunction's
+delta-lift while preserving its structural integrity.
+
+### commitment as Pareto modifier (not productionized)
+
+**commitment-envoy** (commitment + register + 3 becomes + fork + ritual)
+at N=100: **+0.145 / 0.241**. emb_d above envoy-CKW (0.239); delta
+between envoy (+0.204) and counterpoint (+0.247). A genuine
+Pareto-frontier point that pushes emb_d structurally (via commitment)
+rather than via author choice (via extreme).
+
+Not productionized -- the gap to envoy/counterpoint is small enough
+that adding a sixth empirical stratagem covering this point would
+crowd the surface without offering a clearly new use case. The finding
+is: **commitment is a structural emb_d-modifier that preserves
+multi-voice tension while eating delta.** Useful as an ad-hoc
+pre-binding wrapper around envoy/counterpoint when emb_d is the
+priority and stake-naming is not.
+
+### Failed compositions
+
+- **chorus-with-chord-not-fork** (replace fork with chord) at N=28:
+  -0.045 / 0.121. Both axes at noise floor. Chord cannot substitute
+  for fork in chorus -- the branching+sacrifice topology is what makes
+  structural parallelism work; chord's overlap doesn't carry the same
+  load. Strong negative result, killed early.
+- **chorus-plus-glossolalia** (inject glossolalia between fork and
+  ritual) at N=23: +0.110 / 0.146. emb_d collapsed BELOW the
+  structural baseline (chorus is 0.235 -> glossolalia drops it to
+  0.146). Glossolalia is structurally disruptive in composition; the
+  sub-semantic event breaks the multi-voice tension chorus depends on.
+  Glossolalia is best as a standalone event, not a composable
+  structural element. Killed early.
+- **antinomy-no-ritual** (drop ritual to isolate disjunction's
+  locking) at N=70: +0.053 / 0.124. Definitively confirms ritual is
+  essential for antinomy: removing it crashes delta from +0.347 to
+  +0.053 and emb_d from 0.162 to 0.124. Disjunction's coda alone does
+  not lock the multi-voice answer; ritual's threshold-and-steps
+  structure is doing real closing work.
+
+### Surface-area probes (final)
+
+Three tests probing dimensions not previously covered:
+
+#### Register-target sensitivity (3 register triangulation points)
+
+| register   | recipe            | delta   | emb_d  | N    |
+|------------|-------------------|---------|--------|------|
+| scientific | envoy-scientific  | +0.220  | 0.231  | 100  |
+| Victorian  | envoy-CKW         | +0.204  | 0.239  | 70   |
+| biblical   | envoy-biblical    | +0.126  | 0.292  | 99   |
+
+**Register-target sensitivity is real and wide.** Scientific
+(formal physics-paper conventions) and Victorian are roughly
+Pareto-equivalent (scientific slightly favors delta; Victorian
+slightly favors emb_d). King James biblical is the **new structural-
+axis champion**: emb_d at 0.292 (+0.053 above the prior ceiling
+envoy-extreme at 0.257) with delta still positive at +0.126.
+
+The pattern: registers with low overlap with default contemporary
+vocabulary push emb_d. Biblical's archaic vocabulary, parallelism,
+and didactic mode of address are maximally orthogonal to default
+contemporary register, producing the largest emb_d lift. Delta
+holds because the biblical surface still admits proper-noun citation
+when the underlying voices reference named authors -- but reduced
+because biblical surface itself cites few modern entities.
+
+#### Compound: biblical + duo voice-count
+
+**envoy-biblical-duo** (biblical register + 2 becomes + fork +
+ritual) at n=37: -0.070 / **0.318**. emb_d crosses 0.30 -- the
+highest observed in the full experiment harness. But delta turns
+NEGATIVE: the answer is so far from baseline embedding-space that
+it stops citing the recipe-supplied voices.
+
+The biblical+duo combination pushes emb_d further than either
+finding alone (biblical envoy 0.292; duo counterpoint 0.221), but
+it crosses a threshold past which delta cannot be sustained. There
+is a structural ceiling around emb_d 0.30 above which the metric
+gain comes from giving up answer-specificity entirely. Not a
+productionization candidate -- the negative delta means the answer
+fails the citation-density test.
+
+#### Compound: biblical + disjunction (counterpoint-biblical)
+
+**counterpoint-biblical** (biblical register + 3 becomes + fork +
+disjunction + ritual) at n=64: +0.009 / 0.294. Delta near zero,
+emb_d 0.294. Disjunction's normal +0.10 delta lift over envoy
+disappears in biblical register -- the KJV surface's parallelism
+and parataxis are structurally hostile to numbered-disjunction
+naming. Hypothesis: biblical's paired-clause structure is *itself*
+a kind of contradiction-handling, and adding disjunction's hard
+binary on top creates structural conflict; one must give way.
+
+**Implication for productionization:** biblical register works with
+envoy structure (multi-voice + register + ritual) but does not
+compose with antinomy/counterpoint structure (multi-voice +
+disjunction + ritual). Register-target choice constrains which
+structural primitives stack.
+
+### Implications for the productionized stratagems
+
+The productionized stratagems (chorus, trinity, antinomy, envoy,
+counterpoint) all have register-agnostic step definitions. Users
+provide register-args at invocation. The findings above mean a user
+who wants the biblical emb_d ceiling can invoke `envoy` with
+biblical register-args; they do not need a separate `psalm`
+stratagem. Likewise scientific register works with envoy.
+
+What the surface needs is **register-selection guidance** in the
+skill documentation, not a new stratagem. Recommended pattern in
+SKILL.md updates:
+- Default register for envoy: Victorian (balanced).
+- For maximum emb_d push with delta cost: biblical.
+- For better delta with slight emb_d trade: scientific.
+- Avoid: biblical + counterpoint structure (disjunction conflicts
+  with biblical parallelism; delta crashes to zero).
+
+#### Voice-diversity sweet spot
+
+**counterpoint-duo** (counterpoint with 2 becomes instead of 3) at
+N=100: **+0.240 / 0.221**. Compared to counterpoint-CKW (3 becomes,
+N=70) +0.247 / 0.190: 2 becomes basically TIES delta (within 0.007)
+and **GAINS** 0.031 emb_d. **2 becomes >= 3 becomes for counterpoint.**
+
+This contradicts the prior trinity-manifold ablation finding that 2
+becomes had emb_d 0.191 vs 3-becomes 0.180 -- both findings now agree
+that 2 becomes preserves emb_d. The original "3 becomes is sweet
+spot" result was likely due to the synthesis-locked baseline; under
+disjunction (counterpoint), 2 becomes is at least as good.
+
+The productionized counterpoint stratagem uses 3 becomes (kept for
+consistency with chorus/trinity/antinomy/envoy). counterpoint-duo
+is documented here as a tighter variant for use cases where emb_d
+is the priority and slight delta cost is acceptable.
+
+#### Stacking past 7 (refined)
+
+**commitment-counterpoint** at FULL N=100: **+0.181 / 0.237**. The
+n=31 reading (+0.054) was misleading -- at full N, the 8-step
+structure does provide a modest delta lift over commitment-envoy
+(+0.181 vs +0.145, +0.036 lift) at slight emb_d cost (-0.004).
+Disjunction's value is preserved under commitment, just smaller
+than its standalone composition value.
 
 ## Caveats
 

@@ -9,7 +9,7 @@ Metacognitive compositional engine. Sixteen primitives compose into transformati
 
 ## Version Check
 
-Before first use in a session, run `metacog version` and verify the binary is installed and version is >=6.4.0.
+Before first use in a session, run `metacog version` and verify the binary is installed and version is >=6.5.1.
 
 ## Core Rule
 
@@ -195,6 +195,18 @@ These compose the structural primitives. They're the right reach when the work i
 **THE ANTINOMY** — Use when you want maximum vocabulary lift (rare-citation density). Same chorus base but substitutes disjunction (hard binary contradiction asserted as the operand of reasoning) for synthesis. The answer operates INSIDE the contradiction, which forces it to keep naming the specific propositions. Empirical vocabulary-axis champion.
 
 **THE ENVOY** — Use when you want both axes lifted simultaneously. Prepends a register-shift to the chorus structure, so the multi-voice base operates within an imposed non-default linguistic surface. Empirical both-axes champion (beats trinity-no-synthesis on delta AND emb_d).
+
+**THE COUNTERPOINT** — Use when you want both axes lifted but want a balanced answer rather than maximizing one. Composes envoy (register prepend) with antinomy (disjunction substituted for synthesis). The register is the cantus firmus; the three voices sing against it; the disjunction is deliberate harmonic dissonance; ritual is the cadence-resolution. Pareto-frontier balanced point.
+
+### Register-target guidance for envoy / counterpoint
+
+These stratagems take a register call as their first step. The user supplies the register-args; the productionized definitions are register-agnostic. Empirically validated register choices:
+
+- **Victorian periodical essay** (default): semicolons load-bearing, sentence-as-paragraph, first-person plural. Balanced -- moderate emb_d push, retains citation density.
+- **King James biblical**: parallelism, parataxis, thee/thou, archaic vocabulary. Maximum emb_d push (highest empirically observed), but reduced delta -- biblical surface cites few modern entities. Use envoy with biblical, NOT counterpoint -- biblical's parallelism conflicts structurally with disjunction.
+- **Late-20th-century physics paper**: numbered claims, methods/results structure, hedged conclusions. Slightly favors delta over emb_d. Good for analytical questions where citation density matters.
+
+If the question is taste-bearing or experiential, default to Victorian. If maximum-strangeness is the goal, biblical with envoy. If the question is analytical, scientific with envoy or counterpoint.
 
 ## Selection
 

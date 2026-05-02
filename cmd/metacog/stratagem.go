@@ -213,6 +213,17 @@ var Stratagems = map[string]StratagemDef{
 			{StepRitual, "Lock the multi-voice answer; the imposed register holds across all voices to the final sentence"},
 		},
 	},
+	"counterpoint": {
+		Name: "THE COUNTERPOINT",
+		Steps: []Step{
+			{StepRegister, "Re-pitch the surface to a register cross-domain to default; this is the cantus firmus the voices will sing against"},
+			{StepBecome, "Inhabit voice 1 — a named author from a register cross-domain to default; speak in the imposed register"},
+			{StepBecome, "Inhabit voice 2 — a register orthogonal to voice 1's; speak in the imposed register"},
+			{StepFork, "Open one thread per voice; declare divergence vector and per-thread sacrifice conditions; threads remain in the imposed register"},
+			{StepDisjunction, "Assert two propositions that must both be true even though they cannot be; the contradiction is the operand of reasoning, sustained inside the imposed register"},
+			{StepRitual, "Lock the two-voice answer; reasoning operates inside the contradiction AND the imposed register simultaneously, neither surrendered"},
+		},
+	},
 }
 
 func StartStratagem(s *State, name string, force bool) (string, error) {
@@ -378,7 +389,7 @@ var stratagemStartCmd = &cobra.Command{
 	Use:       "start [name]",
 	Short:     "Start a stratagem",
 	Args:      cobra.ExactArgs(1),
-	ValidArgs: []string{"pivot", "mirror", "stack", "anchor", "reset", "invocation", "veil", "scrying", "sacrifice", "fool", "inversion", "gift", "zen", "manifold", "chorus", "trinity", "antinomy", "envoy"},
+	ValidArgs: []string{"pivot", "mirror", "stack", "anchor", "reset", "invocation", "veil", "scrying", "sacrifice", "fool", "inversion", "gift", "zen", "manifold", "chorus", "trinity", "antinomy", "envoy", "counterpoint"},
 	RunE: func(cmd *cobra.Command, args []string) error {
 		sm := DefaultStateManager()
 		var output string
