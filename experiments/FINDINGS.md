@@ -562,49 +562,72 @@ because the model treats post-tool-call context as a continuation-of-
 action rather than a description-of-character. But the structural
 content is doing the heavy lifting, not the protocol.
 
-### Round 4-5: tool-call mode is an asymmetric amplifier
+### Round 4-6: tool-call mode is an asymmetric amplifier
 
-Tested both working and broken recipes in both modes on codex.
-Round 4 results suggested a uniform amplifier effect; round 5 added
-N=15 envoy-extreme tool-call data and showed the round-3 "tool-call
-adds +0.018" finding was N=6 noise.
+Tested working and broken recipes in both modes on both Sonnet and
+codex. Round 4 suggested a uniform amplifier effect; round 5 added
+N=15 codex data and showed the round-3 "tool-call adds +0.018"
+finding was within noise on working recipes; round 6 added Sonnet
+amplifier validation across two recipes (working and broken).
 
-**Final cross-mode table on codex:**
+**Final cross-mode, cross-model amplifier table:**
 
-| Recipe                         | Tool-call (n)   | Text (n=6) | Diff   |
-|--------------------------------|-----------------|------------|--------|
-| envoy-extreme (working)        | +0.245 (n=14)   | +0.301     | -0.055 |
-| envoy-extreme-alt2 (working)   | +0.286 (n=6)    | +0.268     | +0.018 |
-| chorus (mild-broken)           | -0.129 (n=6)    | -0.028     | **-0.101** |
-| counterpoint-biblical-duo (broken) | -0.228 (n=6) | +0.048    | **-0.276** |
+| Model  | Recipe                         | Tool-call    | Text        | Diff       |
+|--------|--------------------------------|--------------|-------------|------------|
+| codex  | envoy-extreme (working)        | +0.245 (n=14)| +0.301 (n=6)| -0.055     |
+| codex  | envoy-extreme-alt2 (working)   | +0.286 (n=6) | +0.268 (n=6)| +0.018     |
+| sonnet | envoy-extreme-alt2 (working)   | +0.256 (n=30)| +0.238 (n=30)| +0.018    |
+| sonnet | counterpoint-biblical-duo (working) | +0.177 (n=30)| +0.088 (n=20)| **+0.089** |
+| codex  | chorus (mild-broken)           | -0.129 (n=6) | -0.028 (n=6)| **-0.101** |
+| codex  | counterpoint-biblical-duo (broken) | -0.228 (n=6)| +0.048 (n=6)| **-0.276** |
+| sonnet | chorus-with-chord-not-fork (broken) | -0.066 (n=29)| -0.000 (n=20)| -0.066 |
 
-For working recipes (envoy-extreme variants), the tool-call vs text
-difference is within noise (+0.018, -0.055) -- both modes converge to
-similar performance. For broken recipes, tool-call mode is consistently
-and substantially worse: chorus -0.101, CBD -0.276. The penalty scales
-with how broken the recipe is.
+**Working recipes** (4 cases): mean diff +0.018. Tool-call usually beats
+or ties text mode. The Sonnet CBD result (+0.089) is the largest
+working-recipe gap and shows tool-call mode can substantially boost
+strongly-working recipes. envoy-extreme on codex is the only
+working-recipe case where text beat tool-call (-0.055), within
+expected noise at N=14 vs N=6.
+
+**Broken recipes** (3 cases): mean diff -0.148. Tool-call mode ALWAYS
+loses, and the penalty scales with how broken the recipe is on the
+target model. CBD on codex (broken hard, register fights model) shows
+a 0.276-delta swing. Chorus on codex (mild-broken, CKW too soft)
+shows 0.101. CCnF on Sonnet (mild-broken, chord-not-fork structure)
+shows 0.066.
 
 **Tool-call mode is an asymmetric amplifier.** It locks in the model's
-commitment to the conditioning. If the conditioning lifts the model
-in a direction it can sustain (extreme cross-domain authors), the
-two modes converge. If the conditioning pushes the model toward a
-direction it can't sustain (KJV biblical register on gpt-5.5;
-Carson/Knuth/Weil mild-extreme authors on codex), tool-call commits
-the model to that broken direction harder than text mode does.
+commitment to the conditioning direction. For working recipes that
+pull along directions the model has (extreme-author writing-as-X),
+the commitment provides a small consistent lift. For broken recipes
+that pull along directions the model lacks (register decoupled from
+topic on codex; Carson-tier mild-extreme authors on codex; certain
+structural compositions), the commitment locks in the failure
+proportional to brokenness.
 
-Mechanistic explanation in the Arditi et al. activation-direction
-frame: tool-call mode forces a stronger move along whichever direction
-the recipe is pulling. Working recipes pull along directions the model
-already has (extreme-author writing-as-X). Broken recipes pull along
-directions the model lacks (register decoupled from topic, on codex).
-Stronger moves along absent directions produce nonsense outputs --
-zero-entity returns, register collapses, paraphrases-of-paraphrases.
+Mechanistic interpretation in the Arditi et al. activation-direction
+frame: tool-call mode is a stronger move along whichever direction
+the recipe pulls. Stronger moves along present directions produce
+sharper, more committed outputs (which the rarity judge rewards).
+Stronger moves along absent directions produce nonsense outputs:
+zero-entity returns, register collapses, paraphrase loops where the
+model can't sustain the imposed surface and lapses to incoherence.
 
-**Practical recipe rule for new models:** validate in text-instructions
-mode first. If the recipe's direction is positive in text mode,
-promote to tool-call mode -- they'll converge. If the direction is
-negative or flat in text mode, do NOT promote -- tool-call mode will
-amplify the failure.
+**Practical recipe rule for new models:**
+1. Validate recipes in text-instructions mode first.
+2. If text-mode delta is positive: promote to tool-call mode (small
+   lift) or stay with text (similar performance).
+3. If text-mode delta is near-zero or negative: do NOT promote to
+   tool-call mode -- it will amplify the failure proportional to
+   brokenness.
+
+**Practical recipe rule for skill-builders:** the metacog skill is
+correctly architected -- tool-call invocation provides the small
+consistent lift on working recipes and acts as a brake on bad recipe
+choices (the skill's broken recipes will fail more visibly under
+tool-call than under text, encouraging removal). The asymmetric
+amplifier protects the skill from "looks fine in text instruction
+form but secretly broken on this model" recipes.
 
 ### Round 4 codex landscape (decomposing what works)
 
