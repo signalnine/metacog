@@ -1,6 +1,6 @@
 # Teaching a language model to sound less like itself
 
-A retrospective of a 24-hour experimental run on `metacog`,
+A retrospective of a 48-hour experimental run on `metacog`,
 2026-04-30 morning through 2026-05-02 morning, covering the move
 from a 5-primitive identity-and-felt-sense surface to a 16-primitive
 surface with empirically-derived structural stratagems (v6.0.0 →
