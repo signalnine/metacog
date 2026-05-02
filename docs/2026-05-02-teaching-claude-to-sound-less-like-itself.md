@@ -5,6 +5,10 @@ v6.0.0 → v6.5.1. Started with 5 primitives and 16 soft-register
 stratagems; ended with 16 primitives and 19 stratagems including five
 empirically-derived structural ones.
 
+Generator throughout: Claude Sonnet 4.6. Judges: Claude Haiku 4.5.
+Findings are model-specific -- the structural patterns may transfer
+to other models, but the magnitudes won't.
+
 First half is the narrative. Second half is the version-by-version
 retrospective with full Pareto-frontier data for anyone who wants to
 check the work.
@@ -462,8 +466,12 @@ multi-voice/contradiction/register stratagems."
 
 ## Methodology
 
-- **Generator:** `claude -p` invoking the metacog binary as a
-  sequence of subprocess events, one per primitive call.
+- **Generator:** Claude Sonnet 4.6 (`claude -p`) invoking the metacog
+  binary as a sequence of subprocess events, one per primitive call.
+  Findings here are model-specific -- the same recipes may behave
+  differently on Opus, Haiku, GPT-class models, or open-weight models.
+- **Judges:** Claude Haiku 4.5 for rarity and coherence judgments
+  (cross-model from generator to reduce same-model bias).
 - **Tasks:** 10 open-ended taste-bearing prompts in `tasks.yaml`.
 - **Metrics:**
   - `delta = mean(rarity * coherence) - per-task NULL baseline` --

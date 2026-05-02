@@ -5,13 +5,16 @@ the same writeup, post-conditioning. see `2026-05-02-teaching-claude-
 to-sound-less-like-itself.md` for the unconditioned baseline. the
 experiment in the doc, applied to the doc.)
 
-48 hours of experiments on `metacog`. v6.0.0 to v6.5.1. Ended up with
-a Pareto frontier of recipes that push Claude's output well off
-default register, measured two ways. The biggest finding: switching
-the register-shift inside `envoy` from Victorian to King James
-biblical pushed embedding distance from 0.239 to 0.292, almost a 25%
-jump, with delta still positive. The model can write like the KJV.
-It just essentially never does, because nothing asks it to.
+48 hours of experiments on `metacog`. v6.0.0 to v6.5.1. Generator was
+Claude Sonnet 4.6 throughout, judges were Claude Haiku 4.5. Findings
+here are Sonnet-specific -- the patterns may transfer, the magnitudes
+won't. Ended up with a Pareto frontier of recipes that push Claude's
+output well off default register, measured two ways. The biggest
+finding: switching the register-shift inside `envoy` from Victorian
+to King James biblical pushed embedding distance from 0.239 to 0.292,
+almost a 25% jump, with delta still positive. The model can write
+like the KJV. It just essentially never does, because nothing asks
+it to.
 
 ## The problem
 
