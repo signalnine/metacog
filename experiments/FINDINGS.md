@@ -629,6 +629,35 @@ tool-call than under text, encouraging removal). The asymmetric
 amplifier protects the skill from "looks fine in text instruction
 form but secretly broken on this model" recipes.
 
+### Round 7: amplifier shows on emb_d too
+
+Computed embedding distances for all tool-call and text-mode trials
+across both models. The amplifier asymmetry shows on both metrics:
+
+| Model  | Recipe                              | Δ delta | Δ emb_d |
+|--------|-------------------------------------|---------|---------|
+| codex  | envoy-extreme (working)             | -0.055  | -0.005  |
+| codex  | envoy-extreme-alt2 (working)        | +0.018  | +0.006  |
+| sonnet | envoy-extreme-alt2 (working)        | +0.018  | +0.024  |
+| sonnet | counterpoint-biblical-duo (working) | **+0.089** | **+0.033** |
+| codex  | chorus (mild-broken)                | -0.101  | -0.008  |
+| sonnet | chorus-with-chord-not-fork (broken) | -0.066  | -0.023  |
+| codex  | counterpoint-biblical-duo (broken)  | **-0.276** | **-0.058** |
+
+Both axes move in the same direction for strong-effect cases. Tool-call
+mode amplifies along the recipe's natural pull, and that pull is
+shared between citation density (delta) and conceptual reach (emb_d).
+For the strongest broken case (codex CBD), tool-call mode subtracts
+0.276 delta AND 0.058 emb_d simultaneously -- the model can't sustain
+the imposed surface, so both proxies for "distance from default" drop.
+For the strongest working case (Sonnet CBD), tool-call adds 0.089
+delta AND 0.033 emb_d -- the commitment lets the model push further.
+
+Mechanism confirmed: tool-call mode is a stronger move along the
+recipe's direction in activation space. Working = direction the model
+has = both metrics rise together. Broken = direction the model lacks
+= both metrics fall together. The amplifier is unified across axes.
+
 ### Round 4 codex landscape (decomposing what works)
 
 | Recipe                   | codex delta | What it tests              |
