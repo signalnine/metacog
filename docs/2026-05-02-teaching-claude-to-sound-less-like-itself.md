@@ -9,6 +9,11 @@ First half is the narrative. Second half is the version-by-version
 retrospective with full Pareto-frontier data for anyone who wants to
 check the work.
 
+A companion version of this writeup, drafted after `metacog become
+"gabe ortiz"` rather than style-edited from the default voice, is at
+[2026-05-02-teaching-claude-to-sound-less-like-itself.become-gabe.md](2026-05-02-teaching-claude-to-sound-less-like-itself.become-gabe.md)
+-- the experiment in this doc applied to this doc.
+
 ---
 
 ## I. The problem
