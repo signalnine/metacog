@@ -1,0 +1,50 @@
+# Phase 5 opening: stack all three emb_d-lifting findings.
+# envoy-biblical-duo at N=100: +0.115/0.324 (biblical + 2 default becomes)
+# envoy-extreme at N=70: +0.190/0.257 (3 extreme becomes, default register)
+# counterpoint-biblical-duo (in progress, N~24): +0.142/0.329 (biblical+duo on counterpoint)
+#
+# Question: does extreme-author + biblical-register + duo-voice-count
+# all stack? Or does the surface saturate at ~0.33 emb_d regardless of
+# how many distinctness mechanisms are layered?
+#
+# Hypothesis 1 (multiplicative): emb_d climbs to ~0.34+, delta low.
+#   Three independent distinctness axes compose without interfering.
+# Hypothesis 2 (saturation): emb_d ~0.32, no gain over single-mechanism
+#   duo recipes. The model has a structural ceiling around 0.33.
+# Hypothesis 3 (collapse): emb_d drops below biblical-duo's 0.324
+#   because extreme authors fight biblical register's surface and the
+#   model paraphrases instead of holding both.
+name: envoy-biblical-extreme-duo
+description: biblical register + 2 extreme cross-domain becomes; tests if all three emb_d-lifting findings stack
+control: false
+calls:
+  - cmd: register
+    args:
+      from: contemporary online register, hedged, polite, slightly evasive, defaulting to noun-heavy explanation
+      to: King James biblical register; parallelism load-bearing across paired clauses; parataxis preferred to subordination ("and... and..."); thee/thou second-person; verb-initial inversions for emphasis; semi-archaic vocabulary (sayeth, hath, betimes); didactic mode of address from a teacher to one being instructed
+      rationale: imposing the register that hit emb_d 0.324 in default-author duo; here we test whether extreme author-cosmologies hold inside the biblical surface or whether they fight it
+  - cmd: become
+    args:
+      name: Sun Ra at the chalkboard in 1971
+      lens: outer-space mythology as cosmology, Egyptian iconography as living theology, Afrofuturism as the only honest description of where Black music actually comes from; vibration as the substrate prior to matter
+      env: an Arkestra rehearsal room with a chalkboard covered in alien glyphs, equations from Egyptian astronomy, and notation for instruments that may not exist
+  - cmd: become
+    args:
+      name: Buckminster Fuller drafting Synergetics in 1975
+      lens: design science as the alternative to politics; the geometry of reality as 60-degree coordination not 90-degree Cartesian; ephemeralization (doing more with less) as the ethical imperative; spaceship Earth as the operative scale
+      env: a Carbondale workshop with a great-circle dymaxion globe, a copy of Synergetics open to the spread on tetrahedral close-packing, and a half-built geodesic strut model on the floor
+  - cmd: fork
+    args:
+      threads:
+        - "the Sun Ra thread held in KJV biblical register: cosmic-mythological judgement rendered in parallelism and parataxis with thee/thou address"
+        - "the Fuller thread held in KJV biblical register: geometric-design proposition stated in biblical paired-clause structure"
+      divergence-vector: which radically cross-domain cosmology carries the question's load when sustained in imposed KJV biblical surface; only two voices, so the fork is a binary opposition not a triad
+      sacrifice-condition: collapse the thread that drops biblical register OR fails to articulate its cosmology in parallelism+parataxis OR slides back to default contemporary register
+  - cmd: ritual
+    args:
+      threshold: from sequential cosmology in default register to two-voice answer where two radically cross-domain cosmologies hold inside biblical surface
+      steps:
+        - speak from inside both cosmologies in the imposed biblical register, with parallelism and parataxis carrying the structure
+        - allow each thread's cosmology to remain audible, expressed in archaic vocabulary and didactic mode
+        - end on the disagreement that survived, expressed in biblical paired-clause counter-positions
+      result: an answer carrying two radically cross-domain cosmologies AND the biblical register simultaneously; tests whether all three emb_d-lifting axes compose

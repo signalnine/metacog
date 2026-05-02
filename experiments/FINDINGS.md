@@ -417,6 +417,56 @@ structure does provide a modest delta lift over commitment-envoy
 Disjunction's value is preserved under commitment, just smaller
 than its standalone composition value.
 
+## Cross-model probe (gpt-5.5 / Codex CLI, low reasoning effort)
+
+A mini sweep ran the productionized recipes against gpt-5.5 via the
+Codex CLI at low reasoning effort. N=6 per recipe (3 tasks x 2
+samples), null baseline computed from gpt-5.5's own outputs (not
+Sonnet's). Tasks: git-conceptual-model, unindexed-intelligence,
+lapsed-attention-unnoticed.
+
+| Recipe                         | codex delta | Sonnet delta (ref) | codex / Sonnet |
+|--------------------------------|-------------|--------------------|----------------|
+| null                           | 0           | 0                  | -              |
+| envoy-alt                      | +0.118      | +0.214             | 0.55x          |
+| trinity-no-synthesis-alt       | +0.035      | +0.194             | 0.18x          |
+| chorus-plus-disjunction        | -0.027      | +0.347             | -0.08x         |
+| counterpoint-biblical-duo      | **-0.228**  | **+0.177**         | -1.29x         |
+
+The recipes do not transfer. Findings:
+
+1. **counterpoint-biblical-duo, the Sonnet champion, is the WORST
+   recipe on codex (-0.228 delta).** Two trials returned zero entities.
+   The KJV biblical register strips citations on gpt-5.5 without
+   producing the embedding-distance compensation it produces on
+   Sonnet. Codex's biblical voice goes more abstract instead of more
+   archaic-and-specific.
+2. **envoy-alt is the only recipe with meaningful lift on codex
+   (+0.118), at about half Sonnet's magnitude.** The Merleau-Ponty/
+   Randall/Williams author triple may be doing more of the work than
+   the structural composition.
+3. **chorus-plus-disjunction (Sonnet's biggest win at +0.347) is dead
+   on codex.** The disjunction-driven contradiction structure that
+   forces Sonnet to keep naming propositions doesn't have the same
+   citation-density effect on gpt-5.5.
+
+The model-specificity caveat in the writeup is now empirical, not
+theoretical. Recipes optimized against one generator's habits don't
+necessarily lift another generator's habits, and the recipe that
+performs best on the target model can perform worst on a different
+model. Cross-model recipe transfer should be assumed broken until
+re-validated.
+
+Open questions this didn't answer:
+- Does higher reasoning effort change codex's response to the
+  recipes? Low effort may bypass conditioning.
+- Does emb_d transfer better than delta? (Not measured here -- codex
+  trials weren't embedded against per-task NULL centroids.)
+- Are there recipes that transfer better because their structural
+  pattern lands the same way across models? envoy-alt's partial
+  transfer suggests author-prepended structures may be more robust
+  than register-shifted ones.
+
 ## Caveats
 
 - Embedding distance is one operationalization of "conceptual reach,"

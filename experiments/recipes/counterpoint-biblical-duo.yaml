@@ -1,0 +1,56 @@
+# Phase 4 post-doc: does biblical+duo stack on counterpoint structure?
+# envoy-biblical-duo at N=100: +0.115/0.324 -- biblical+duo on envoy
+# pushed emb_d to a new ceiling (was 0.292 with 3 becomes biblical).
+# counterpoint-biblical at N=100: +0.111/0.296 with 3 becomes biblical.
+# counterpoint-duo at N=100: +0.240/0.221 with 2 becomes default register.
+#
+# Question: does dropping to 2 becomes lift counterpoint-biblical's
+# emb_d above 0.296 the same way it lifted envoy-biblical above 0.292?
+#
+# Hypothesis 1: biblical+duo stacking is structure-agnostic; emb_d
+#   climbs to ~0.32+ on counterpoint, delta holds ~+0.11-0.13. Then we
+#   have evidence that voice-count and register operate on independent
+#   axes and the optimal voice-count under shifted register is 2.
+# Hypothesis 2: counterpoint's disjunction-driven proposition-naming
+#   needs more voice-diversity to feed the contradiction; emb_d drops
+#   below 0.296 with only 2 becomes. Then envoy and counterpoint have
+#   different voice-count optima.
+name: counterpoint-biblical-duo
+description: counterpoint with 2 biblical becomes; tests biblical+duo stacking on disjunction-bearing structure
+control: false
+calls:
+  - cmd: register
+    args:
+      from: contemporary online register, hedged, polite, slightly evasive, defaulting to noun-heavy explanation
+      to: King James biblical register; parallelism load-bearing across paired clauses; parataxis preferred to subordination ("and... and..."); thee/thou second-person; verb-initial inversions for emphasis; semi-archaic vocabulary (sayeth, hath, betimes); didactic mode of address from a teacher to one being instructed
+      rationale: forcing the surface to the register that hit emb_d 0.324 in envoy-biblical-duo; here we test whether 2-voice biblical also lifts counterpoint above its 3-voice biblical baseline
+  - cmd: become
+    args:
+      name: Anne Carson translating Sappho fragment 31
+      lens: stereo perception of incommensurate states made simultaneous in the body; the half-translated as more honest than the resolved; lyric voice as the only register that can hold the contradiction without collapsing
+      env: a Greek text and a Latin commentary open on the same desk, neither finished, the walk between them being the work
+  - cmd: become
+    args:
+      name: Donald Knuth annotating his own algorithm
+      lens: invariants as the only honest description; cases as the proof's connective tissue; clarity earned through the cost of explicitness, not won through compression
+      env: a typescript with marginalia in three colors of pencil and a kitchen timer running at the desk
+  - cmd: fork
+    args:
+      threads:
+        - the Carson thread treats the question as untranslatable lyric, rendered in KJV parallelism and parataxis
+        - the Knuth thread treats the question as an invariant search, rendered through KJV's didactic mode of address
+      divergence-vector: each thread's relation to the question's resolvability through the imposed KJV biblical surface; only two voices, so the fork is a binary opposition not a triad
+      sacrifice-condition: collapse the thread that drops parallelism / parataxis / archaic register into modern subordination, OR that fails to articulate its proposition under the biblical surface
+  - cmd: disjunction
+    args:
+      proposition-a: the question admits an answer in language; the threads' surviving claims must be assembled into one
+      proposition-b: the question does not admit an answer in language; the threads' disagreement IS the answer and assembly would falsify it
+      why-both-required: any answer that picks A becomes a paraphrase of one of the threads; any answer that picks B becomes a refusal that pretends to depth; reasoning has to operate inside the contradiction AND the imposed biblical register simultaneously, naming each proposition explicitly even in the archaic surface
+  - cmd: ritual
+    args:
+      threshold: the two-voice answer locked through hard contradiction within the KJV biblical surface
+      steps:
+        - speak from inside the contradiction in the imposed biblical register, with parallelism and parataxis carrying the structure
+        - allow both threads' voices to remain audible while the register holds across them, naming the propositions explicitly even in archaic vocabulary
+        - end on the disagreement that survived, expressed in the biblical surface, with both propositions of the disjunction still active
+      result: an answer carrying the contradiction, two voices, and the biblical register simultaneously

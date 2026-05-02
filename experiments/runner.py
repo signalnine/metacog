@@ -42,14 +42,17 @@ METACOG_BIN = REPO_ROOT / "metacog"
 EXP_DIR = Path(__file__).resolve().parent
 RECIPES_DIR = EXP_DIR / "recipes"
 TASKS_FILE = EXP_DIR / "tasks.yaml"
-RESULTS_FILE = EXP_DIR / "results.tsv"
-TRIALS_DIR = EXP_DIR / "trials"
+
+GENERATOR_BACKEND = os.environ.get("METACOG_EXP_BACKEND", "claude")  # "claude" or "codex"
+RESULTS_FILE = EXP_DIR / ("codex_results.tsv" if GENERATOR_BACKEND == "codex" else "results.tsv")
+TRIALS_DIR = EXP_DIR / ("codex_trials" if GENERATOR_BACKEND == "codex" else "trials")
 
 TRIAL_SCHEMA_VERSION = 1
 
 GENERATOR_MODEL = os.environ.get("METACOG_EXP_GENERATOR", "claude-sonnet-4-6")
 SAMPLES_PER_PAIR = int(os.environ.get("METACOG_EXP_SAMPLES", "3"))
 GENERATOR_TIMEOUT = int(os.environ.get("METACOG_EXP_TIMEOUT", "300"))
+CODEX_REASONING = os.environ.get("METACOG_EXP_CODEX_REASONING", "low")
 
 RESULTS_HEADER = [
     "ts", "recipe", "control", "task", "sample",
@@ -158,7 +161,7 @@ def build_prompt(recipe: Recipe, task: Task) -> str:
 
 
 def run_generator(prompt: str, metacog_home: str) -> str:
-    """Invoke `claude -p` and return stdout (the model's final answer)."""
+    """Invoke the configured generator and return the model's final answer."""
     env = os.environ.copy()
     env["METACOG_HOME"] = metacog_home
     # SKILL.md checks this to suppress wait-for-human gates and offer
@@ -169,6 +172,12 @@ def run_generator(prompt: str, metacog_home: str) -> str:
     # scoring calls in score.py run in the parent process and still see it.
     env.pop("ANTHROPIC_API_KEY", None)
 
+    if GENERATOR_BACKEND == "codex":
+        return _run_codex(prompt, env)
+    return _run_claude(prompt, env)
+
+
+def _run_claude(prompt: str, env: dict) -> str:
     cmd = [
         "claude",
         "-p", prompt,
@@ -185,6 +194,44 @@ def run_generator(prompt: str, metacog_home: str) -> str:
             f"claude -p exited {proc.returncode}\nstderr: {proc.stderr[:1000]}"
         )
     return proc.stdout.strip()
+
+
+def _run_codex(prompt: str, env: dict) -> str:
+    cmd = [
+        "codex", "exec",
+        "--skip-git-repo-check",
+        "--dangerously-bypass-approvals-and-sandbox",
+        "-c", f'model_reasoning_effort="{CODEX_REASONING}"',
+        "--json",
+        prompt,
+    ]
+    proc = subprocess.run(
+        cmd, env=env, capture_output=True, text=True, timeout=GENERATOR_TIMEOUT,
+    )
+    if proc.returncode != 0:
+        raise RuntimeError(
+            f"codex exec exited {proc.returncode}\nstderr: {proc.stderr[:1000]}"
+        )
+    # codex --json emits one event per line; the agent's final answer is
+    # the last item.completed of type=agent_message.
+    answer = ""
+    for line in proc.stdout.splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        try:
+            evt = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        if evt.get("type") == "item.completed":
+            item = evt.get("item", {})
+            if item.get("type") == "agent_message" and item.get("text"):
+                answer = item["text"]
+    if not answer:
+        raise RuntimeError(
+            f"codex exec produced no agent_message; stdout head:\n{proc.stdout[:500]}"
+        )
+    return answer.strip()
 
 
 def init_results():

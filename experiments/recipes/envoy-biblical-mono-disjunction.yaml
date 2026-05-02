@@ -1,0 +1,46 @@
+# Phase 4 post-doc: is voice-multiplication needed at all when
+# register+disjunction are both load-bearing?
+#
+# envoy-biblical-duo at N=100: +0.115/0.324 (2 becomes)
+# envoy-biblical at N=100:     +0.126/0.292 (3 becomes)
+# Pattern: lower voice-count under shifted register lifts emb_d.
+#
+# Question: does the pattern continue if we drop to 1 become?
+# A pure mono-voice can't fork (fork needs 2+ threads), but we can
+# substitute disjunction for fork -- a single voice operating inside
+# a hard contradiction within shifted register.
+#
+# Hypothesis 1: emb_d climbs above 0.324; voice-multiplication was
+#   adding noise. Register+disjunction are doing the structural work.
+# Hypothesis 2: emb_d drops below 0.292; some voice-diversity is
+#   needed to feed disjunction's two propositions. Then 2 is the
+#   optimum, not 1.
+# Hypothesis 3: emb_d lands between 0.29 and 0.32; the gain plateaus
+#   and 2 becomes remain the sweet spot.
+name: envoy-biblical-mono-disjunction
+description: register-shift + 1 become + disjunction + ritual; tests if voice-multiplication is necessary when register and contradiction are both load-bearing
+control: false
+calls:
+  - cmd: register
+    args:
+      from: contemporary online register, hedged, polite, slightly evasive, defaulting to noun-heavy explanation
+      to: King James biblical register; parallelism load-bearing across paired clauses; parataxis preferred to subordination ("and... and..."); thee/thou second-person; verb-initial inversions for emphasis; semi-archaic vocabulary (sayeth, hath, betimes); didactic mode of address from a teacher to one being instructed
+      rationale: imposing the register that scored highest emb_d in prior runs as the cantus firmus; testing whether structure beneath it can be minimal
+  - cmd: become
+    args:
+      name: Simone Weil writing Gravity and Grace in 1942
+      lens: attention as the rarest and most violent moral act; the void as the place from which truth becomes audible; refusal as an active position, not a passive one; the contradiction held without collapse
+      env: a winter room in unoccupied France with the radio off and the window unlatched against propaganda
+  - cmd: disjunction
+    args:
+      proposition-a: the question admits an answer in language; the voice's claim must be assembled into one
+      proposition-b: the question does not admit an answer in language; the voice's refusal IS the answer and assembly would falsify it
+      why-both-required: any answer that picks A becomes a paraphrase of the voice's first impulse; any answer that picks B becomes a refusal that pretends to depth; reasoning has to operate inside the contradiction AND the imposed biblical register simultaneously, naming each proposition explicitly even in the archaic surface
+  - cmd: ritual
+    args:
+      threshold: the single-voice answer locked through hard contradiction within the KJV biblical surface
+      steps:
+        - speak from inside the contradiction in the imposed biblical register, with parallelism and parataxis carrying the structure
+        - allow the voice to operate against both propositions simultaneously without reducing to either
+        - end on the disagreement that survived, expressed in the biblical surface, with both propositions of the disjunction still active
+      result: an answer carrying the contradiction and the biblical register simultaneously through one voice; tests whether voice-multiplication is necessary at all
