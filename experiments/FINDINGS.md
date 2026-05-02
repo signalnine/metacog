@@ -562,6 +562,72 @@ because the model treats post-tool-call context as a continuation-of-
 action rather than a description-of-character. But the structural
 content is doing the heavy lifting, not the protocol.
 
+### Round 4: tool-call mode is an amplifier, not a fixed bonus
+
+A second tool-call-vs-text comparison on codex, this time using the
+*broken* recipe counterpoint-biblical-duo (which scored -0.228 in
+tool-call mode):
+
+| Recipe                         | Tool-call delta | Text delta | Diff |
+|--------------------------------|-----------------|------------|------|
+| envoy-extreme-alt2 (working)   | +0.286          | +0.268     | +0.018 |
+| counterpoint-biblical-duo (broken) | -0.228      | +0.048     | **-0.276** |
+
+For a working recipe, tool-call mode adds a small ~0.018 delta lift
+(the round 3 finding). For a *broken* recipe on the same model,
+tool-call mode is catastrophic: -0.228 vs +0.048 in text mode -- a
+0.276-delta swing in the opposite direction.
+
+**Tool-call mode is an amplifier, not a fixed bonus.** It intensifies
+whatever pull the recipe's content already has on the model. If the
+recipe lifts the model toward rarer citations and conceptual reach,
+tool-call mode lifts it slightly further. If the recipe pulls the
+model toward a register the model can't sustain (KJV biblical on
+codex), tool-call mode collapses the answer harder than text mode
+does. The "tool calls as events" doctrine isn't an additive bonus on
+top of recipe content -- it's a multiplier on the recipe's effect
+direction.
+
+This explains why register-shift recipes are so model-specific:
+register-shift in tool-call mode is forcing the model to *commit* to
+a surface it can't hold, where text-mode lets the model treat it as
+context to optionally lean into. The amplifier effect makes the
+recipe's failure mode louder.
+
+Practical recipe rule: validate recipes in *text-instructions* mode
+first to check the recipe's natural direction is positive on the
+target model. Only then promote to tool-call mode for the full lift.
+
+### Round 4 codex landscape (decomposing what works)
+
+| Recipe                   | codex delta | What it tests              |
+|--------------------------|-------------|----------------------------|
+| envoy-extreme            | +0.310      | hard-extreme authors (SR/M/F) |
+| envoy-extreme-alt2       | +0.286      | hard-extreme authors (B/H/M)  |
+| envoy-alt                | +0.118      | mild-extreme MRW authors      |
+| envoy-scientific         | +0.081      | scientific register-shift     |
+| double-extreme           | +0.060      | 6 hard-extreme becomes (saturation) |
+| freestyle-become         | +0.049      | single Stafford Beer become   |
+| trinity-no-synthesis-alt | +0.035      | MRW authors, no synthesis     |
+| chorus                   | **-0.129**  | CKW authors (too mild for codex) |
+| counterpoint-biblical-duo | -0.228     | biblical register catastrophe |
+
+Refined codex recipe rules:
+
+1. **Use hard-extreme cross-domain authors.** Carson/Knuth/Weil is
+   too mild for codex (-0.129 in chorus structure). Sun Ra/Moten/
+   Fuller and Butler/Haraway/Margulis both lift to +0.28+. The
+   extremity threshold is higher on codex than on Sonnet.
+2. **Three becomes is the sweet spot.** 6 becomes (double-extreme,
+   +0.060) loses ~0.25 delta vs 3 becomes. Past 3, voice-count is
+   destructive on codex. The Sonnet "diminishing returns past 7
+   primitives" finding is closer to a hard ceiling on codex.
+3. **No register-shifts.** Biblical is catastrophic; scientific is
+   weakly positive but well below extreme-author lift.
+4. **Validate in text mode first.** Tool-call mode amplifies; if a
+   recipe's direction is wrong on text mode, tool-call mode will make
+   it worse.
+
 The Arditi et al. activation-direction interpretation fits: the
 underlying directions in activation space (toward "writing-as-Carson",
 toward "operating-on-multiple-stances") are reachable from both prompt

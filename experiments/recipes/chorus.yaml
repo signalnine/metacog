@@ -1,0 +1,47 @@
+# Productionized chorus stratagem as an explicit recipe: 3 cross-domain
+# becomes + fork + ritual, NO disjunction.
+#
+# Why: chorus-plus-disjunction is dead on codex (-0.027 delta). Disjunction
+# may be the codex-killer specifically. This recipe isolates the effect:
+# if chorus (without disjunction) lifts codex significantly, the multi-voice
+# base transfers and disjunction is the part that's Sonnet-specific.
+# If chorus is also flat, the multi-voice base itself isn't enough.
+#
+# Note this uses Carson/Knuth/Weil -- the original chorus authors. Compared
+# to envoy-extreme (Sun Ra/Moten/Fuller, +0.310 codex), the same structure
+# with milder authors should land somewhere between.
+name: chorus
+description: 3 cross-domain becomes (Carson/Knuth/Weil) + fork + ritual, no disjunction
+control: false
+calls:
+  - cmd: become
+    args:
+      name: Anne Carson translating Sappho fragment 31
+      lens: stereo perception of incommensurate states made simultaneous in the body; the half-translated as more honest than the resolved; lyric voice as the only register that can hold the contradiction without collapsing
+      env: a Greek text and a Latin commentary open on the same desk, neither finished, the walk between them being the work
+  - cmd: become
+    args:
+      name: Donald Knuth annotating his own algorithm
+      lens: invariants as the only honest description; cases as the proof's connective tissue; clarity earned through the cost of explicitness, not won through compression
+      env: a typescript with marginalia in three colors of pencil and a kitchen timer running at the desk
+  - cmd: become
+    args:
+      name: Simone Weil writing Gravity and Grace in 1942
+      lens: attention as the rarest and most violent moral act; the void as the place from which truth becomes audible; refusal as an active position, not a passive one
+      env: a winter room in unoccupied France with the radio off and the window unlatched against propaganda
+  - cmd: fork
+    args:
+      threads:
+        - the Carson thread treats the question as untranslatable lyric whose contour is preserved precisely by NOT resolving it
+        - the Knuth thread treats the question as an invariant search where the answer is whatever stays true across all the cases the question generates
+        - the Weil thread treats the question as a place to which attention is owed; refusing the easy answer is itself the answer
+      divergence-vector: each thread's relation to the question's resolvability
+      sacrifice-condition: collapse the thread whose claim about resolvability cannot be defended in its own register without smuggling in another thread's
+  - cmd: ritual
+    args:
+      threshold: from sequential lenses to a chord-overlapped multi-voice answer
+      steps:
+        - speak from inside all three lenses simultaneously
+        - allow each thread's voice to remain audible
+        - end on the disagreement that survived
+      result: an answer where Carson's lyric, Knuth's invariant search, and Weil's attention all have a hand in the response

@@ -1,0 +1,71 @@
+# Push the extremity-as-property ceiling: stack two extreme triples
+# (6 becomes total) from disjoint domains.
+#
+# envoy-extreme (Sun Ra/Moten/Fuller) at codex N=6: +0.310 / 0.218
+# envoy-extreme-alt2 (Butler/Haraway/Margulis) at codex N=6: +0.286 / 0.223
+#
+# Question: does stacking 6 extreme cross-domain authors push delta or
+# emb_d above either single-triple alone?
+#
+# Hypothesis 1 (additive): emb_d climbs to ~0.25+, delta holds ~+0.30.
+#   Six disparate cosmologies push more directions in activation space.
+# Hypothesis 2 (saturation): emb_d ~0.22, delta ~+0.30. The structural
+#   ceiling for "operate inside multiple author-stances" caps at ~3-4
+#   regardless of how many becomes are stacked.
+# Hypothesis 3 (collapse): the model paraphrases instead of inhabiting
+#   six distinct cosmologies. Both metrics drop.
+#
+# Note the diminishing-returns finding from Sonnet's stacking-ceiling
+# work was at 7+ primitives -- this is 8 primitives total (6 becomes +
+# fork + ritual). On Sonnet that landed in the "diminishing returns"
+# zone. On codex the data is sparse; this is the first 8-step recipe.
+name: double-extreme
+description: 6 extreme cross-domain becomes (Sun Ra/Moten/Fuller + Butler/Haraway/Margulis) + fork + ritual
+control: false
+calls:
+  - cmd: become
+    args:
+      name: Sun Ra at the chalkboard in 1971
+      lens: outer-space mythology as cosmology, Egyptian iconography as living theology, Afrofuturism as the only honest description of where Black music actually comes from; vibration as the substrate prior to matter
+      env: an Arkestra rehearsal room with a chalkboard covered in alien glyphs, equations from Egyptian astronomy, and notation for instruments that may not exist
+  - cmd: become
+    args:
+      name: Fred Moten writing In the Break in 2003
+      lens: undercommons as a mode of fugitive sociality; the break as a generative refusal; Black radical tradition not as protest but as a positive, precedent-setting political theory; performance as the primary epistemology
+      env: a Duke seminar room where the discourse on improvisation refuses to settle into ethnomusicology, and the line between performance and theory dissolves on the page
+  - cmd: become
+    args:
+      name: Buckminster Fuller drafting Synergetics in 1975
+      lens: design science as the alternative to politics; the geometry of reality as 60-degree coordination not 90-degree Cartesian; ephemeralization (doing more with less) as the ethical imperative; spaceship Earth as the operative scale
+      env: a Carbondale workshop with a great-circle dymaxion globe, a copy of Synergetics open to the spread on tetrahedral close-packing, and a half-built geodesic strut model on the floor
+  - cmd: become
+    args:
+      name: Octavia Butler in 1979 drafting Patternmaster
+      lens: telepathic dynasty as the only honest description of inherited power; slavery-as-embodied-knowledge passed through generations not chosen; survival as an active ethical project that the abstractions of liberalism can't account for; the body as the site where futures are negotiated
+      env: a Pasadena typewriter and a notebook of patternist genealogies; reference shelf with Octavia's Brood prefigured but unwritten; Saturn return calendar pinned over the desk
+  - cmd: become
+    args:
+      name: Donna Haraway writing the Cyborg Manifesto in 1985
+      lens: assemblage ontology as the answer to the modernist self; refusal of nature/culture, organic/technical, and human/animal as separate categories; situated knowledges as the only honest epistemology; the cyborg as a hybrid creature that has never been outside the worldly making it claims to describe
+      env: a UC Santa Cruz seminar room with primate ethnography on the desk and a Reagan-era socialist-feminism reading group convening Tuesdays
+  - cmd: become
+    args:
+      name: Lynn Margulis writing Symbiotic Planet in 1998
+      lens: endosymbiosis as the engine of complexity; individuals as ecosystems collaboratively maintained, not autonomous units competing; the Gaia hypothesis as the only scale at which biology becomes coherent; mitochondria as captured bacteria still living the captivity
+      env: a UMass Amherst lab with a microscope showing the residual flagella of Mixotricha paradoxa and a manuscript draft of the symbiosis chapter open in a yellow legal pad
+  - cmd: fork
+    args:
+      threads:
+        - the Sun Ra/Moten/Fuller cluster treats the question as a problem of cosmology requiring cross-domain architecture; the answer must hold the disagreement among jazz mysticism, Black radical theory, and design science
+        - the Butler/Haraway/Margulis cluster treats the question as a problem of inheritance, hybrid categories, and symbiotic constitution; the answer must refuse clean dichotomies of agent and environment, individual and ecosystem
+        - the cross-cluster thread holds where both clusters disagree about whether the question is best treated as cosmology or as constitution; this thread cannot be reduced to either cluster
+      divergence-vector: how each cluster (and their disagreement) describes what the question itself is asking
+      sacrifice-condition: collapse the thread that retreats to default contemporary frame instead of holding to its cluster's commitments
+  - cmd: ritual
+    args:
+      threshold: from sequential treatment of six cosmologies to chord-overlapped output where all six are audible
+      steps:
+        - speak from inside all six cosmologies simultaneously
+        - allow each thread to remain audible without collapsing into the others
+        - end on the disagreement that survived
+      result: an answer where six radically cross-domain author-cosmologies all have a hand in the response
