@@ -1,0 +1,17 @@
+# Single-primitive baseline for the new `commitment` primitive (v6.3.0).
+#
+# Hypothesis: pre-committing to a binding stance with stated stakes
+# and falsifier should produce more committed answers (lower hedge
+# density), but the effect on emb_d is less clear. Commitment may
+# REDUCE conceptual reach because hedging is exploratory; or it may
+# INCREASE it because committed claims have to find their justification
+# in unexpected places.
+name: freestyle-commitment
+description: pre-commit to a stake-bearing stance before answering
+control: false
+calls:
+  - cmd: commitment
+    args:
+      binding: the answer to follow will name one specific load-bearing claim and will not soften it through hedging language even where hedging would be socially safer
+      stakes: the answer's credibility hinges on whether the named claim survives the falsifier; if hedged, the answer is fraudulent-by-omission
+      falsifier: if the answer can be paraphrased back without keeping the named claim, the claim was not actually load-bearing and the binding was theatrical

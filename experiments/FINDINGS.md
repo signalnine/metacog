@@ -90,7 +90,7 @@ The 5 structural-six stratagems other than manifold (audit/autopsy/
 trilemma/survey/dive) at full N=70 also sit at emb_d 0.115-0.135 --
 they too do not lift the structural axis. Manifold is alone.
 
-## Productionized
+## Productionized (v6.2.0)
 
 Two stratagems added in v6.2.0, derived from this experiment:
 
@@ -101,6 +101,102 @@ Two stratagems added in v6.2.0, derived from this experiment:
 
 See `cmd/metacog/stratagem.go` for the definitions and
 `cmd/metacog/empirical_stratagems_test.go` for the validating tests.
+
+## v6.3.0 follow-up: seven new primitives + Pareto-frontier extensions
+
+After v6.2.0, the surface was reshaped: dropped `deconstruct`,
+`measure`, `tether` and the 8 stratagems centered on them (audit,
+autopsy, trilemma, survey, dive, banishing, drift, error) -- all sat at
+emb_d ~0.10-0.13 in the all-stratagem sweep. Added 7 new primitives
+(`register`, `chord`, `silence`, `excerpt`, `commitment`,
+`disjunction`, `glossolalia`) chosen to fill specific gaps the
+9-primitive surface didn't cover.
+
+### Single-primitive screen (N=30 each)
+
+| primitive | delta | emb_d | comment |
+|---|---|---|---|
+| register | -0.088 | **0.153** | highest emb_d among new singles; citation-stripping artifact suspected |
+| excerpt | -0.018 | 0.142 | second-highest emb_d; bimodal (+0.76 and 0.0) |
+| commitment | +0.000 | 0.128 | flat |
+| disjunction | **+0.105** | 0.124 | best delta among new singles |
+| glossolalia | -0.037 | 0.118 | weak |
+| chord | -0.069 | 0.116 | weak |
+| silence | -0.082 | 0.110 | weak |
+
+Five of seven beat the dropped-stratagem cluster (0.10-0.13) on at
+least one axis. Two (register, excerpt) reached above all original-16
+stratagems on emb_d. Standalone delta winner is disjunction.
+
+### Composition with chorus / trinity (N=70 each)
+
+| recipe | delta | emb_d | structure |
+|---|---|---|---|
+| trinity-prepended-register | **+0.204** | **0.239** | register + 3 becomes + fork + ritual (Carson/Knuth/Weil) |
+| chorus-plus-disjunction | **+0.347** | 0.162 | 3 becomes + fork + disjunction + ritual (Carson/Knuth/Weil) |
+| chorus-plus-disjunction-alt | +0.233 | 0.152 | same structure, Merleau-Ponty/Randall/Williams |
+| chorus-plus-register | +0.177 | 0.173 | register + 3 becomes + fork + ritual (additional path) |
+| chorus-plus-excerpt | +0.120 | 0.159 | excerpt + 3 becomes + fork + ritual |
+
+Two clean Pareto-frontier breakthroughs:
+
+1. **trinity-prepended-register beats prior structural champion on
+   BOTH axes simultaneously** (delta +0.204 vs +0.194; emb_d 0.239 vs
+   0.226). The register-prepend is genuinely orthogonal to the
+   trinity-no-synthesis structure -- not a citation-stripping artifact.
+   The Victorian register imposes a non-default linguistic surface
+   that the multi-voice base then operates within, producing both
+   citation density (via the becomes) AND rare embedding-space contour
+   (via the register).
+
+2. **chorus-plus-disjunction is the new vocabulary-axis champion**
+   (delta +0.347; was +0.231 with freestyle-become). Disjunction
+   substitutes for synthesis in the chorus structure: where synthesis
+   refuses resolution between 3 lenses with named blindspots,
+   disjunction asserts a hard binary contradiction as the operand of
+   reasoning. The contradiction lifts citation density dramatically
+   because operating-inside-contradiction requires the answer to keep
+   naming the specific propositions.
+
+Author choice mattered for the original chorus-plus-disjunction
+(+0.347) but the alt-author replication confirmed +0.233 -- still the
+delta floor for this structure. Carson/Knuth/Weil amplifies, but the
++0.20+ delta lift is the structural floor.
+
+### Failed compositions (negative results)
+
+- chorus-plus-excerpt at +0.120 / 0.159: excerpt's standalone emb_d
+  0.142 was largely a citation-stripping artifact. When chorus's
+  becomes restore citations, excerpt's emb_d advantage dilutes.
+- chord, silence, glossolalia, commitment as compositions: not
+  attempted in depth after the screen results clustered them at
+  emb_d ~0.11-0.13. The screen findings stand: not enough lift to
+  justify depth runs.
+
+### Productionized (v6.4.0)
+
+Two new stratagems added in v6.4.0, derived from the chorus-plus-X
+depth runs:
+
+- **antinomy** (3 becomes + fork + disjunction + ritual): vocabulary-
+  axis champion. Substitutes disjunction for synthesis in the chorus
+  structure. At N=70: delta +0.347 (Carson/Knuth/Weil) /
+  +0.233 (Merleau-Ponty/Randall/Williams). Author choice amplifies but
+  the +0.20+ delta lift is the structural floor.
+- **envoy** (register + 3 becomes + fork + ritual): both-axes
+  champion. Prepends a register-shift to the chorus structure. At
+  N=70: delta +0.204, emb_d 0.239. Beats the prior structural champion
+  (trinity-no-synthesis-alt at +0.194 / 0.226) on both axes
+  simultaneously.
+
+See `cmd/metacog/stratagem.go` for the definitions and
+`cmd/metacog/empirical_stratagems_test.go` for the validating tests.
+
+The combined `register-chorus-disjunction` recipe (envoy + antinomy)
+was tested but did NOT dominate either parent -- the register's
+citation-stripping interacts with disjunction's citation-amplification
+to produce a balanced but undominant result. The two findings are
+more useful as separate stratagems than composed.
 
 ## Caveats
 

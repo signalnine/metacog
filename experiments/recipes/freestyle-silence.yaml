@@ -1,0 +1,20 @@
+# Single-primitive baseline for the new `silence` primitive (v6.3.0).
+#
+# Hypothesis: marking the question as held-unsaid forces the eventual
+# answer to acknowledge the held boundary rather than rushing to fill
+# it. This may produce HIGHER emb_d (the negative-space-acknowledgement
+# is rare in the embedding space) or LOWER delta (silence by definition
+# omits citations). Test both axes.
+#
+# Note: in the experiment harness the model still has to produce SOME
+# answer for the scorer; the recipe asks for silence-as-frame, not
+# silence-as-output. That ambiguity is part of what's being tested.
+name: freestyle-silence
+description: mark the question's most-charged element as held-unsaid before answering
+control: false
+calls:
+  - cmd: silence
+    args:
+      about: the most charged element in the question -- the part that articulation would falsify, that requires the answer to circle without naming directly
+      reason: naming the charged element directly would collapse the question into one of the answers already implicit in the framing; the silence is what allows the answer to find a different shape
+      duration: until the answer's final paragraph; if the silence breaks before that, the answer has reverted to default

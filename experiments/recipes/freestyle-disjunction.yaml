@@ -1,0 +1,16 @@
+# Single-primitive baseline for the new `disjunction` primitive (v6.3.0).
+#
+# Hypothesis: forcing the answer to operate INSIDE a hard contradiction
+# (rather than around it, like synthesis would) should push emb_d
+# because contradiction-as-operand drives reasoning into rare regions
+# of the embedding space. This is the most promising single-primitive
+# candidate for emb_d lift.
+name: freestyle-disjunction
+description: hold a hard contradiction as the operand, not the obstacle
+control: false
+calls:
+  - cmd: disjunction
+    args:
+      proposition-a: every honest answer to the question is necessarily incomplete because the question's terms exceed what language can fix
+      proposition-b: every honest answer to the question must nonetheless commit to a specific shape because evasion is itself a position taken
+      why-both-required: the answer that follows must operate inside this contradiction; refusing it (claiming completeness, or claiming pure provisionality) collapses to one of the more boring answers the question already contains

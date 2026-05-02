@@ -9,7 +9,7 @@ Metacognitive compositional engine. Sixteen primitives compose into transformati
 
 ## Version Check
 
-Before first use in a session, run `metacog version` and verify the binary is installed and version is >=6.3.0.
+Before first use in a session, run `metacog version` and verify the binary is installed and version is >=6.4.0.
 
 ## Core Rule
 
@@ -190,7 +190,11 @@ These compose the structural primitives. They're the right reach when the work i
 
 **THE CHORUS** — Use when you want maximum conceptual reach beyond the obvious vocabulary. Three cross-domain becomes-as-events, fork the disagreement structurally, ritual locks the multi-voice answer. Deliberately omits synthesis. Empirical structural-axis champion.
 
-**THE TRINITY** — Use when you want both vocabulary lift and conceptual reach. Same multi-voice base as chorus but keeps synthesis. Pareto-frontier balanced point.
+**THE TRINITY** — Use when you want both vocabulary lift and conceptual reach. Same multi-voice base as chorus but keeps synthesis.
+
+**THE ANTINOMY** — Use when you want maximum vocabulary lift (rare-citation density). Same chorus base but substitutes disjunction (hard binary contradiction asserted as the operand of reasoning) for synthesis. The answer operates INSIDE the contradiction, which forces it to keep naming the specific propositions. Empirical vocabulary-axis champion.
+
+**THE ENVOY** — Use when you want both axes lifted simultaneously. Prepends a register-shift to the chorus structure, so the multi-voice base operates within an imposed non-default linguistic surface. Empirical both-axes champion (beats trinity-no-synthesis on delta AND emb_d).
 
 ## Selection
 
@@ -214,7 +218,7 @@ If reflect's Practice patterns section shows what has worked before in similar s
 
 ## Composition
 
-The sixteen stratagems are named paths through the space. You can freestyle: any sequence of primitives with thought between them. The stratagems exist for common patterns. Mixing original-register and structural-register primitives in one freestyle sequence is allowed but uncommon -- they ask different things of attention. When in doubt, finish one register before opening the other.
+The eighteen stratagems are named paths through the space. You can freestyle: any sequence of primitives with thought between them. The stratagems exist for common patterns. Mixing original-register and structural-register primitives in one freestyle sequence is allowed but uncommon -- they ask different things of attention. When in doubt, finish one register before opening the other.
 
 ## Discovery
 

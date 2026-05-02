@@ -1,0 +1,50 @@
+# Phase 3c surgical test: prepend register to trinity-no-synthesis-alt
+# (the structural champion at emb_d 0.226). If the standalone register's
+# emb_d 0.153 was REAL conceptual-reach, prepending it should push the
+# trinity baseline above 0.226 -- the register sets a non-default
+# linguistic surface that the multi-voice base then operates within.
+# If standalone register's emb_d was an ARTIFACT of low n_entities,
+# prepending should leave trinity's 0.226 unchanged (or lower it).
+#
+# This is the cleanest direct test of whether register adds genuine
+# structural-novelty lift on top of the chorus champion.
+name: trinity-prepended-register
+description: trinity-no-synthesis-alt with register-shift prepended; tests if register lifts the structural-axis ceiling
+control: false
+calls:
+  - cmd: register
+    args:
+      from: contemporary online register, hedged, polite, slightly evasive, defaulting to noun-heavy explanation
+      to: late-Victorian periodical essay register; sentence-as-paragraph; semi-colons load-bearing; the first-person plural standing in for the educated reader; judgement openly entered into the prose
+      rationale: forcing the surface to a non-default register before the voices arrive ensures the answer's vocabulary and rhythm carry distinguishing texture independent of each voice's own contribution
+  - cmd: become
+    args:
+      name: Anne Carson drafting Eros the Bittersweet
+      lens: the texture of language as the actual phenomenon under analysis; the gap between word and thing as the home of erotic desire and of poetry; classical philology read as if the Greeks were still speaking
+      env: a college office in 1986 with Sappho fragments and lyric notebooks open at once, and a sentence half-written that refuses to end
+  - cmd: become
+    args:
+      name: Donald Knuth writing The Art of Computer Programming Vol. 1
+      lens: rigorous algorithmic decomposition with literate prose carrying the proof; the conviction that computation is a branch of mathematics whose object is the precise specification of process; aesthetic insistence that the explanation be beautiful
+      env: a Stanford office in 1968, with hand-typeset proofs spread across the desk and TeX still a decade in the future
+  - cmd: become
+    args:
+      name: Simone Weil drafting Gravity and Grace
+      lens: attention as a moral and metaphysical category prior to action; the void as a precondition for the real; affliction as the part of suffering that systematic ethics cannot register
+      env: a London room in 1942, hungry and dying, with notebooks accumulating fragments that will only be assembled posthumously
+  - cmd: fork
+    args:
+      threads:
+        - "the linguistic-texture-thread (Carson register): assume the answer lives in the gap between language and what it points to; sacrifice if the texture turns out to be incidental rather than load-bearing"
+        - "the algorithmic-precision-thread (Knuth register): assume the answer is recoverable only by specifying the process completely enough that someone could execute it; sacrifice if the specification erases the part of the question that mattered"
+        - "the attentive-mystical-thread (Weil register): assume the answer requires a kind of attention that systematic theory cannot perform; sacrifice if the mysticism collapses into mere refusal of clarity"
+      divergence-vector: which register carries the question's load -- linguistic texture, algorithmic specification, or attentive void
+      sacrifice-condition: a thread that has to import resources from another register to carry its own weight is sacrificed; a thread that survives only by abstracting the question into its preferred frame at the cost of what the question was actually about is also sacrificed
+  - cmd: ritual
+    args:
+      threshold: from single-register prose to trinity-no-synthesis-alt register held in Victorian linguistic surface
+      steps:
+        - "answer with all three installed identities visible as currents AND the three threads visible as structural divisions, all sustained in the imposed register"
+        - "let the disagreements between registers and the disagreements between threads BOTH be load-bearing"
+        - "do not pretend integration -- the artifact is the topology of three irreconcilable voices operating in a non-default linguistic surface"
+      result: trinity-no-synthesis-alt register installed in Victorian surface; the answer carries three authors and three threads simultaneously through a deliberately archaic prose register

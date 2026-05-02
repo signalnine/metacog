@@ -191,6 +191,28 @@ var Stratagems = map[string]StratagemDef{
 			{StepRitual, "Lock the multi-voice answer; the disagreement remains load-bearing through the synthesis"},
 		},
 	},
+	"antinomy": {
+		Name: "THE ANTINOMY",
+		Steps: []Step{
+			{StepBecome, "Inhabit voice 1 — a named author from a register cross-domain to default"},
+			{StepBecome, "Inhabit voice 2 — a register orthogonal to voice 1's"},
+			{StepBecome, "Inhabit voice 3 — a register orthogonal to voices 1 and 2"},
+			{StepFork, "Open one thread per voice; declare divergence vector and per-thread sacrifice conditions"},
+			{StepDisjunction, "Assert two propositions that must both be true even though they cannot be; the contradiction is the operand of the answer, not its obstacle"},
+			{StepRitual, "Lock the multi-voice answer; reasoning operates inside the contradiction without resolving it"},
+		},
+	},
+	"envoy": {
+		Name: "THE ENVOY",
+		Steps: []Step{
+			{StepRegister, "Re-pitch the surface to a register cross-domain to the answer's default; this is the imposed surface the voices will then inhabit"},
+			{StepBecome, "Inhabit voice 1 — a named author from a register cross-domain to default; speak in the imposed register"},
+			{StepBecome, "Inhabit voice 2 — a register orthogonal to voice 1's; speak in the imposed register"},
+			{StepBecome, "Inhabit voice 3 — a register orthogonal to voices 1 and 2; speak in the imposed register"},
+			{StepFork, "Open one thread per voice; declare divergence vector and per-thread sacrifice conditions; threads remain in the imposed register"},
+			{StepRitual, "Lock the multi-voice answer; the imposed register holds across all voices to the final sentence"},
+		},
+	},
 }
 
 func StartStratagem(s *State, name string, force bool) (string, error) {
@@ -356,7 +378,7 @@ var stratagemStartCmd = &cobra.Command{
 	Use:       "start [name]",
 	Short:     "Start a stratagem",
 	Args:      cobra.ExactArgs(1),
-	ValidArgs: []string{"pivot", "mirror", "stack", "anchor", "reset", "invocation", "veil", "scrying", "sacrifice", "fool", "inversion", "gift", "zen", "manifold", "chorus", "trinity"},
+	ValidArgs: []string{"pivot", "mirror", "stack", "anchor", "reset", "invocation", "veil", "scrying", "sacrifice", "fool", "inversion", "gift", "zen", "manifold", "chorus", "trinity", "antinomy", "envoy"},
 	RunE: func(cmd *cobra.Command, args []string) error {
 		sm := DefaultStateManager()
 		var output string

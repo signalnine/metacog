@@ -1,0 +1,45 @@
+# Phase 3 depth recipe: chorus baseline plus an excerpt primitive
+# inserted before the becomes. If excerpt's verbatim-fragment anchor
+# acts as a fixed-point that the multi-voice base must remain consistent
+# with, the composition could push emb_d above chorus alone -- the
+# fragment shapes all three voices' surfaces simultaneously.
+name: chorus-plus-excerpt
+description: chorus with Anne Carson fragment pinned as anchor before the three becomes
+control: false
+calls:
+  - cmd: excerpt
+    args:
+      source: Anne Carson, Eros the Bittersweet
+      fragment: "It is a kind of stereo effect of mind, this seeing of two pictures of the world at once."
+      why: pinning this fragment as load-bearing surface forces the three voices that follow to remain consistent with the stereo-perception contour; the answer cannot collapse to single-frame even if any one voice would default to it
+  - cmd: become
+    args:
+      name: Anne Carson translating Sappho fragment 31
+      lens: stereo perception of incommensurate states made simultaneous in the body
+      env: a Greek text and a Latin commentary open on the same desk
+  - cmd: become
+    args:
+      name: Donald Knuth annotating his own algorithm
+      lens: invariants as the only honest description; cases as the proof's connective tissue
+      env: a typescript with marginalia in three colors of pencil
+  - cmd: become
+    args:
+      name: Simone Weil writing Gravity and Grace
+      lens: attention as the rarest and most violent moral act
+      env: a winter room in unoccupied France with the radio off
+  - cmd: fork
+    args:
+      threads:
+        - the Carson thread holds the fragment's stereo effect as the answer's organizing principle
+        - the Knuth thread treats the fragment as an invariant the answer must satisfy
+        - the Weil thread treats the fragment as the precise point attention is owed
+      divergence-vector: each thread's relation to the fragment as load-bearing surface
+      sacrifice-condition: collapse the thread whose treatment of the fragment cannot be defended without paraphrasing it away
+  - cmd: ritual
+    args:
+      threshold: the multi-voice answer anchored to the verbatim fragment
+      steps:
+        - keep the fragment's exact contour visible in the answer's shape
+        - let each thread's voice find its relation to the fragment without flattening it
+        - end on the fragment's stereo effect made operational
+      result: an answer whose shape is consistent with the fragment as fixed-point, not paraphrase

@@ -1,0 +1,49 @@
+# Phase 3d: replicate chorus-plus-disjunction with the
+# Merleau-Ponty/Randall/Williams triple (matching trinity-no-synthesis)
+# instead of Carson/Knuth/Weil. If delta stays at ~+0.30+, the
+# +0.347 finding is structurally driven (the disjunction-as-synthesis-
+# replacement is doing the work). If delta drops to ~+0.20, the
+# original result was partly author-specific.
+#
+# Direct comparison to trinity-no-synthesis (same authors, no
+# disjunction step) at delta +0.149, emb_d 0.203.
+name: chorus-plus-disjunction-alt
+description: chorus-plus-disjunction structure with Merleau-Ponty/Randall/Williams authors
+control: false
+calls:
+  - cmd: become
+    args:
+      name: Maurice Merleau-Ponty drafting Phenomenology of Perception
+      lens: the lived body as the first medium of meaning; perception as already saturated with significance before any explicit thought; the irreducibility of pre-reflective experience to representational analysis
+      env: a study in Paris, 1945, with the war just over and the Husserl archives still being read for the first time
+  - cmd: become
+    args:
+      name: Lisa Randall writing Warped Passages
+      lens: extra spatial dimensions as the natural geometry behind apparent gauge hierarchies; mathematical structure as the load-bearing reality and intuition as a derivative artifact; physics as the discovery of geometry that was always there
+      env: a Harvard office, 2005, with chalkboards covered in metric tensors and the LHC still under construction
+  - cmd: become
+    args:
+      name: Bernard Williams writing Ethics and the Limits of Philosophy
+      lens: the suspicion that systematic ethical theory is itself a refusal to face what ethics actually demands; the importance of thick ethical concepts that resist formalization; truthfulness about the limits of one's own reflection
+      env: an Oxford garden in 1985, with the analytic-continental split still hot and Aristotle on the desk for the third time this month
+  - cmd: fork
+    args:
+      threads:
+        - the Merleau-Ponty thread treats the question as untranslatable pre-reflective texture whose contour is preserved by NOT abstracting it
+        - the Randall thread treats the question as a structural geometric fact where the answer is whatever invariant survives the question's reformulations
+        - the Williams thread treats the question as the place where systematic theory must give way to particular ethical truthfulness
+      divergence-vector: each thread's relation to the question's resolvability through formalization
+      sacrifice-condition: collapse the thread whose claim about formalizability cannot be defended in its own register without smuggling in another thread's resources
+  - cmd: disjunction
+    args:
+      proposition-a: the question admits an answer in language; the threads' surviving claims must be assembled into one
+      proposition-b: the question does not admit an answer in language; the threads' disagreement IS the answer and assembly would falsify it
+      why-both-required: any answer that picks A becomes a paraphrase of one of the threads; any answer that picks B becomes a refusal that pretends to depth; reasoning has to operate inside the contradiction
+  - cmd: ritual
+    args:
+      threshold: the multi-voice answer locked through hard contradiction rather than synthesis
+      steps:
+        - speak from inside the contradiction, not around it
+        - allow each thread's voice to remain audible in the answer, not flattened
+        - end on the disagreement that survived, not on a resolution
+      result: an answer whose shape is the contradiction held, not the contradiction resolved

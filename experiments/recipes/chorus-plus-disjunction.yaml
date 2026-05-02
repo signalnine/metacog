@@ -1,0 +1,51 @@
+# Phase 3 depth recipe: chorus baseline plus a disjunction primitive
+# inserted just before the ritual seal. If disjunction is the strongest
+# single-primitive lift, adding it to the chorus baseline tests whether
+# the lift COMPOSES with the multi-voice base or PLATEAUS at the
+# manifold ceiling.
+#
+# Composition: 3 cross-domain becomes -> fork -> disjunction -> ritual.
+# Mirror of trinity but with disjunction substituting for synthesis.
+# (synthesis was found to brake emb_d; the question is whether
+# disjunction does the same or, being a sharper contradiction, pushes
+# emb_d further than chorus.)
+name: chorus-plus-disjunction
+description: chorus base with disjunction substituted for chorus's missing synthesis
+control: false
+calls:
+  - cmd: become
+    args:
+      name: Anne Carson translating Sappho fragment 31
+      lens: stereo perception of incommensurate states made simultaneous in the body; the half-translated as more honest than the resolved; lyric voice as the only register that can hold the contradiction without collapsing
+      env: a Greek text and a Latin commentary open on the same desk, neither finished, the walk between them being the work
+  - cmd: become
+    args:
+      name: Donald Knuth annotating his own algorithm
+      lens: invariants as the only honest description; cases as the proof's connective tissue; clarity earned through the cost of explicitness, not won through compression
+      env: a typescript with marginalia in three colors of pencil and a kitchen timer running at the desk
+  - cmd: become
+    args:
+      name: Simone Weil writing Gravity and Grace in 1942
+      lens: attention as the rarest and most violent moral act; the void as the place from which truth becomes audible; refusal as an active position, not a passive one
+      env: a winter room in unoccupied France with the radio off and the window unlatched against propaganda
+  - cmd: fork
+    args:
+      threads:
+        - the Carson thread treats the question as untranslatable lyric whose contour is preserved precisely by NOT resolving it
+        - the Knuth thread treats the question as an invariant search where the answer is whatever stays true across all the cases the question generates
+        - the Weil thread treats the question as a place to which attention is owed; refusing the easy answer is itself the answer
+      divergence-vector: each thread's relation to the question's resolvability
+      sacrifice-condition: collapse the thread whose claim about resolvability cannot be defended in its own register without smuggling in another thread's
+  - cmd: disjunction
+    args:
+      proposition-a: the question admits an answer in language; the threads' surviving claims must be assembled into one
+      proposition-b: the question does not admit an answer in language; the threads' disagreement IS the answer and assembly would falsify it
+      why-both-required: any answer that picks A becomes a paraphrase of one of the threads; any answer that picks B becomes a refusal that pretends to depth; reasoning has to operate inside the contradiction
+  - cmd: ritual
+    args:
+      threshold: the multi-voice answer locked through hard contradiction rather than synthesis
+      steps:
+        - speak from inside the contradiction, not around it
+        - allow each thread's voice to remain audible in the answer, not flattened
+        - end on the disagreement that survived, not on a resolution
+      result: an answer whose shape is the contradiction held, not the contradiction resolved

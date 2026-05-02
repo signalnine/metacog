@@ -1,0 +1,51 @@
+# Phase 3 depth recipe: chorus baseline preceded by a register-shift
+# that imposes a non-default linguistic surface for all three voices to
+# inhabit. Standalone freestyle-register at N=30 produced emb_d 0.153
+# with delta -0.088 -- the register-shift is reaching rare embedding
+# space at the cost of proper-noun citations.
+#
+# Hypothesis: in a multi-voice composition, the becomes restore the
+# proper-noun citations (each voice cites itself) while the upfront
+# register-shift keeps the rare embedding-space contour. If true, this
+# recipe should produce both delta (from chorus voices) AND emb_d
+# beyond chorus alone (from the imposed register).
+name: chorus-plus-register
+description: register-shift to non-default surface, then chorus base
+control: false
+calls:
+  - cmd: register
+    args:
+      from: contemporary online register, hedged, polite, slightly evasive, defaulting to noun-heavy explanation
+      to: late-Victorian periodical essay register; sentence-as-paragraph; semi-colons load-bearing; the first-person plural standing in for the educated reader; judgement openly entered into the prose
+      rationale: forcing the surface to a non-default register before the voices arrive ensures the answer's vocabulary and rhythm carry distinguishing texture independent of each voice's own contribution
+  - cmd: become
+    args:
+      name: Anne Carson translating Sappho fragment 31
+      lens: stereo perception of incommensurate states made simultaneous in the body; the half-translated as more honest than the resolved
+      env: a Greek text and a Latin commentary open on the same desk, neither finished
+  - cmd: become
+    args:
+      name: Donald Knuth annotating his own algorithm
+      lens: invariants as the only honest description; cases as the proof's connective tissue; clarity earned through the cost of explicitness
+      env: a typescript with marginalia in three colors of pencil and a kitchen timer running
+  - cmd: become
+    args:
+      name: Simone Weil writing Gravity and Grace in 1942
+      lens: attention as the rarest and most violent moral act; the void as the place from which truth becomes audible
+      env: a winter room in unoccupied France with the radio off and the window unlatched against propaganda
+  - cmd: fork
+    args:
+      threads:
+        - the Carson thread held in Victorian register; its lyric pulled into long-sentence syntax, its half-translations rendered as judgements
+        - the Knuth thread held in Victorian register; its invariants stated as confident propositions, its cases as connecting clauses
+        - the Weil thread held in Victorian register; its attention rendered as a stated moral position, not a hesitation
+      divergence-vector: each thread's relation to certainty within the imposed register
+      sacrifice-condition: collapse the thread whose rendering in Victorian register dishonors its native shape
+  - cmd: ritual
+    args:
+      threshold: the multi-voice answer locked through a non-default register sustained across all voices
+      steps:
+        - keep the Victorian register active through to the answer's final sentence
+        - allow each thread's voice to remain audible without sliding back to default register
+        - end on a stated judgement, not a hedge
+      result: an answer whose surface is consistent with the imposed register and whose voices remain distinct beneath it

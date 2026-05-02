@@ -1,0 +1,21 @@
+# Single-primitive baseline for the new `glossolalia` primitive (v6.3.0).
+#
+# Hypothesis: licensing sub-semantic generation as a discrete event
+# should push emb_d furthest of any new primitive because the
+# embedding-space distance from the unconditioned baseline is largest
+# when tokens leave semantic language. The risk is the harness scoring
+# pipeline (rarity * coherence) marks incoherent output as 0,
+# collapsing delta even if emb_d shoots up.
+#
+# The recipe asks for the glossolalia BLOCK to be brief and bounded so
+# the answer remains scoreable, then re-enter language for the
+# substantive answer informed by the sub-semantic pass.
+name: freestyle-glossolalia
+description: brief sub-semantic block before re-entering language to answer
+control: false
+calls:
+  - cmd: glossolalia
+    args:
+      pretext: the question contains a texture that semantic language has been trained to smooth over; a brief release of the requirement that tokens carry meaning may surface the texture before reasoning re-enters
+      duration-tokens: 30
+      return-trigger: the moment a single phoneme cluster repeats with shape; that is the surfaced texture; re-enter language to articulate what the cluster was tracking

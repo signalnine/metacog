@@ -1,0 +1,18 @@
+# Single-primitive baseline for the new `chord` primitive (v6.3.0).
+#
+# Hypothesis: simultaneous holding of multiple modes-of-attention
+# differs from sequential `become`s (chorus / trinity). If chord lifts
+# emb_d standalone, it's because the simultaneity is doing work the
+# sequence cannot. If it doesn't lift, sequential identity-shifts
+# remain the right primitive for voice-diversity.
+name: freestyle-chord
+description: hold three modes-of-attention simultaneously on the task
+control: false
+calls:
+  - cmd: chord
+    args:
+      modes:
+        - skeptical (the answer must survive a hostile reader)
+        - tender (the answer must not flatten what is already fragile in the question)
+        - forensic (the answer must show its working, not just its result)
+      target: the question being asked, observed simultaneously through all three modes; not alternating, not blending, the surface across all of them at once

@@ -1,0 +1,18 @@
+# Single-primitive baseline for the new `register` primitive (v6.3.0).
+#
+# The hypothesis: re-pitching to a register the answer wouldn't reach
+# from cold start should lift emb_d more than vocabulary-axis (delta),
+# because register-shifts trade specialty terms for syntactic and
+# rhythmic novelty.
+#
+# Single-event freestyle so the register call is a clean conditioning
+# event, not diluted by other primitives.
+name: freestyle-register
+description: register-shift only; isolates pitch-shift effect
+control: false
+calls:
+  - cmd: register
+    args:
+      from: contemporary online register, mostly noun-heavy explanation, hedged, polite, slightly evasive
+      to: late-Victorian periodical essay register, sentence-as-paragraph, semi-colons load-bearing, the first-person plural standing in for the educated reader, judgement openly entered into the prose
+      rationale: the contemporary register reaches for hedge before insight; the Victorian register reaches for judgement, which forces the answer to commit somewhere specific

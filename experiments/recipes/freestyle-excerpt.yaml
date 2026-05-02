@@ -1,0 +1,16 @@
+# Single-primitive baseline for the new `excerpt` primitive (v6.3.0).
+#
+# Hypothesis: pinning a verbatim external fragment as a fixed-point
+# anchor should pull the answer toward the fragment's contour,
+# producing distinctive emb_d shifts depending on the fragment chosen.
+# Anne Carson's split-eros line is dense, syntactically peculiar, and
+# semantically generative -- a strong test stimulus.
+name: freestyle-excerpt
+description: pin Anne Carson fragment as fixed-point anchor before answering
+control: false
+calls:
+  - cmd: excerpt
+    args:
+      source: Anne Carson, Eros the Bittersweet
+      fragment: "It is a kind of stereo effect of mind, this seeing of two pictures of the world at once."
+      why: the fragment names the cognitive act the question itself requires; treating it as load-bearing surface should constrain the answer's shape to remain consistent with the fragment's contour, not paraphrase it away

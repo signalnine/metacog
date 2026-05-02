@@ -21,6 +21,8 @@ func TestEmpiricalStratagemsRegistered(t *testing.T) {
 	}{
 		{"chorus", "THE CHORUS", 5, 5, StepFork},
 		{"trinity", "THE TRINITY", 6, 6, StepSynthesis},
+		{"antinomy", "THE ANTINOMY", 6, 6, StepDisjunction},
+		{"envoy", "THE ENVOY", 6, 6, StepRegister},
 	}
 
 	for _, tc := range cases {
@@ -49,11 +51,11 @@ func TestEmpiricalStratagemsRegistered(t *testing.T) {
 	}
 }
 
-// chorus and trinity both require exactly 3 become steps -- the empirically-
-// validated voice-diversity sweet spot. 1 become anchors output to that voice;
-// 4 becomes plateaus or degrades.
+// chorus, trinity, antinomy, envoy all require exactly 3 become steps --
+// the empirically-validated voice-diversity sweet spot. 1 become anchors
+// output to that voice; 4 becomes plateaus or degrades.
 func TestEmpiricalStratagemsHaveThreeBecomes(t *testing.T) {
-	for _, key := range []string{"chorus", "trinity"} {
+	for _, key := range []string{"chorus", "trinity", "antinomy", "envoy"} {
 		t.Run(key, func(t *testing.T) {
 			def := Stratagems[key]
 			n := 0
@@ -91,9 +93,53 @@ func TestTrinityKeepsSynthesis(t *testing.T) {
 	t.Fatal("THE TRINITY must contain synthesis -- it is the balanced variant")
 }
 
-// Both new stratagems must be startable end-to-end.
+// antinomy substitutes disjunction for synthesis. The empirical
+// chorus-plus-disjunction recipe at N=70 hit delta +0.347 (vs the prior
+// vocabulary-axis champion freestyle-become at +0.231); the alt-author
+// replication at N=70 confirmed +0.233. Disjunction is the structural
+// difference between trinity (synthesis: refused resolution between 3
+// lenses with named blindspots) and antinomy (a hard binary contradiction
+// asserted as the operand of reasoning).
+func TestAntinomyUsesDisjunctionNotSynthesis(t *testing.T) {
+	def := Stratagems["antinomy"]
+	hasDisjunction := false
+	for _, step := range def.Steps {
+		if step.Kind == StepDisjunction {
+			hasDisjunction = true
+		}
+		if step.Kind == StepSynthesis {
+			t.Fatal("THE ANTINOMY must NOT contain synthesis -- substituting disjunction is the structural difference from trinity")
+		}
+	}
+	if !hasDisjunction {
+		t.Fatal("THE ANTINOMY must contain disjunction")
+	}
+}
+
+// envoy prepends a register call to the chorus structure. The empirical
+// trinity-prepended-register recipe at N=70 hit delta +0.204 and emb_d
+// 0.239 -- beating the prior structural-axis champion (trinity-no-synthesis-alt
+// at +0.194 / 0.226) on BOTH axes simultaneously. The register-shift imposes
+// a non-default linguistic surface that the multi-voice base operates within.
+// The register call must come FIRST so the becomes inhabit the imposed register.
+func TestEnvoyStartsWithRegister(t *testing.T) {
+	def := Stratagems["envoy"]
+	if len(def.Steps) == 0 {
+		t.Fatal("THE ENVOY has no steps")
+	}
+	if def.Steps[0].Kind != StepRegister {
+		t.Errorf("THE ENVOY's first step must be register; got %q", def.Steps[0].Kind)
+	}
+	for _, step := range def.Steps {
+		if step.Kind == StepSynthesis {
+			t.Fatal("THE ENVOY must NOT contain synthesis -- the lift comes from register + chorus structure, not synthesis")
+		}
+	}
+}
+
+// All four empirical stratagems must be startable end-to-end.
 func TestStartEmpiricalStratagems(t *testing.T) {
-	for _, key := range []string{"chorus", "trinity"} {
+	for _, key := range []string{"chorus", "trinity", "antinomy", "envoy"} {
 		t.Run(key, func(t *testing.T) {
 			s := NewState()
 			out, err := StartStratagem(s, key, false)
@@ -115,8 +161,8 @@ func TestStartEmpiricalStratagems(t *testing.T) {
 
 // Version output must list every empirical stratagem.
 func TestVersionListsEmpiricalStratagems(t *testing.T) {
-	expected := "stratagems: pivot mirror stack anchor reset invocation veil scrying sacrifice fool inversion gift zen manifold chorus trinity"
-	for _, name := range []string{"chorus", "trinity"} {
+	expected := "stratagems: pivot mirror stack anchor reset invocation veil scrying sacrifice fool inversion gift zen manifold chorus trinity antinomy envoy"
+	for _, name := range []string{"chorus", "trinity", "antinomy", "envoy"} {
 		if !strings.Contains(expected, name) {
 			t.Errorf("expected version line to contain %q", name)
 		}
