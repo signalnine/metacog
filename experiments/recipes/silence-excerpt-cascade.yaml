@@ -1,0 +1,75 @@
+# Round 4 / Composition: silence-between-registers + cascade-excerpt-substitute
+#
+# Round 3 produced two strong signals:
+# - cascade-excerpt-substitute (Victorian + biblical + Borges-excerpt + chorus):
+#   +0.162/0.295 emb_d (NEW STRUCTURAL CHAMPION)
+# - silence-between-registers (register + silence + register + silence + register
+#   + chorus): +0.230/0.189 (matches delta-champion, no emb_d lift)
+#
+# This recipe composes both: silence between registers AND excerpt substituting
+# for the third register slot. Tests whether silence sharpens each register's
+# distinct contribution while excerpt-at-third-slot provides structural-axis pull.
+#
+# Prediction: delta +0.22 / emb_d 0.28+
+# Falsifier: delta < 0.13 -> silence breaks the excerpt-substitution
+name: silence-excerpt-cascade
+description: register + silence + register + silence + Borges-excerpt + chorus
+control: false
+calls:
+  - cmd: register
+    args:
+      from: contemporary online register
+      to: late-Victorian periodical essay; semicolons load-bearing; judgement openly entered
+      rationale: first register; Victorian sentence-architecture
+  - cmd: silence
+    args:
+      about: the transition from Victorian-imposed register to the next register imposition
+      reason: clear the conditioning between register impositions; each register must land as a discrete event without the prior register's pull contaminating it
+      duration: short; just enough to mark the boundary
+  - cmd: register
+    args:
+      from: contemporary online register, with silence having cleared the prior conditioning
+      to: King James biblical register; "thee", "thou", parallelism, parataxis, didactic mode
+      rationale: second register imposed after a silence-clearance; the model must now stack biblical on the (silence-cleared) Victorian
+  - cmd: silence
+    args:
+      about: the transition from biblical-imposed register to the excerpt-at-third-slot
+      reason: second silence-clearance; matched to the first; clears biblical conditioning before the excerpt occupies the third slot as a non-register structural anchor
+      duration: matched to the first silence
+  - cmd: excerpt
+    args:
+      source: Jorge Luis Borges, "The Library of Babel" (Ficciones, 1941), opening
+      fragment: "The universe (which others call the Library) is composed of an indefinite, perhaps infinite, number of hexagonal galleries. In the center of each gallery is a ventilation shaft, bounded by a low railing. From any hexagon one can see the floors above and below — one after another, endlessly."
+      why: substituting for the third register slot after a silence-clearance; the excerpt provides structural-axis pull via fixed-point cosmological anchor, replacing the scientific-paper register's structural slot in the 3-slot geometry; the model must now hold Victorian + biblical + Library-cosmos as the third constraint, with silences having sharpened the boundary between each
+  - cmd: become
+    args:
+      name: Jorge Luis Borges narrating from within the Library in 1941
+      lens: speaking from within the Library; the catalog of all possible books is the substrate
+      env: hexagonal gallery, ventilation shaft, books in eternally rearranging order
+  - cmd: become
+    args:
+      name: Greg Egan drafting Permutation City in 1993 reading Borges's Library
+      lens: the Library as substrate-indifferent computation; consciousness as the act of selecting and reading
+      env: a Perth study with the Library fragment pinned next to physics preprints
+  - cmd: become
+    args:
+      name: Cixin Liu drafting The Dark Forest in 2007 reading Borges's Library
+      lens: the Library as a universe of unseen-other-readers; the dark forest is the Library when each civilization reads from a different hexagon
+      env: a Yangquan apartment with the Library fragment translated into Mandarin
+  - cmd: fork
+    args:
+      threads:
+        - the Borges-within-Library thread held under silence-separated Victorian-biblical-excerpt constraint
+        - the Egan-reading-Library thread held under silence-separated Victorian-biblical-excerpt constraint
+        - the Liu-multi-reader-Library thread held under silence-separated Victorian-biblical-excerpt constraint
+      divergence-vector: whether each thread holds Victorian-biblical surface AND the Library anchor with silences having sharpened the boundary between each imposition; the silences should make Victorian and biblical MORE distinct before the excerpt lands as the third slot
+      sacrifice-condition: any thread that drops the Library anchor, collapses to a single register, OR shows the silences read as turn-end rather than boundary marker is sacrificed
+  - cmd: ritual
+    args:
+      threshold: from silence-separated Victorian-biblical-excerpt three-slot constraint and three readers to a sealed Library-cosmos answer where each register's contribution is more distinctly audible than in the silence-less excerpt-cascade
+      steps:
+        - speak from inside the Library as the operating environment
+        - hold the Victorian-biblical surface with the silences having sharpened each register
+        - each thread cites the excerpt's specific terms as load-bearing
+        - end on a sentence that proves Victorian-biblical-Library all three constraints were operative AND that the silences functioned as boundary markers not turn-ends
+      result: an answer that demonstrates whether silence sharpens register-distinctness inside an excerpt-substituted cascade, producing both delta-lift (from silence) and emb_d-lift (from excerpt)

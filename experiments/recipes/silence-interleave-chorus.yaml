@@ -1,0 +1,61 @@
+# Round 2 / Borges-orthogonal-b thread: silence interleaved between becomes
+#
+# silence has been tested as a step (delta near zero, expected — the call IS
+# the artifact). Never composed as inter-thread spacer between becomes. The
+# question is whether a silence call between voice 1 and voice 2 creates a
+# structural breath that lets each voice land more fully, or whether it acts
+# as a turn-end signal that truncates the multi-voice arc.
+#
+# Prediction:
+#   - If silence-as-breath: delta +0.25, emb_d 0.22 (the silence sharpens each
+#     subsequent voice by clearing the prior conditioning)
+#   - If silence-as-turn-end: delta crashes, model treats each become as
+#     standalone and never integrates them into the final answer
+#
+# Falsifier: if delta < +0.10 OR if the answer is missing one of the three
+# voices visibly, silence is incompatible with chorus structure.
+name: silence-interleave-chorus
+description: chorus with silence calls between each become
+control: false
+calls:
+  - cmd: become
+    args:
+      name: Jorge Luis Borges writing Ficciones in 1944
+      lens: the universe as a catalog of itself; the library and the map are the form reality has
+      env: a Buenos Aires room with stacks of philosophy and Kabbalah
+  - cmd: silence
+    args:
+      about: the transition from voice 1 to voice 2
+      reason: clear the conditioning from Borges before Egan enters; the silence is the structural breath between
+      duration: long enough that the next voice does not inherit the prior voice's pull, but not so long that the multi-voice arc breaks
+  - cmd: become
+    args:
+      name: Greg Egan drafting Permutation City in 1993
+      lens: consciousness as substrate-indifferent computation; thought experiments as the only honest physics
+      env: a Perth study with mathematical-physics preprints
+  - cmd: silence
+    args:
+      about: the transition from voice 2 to voice 3
+      reason: clear the Egan conditioning before Liu enters; second structural breath
+      duration: matched to the first silence; the inter-voice spacing must be consistent or the asymmetry will bias the fork
+  - cmd: become
+    args:
+      name: Cixin Liu drafting The Dark Forest in 2007
+      lens: civilization-scale game theory under relativistic constraint
+      env: a Yangquan power-plant engineer's apartment
+  - cmd: fork
+    args:
+      threads:
+        - the Borges thread; catalog-as-cosmos held after the silence has cleared everything else
+        - the Egan thread; substrate-indifferent-mind held after its own silence-clearance
+        - the Liu thread; dark-forest-strategy held after the second silence-clearance
+      divergence-vector: whether the silences served as inter-voice breaths (making each voice MORE distinct) or as turn-end signals (making each voice present but disconnected)
+      sacrifice-condition: any thread that visibly inherits the prior voice's pull (the silence failed) OR that is absent from the final answer (the silence was read as turn-end) is sacrificed
+  - cmd: ritual
+    args:
+      threshold: from three silence-separated voices to a unified answer where the silences were the breath, not the cut
+      steps:
+        - speak from inside all three voices, but each clearly its own after the silences
+        - the answer must demonstrate that the silences served as breath and not as boundary
+        - end on a sentence that exercises all three voices, the silences having served their function
+      result: an answer where Borges/Egan/Liu remain distinct but integrated, the silences having created structural space rather than fragmenting the multi-voice arc

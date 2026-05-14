@@ -1,0 +1,68 @@
+# Round 1 / HK symmetric stacking thread: synthesis AND disjunction in same recipe
+#
+# Empirical question: synthesis (refuses resolution among 3 lenses) and disjunction
+# (asserts 2 incompatible truths) have only ever been treated as SUBSTITUTES:
+#   trinity = chorus + synthesis (-> +0.194/0.220ish)
+#   antinomy = chorus + disjunction (-> +0.347/0.162)
+# What happens when both are in the same recipe? Two refusals-of-closure at
+# different scales. Hilma af Klint's symmetric blueprint says: both forms of
+# refusal in the same diagram.
+#
+# Sacrifice condition prediction: this might collapse because synthesis is a
+# delta-brake (-0.023 vs no-synthesis in ablation), and adding it to antinomy
+# (the delta champion) could just eat antinomy's lead. Or: the two refusals
+# might compound and produce something the system hasn't shown before.
+name: antinomy-trinity
+description: chorus + synthesis + disjunction; two refusals-of-closure at different scales
+control: false
+calls:
+  - cmd: become
+    args:
+      name: Sun Ra at the Arkestra rehearsal in 1971
+      lens: outer-space mythology as cosmology; vibration as the substrate prior to matter
+      env: an Arkestra rehearsal room with a chalkboard of Egyptian astronomical glyphs
+  - cmd: become
+    args:
+      name: Octavia Butler revising Earthseed verses in 1995
+      lens: god is change; survival as the ethical project liberalism cannot account for
+      env: a Pasadena writing room with Earthseed verses tacked over the desk
+  - cmd: become
+    args:
+      name: Buckminster Fuller drafting Synergetics in 1975
+      lens: design science as the alternative to politics; geometry of reality as 60-degree coordination, not 90-degree Cartesian
+      env: a Carbondale workshop with a dymaxion globe and a half-built geodesic strut model
+  - cmd: synthesis
+    args:
+      problem: the question requires three irreconcilable perspectives held together without convergence
+      lens-a-name: the Sun Ra cosmological view
+      lens-a-verdict: vibration prior to matter; the answer is a mythological broadcast
+      lens-a-blindspot: cannot account for material consequence; the broadcast does not budget for compliance
+      lens-b-name: the Butler adaptive view
+      lens-b-verdict: the answer is whichever survives the next pressure; god is change
+      lens-b-blindspot: cannot account for the value of what gets discarded in adaptation
+      lens-c-name: the Fuller design-science view
+      lens-c-verdict: the answer is whatever the geometry coordinates; ephemeralization is the imperative
+      lens-c-blindspot: cannot account for what the geometry refuses to admit as inputs (politics, contingency, suffering)
+      suppressed-tension: the three blindspots cannot be resolved; broadcast vs adaptation vs geometry is not a hierarchy that any synthesis can flatten
+  - cmd: fork
+    args:
+      threads:
+        - the Sun Ra thread carries the broadcast-cosmology
+        - the Butler thread carries the adaptive-change cosmology
+        - the Fuller thread carries the geometric-coordination cosmology
+      divergence-vector: each thread's mode of refusing closure (broadcast refuses by mythologizing; adaptation refuses by surviving differently; geometry refuses by re-coordinating)
+      sacrifice-condition: any thread that consolidates with the other two has slipped synthesis's refusal; sacrifice it
+  - cmd: disjunction
+    args:
+      proposition-a: the answer is the synthesis of three perspectives, none of which can be removed
+      proposition-b: the answer is the disjunction of two propositions both of which must be true (this proposition-a IS true and ALSO false; the synthesis fails and the failure is the answer)
+      why-both-required: synthesis at the lens-scale and disjunction at the meta-scale operate at different levels; the answer must hold the synthesis as the structure and the disjunction as the structure's refusal-of-its-own-completion
+  - cmd: ritual
+    args:
+      threshold: from three voices held under synthesis-refused-resolution, then split by fork, then closed under disjunction's binary contradiction, to a sealed answer that is BOTH the multi-perspective synthesis AND the meta-level disjunction
+      steps:
+        - speak from inside all three voices
+        - hold synthesis's refused-resolution as the structure
+        - assert disjunction's both-true-and-not at the meta-level over that structure
+        - end on a sentence that is BOTH coherent across the three voices AND visibly self-undermining at the meta-level
+      result: an answer where the three cosmologies, the synthesis that refuses to combine them, and the disjunction that refuses to let the synthesis stand are all simultaneously audible

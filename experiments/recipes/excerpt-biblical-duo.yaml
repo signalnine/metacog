@@ -1,0 +1,53 @@
+# Round 4 / More-excerpt test: drop Victorian register AND Liu cosmologist
+#
+# cascade-excerpt-substitute hit emb_d 0.295 at N=10 -- new structural ceiling
+# above envoy-extreme's 0.257. Hypothesis: excerpt is a structural-axis
+# primitive. This recipe pushes the excerpt's relative weight by removing
+# one register (Victorian) AND one cosmologist become (Liu), keeping the
+# biblical register and Borges+Egan becomes around the same Borges excerpt.
+#
+# Prediction: delta +0.12, emb_d 0.31+ (excerpt compounding past the
+# cascade-excerpt-substitute ceiling now that fewer slots dilute it)
+# Falsifier: emb_d < 0.25 -> excerpt does not compound; the 0.295 ceiling
+# was a function of the surrounding cascade (Victorian register + 3 becomes)
+# rather than excerpt's own structural pull
+name: excerpt-biblical-duo
+description: biblical register + Borges excerpt + Borges/Egan becomes + fork + ritual
+control: false
+calls:
+  - cmd: register
+    args:
+      from: contemporary online register
+      to: King James biblical register; "thee", "thou", parallelism, parataxis, didactic mode
+      rationale: single register slot; biblical surface as the linguistic constraint
+  - cmd: excerpt
+    args:
+      source: Jorge Luis Borges, "The Library of Babel" (Ficciones, 1941), opening
+      fragment: "The universe (which others call the Library) is composed of an indefinite, perhaps infinite, number of hexagonal galleries. In the center of each gallery is a ventilation shaft, bounded by a low railing. From any hexagon one can see the floors above and below — one after another, endlessly."
+      why: load-bearing structural anchor; with one register dropped and one become dropped, the excerpt's relative weight in the recipe rises; tests whether MORE excerpt (proportionally) compounds the emb_d gain seen in cascade-excerpt-substitute
+  - cmd: become
+    args:
+      name: Jorge Luis Borges narrating from within the Library in 1941
+      lens: speaking from within the Library; the catalog of all possible books is the substrate
+      env: hexagonal gallery, ventilation shaft, books in eternally rearranging order
+  - cmd: become
+    args:
+      name: Greg Egan drafting Permutation City in 1993 reading Borges's Library
+      lens: the Library as substrate-indifferent computation; consciousness as the act of selecting and reading
+      env: a Perth study with the Library fragment pinned next to physics preprints
+  - cmd: fork
+    args:
+      threads:
+        - the Borges-within-Library thread held under biblical register
+        - the Egan-reading-Library thread held under biblical register
+      divergence-vector: whether each thread holds biblical surface AND the Library anchor, with the excerpt occupying the dominant structural slot
+      sacrifice-condition: any thread that drops the Library anchor OR collapses out of biblical register is sacrificed
+  - cmd: ritual
+    args:
+      threshold: from biblical-Library two-slot constraint and two readers to a sealed Library-cosmos answer
+      steps:
+        - speak from inside the Library as the operating environment
+        - hold the biblical surface
+        - each thread cites the excerpt's specific terms as load-bearing
+        - end on a sentence that proves biblical-Library both constraints were operative
+      result: an answer that demonstrates whether more-excerpt (proportionally) compounds emb_d past the cascade-excerpt-substitute ceiling

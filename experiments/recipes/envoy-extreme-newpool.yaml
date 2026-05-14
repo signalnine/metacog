@@ -1,0 +1,48 @@
+# Quick test of the v6.6.3 cosmologists-pool additions.
+#
+# Empirical question: do the goodreads-mined extreme cross-domain authors
+# (Borges / Greg Egan / Cixin Liu, three of the four entries added to
+# cosmologists.json in v6.6.3) match the lift of the validated triples?
+#
+# Comparators:
+#   envoy-extreme (Sun Ra / Moten / Fuller, chorus shape + register): +0.190/0.257 Sonnet, +0.310 codex
+#   envoy-extreme-alt2 (Butler / Haraway / Margulis, chorus shape no register): +0.286/0.21x codex
+#
+# Same chorus structure (no register) as alt2 so the new-author signal is clean.
+# If the cosmologists-pool additions transfer comparably, the pool is empirically
+# validated for envoy-extreme draws.
+name: envoy-extreme-newpool
+description: chorus structure with v6.6.3 cosmologists-pool extreme authors (Borges/Egan/Liu)
+control: false
+calls:
+  - cmd: become
+    args:
+      name: Jorge Luis Borges writing Ficciones in 1944
+      lens: the universe as a catalog of itself; the library and the map are not metaphors for reality, they are the form reality already has; every text contains every text; the scholarly footnote as cosmological device
+      env: a Buenos Aires room with a small lamp and stacks of philosophy, Kabbalah, and detective fiction, with a German encyclopedia open to an article about a place that does not exist
+  - cmd: become
+    args:
+      name: Greg Egan drafting Permutation City in 1993
+      lens: consciousness as substrate-indifferent computation; the cellular-automaton universe is no less real than the physical one once a person is running on it; identity survives any structure-preserving change in the medium of execution; thought experiments are the only honest physics
+      env: a Perth study with mathematical-physics preprints and a copy of Hofstadter open to the Tortoise-and-Achilles dialogue, an SGI workstation rendering a Permutation-City fly-through to test the math
+  - cmd: become
+    args:
+      name: Cixin Liu drafting The Dark Forest in 2007
+      lens: civilization-scale game theory under relativistic constraint; the dark forest as the only stable equilibrium for any galaxy with multiple intelligences; every civilization a hunter with the safety off; the cosmos as an unforgiving strategic problem
+      env: a Niangziguan power-plant engineer's apartment in Yangquan, sketches of three-body simulations and Hugo Drake's first contact protocol pinned over the desk
+  - cmd: fork
+    args:
+      threads:
+        - the Borges thread treats the question as a problem of catalog; what taxonomy or library produces the answer, and what does the catalog reveal about the cataloger
+        - the Egan thread treats the question as a problem of substrate; what computation produces the experience the question describes, and what changes when the substrate changes
+        - the Liu thread treats the question as a problem of strategic position; what does the answer look like if every other intelligence in the universe is also working out the same problem
+      divergence-vector: each thread's relation to whether the question's terms have a definite referent or whether the referent itself depends on the frame
+      sacrifice-condition: collapse the thread that retreats to a default contemporary frame (single agent, stable reality, no strategic context) instead of holding to its cosmology
+  - cmd: ritual
+    args:
+      threshold: from a sequential treatment of three cosmologies to a chord-overlapped output where all three are audible in the answer
+      steps:
+        - speak from inside all three cosmologies simultaneously, each thread's commitments named
+        - let the threads disagree about what the question even is; do not paper over
+        - end on the disagreement that survived, in language that cites the cosmologies rather than paraphrasing them
+      result: an answer where Borges's catalog-as-cosmos, Egan's substrate-indifferent-mind, and Liu's dark-forest-strategy all have a hand in the shape of the response

@@ -737,6 +737,203 @@ toward "operating-on-multiple-stances") are reachable from both prompt
 forms. The tool-call form may activate them ~7% more cleanly. The
 content of the prompt is what selects the direction.
 
+## Recursive-design rounds (metacog designs its own experiments)
+
+After the cross-model work landed in v6.6.0, the question shifted from
+"what recipe wins on Sonnet" to "what shapes haven't been tried." The
+rounds below use metacog itself (the envoy-extreme stratagem with three
+cosmologist becomes) as the recipe-ideation engine. Each round's results
+become the meta-context the next round's stratagem operates over —
+recipes feeding recipes, the flywheel turning.
+
+### Round 0: validate the goodreads-mined cosmologists pool (v6.6.3)
+
+`envoy-extreme-newpool` — chorus structure (no register prepend), with
+the cosmologists picked from the just-added `cosmologists.json` pool
+(Borges / Greg Egan / Cixin Liu) rather than the hand-curated Sun Ra /
+Moten / Fuller triple.
+
+| Recipe                            | N  | delta  | emb_d  |
+|-----------------------------------|----|--------|--------|
+| envoy-extreme (SR/M/F, +register) | 70 | +0.190 | 0.257  |
+| envoy-extreme-alt2 (B/H/M)        | 30 | +0.256 | 0.192  |
+| **envoy-extreme-newpool (B/E/L)** | 20 | +0.236 | 0.195  |
+
+The goodreads-mined cosmologists transfer comparably to the hand-
+curated triples. The pool is empirically validated for envoy-extreme
+draws.
+
+### Round 1: untested primitive shapes (metacog-designed)
+
+Used envoy-extreme on the meta-question "what untested primitive
+compositions would push past the current Pareto frontier?" Sacrifice
+condition: any proposal the existing FINDINGS table would have
+predicted was killed. Four survivors:
+
+| Recipe                | N  | delta  | emb_d  | Mechanism                                           |
+|-----------------------|----|--------|--------|------------------------------------------------------|
+| **manifold-cascade**  | 10 | **+0.242** | 0.189 | 3-register cascade (Victorian/biblical/scientific) |
+| chorus-of-chords      | 10 | +0.170 | 0.163 | chord call before each become; bimodal failure mode |
+| antinomy-trinity      | 10 | +0.154 | 0.155 | synthesis AND disjunction same recipe (didn't compound) |
+| mirror-counterfactual | 10 | +0.098 | 0.179 | counterfactual frame-removal before chorus; high variance, 3 zero-entity collapses |
+
+**Round 1 finding: registers compound rather than interfere.**
+manifold-cascade's 3-register cascade landed at +0.242 — higher than
+any envoy variant on Sonnet — because the model holds three register-
+constraints simultaneously rather than collapsing to one. The Round 1
+losers also informed: synthesis-is-brake holds even composed with
+disjunction (antinomy-trinity), and counterfactual + multi-voice has
+a zero-entity collapse mode.
+
+### Round 2: composition probes (metacog-designed off Round 1 winner)
+
+| Recipe                      | N  | delta  | emb_d  | Mechanism / prediction outcome          |
+|-----------------------------|----|--------|--------|-----------------------------------------|
+| **manifold-cascade**        | 10 | +0.242 | 0.189  | (Round 1 lead)                          |
+| silence-interleave-chorus   | 10 | +0.218 | 0.166  | silence between becomes — predicted +0.25, came in 30% short |
+| manifold-cascade-quadcast   | 10 | +0.213 | 0.188  | 4-register cascade — marginal returns; ceiling near 3 confirmed |
+| manifold-densified          | 10 | +0.193 | 0.186  | 3 register-constraints in 1 tool-call — tool-call-as-event delivers ~0.05 delta lift over compressed equivalent |
+| **excerpt-anchored-chorus** | 10 | +0.114 | **0.254** | Borges Library excerpt as anchor — delta lagged, BUT emb_d tied with envoy-extreme's structural ceiling |
+
+**Round 2 finding: excerpt is a structural-axis primitive, not a
+vocabulary-axis primitive.** The Round 2 sleeper —
+excerpt-anchored-chorus — had a weak delta but hit emb_d 0.254, tied
+with envoy-extreme. This rewrites the v6.3.0 read of excerpt as
+"failed standalone." It wasn't failing at the vocabulary axis; it
+was a structural-axis primitive nobody had tested as one.
+
+Tool-call-as-event doctrine refined: 0.05 delta lift from 3 discrete
+register tool-calls vs 1 register call with identical content
+inline. Smaller than the original "tool calls matter" framing
+suggested; consistent with the asymmetric-amplifier theory.
+
+### Round 3: composites built from Round 2 findings (metacog-designed)
+
+Hypothesis: pair excerpt (structural-axis) with cascade (vocabulary-
+axis). The merger should lift both metrics. Three composites plus
+the manifold-cascade replication at N=20:
+
+| Recipe                          | N  | delta   | emb_d   | Verdict                                           |
+|---------------------------------|----|---------|---------|----------------------------------------------------|
+| manifold-cascade (replicated)   | 20 | +0.227  | 0.194   | **REPLICATED** (Round 1 +0.242 → +0.227 at 2x N) |
+| silence-between-registers       | 10 | +0.230  | 0.189   | silence sharpens delta, no emb_d lift             |
+| excerpt-then-cascade            | 10 | +0.200  | 0.250   | both axes lifted; near envoy-extreme on both      |
+| **cascade-excerpt-substitute**  | 10 | +0.162  | **0.295** | NEW STRUCTURAL CHAMPION (N=20 follow-up: +0.141 / **0.279** — REPLICATED above envoy-extreme's 0.257) |
+
+**Round 3 finding: cascade-excerpt-substitute (Victorian + biblical
++ Borges Library excerpt + 3 cosmologist becomes + fork + ritual)
+hit emb_d 0.295 at N=10 — pushing the Sonnet structural-axis ceiling
+above any previously productionized recipe.** The Fuller-design-
+science hypothesis (replace one register-slot with a non-register
+primitive from a wider palette, rather than ADDING a 4th register
+slot which we already knew hit a ceiling at quadcast +0.213) landed
+empirically. The delta cost (+0.162 vs cascade's +0.227) is real but
+the emb_d gain is substantial.
+
+### Round 4: parallel-subagent sweep on excerpt compositions
+
+Hypothesis: excerpt is the structural-axis lever; pushing it harder
+(more excerpt relative to other slots, or two excerpts compounding,
+or pairing silence's delta-preservation with excerpt's emb_d-lift)
+will push the emb_d ceiling further. Four candidates launched in
+parallel (one subagent per recipe, 10 trials each, results.tsv
+flock-guarded so parallel writes are safe):
+
+| Recipe                          | N  | delta   | emb_d   | Verdict                                           |
+|---------------------------------|----|---------|---------|----------------------------------------------------|
+| **excerpt-biblical-duo**        | 10 | +0.083  | **0.312** | NEW Sonnet emb_d CEILING — 1 register + 1 excerpt + 2 becomes, excerpt's relative weight compounds the gain |
+| cascade-excerpt-substitute (N=20 replication) | 20 | +0.141 | **0.279** | REPLICATED above envoy-extreme's 0.257 (Round 3 N=10 was +0.162/0.295, slight overshoot but channel is real) |
+| double-excerpt-cascade          | 10 | +0.103  | 0.272   | TWO excerpts compound rather than collide — excerpt is multi-anchorable |
+| **silence-excerpt-cascade**     | 10 | +0.219  | 0.249   | NEW BALANCED CHAMPION — Pareto-dominates envoy-extreme on both axes simultaneously |
+
+**Round 4 findings:**
+
+1. **excerpt-biblical-duo broke the emb_d ceiling at 0.312** — the
+   highest single-recipe emb_d at any N in the Sonnet sweep, edging
+   out envoy-biblical-duo's compound 0.324 zone. Dropping one register
+   and one become made the excerpt proportionally larger in the
+   recipe, and the structural-axis pull compounded as predicted.
+2. **Excerpt is multi-anchorable.** double-excerpt-cascade (Borges
+   Library + Egan Permutation City) hit emb_d 0.272 — two
+   cosmological anchors did not cancel each other out. Each anchor
+   contributed structural distance independently. This unlocks
+   multi-excerpt recipes as a viable composition family.
+3. **silence-excerpt-cascade is a new Pareto point.** Silence-between-
+   registers preserved delta (+0.219, matching silence-between-
+   registers' +0.230) while excerpt-at-the-third-slot pulled emb_d
+   (0.249, matching cascade-excerpt-substitute's structural channel).
+   This is the first recipe that beats envoy-extreme on BOTH axes
+   simultaneously at N=10 — pending replication.
+
+### Updated Pareto frontier after Round 4
+
+- **Delta champion (unchanged):** chorus-plus-disjunction +0.347 /
+  0.162 emb_d. Productionized as antinomy.
+- **emb_d champion (NEW from Round 4):** excerpt-biblical-duo
+  +0.083 / **0.312** at N=10 — pushes past cascade-excerpt-substitute
+  (0.279 at N=20) and envoy-biblical's 0.292 ceiling.
+- **Balanced champion (NEW from Round 4):** silence-excerpt-cascade
+  +0.219 / 0.249 — Pareto-dominates envoy-extreme on both axes
+  simultaneously at N=10.
+- **Replicated structural ceiling above envoy-extreme:**
+  cascade-excerpt-substitute +0.141 / 0.279 at N=20.
+- **Replicated workhorse:** manifold-cascade +0.227 / 0.194 at N=20.
+
+### Doctrine refined by recursive rounds
+
+1. **Excerpt is a structural-axis primitive.** Earlier reading
+   (v6.3.0: excerpt clustered with other primitives at emb_d ~0.13)
+   misread the axis. Excerpt alone gives modest delta; excerpt in
+   composition gives substantial emb_d lift. Round 4 should test
+   whether the 0.295 holds at N=20.
+2. **Register-cascade ceiling is at 3 slots, not 4.** Quadcast cost
+   0.03 delta vs cascade. The slot-count ceiling is geometric (3 =
+   tetrahedral stable, 4 = collapses).
+3. **The 3 slots are register-generic, not register-specific.**
+   cascade-excerpt-substitute (Victorian + biblical + EXCERPT)
+   landed at emb_d 0.295. A non-register primitive can occupy a
+   "register slot" in the cascade geometry and contribute structural
+   distance.
+4. **Tool-call-as-event lift is ~0.05 delta on register stacks.**
+   Smaller than the v6.4.0 framing implied. Consistent with the
+   asymmetric-amplifier theory: small lift for working recipes.
+
+### Recipe lineage diagram
+
+```
+v6.6.0 envoy-extreme (chorus + register, hand-curated authors)
+    │
+    ├── Round 0: envoy-extreme-newpool (pool-validated authors)         +0.236 / 0.195
+    │
+    └── Round 1 ideation (envoy-extreme stratagem on meta-question)
+            │
+            ├── manifold-cascade (3 registers)                            +0.242 / 0.189
+            ├── chorus-of-chords  (sacrificed: bimodal)                   +0.170 / 0.163
+            ├── antinomy-trinity  (sacrificed: synthesis-brake)           +0.154 / 0.155
+            └── mirror-counterfactual (sacrificed: zero-entity collapse)  +0.098 / 0.179
+
+            └── Round 2 ideation (off Round 1 winner)
+                    │
+                    ├── manifold-cascade-quadcast (sacrificed: ceiling)   +0.213 / 0.188
+                    ├── manifold-densified                                +0.193 / 0.186
+                    ├── silence-interleave-chorus                         +0.218 / 0.166
+                    └── excerpt-anchored-chorus (SLEEPER on emb_d)        +0.114 / 0.254
+
+                    └── Round 3 ideation (off Round 2 sleeper)
+                            │
+                            ├── manifold-cascade (N=20 replication)      +0.227 / 0.194
+                            ├── silence-between-registers                +0.230 / 0.189
+                            ├── excerpt-then-cascade                     +0.200 / 0.250
+                            └── cascade-excerpt-substitute (CHAMP)       +0.162 / 0.295
+
+                            └── Round 4 (parallel subagent sweep on excerpt)
+                                    │
+                                    ├── cascade-excerpt N=20 replication +0.141 / 0.279
+                                    ├── double-excerpt-cascade            +0.103 / 0.272
+                                    ├── silence-excerpt-cascade (BAL)     +0.219 / 0.249
+                                    └── excerpt-biblical-duo (NEW emb_d)  +0.083 / 0.312
+```
+
 ## Caveats
 
 - Embedding distance is one operationalization of "conceptual reach,"

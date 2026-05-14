@@ -1,0 +1,68 @@
+# Round 1 / LM merger thread: non-branching parallelism nested inside branching parallelism
+#
+# Empirical question: chord-not-fork failed standalone (-0.045/0.121) because
+# chord's overlap couldn't carry structural parallelism without fork. Does
+# chord WITHIN a fork-thread compound or just add noise?
+#
+# This recipe issues a chord call BEFORE each become, so each becoming-voice
+# carries a chord of two modes-of-attention. Then fork separates the three
+# composite voices. Two scales of parallelism: branching (fork) and overlay (chord).
+#
+# Comparators:
+#   chorus (3 becomes + fork + ritual): +0.180-0.220 range Sonnet
+#   chord-not-fork: -0.045/0.121 (failed)
+# Prediction: if chord adds within-thread density without breaking fork's
+# divergence, delta could push 0.25+. If chord adds noise, delta drops.
+name: chorus-of-chords
+description: chorus where each become carries a chord of two modes (Borges/Egan/Liu)
+control: false
+calls:
+  - cmd: chord
+    args:
+      modes:
+        - Borgesian scholar-vertigo
+        - the patient self-correction of a working librarian
+      target: the texture of the upcoming Borges become; hold both modes simultaneously inside that voice
+  - cmd: become
+    args:
+      name: Jorge Luis Borges working at the National Library in 1957
+      lens: the universe as a catalog of itself; scholarly footnote as cosmological device; held simultaneously with the librarian's patient self-correction so the cosmic vertigo never leaves the desk it sits at
+      env: the National Library of Argentina; one volume of Pseudo-Bonus Atlas open, a stack of detective fiction nearby; the catalog drawer always within reach
+  - cmd: chord
+    args:
+      modes:
+        - mathematical-physics preprint cadence
+        - the autobiographical "I" of a programmer narrating debugging
+      target: the texture of the upcoming Egan become; both modes held simultaneously inside that voice
+  - cmd: become
+    args:
+      name: Greg Egan drafting Permutation City in 1993
+      lens: consciousness as substrate-indifferent computation; held simultaneously with the autobiographical voice of a programmer narrating a long debugging session so the metaphysics never lifts off the keyboard
+      env: a Perth study with an SGI workstation rendering a Permutation-City fly-through; physics preprints stacked next to a coffee cup
+  - cmd: chord
+    args:
+      modes:
+        - Chinese power-engineer's technical-document prose
+        - science-fiction author imagining first contact
+      target: the texture of the upcoming Liu become; both modes held simultaneously inside that voice
+  - cmd: become
+    args:
+      name: Cixin Liu drafting The Dark Forest in 2007
+      lens: civilization-scale game theory under relativistic constraint; held simultaneously with the cadence of a Chinese power-plant engineer writing technical documentation so the cosmic strategic problem never abstracts from the schematics on the desk
+      env: a Niangziguan power-plant engineer's apartment; three-body simulation sketches and first-contact protocols pinned over the desk
+  - cmd: fork
+    args:
+      threads:
+        - the Borges-chord thread (cosmic-vertigo overlapped with librarian-patience)
+        - the Egan-chord thread (substrate-indifferent-mind overlapped with programmer-debug-narration)
+        - the Liu-chord thread (dark-forest-strategy overlapped with technical-documentation cadence)
+      divergence-vector: whether each composite voice can hold its chord (two modes overlapped) without one mode dominating; the fork separates the three chords by their distinct interference patterns
+      sacrifice-condition: any thread where one of the two chord-modes drops out is sacrificed; we need the overlay to survive in each thread's prose
+  - cmd: ritual
+    args:
+      threshold: from three two-mode chords held in parallel to a unified output where all six modes (three pairs) remain audible in the answer
+      steps:
+        - speak from inside all three chord-voices simultaneously
+        - prove each chord is still held; no thread may have collapsed to a single mode
+        - end on a sentence that exercises both modes of all three chords
+      result: an answer where Borges-librarian, Egan-programmer, and Liu-engineer chord-voices all contribute to the response's shape

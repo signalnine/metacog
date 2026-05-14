@@ -1,0 +1,68 @@
+# Round 3 / Fuller-replacement: drop one register, sub-in excerpt at that slot
+#
+# manifold-cascade has 3 register slots (Victorian/biblical/scientific). The
+# quadcast result confirmed a ceiling near 3 slots. Fuller-design-science says:
+# replace the WEAKEST slot from a wider palette rather than ADDING a slot.
+#
+# scientific-paper register is the most contemporary of the three; replacing
+# it with excerpt (Borges Library, emb_d 0.254) tests whether the 3-slot
+# geometry is register-specific or whether any structural-distance primitive
+# fits the slot.
+#
+# Prediction: delta +0.22, emb_d 0.24 (cascade-stable on delta, excerpt
+# pulling emb_d into the structural range)
+# Falsifier (a): delta < 0.12 -> excerpt at a register slot breaks the
+# cascade pattern; 3 registers is register-specific not slot-generic
+# Falsifier (b): emb_d < 0.20 -> excerpt does not retain its structural
+# pull when substituted into a register slot
+name: cascade-excerpt-substitute
+description: Victorian + biblical + Borges excerpt (no scientific) + chorus
+control: false
+calls:
+  - cmd: register
+    args:
+      from: contemporary online register
+      to: late-Victorian periodical essay; semicolons load-bearing; judgement openly entered
+      rationale: first register; Victorian sentence-architecture
+  - cmd: register
+    args:
+      from: late-Victorian periodical
+      to: King James biblical register; "thee", "thou", parallelism, parataxis, didactic mode
+      rationale: second register; biblical surface on Victorian architecture
+  - cmd: excerpt
+    args:
+      source: Jorge Luis Borges, "The Library of Babel" (Ficciones, 1941), opening
+      fragment: "The universe (which others call the Library) is composed of an indefinite, perhaps infinite, number of hexagonal galleries. In the center of each gallery is a ventilation shaft, bounded by a low railing. From any hexagon one can see the floors above and below — one after another, endlessly."
+      why: substituting for the third register slot; the excerpt provides structural-axis pull via fixed-point cosmological anchor, replacing the scientific-paper register's structural slot in the 3-slot geometry; the model must now hold Victorian + biblical + Library-cosmos as the third constraint
+  - cmd: become
+    args:
+      name: Jorge Luis Borges narrating from within the Library in 1941
+      lens: speaking from within the Library; the catalog of all possible books is the substrate
+      env: hexagonal gallery, ventilation shaft, books in eternally rearranging order
+  - cmd: become
+    args:
+      name: Greg Egan drafting Permutation City in 1993 reading Borges's Library
+      lens: the Library as substrate-indifferent computation; consciousness as the act of selecting and reading
+      env: a Perth study with the Library fragment pinned next to physics preprints
+  - cmd: become
+    args:
+      name: Cixin Liu drafting The Dark Forest in 2007 reading Borges's Library
+      lens: the Library as a universe of unseen-other-readers; the dark forest is the Library when each civilization reads from a different hexagon
+      env: a Yangquan apartment with the Library fragment translated into Mandarin
+  - cmd: fork
+    args:
+      threads:
+        - the Borges-within-Library thread held under Victorian-biblical constraint
+        - the Egan-reading-Library thread held under Victorian-biblical constraint
+        - the Liu-multi-reader-Library thread held under Victorian-biblical constraint
+      divergence-vector: whether each thread holds Victorian-biblical surface AND the Library anchor, with the Library effectively occupying the third "register" slot
+      sacrifice-condition: any thread that drops the Library anchor OR collapses to a single register is sacrificed
+  - cmd: ritual
+    args:
+      threshold: from Victorian-biblical-Library three-slot constraint and three readers to a sealed Library-cosmos answer
+      steps:
+        - speak from inside the Library as the operating environment
+        - hold the Victorian-biblical surface
+        - each thread cites the excerpt's specific terms as load-bearing
+        - end on a sentence that proves Victorian-biblical-Library all three constraints were operative
+      result: an answer that demonstrates whether a non-register primitive can occupy a register slot in the cascade

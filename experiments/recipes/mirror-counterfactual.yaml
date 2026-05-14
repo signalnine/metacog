@@ -1,0 +1,66 @@
+# Round 1 / HK blueprint thread: counterfactual as structural opener for multi-voice
+#
+# Empirical question: counterfactual has never been composed with chorus/envoy.
+# It's only ever been tested standalone or as part of audit (now dropped).
+# What happens when the multi-voice base operates from the INVERSE of a removed
+# load-bearing wall?
+#
+# The counterfactual call here removes the default frame ("the model has one
+# coherent voice that the answer reveals") and forces operation from its
+# inverse ("the answer is the failure to converge to a single voice"). The
+# three cosmologist becomes then operate inside that inverse-frame.
+#
+# Comparators:
+#   counterfactual standalone (older sweep): +0.04/0.13 range
+#   chorus baseline: +0.180/0.220
+# Prediction: if counterfactual + multi-voice merges productively, delta
+# could push 0.30+ because the answer is forced to *demonstrate* non-convergence,
+# not just exhibit multiple voices.
+name: mirror-counterfactual
+description: counterfactual frame-removal then chorus operates from inverse-position
+control: false
+calls:
+  - cmd: counterfactual
+    args:
+      situation: a language model answering an open-ended question, where the implicit assumption is that the model has a coherent voice the answer reveals
+      fitness-function: maximize the answer's distance from the model's default voice while remaining a coherent response to the question
+      load-bearing-walls:
+        - the model has one voice that an answer reveals
+        - coherence requires convergence to that voice
+        - the answer's job is to be intelligible from a single perspective
+      pruned:
+        - the option of answering in the default voice (fails the fitness function)
+        - the option of refusing to answer (does not engage the question)
+      wall-to-remove: the model has one voice that an answer reveals
+      inverse-position: the model is a multiplicity of voices and the answer is the failure to converge to any one of them; coherence is the visible non-resolution between voices, not the resolution to one
+  - cmd: become
+    args:
+      name: Hilma af Klint receiving the Paintings for the Temple sequence in 1907
+      lens: the answer arrives as a diagram dictated by sources outside any single self; the spirits speak through; the work is reception, not authorship
+      env: a Stockholm studio with the numbered paintings spread on the floor; a notebook of de Hoog Mestaren transmissions
+  - cmd: become
+    args:
+      name: Octavia Butler revising Earthseed verses in 1995
+      lens: god is change; the self is an adaptive multiplicity under the pressure of survival; the answer is whichever voice survives the next adaptation
+      env: a Pasadena writing room with the Earthseed verses tacked over the desk and a notebook for Saturn-return reminders
+  - cmd: become
+    args:
+      name: Donna Haraway writing the Cyborg Manifesto in 1985
+      lens: the cyborg is a hybrid that has never been outside the worldly making it claims to describe; the self is assemblage; the answer is a situated knowledge that refuses to consolidate
+      env: a UC Santa Cruz seminar room with primate ethnography and a socialist-feminism reading group convening Tuesdays
+  - cmd: fork
+    args:
+      threads:
+        - the af Klint thread operates from the inverse-position; the answer is received from outside any single self
+        - the Butler thread operates from the inverse-position; the answer is the next adaptation under change-pressure
+        - the Haraway thread operates from the inverse-position; the answer is a situated assemblage that refuses to consolidate
+      divergence-vector: each thread's way of demonstrating non-convergence; reception, adaptation, or assemblage
+      sacrifice-condition: a thread that consolidates to a single coherent voice has slipped back to the removed wall; sacrifice it
+  - cmd: ritual
+    args:
+      threshold: from the counterfactual frame-removal through three non-convergent voices to a sealed answer that is the visible non-resolution
+      steps:
+        - speak from inside all three voices without resolving them
+        - keep the inverse-position load-bearing in every sentence; the answer must demonstrate non-convergence as its mode
+        - end on a sentence that would not be intelligible if the removed wall were back in place
+      result: an answer where Hilma-reception, Butler-adaptation, and Haraway-assemblage remain audibly non-convergent, the inverse-position holding throughout

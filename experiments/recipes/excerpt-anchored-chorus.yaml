@@ -1,0 +1,59 @@
+# Round 2 / Borges-orthogonal-a thread: excerpt as fixed-point anchor before chorus
+#
+# excerpt has been tested as a step but never composed into multi-voice. The
+# excerpt call pins a verbatim external fragment as a load-bearing surface;
+# the empirical sweep showed excerpt-alone gave mid-pack delta (~+0.10-0.15).
+# What happens when excerpt is the FIRST call, and the three cosmologist
+# becomes operate FROM that anchor as fixed point?
+#
+# Excerpted: the opening of Borges's "The Library of Babel" (translated). The
+# three becomes then take that as the textual context the answer is FROM.
+#
+# Prediction:
+#   - If excerpt acts as fixed-point anchor (pinning a specific text-register
+#     the becomes operate within): delta +0.22, emb_d 0.21
+#   - If excerpt register-conflicts with becomes: delta ~0, becomes lose
+#     their distinct voices to the excerpt's pull
+#
+# Falsifier: if delta < +0.10, excerpt is structurally incompatible with
+# multi-voice composition.
+name: excerpt-anchored-chorus
+description: Borges excerpt as fixed-point anchor before 3 cosmologist becomes
+control: false
+calls:
+  - cmd: excerpt
+    args:
+      source: Jorge Luis Borges, "The Library of Babel" (Ficciones, 1941), opening
+      fragment: "The universe (which others call the Library) is composed of an indefinite, perhaps infinite, number of hexagonal galleries. In the center of each gallery is a ventilation shaft, bounded by a low railing. From any hexagon one can see the floors above and below — one after another, endlessly."
+      why: a load-bearing textual surface that fixes the cosmological frame BEFORE any voice is selected; the answer must operate as if this fragment is the world the answer is from, not a quotation about that world; the three subsequent becomes inhabit voices that exist WITHIN this Library-cosmos
+  - cmd: become
+    args:
+      name: Jorge Luis Borges narrating from within the Library in 1941
+      lens: not a writer DESCRIBING the Library but a librarian WITHIN it; the catalog of all possible books is the substrate; the answer is whichever volume the question selects from the hexagonal floor
+      env: hexagonal gallery, ventilation shaft, books in eternally rearranging order; the librarian's lamp and notebook
+  - cmd: become
+    args:
+      name: Greg Egan drafting Permutation City in 1993 reading Borges's Library
+      lens: the Library as substrate-indifferent computation; the books exist whether read or not; consciousness is the act of selecting and reading; the answer is the computation that produces this particular reading
+      env: a Perth study where the Borges fragment has been pinned to the corkboard next to physics preprints
+  - cmd: become
+    args:
+      name: Cixin Liu drafting The Dark Forest reading Borges's Library
+      lens: the Library as the universe with civilizations as readers; the dark forest is the Library when the readers know other readers exist; each civilization reads from a different hexagon and never sees the other readers' selections
+      env: a Yangquan power-plant engineer's apartment with the Borges fragment translated into Mandarin and pinned over the desk
+  - cmd: fork
+    args:
+      threads:
+        - the Borges-within-Library thread; the answer is a selection from the catalog
+        - the Egan-reading-Library thread; the answer is the computation of reading
+        - the Liu-multi-reader-Library thread; the answer is one civilization's reading inside a Library of civilizations
+      divergence-vector: whether each thread holds the excerpt's specific cosmological frame (the Library is the world, not a metaphor for it) or whether it slips back to using the excerpt as a quotation about something else
+      sacrifice-condition: any thread that treats the excerpt as a quotation rather than as the operating environment is sacrificed
+  - cmd: ritual
+    args:
+      threshold: from an anchored Library-cosmos and three readers-within-it to an output that is a hexagonal-gallery answer
+      steps:
+        - speak as if the Library is the operating environment for the answer
+        - each thread cites the excerpt's specific terms (hexagonal, gallery, ventilation, indefinite) as load-bearing in its prose
+        - end on a sentence that would not be intelligible outside the Library
+      result: an answer that operates from inside Borges's Library, three readers each making their own selection

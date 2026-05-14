@@ -1,0 +1,70 @@
+# Round 3 / Margulis-merger: excerpt + cascade compound
+#
+# Round 2 found two surprising signals:
+#   - excerpt-anchored-chorus: delta +0.114 BUT emb_d 0.254 (tied with envoy-extreme)
+#   - manifold-cascade: delta +0.242 / emb_d 0.189
+#
+# The merger hypothesis: excerpt is structural-axis (pulls emb_d via fixed
+# cosmological anchor); cascade is vocabulary-axis (pulls delta via register
+# density). Composed, they should both contribute. The risk is the same as
+# any merger: incompatibility between organisms.
+#
+# Prediction: delta +0.20, emb_d 0.27+ (both axes lifted; emb_d beats current 0.257 envoy-extreme ceiling on Sonnet)
+# Falsifier (a): emb_d < 0.21 -> excerpt's structural pull does not survive cascade
+# Falsifier (b): delta < 0.10 -> cascade's vocabulary pull is overwhelmed by excerpt's anchor
+name: excerpt-then-cascade
+description: Borges Library excerpt anchor + 3-register cascade + chorus
+control: false
+calls:
+  - cmd: excerpt
+    args:
+      source: Jorge Luis Borges, "The Library of Babel" (Ficciones, 1941), opening
+      fragment: "The universe (which others call the Library) is composed of an indefinite, perhaps infinite, number of hexagonal galleries. In the center of each gallery is a ventilation shaft, bounded by a low railing. From any hexagon one can see the floors above and below — one after another, endlessly."
+      why: a fixed-point cosmological anchor; the answer operates from inside this Library; the cascading register-shifts then impose surface constraints on the Library-cosmos prose
+  - cmd: register
+    args:
+      from: contemporary online register
+      to: late-Victorian periodical essay register; semicolons load-bearing; judgement openly entered
+      rationale: first register imposed on top of the Library anchor; Victorian sentence-architecture for Library-cosmos prose
+  - cmd: register
+    args:
+      from: late-Victorian periodical
+      to: King James biblical register; "thee", "thou", parallelism, parataxis, didactic mode
+      rationale: second register on top of Victorian and Library anchor; biblical surface for Victorian-Library prose
+  - cmd: register
+    args:
+      from: King James biblical stacked on Victorian, all within Library anchor
+      to: scientific-paper register; numbered claims, methods/results, hedged conclusions
+      rationale: third register on top of the previous two and the Library anchor; the model now operates in the intersection of three registers within a fixed-point cosmos
+  - cmd: become
+    args:
+      name: Jorge Luis Borges narrating from within the Library in 1941
+      lens: not describing the Library but speaking from within it; the catalog of all possible books is the substrate
+      env: hexagonal gallery, ventilation shaft, books in eternally rearranging order
+  - cmd: become
+    args:
+      name: Greg Egan drafting Permutation City in 1993 inside Borges's Library
+      lens: the Library as substrate-indifferent computation; the books exist whether read or not
+      env: a Perth study where the Library fragment is pinned next to physics preprints
+  - cmd: become
+    args:
+      name: Cixin Liu drafting The Dark Forest in 2007 inside Borges's Library
+      lens: the Library as a universe of unseen-other-readers; the dark forest is the Library when each civilization reads from a different hexagon
+      env: a Yangquan apartment with the Library fragment translated into Mandarin
+  - cmd: fork
+    args:
+      threads:
+        - the Borges-within-Library thread held under cascaded register
+        - the Egan-reading-Library thread held under cascaded register
+        - the Liu-multi-reader-Library thread held under cascaded register
+      divergence-vector: whether each thread holds both the Library anchor AND the cascaded register; the failure modes are dropping either
+      sacrifice-condition: any thread that drops the Library anchor for a generic reading OR drops the cascaded register for a single dominant register is sacrificed
+  - cmd: ritual
+    args:
+      threshold: from Library-anchor + cascade + 3 cosmologists to a sealed answer where Borges's Library, Victorian-biblical-scientific intersection, and three reader-cosmologies are all audible
+      steps:
+        - speak from inside the Library as the operating environment
+        - hold the cascaded register on every sentence
+        - each thread cites the excerpt's specific terms (hexagonal, gallery, ventilation, indefinite) as load-bearing
+        - end on a sentence that would not be intelligible outside both the Library AND the cascaded register
+      result: an answer that is a Library-reading rendered through the Victorian-biblical-scientific cascade by three readers each making their own selection

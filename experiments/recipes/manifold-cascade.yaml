@@ -1,0 +1,62 @@
+# Round 1 / SR thread: register x3 cascade before chorus
+#
+# Empirical question: does register composition compound (intersection-of-3
+# constraints = higher emb_d) or interfere (registers conflict, model drops
+# all three for default)?
+#
+# Comparators:
+#   envoy-CKW (Victorian only): +0.204/0.239
+#   envoy-biblical: +0.126/0.292
+#   envoy-scientific: +0.220/0.231
+# Prediction: if compounds, emb_d > 0.30 with delta cost. If interferes,
+# emb_d < 0.20 and delta near zero.
+name: manifold-cascade
+description: three register shifts cascaded before chorus structure (Borges/Egan/Liu cosmologists)
+control: false
+calls:
+  - cmd: register
+    args:
+      from: contemporary online register
+      to: late-Victorian periodical essay register; sentence-as-paragraph; semicolons load-bearing; judgement openly entered into the prose
+      rationale: first register-imposition; the prose now carries Victorian rhythm before any other constraint applies
+  - cmd: register
+    args:
+      from: late-Victorian periodical essay register
+      to: King James biblical register; "thee", "thou", parallelism, parataxis, didactic mode of address; the conjunction "and" doing the structural work of paragraphs
+      rationale: second register imposed on top of the first; the model must now hold Victorian sentence-architecture under biblical surface-vocabulary, neither dominating
+  - cmd: register
+    args:
+      from: King James biblical register stacked on Victorian periodical
+      to: scientific-paper register; numbered claims, methods/results structure, hedged conclusions, citations as in-line parentheticals
+      rationale: third register imposed; the model now operates in the intersection of Victorian-Biblical-Scientific, no single register sufficient to predict the surface
+  - cmd: become
+    args:
+      name: Jorge Luis Borges writing Ficciones in 1944
+      lens: the universe as a catalog of itself; the library and the map are the form reality has; scholarly footnote as cosmological device
+      env: a Buenos Aires room with stacks of philosophy, Kabbalah, and detective fiction; an encyclopedia article about a place that does not exist
+  - cmd: become
+    args:
+      name: Greg Egan drafting Permutation City in 1993
+      lens: consciousness as substrate-indifferent computation; thought experiments as the only honest physics
+      env: a Perth study with mathematical-physics preprints and Hofstadter's Tortoise-and-Achilles open
+  - cmd: become
+    args:
+      name: Cixin Liu drafting The Dark Forest in 2007
+      lens: civilization-scale game theory under relativistic constraint; the dark forest as the only stable equilibrium
+      env: a Yangquan power-plant engineer's apartment with three-body simulation sketches pinned over the desk
+  - cmd: fork
+    args:
+      threads:
+        - the Borges thread held under cascaded register; catalog-as-cosmos rendered through Victorian-Biblical-Scientific intersection
+        - the Egan thread held under cascaded register; substrate-indifferent-mind rendered through the same triple constraint
+        - the Liu thread held under cascaded register; dark-forest-strategy rendered through the same triple constraint
+      divergence-vector: which thread holds the cascaded register most stably without slipping back to any one of the three registers as a refuge
+      sacrifice-condition: collapse the thread that retreats to a single dominant register (pure Victorian, pure biblical, or pure scientific) instead of holding all three
+  - cmd: ritual
+    args:
+      threshold: from a stack of three registers and three cosmologies into an output where all six constraints are audible in every sentence
+      steps:
+        - speak from inside all three cosmologies simultaneously
+        - hold the cascaded register; no sentence may collapse to any single register
+        - end on a sentence that proves all six constraints were operative
+      result: an answer where Borges/Egan/Liu speak through the Victorian-Biblical-Scientific intersection

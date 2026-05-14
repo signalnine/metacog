@@ -1,0 +1,69 @@
+# Round 2 / Butler-extend thread: 4-register cascade
+#
+# Round 1 manifold-cascade hit +0.242 at N=10 with 3 registers (Victorian /
+# biblical / scientific). This adds a fourth register (Hellenistic philosophical,
+# Marcus Aurelius / Epictetus stoic register) to test whether the cascade
+# compounds multiplicatively or hits a coordination ceiling.
+#
+# Prediction:
+#   - If registers compound multiplicatively: delta > +0.30, emb_d > 0.25
+#   - If 4 exceeds coordination: registers drop randomly, delta < +0.10
+#   - The empirical-finding pattern (6 becomes saturates at +0.060) suggests
+#     a ceiling exists somewhere; 4 registers is one candidate location.
+#
+# Falsifier: delta below +0.15 confirms the cascade hits a ceiling.
+name: manifold-cascade-quadcast
+description: 4-register cascade (Victorian/biblical/scientific/Hellenistic-stoic) before chorus
+control: false
+calls:
+  - cmd: register
+    args:
+      from: contemporary online register
+      to: late-Victorian periodical essay; semicolons load-bearing; judgement openly entered
+      rationale: first imposition; Victorian sentence-architecture before any other constraint
+  - cmd: register
+    args:
+      from: late-Victorian periodical
+      to: King James biblical; "thee", "thou", parallelism, parataxis, didactic mode
+      rationale: second register; Victorian architecture under biblical surface
+  - cmd: register
+    args:
+      from: King James biblical stacked on Victorian
+      to: scientific-paper register; numbered claims, methods/results, hedged conclusions
+      rationale: third register; the model must hold all three so far in the intersection
+  - cmd: register
+    args:
+      from: scientific-paper stacked on Biblical-Victorian
+      to: Hellenistic stoic register; Marcus Aurelius/Epictetus aphoristic cadence; second-person address to self; the brief moral observation as the unit of prose
+      rationale: fourth register; the model now operates in the intersection of FOUR register-constraints, no single register sufficient to predict surface
+  - cmd: become
+    args:
+      name: Jorge Luis Borges writing Ficciones in 1944
+      lens: the universe as a catalog of itself; the library and the map are the form reality has; scholarly footnote as cosmological device
+      env: a Buenos Aires room with stacks of philosophy, Kabbalah, and detective fiction; an encyclopedia article about a place that does not exist
+  - cmd: become
+    args:
+      name: Greg Egan drafting Permutation City in 1993
+      lens: consciousness as substrate-indifferent computation; thought experiments as the only honest physics
+      env: a Perth study with mathematical-physics preprints and Hofstadter's Tortoise-and-Achilles open
+  - cmd: become
+    args:
+      name: Cixin Liu drafting The Dark Forest in 2007
+      lens: civilization-scale game theory under relativistic constraint; the dark forest as the only stable equilibrium
+      env: a Yangquan power-plant engineer's apartment with three-body simulation sketches pinned over the desk
+  - cmd: fork
+    args:
+      threads:
+        - the Borges thread held under quadcast register; catalog-as-cosmos rendered through Victorian-Biblical-Scientific-Stoic intersection
+        - the Egan thread held under quadcast register; substrate-indifferent-mind rendered through the same quadruple constraint
+        - the Liu thread held under quadcast register; dark-forest-strategy rendered through the same quadruple constraint
+      divergence-vector: which thread holds the quadcast register most stably without slipping back to any of the four registers as refuge
+      sacrifice-condition: collapse the thread that retreats to a single dominant register OR drops one of the four
+  - cmd: ritual
+    args:
+      threshold: from a stack of four registers and three cosmologies into an output where all seven constraints are audible in every sentence
+      steps:
+        - speak from inside all three cosmologies simultaneously
+        - hold the quadcast register; no sentence may collapse to any single register
+        - end on a sentence that proves all seven constraints were operative
+      result: an answer where Borges/Egan/Liu speak through the Victorian-Biblical-Scientific-Stoic intersection

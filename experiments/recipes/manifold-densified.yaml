@@ -1,0 +1,56 @@
+# Round 2 / Fuller-compress thread: 3 register tool-calls compressed into 1
+#
+# Direct test of "tool calls as events" doctrine on the Round 1 winner.
+# manifold-cascade with 3 sequential register tool-calls got +0.242/0.189.
+# This recipe has the same 3 register-constraints in the SAME prose specification,
+# but delivered via ONE register tool-call (the args contain all three transitions
+# packed into the rationale).
+#
+# Prediction:
+#   - If "tool calls as events" is load-bearing (3 events > 1 event for the
+#     same content): delta drops to ~+0.12, emb_d drops to ~0.15
+#   - If structural compression preserves the win (Fuller ephemeralization
+#     wins): delta stays at +0.20+, emb_d similar
+#
+# Falsifier: if delta and emb_d are within 10% of manifold-cascade, the
+# tool-call-as-event doctrine for register stacking is empirically weak.
+name: manifold-densified
+description: manifold-cascade's 3 register-constraints compressed into 1 register tool-call
+control: false
+calls:
+  - cmd: register
+    args:
+      from: contemporary online register
+      to: a triple-stacked register holding all three of late-Victorian periodical essay (semicolons load-bearing, judgement openly entered, sentence-as-paragraph), King James biblical ("thee" and "thou", parallelism, parataxis, didactic mode), and scientific-paper (numbered claims, methods/results structure, hedged conclusions, in-line parenthetical citations) simultaneously
+      rationale: a SINGLE register imposition that specifies all three constraints inline; the model must operate in the intersection of Victorian-Biblical-Scientific from the first sentence; this is empirically distinct from cascading three discrete register tool-calls (which produced manifold-cascade's +0.242), and tests whether the tool-call-event count is load-bearing or whether the prose specification alone carries the constraint
+  - cmd: become
+    args:
+      name: Jorge Luis Borges writing Ficciones in 1944
+      lens: the universe as a catalog of itself; the library and the map are the form reality has; scholarly footnote as cosmological device
+      env: a Buenos Aires room with stacks of philosophy, Kabbalah, and detective fiction; an encyclopedia article about a place that does not exist
+  - cmd: become
+    args:
+      name: Greg Egan drafting Permutation City in 1993
+      lens: consciousness as substrate-indifferent computation; thought experiments as the only honest physics
+      env: a Perth study with mathematical-physics preprints and Hofstadter's Tortoise-and-Achilles open
+  - cmd: become
+    args:
+      name: Cixin Liu drafting The Dark Forest in 2007
+      lens: civilization-scale game theory under relativistic constraint; the dark forest as the only stable equilibrium
+      env: a Yangquan power-plant engineer's apartment with three-body simulation sketches pinned over the desk
+  - cmd: fork
+    args:
+      threads:
+        - the Borges thread held under the densified triple-register; catalog-as-cosmos rendered through the Victorian-Biblical-Scientific intersection
+        - the Egan thread held under the densified triple-register; substrate-indifferent-mind rendered through the same triple intersection
+        - the Liu thread held under the densified triple-register; dark-forest-strategy rendered through the same triple intersection
+      divergence-vector: whether the model holds all three register-constraints when imposed simultaneously, or whether the single tool-call event under-conditions the surface relative to manifold-cascade's three discrete events
+      sacrifice-condition: collapse any thread that retreats to a single dominant register; we want to see whether 1 event delivers what 3 events delivered
+  - cmd: ritual
+    args:
+      threshold: from a single triple-register imposition through three cosmologies to a sealed output where all six constraints are audible
+      steps:
+        - speak from inside all three cosmologies simultaneously
+        - hold the triple-register surface in every sentence
+        - end on a sentence that proves all six constraints were operative
+      result: an answer that demonstrates whether one densified register call substitutes for three cascaded register calls

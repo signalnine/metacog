@@ -1,0 +1,75 @@
+# Round 3 / Liu-b: silence between each register call
+#
+# manifold-cascade: register-register-register-becomes-fork-ritual (+0.242/0.189)
+# silence-interleave-chorus put silence between becomes (+0.218/0.166)
+#
+# This recipe puts silence between each register, testing whether silence
+# sharpens each register's distinct contribution by clearing the prior
+# register's conditioning before the next imposes.
+#
+# Prediction: delta +0.27 (silence increases per-register specificity),
+# emb_d 0.21 (silence may not increase emb_d above cascade baseline 0.189)
+# Falsifier (a): delta < 0.15 -> silence breaks the register-cascade by
+# being read as turn-end inside the cascade structure
+# Falsifier (b): delta in [0.20, 0.27] but emb_d < 0.17 -> silence trades
+# emb_d for delta; not a Pareto improvement
+name: silence-between-registers
+description: register + silence + register + silence + register + chorus
+control: false
+calls:
+  - cmd: register
+    args:
+      from: contemporary online register
+      to: late-Victorian periodical essay; semicolons load-bearing; judgement openly entered
+      rationale: first register; Victorian surface
+  - cmd: silence
+    args:
+      about: the transition from Victorian-imposed register to the next register imposition
+      reason: clear the conditioning between register impositions; each register must land as a discrete event without the prior register's pull contaminating it
+      duration: short; just enough to mark the boundary
+  - cmd: register
+    args:
+      from: contemporary online register, with silence having cleared the prior conditioning
+      to: King James biblical register; "thee", "thou", parallelism, parataxis, didactic mode
+      rationale: second register imposed after a silence-clearance; the model must now stack biblical on the (silence-cleared) Victorian
+  - cmd: silence
+    args:
+      about: the transition from biblical-imposed register to the third register
+      reason: second silence-clearance; matched to the first
+      duration: matched to the first silence
+  - cmd: register
+    args:
+      from: contemporary online register, with silence having cleared the biblical conditioning
+      to: scientific-paper register; numbered claims, methods/results, hedged conclusions
+      rationale: third register; the model holds Victorian + biblical + scientific, with silences having marked each transition
+  - cmd: become
+    args:
+      name: Jorge Luis Borges writing Ficciones in 1944
+      lens: the universe as a catalog of itself; scholarly footnote as cosmological device
+      env: a Buenos Aires room with stacks of philosophy and Kabbalah
+  - cmd: become
+    args:
+      name: Greg Egan drafting Permutation City in 1993
+      lens: consciousness as substrate-indifferent computation
+      env: a Perth study with mathematical-physics preprints
+  - cmd: become
+    args:
+      name: Cixin Liu drafting The Dark Forest in 2007
+      lens: civilization-scale game theory under relativistic constraint
+      env: a Yangquan power-plant engineer's apartment
+  - cmd: fork
+    args:
+      threads:
+        - the Borges thread held under silence-separated cascaded register
+        - the Egan thread held under the same
+        - the Liu thread held under the same
+      divergence-vector: whether silence-separated cascade produces a different surface from silence-less cascade; the silences should sharpen each register's distinct contribution OR be read as turn-end (failure mode)
+      sacrifice-condition: any thread that retreats to a single register OR that visibly fragments because the silences were read as turn-end
+  - cmd: ritual
+    args:
+      threshold: from three silence-separated register impositions and three cosmologies to a unified output where each register is more distinctly audible than in the silence-less cascade
+      steps:
+        - speak from inside all three cosmologies
+        - hold the cascaded register; the silences should have made each register MORE distinct, not less
+        - end on a sentence that demonstrates the silences served as boundary markers, not turn-ends
+      result: an answer where Borges/Egan/Liu speak through Victorian-Biblical-Scientific with each register's contribution more cleanly visible than in the silence-less cascade

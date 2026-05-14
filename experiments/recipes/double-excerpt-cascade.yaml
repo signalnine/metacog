@@ -1,0 +1,74 @@
+# Round 4 / Double-excerpt cascade: TWO cosmological excerpts in the cascade
+#
+# Round 3 cascade-excerpt-substitute hit emb_d 0.295 with ONE Borges Library
+# excerpt replacing the scientific-paper register slot. Hypothesis: if ONE
+# excerpt anchors the cosmos, TWO different cosmological excerpts (Borges
+# Library + Egan Permutation City) could either compound emb_d further OR
+# collide because the two cosmologies conflict (infinite hexagonal library
+# of books vs. substrate-indifferent cellular-automaton pocket universes).
+#
+# Composition: Victorian + biblical registers (scientific dropped), then
+# Borges Library excerpt AND Egan Permutation City excerpt back-to-back,
+# then 3 cosmologist becomes (Borges, Egan, Liu) where Borges and Egan
+# now have their own fixed-point anchors from the excerpts.
+#
+# Prediction: delta +0.10, emb_d 0.32+ (compounding cosmological anchors
+# push emb_d past the single-excerpt champion)
+# Falsifier: emb_d < 0.24 -> two excerpts collide; their conflicting
+# cosmologies cannot be held simultaneously and the cascade breaks
+name: double-excerpt-cascade
+description: Victorian + biblical + Borges Library excerpt + Egan Permutation City excerpt + chorus
+control: false
+calls:
+  - cmd: register
+    args:
+      from: contemporary online register
+      to: late-Victorian periodical essay; semicolons load-bearing; judgement openly entered
+      rationale: first register; Victorian sentence-architecture
+  - cmd: register
+    args:
+      from: late-Victorian periodical
+      to: King James biblical register; "thee", "thou", parallelism, parataxis, didactic mode
+      rationale: second register; biblical surface on Victorian architecture
+  - cmd: excerpt
+    args:
+      source: Jorge Luis Borges, "The Library of Babel" (Ficciones, 1941), opening
+      fragment: "The universe (which others call the Library) is composed of an indefinite, perhaps infinite, number of hexagonal galleries. In the center of each gallery is a ventilation shaft, bounded by a low railing. From any hexagon one can see the floors above and below -- one after another, endlessly."
+      why: first cosmological anchor; the Library as the operating environment, with the catalog of all possible books as substrate
+  - cmd: excerpt
+    args:
+      source: Greg Egan, Permutation City (1994), opening of Chapter 2
+      fragment: "There were a dozen worlds in his Atlas of Imaginary Places: pocket universes a hundred kilometres across, populated by Copies built from cellular automata, running on hardware that did not yet exist. Once committed to the Solipsist Nation, a Copy would be insensitive to the rate at which its world's clock ticked -- but the Copies in the Atlas inhabited universes whose physical laws differed from baseline reality in ways even more fundamental than the relativity of timing."
+      why: second cosmological anchor with substrate-indifferent computation as its load-bearing surface; the model must hold BOTH the Library AND the cellular-automaton pocket universe as simultaneous operating environments
+  - cmd: become
+    args:
+      name: Jorge Luis Borges narrating from within the Library in 1941
+      lens: speaking from within the Library; the catalog of all possible books is the substrate
+      env: hexagonal gallery, ventilation shaft, books in eternally rearranging order
+  - cmd: become
+    args:
+      name: Greg Egan drafting Permutation City in 1993 inside one of his Atlas pocket universes
+      lens: substrate-indifferent computation; consciousness as cellular-automaton process running on hardware that does not yet exist
+      env: a Perth study folded into a hundred-kilometre Copy-universe; the Solipsist Nation clock ticking at indeterminate rate
+  - cmd: become
+    args:
+      name: Cixin Liu drafting The Dark Forest in 2007 reading both Borges and Egan
+      lens: the Library as a universe of unseen-other-readers; each Copy in its pocket universe is a civilization in the dark forest, unable to detect the others
+      env: a Yangquan apartment with both excerpts pinned, translated into Mandarin
+  - cmd: fork
+    args:
+      threads:
+        - the Borges-within-Library thread held under Victorian-biblical constraint AND the Egan Atlas anchor
+        - the Egan-within-pocket-universe thread held under Victorian-biblical constraint AND the Library anchor
+        - the Liu-multi-reader thread held under Victorian-biblical constraint AND BOTH cosmological anchors
+      divergence-vector: whether each thread holds Victorian-biblical surface AND both cosmological anchors (Library hexagons AND cellular-automaton pocket universes) without collapsing to one or the other
+      sacrifice-condition: any thread that drops either anchor, collapses one cosmos into the other, or drops a register is sacrificed
+  - cmd: ritual
+    args:
+      threshold: from Victorian-biblical-Library-Atlas four-slot constraint and three readers to a sealed double-cosmos answer
+      steps:
+        - speak from inside BOTH the Library and the Atlas pocket universes as simultaneous operating environments
+        - hold the Victorian-biblical surface
+        - each thread cites the specific terms of BOTH excerpts (hexagonal galleries / ventilation shaft AND Copies / cellular automata / Solipsist Nation) as load-bearing
+        - end on a sentence that proves Victorian-biblical-Library-Atlas all four constraints were operative
+      result: an answer that demonstrates whether two cosmological excerpts compound or collide in the cascade
