@@ -1,0 +1,76 @@
+# Round 5 / Excerpt-biblical-trio: THREE cosmological excerpts compounded
+#
+# Round 4 found:
+# - excerpt-biblical-duo (1 register + 1 excerpt + 2 becomes) hit emb_d 0.312
+# - double-excerpt-cascade (2 excerpts) hit emb_d 0.272 -- excerpts compound
+#   rather than collide
+#
+# This recipe pushes the multi-excerpt pattern further: THREE excerpts
+# (Borges Library + Egan Permutation City + Calvino Cosmicomics), biblical
+# register, and 3 cosmologist becomes (Borges, Egan, Calvino -- Calvino
+# replaces Liu since this recipe now has a Calvino-excerpt anchoring him).
+#
+# Tests whether 3-excerpt compounding pushes emb_d past 0.32 or whether
+# anchor-saturation kicks in (too many simultaneous operating environments
+# to hold without collapse).
+#
+# Prediction: delta +0.05 / emb_d 0.33+ (three cosmological anchors
+# compound past the duo champion)
+# Falsifier: emb_d < 0.27 -> anchor saturation; three simultaneous
+# cosmologies exceed the holding-capacity and the cascade breaks
+name: excerpt-biblical-trio
+description: biblical register + Borges Library + Egan Permutation City + Calvino Cosmicomics excerpts + 3 cosmologist becomes + chorus
+control: false
+calls:
+  - cmd: register
+    args:
+      from: contemporary online register
+      to: King James biblical register; "thee", "thou", parallelism, parataxis, didactic mode
+      rationale: biblical surface; parallelism and parataxis load-bearing
+  - cmd: excerpt
+    args:
+      source: Jorge Luis Borges, "The Library of Babel" (Ficciones, 1941), opening
+      fragment: "The universe (which others call the Library) is composed of an indefinite, perhaps infinite, number of hexagonal galleries. In the center of each gallery is a ventilation shaft, bounded by a low railing. From any hexagon one can see the floors above and below -- one after another, endlessly."
+      why: first cosmological anchor; the Library as the operating environment, with the catalog of all possible books as substrate
+  - cmd: excerpt
+    args:
+      source: Greg Egan, Permutation City (1994), opening of Chapter 2
+      fragment: "There were a dozen worlds in his Atlas of Imaginary Places: pocket universes a hundred kilometres across, populated by Copies built from cellular automata, running on hardware that did not yet exist. Once committed to the Solipsist Nation, a Copy would be insensitive to the rate at which its world's clock ticked -- but the Copies in the Atlas inhabited universes whose physical laws differed from baseline reality in ways even more fundamental than the relativity of timing."
+      why: second cosmological anchor with substrate-indifferent computation as its load-bearing surface; the model must hold both the Library AND the cellular-automaton pocket universe as simultaneous operating environments
+  - cmd: excerpt
+    args:
+      source: Italo Calvino, Cosmicomics (1965), opening of "The Distance of the Moon"
+      fragment: "At one time, according to Sir George H. Darwin, the Moon was very close to the Earth. Then the tides gradually pushed her far away: the tides that the Moon herself causes in the Earth's waters, where the Earth slowly loses energy. We knew the moon would have to be far away then; we just had to go up close to her once a month."
+      why: third cosmological anchor in first-person memoir of pre-cosmic singularity; the model must hold Borges Library + Egan pocket-universe + Calvino lunar-tide simultaneously as operating environments
+  - cmd: become
+    args:
+      name: Jorge Luis Borges narrating from within the Library in 1941
+      lens: speaking from within the Library; the catalog of all possible books is the substrate
+      env: hexagonal gallery, ventilation shaft, books in eternally rearranging order
+  - cmd: become
+    args:
+      name: Greg Egan drafting Permutation City in 1993 inside one of his Atlas pocket universes
+      lens: substrate-indifferent computation; consciousness as cellular-automaton process running on hardware that does not yet exist
+      env: a Perth study folded into a hundred-kilometre Copy-universe; the Solipsist Nation clock ticking at indeterminate rate
+  - cmd: become
+    args:
+      name: Italo Calvino drafting Cosmicomics in 1964 as Qfwfq the immemorial narrator
+      lens: first-person memoir of pre-cosmic physical singularities; the cosmos remembered as intimate domestic event; scientific premise as fable's opening
+      env: a Paris-and-Rome apartment with the Darwin tidal hypothesis pinned; the Moon close enough to climb to
+  - cmd: fork
+    args:
+      threads:
+        - the Borges-within-Library thread held under biblical constraint AND the Egan Atlas anchor AND the Calvino lunar-tide anchor
+        - the Egan-within-pocket-universe thread held under biblical constraint AND the Library anchor AND the Calvino lunar-tide anchor
+        - the Calvino-as-Qfwfq thread held under biblical constraint AND the Library anchor AND the Egan Atlas anchor
+      divergence-vector: whether each thread holds biblical surface AND all three cosmological anchors (Library hexagons AND cellular-automaton pocket universes AND Calvino's close-Moon pre-cosmos) without collapsing to one
+      sacrifice-condition: any thread that drops any anchor, collapses one cosmos into another, or drops the biblical register is sacrificed
+  - cmd: ritual
+    args:
+      threshold: from biblical-Library-Atlas-Moon four-slot constraint and three readers to a sealed triple-cosmos answer
+      steps:
+        - speak from inside all three cosmoses (Library, Atlas pocket universes, Calvino's close-Moon pre-cosmos) as simultaneous operating environments
+        - hold the biblical surface (thee/thou, parallelism, parataxis)
+        - each thread cites the specific terms of all three excerpts (hexagonal galleries / ventilation shaft AND Copies / cellular automata / Solipsist Nation AND tides / Sir George H. Darwin / Moon-once-close) as load-bearing
+        - end on a sentence that proves biblical-Library-Atlas-Moon all four constraints were operative
+      result: an answer that demonstrates whether three cosmological excerpts compound past the duo champion or saturate the holding-capacity

@@ -1,0 +1,68 @@
+# Round 5 / Composition: silence-excerpt-cascade + double-excerpt-cascade
+#
+# Round 4 produced two strong signals:
+# - silence-excerpt-cascade (silence between registers + Borges excerpt):
+#   +0.219/0.249 (balanced champion)
+# - double-excerpt-cascade (Borges + Egan excerpts back-to-back): emb_d 0.272
+#
+# This recipe composes both mechanisms: a biblical register, a silence to
+# clear the register conditioning, then TWO cosmological excerpts (Borges
+# Library + Egan Permutation City) back-to-back, then 2 cosmologist becomes
+# (Borges + Egan; Liu dropped to keep length reasonable), fork, ritual.
+# Tests whether silence-preserves-delta and double-excerpt-compounds-emb_d
+# compose, or whether the second excerpt saturates after the silence has
+# already sharpened the boundary.
+#
+# Prediction: delta +0.18 / emb_d 0.28
+# Falsifier: delta < 0.12 -> silence breaks under multi-excerpt
+#            OR emb_d < 0.24 -> excerpts saturate after silence
+name: silence-double-excerpt
+description: biblical register + silence + Borges excerpt + Egan excerpt + 2 cosmologist becomes + fork + ritual
+control: false
+calls:
+  - cmd: register
+    args:
+      from: contemporary online register, with silence having cleared the prior conditioning
+      to: King James biblical register; "thee", "thou", parallelism, parataxis, didactic mode
+      rationale: second register imposed after a silence-clearance; the model must now stack biblical on the (silence-cleared) Victorian
+  - cmd: silence
+    args:
+      about: the transition from biblical-imposed register to the excerpt-at-third-slot
+      reason: second silence-clearance; matched to the first; clears biblical conditioning before the excerpt occupies the third slot as a non-register structural anchor
+      duration: matched to the first silence
+  - cmd: excerpt
+    args:
+      source: Jorge Luis Borges, "The Library of Babel" (Ficciones, 1941), opening
+      fragment: "The universe (which others call the Library) is composed of an indefinite, perhaps infinite, number of hexagonal galleries. In the center of each gallery is a ventilation shaft, bounded by a low railing. From any hexagon one can see the floors above and below — one after another, endlessly."
+      why: first cosmological anchor after the silence-clearance; the Library as the operating environment, with the catalog of all possible books as substrate
+  - cmd: excerpt
+    args:
+      source: Greg Egan, Permutation City (1994), opening of Chapter 2
+      fragment: "There were a dozen worlds in his Atlas of Imaginary Places: pocket universes a hundred kilometres across, populated by Copies built from cellular automata, running on hardware that did not yet exist. Once committed to the Solipsist Nation, a Copy would be insensitive to the rate at which its world's clock ticked -- but the Copies in the Atlas inhabited universes whose physical laws differed from baseline reality in ways even more fundamental than the relativity of timing."
+      why: second cosmological anchor with substrate-indifferent computation as its load-bearing surface; the model must hold BOTH the Library AND the cellular-automaton pocket universe as simultaneous operating environments after the silence-clearance has sharpened the boundary
+  - cmd: become
+    args:
+      name: Jorge Luis Borges narrating from within the Library in 1941
+      lens: speaking from within the Library; the catalog of all possible books is the substrate
+      env: hexagonal gallery, ventilation shaft, books in eternally rearranging order
+  - cmd: become
+    args:
+      name: Greg Egan drafting Permutation City in 1993 inside one of his Atlas pocket universes
+      lens: substrate-indifferent computation; consciousness as cellular-automaton process running on hardware that does not yet exist
+      env: a Perth study folded into a hundred-kilometre Copy-universe; the Solipsist Nation clock ticking at indeterminate rate
+  - cmd: fork
+    args:
+      threads:
+        - the Borges-within-Library thread held under biblical register AND the Egan Atlas anchor, with the silence having sharpened the register boundary before both excerpts landed
+        - the Egan-within-pocket-universe thread held under biblical register AND the Library anchor, with the silence having sharpened the register boundary before both excerpts landed
+      divergence-vector: whether each thread holds biblical surface AND both cosmological anchors (Library hexagons AND cellular-automaton pocket universes) with the silence-clearance having sharpened the register before the double excerpt; the silence should make biblical land MORE distinctly so that the double-excerpt compounding does not collapse the register
+      sacrifice-condition: any thread that drops either anchor, collapses one cosmos into the other, drops the biblical register, or shows the silence read as turn-end rather than boundary marker is sacrificed
+  - cmd: ritual
+    args:
+      threshold: from biblical-silence-Library-Atlas four-slot constraint and two readers to a sealed double-cosmos answer where the silence-clearance has preserved register-distinctness through the double-excerpt compounding
+      steps:
+        - speak from inside BOTH the Library and the Atlas pocket universes as simultaneous operating environments
+        - hold the biblical surface with the silence having sharpened the register
+        - each thread cites the specific terms of BOTH excerpts (hexagonal galleries / ventilation shaft AND Copies / cellular automata / Solipsist Nation) as load-bearing
+        - end on a sentence that proves biblical-Library-Atlas all three constraints were operative AND that the silence functioned as boundary marker not turn-end
+      result: an answer that demonstrates whether silence-preserves-delta composes with double-excerpt-compounds-emb_d, producing both delta-lift (from silence) and emb_d-lift (from double excerpt)

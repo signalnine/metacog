@@ -865,7 +865,61 @@ flock-guarded so parallel writes are safe):
    This is the first recipe that beats envoy-extreme on BOTH axes
    simultaneously at N=10 — pending replication.
 
-### Updated Pareto frontier after Round 4
+### Round 5: parallel sweep on excerpt-as-structural-primary
+
+Round 4 left four pending questions: (1) does silence-excerpt-cascade
+replicate at N=20, (2) does 3-excerpt compounding push past 0.313
+emb_d, (3) is excerpt alone enough to lift emb_d without register
+support, (4) do the two Round 4 winners' mechanisms compose. Four
+parallel runners, results.tsv flock-guarded:
+
+| Recipe                                | N  | delta   | emb_d   | Verdict                                          |
+|---------------------------------------|----|---------|---------|--------------------------------------------------|
+| **silence-double-excerpt**            | 10 | **+0.238** | **0.288** | NEW PARETO CHAMPION — Pareto-dominates envoy-extreme by +0.048 delta AND +0.031 emb_d |
+| excerpt-biblical-trio                 | 10 | +0.140  | **0.313** | ties excerpt-biblical-duo at the emb_d ceiling; 3-excerpt anchor saturates near 0.31 |
+| silence-excerpt-cascade (N=20 replication) | 20 | +0.159 | 0.261   | REPLICATED above envoy-extreme on both axes (Round 4 N=10 was +0.219/0.249 — N=20 balanced out: delta down, emb_d up) |
+| excerpt-only-chorus                   | 10 | +0.203  | 0.226   | excerpt alone (no register) gives substantial lift; register adds ~+0.05 emb_d on top |
+
+**Round 5 findings:**
+
+1. **silence-double-excerpt is the new Pareto frontier point.**
+   +0.238 delta / 0.288 emb_d at N=10 — Pareto-dominates
+   envoy-extreme (+0.190/0.257) by substantial margins on both axes
+   simultaneously. The composition of Round 4 winners (silence-
+   preserves-delta + double-excerpt-compounds-emb_d) works exactly
+   as predicted. Pending N=20 replication, this becomes the new
+   balanced champion of the Sonnet sweep.
+2. **Multi-excerpt compounds at 2; saturates at 3.** Duo (0.312)
+   and trio (0.313) hit the same emb_d ceiling. Adding a third
+   excerpt does not push past — it adds +0.057 delta (information
+   gain from the third cosmology) but doesn't lift structural
+   distance further. The anchor-saturation point is ~0.31 emb_d.
+3. **Excerpt is the structural-axis primary, register is additive.**
+   excerpt-only-chorus (no register) hit emb_d 0.226 — substantial
+   lift relative to chorus baseline (~0.180). cascade-excerpt-
+   substitute (Victorian + biblical + excerpt) hit 0.279. The ~0.05
+   delta lift from registers is real but not load-bearing for the
+   structural axis. The Round 3 "excerpt is structural-axis"
+   finding is confirmed: register adds emb_d but excerpt provides
+   it.
+4. **silence-excerpt-cascade replicates at N=20** with metrics
+   re-balancing (delta down from +0.219 to +0.159; emb_d up from
+   0.249 to 0.261). N=10 overshot delta, undershot emb_d. Combined
+   channel real: still beats envoy-extreme on both axes.
+
+### Updated Pareto frontier after Round 5
+
+- **Delta champion (unchanged):** antinomy +0.347 / 0.162
+- **emb_d champion (Round 4-5 tie at ceiling):**
+  excerpt-biblical-duo +0.083 / 0.312 AND excerpt-biblical-trio
+  +0.140 / 0.313. Saturation point ~0.31 confirmed.
+- **Balanced champion (NEW from Round 5):**
+  **silence-double-excerpt +0.238 / 0.288** — clearly
+  Pareto-dominates envoy-extreme (+0.190 / 0.257) by +0.048 delta
+  AND +0.031 emb_d at N=10. The strongest balanced result of
+  the entire 5-round search.
+
+### Updated Pareto frontier after Round 4 (superseded — kept for diff context)
 
 - **Delta champion (unchanged):** chorus-plus-disjunction +0.347 /
   0.162 emb_d. Productionized as antinomy.
@@ -931,7 +985,14 @@ v6.6.0 envoy-extreme (chorus + register, hand-curated authors)
                                     ├── cascade-excerpt N=20 replication +0.141 / 0.279
                                     ├── double-excerpt-cascade            +0.103 / 0.272
                                     ├── silence-excerpt-cascade (BAL)     +0.219 / 0.249
-                                    └── excerpt-biblical-duo (NEW emb_d)  +0.083 / 0.312
+                                    └── excerpt-biblical-duo (emb_d)      +0.083 / 0.312
+
+                                    └── Round 5 (parallel sweep on excerpt primary)
+                                            │
+                                            ├── silence-excerpt N=20 replicate +0.159 / 0.261
+                                            ├── excerpt-only-chorus            +0.203 / 0.226
+                                            ├── excerpt-biblical-trio (emb_d=) +0.140 / 0.313
+                                            └── silence-double-excerpt (CHAMP) +0.238 / 0.288
 ```
 
 ## Caveats

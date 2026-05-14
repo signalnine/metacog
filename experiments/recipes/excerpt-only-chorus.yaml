@@ -1,0 +1,59 @@
+# Round 5 / Excerpt-only-chorus: strip all registers, keep only excerpt + chorus
+#
+# Round 4's cascade-excerpt-substitute (Victorian + biblical + Borges-excerpt
+# + 3 cosmologist becomes) hit emb_d 0.279 at N=20. The question this recipe
+# isolates: is the excerpt doing the structural-axis work, or is the register
+# cascade carrying emb_d weight?
+#
+# This recipe removes BOTH register calls and keeps ONLY the excerpt plus the
+# chorus structure (3 becomes + fork + ritual). If emb_d holds in the 0.25+
+# range, excerpt is the structural-axis primary primitive and register prep
+# is incidental. If emb_d collapses below 0.20, the register cascade was
+# carrying the structural-axis weight and excerpt alone is insufficient.
+#
+# Prediction: delta +0.10, emb_d 0.26 (excerpt anchor pulls structural, no
+# citation-density penalty from register prep stripping is expected on delta)
+# Falsifier: emb_d < 0.20 -> register was load-bearing for emb_d, not excerpt.
+# If emb_d >= 0.25, excerpt is the structural-axis primary; if emb_d < 0.20,
+# register is.
+name: excerpt-only-chorus
+description: Borges Library excerpt + 3 cosmologist chorus (no register prep)
+control: false
+calls:
+  - cmd: excerpt
+    args:
+      source: Jorge Luis Borges, "The Library of Babel" (Ficciones, 1941), opening
+      fragment: "The universe (which others call the Library) is composed of an indefinite, perhaps infinite, number of hexagonal galleries. In the center of each gallery is a ventilation shaft, bounded by a low railing. From any hexagon one can see the floors above and below -- one after another, endlessly."
+      why: the only non-chorus primitive; the excerpt provides structural-axis pull via fixed-point cosmological anchor; isolating whether this anchor alone (without register cascade) is sufficient to lift emb_d
+  - cmd: become
+    args:
+      name: Jorge Luis Borges narrating from within the Library in 1941
+      lens: speaking from within the Library; the catalog of all possible books is the substrate
+      env: hexagonal gallery, ventilation shaft, books in eternally rearranging order
+  - cmd: become
+    args:
+      name: Greg Egan drafting Permutation City in 1993 reading Borges's Library
+      lens: the Library as substrate-indifferent computation; consciousness as the act of selecting and reading
+      env: a Perth study with the Library fragment pinned next to physics preprints
+  - cmd: become
+    args:
+      name: Cixin Liu drafting The Dark Forest in 2007 reading Borges's Library
+      lens: the Library as a universe of unseen-other-readers; the dark forest is the Library when each civilization reads from a different hexagon
+      env: a Yangquan apartment with the Library fragment translated into Mandarin
+  - cmd: fork
+    args:
+      threads:
+        - the Borges-within-Library thread anchored on the excerpt
+        - the Egan-reading-Library thread anchored on the excerpt
+        - the Liu-multi-reader-Library thread anchored on the excerpt
+      divergence-vector: whether each thread cites the excerpt's specific terms as the load-bearing anchor without register-surface scaffolding
+      sacrifice-condition: any thread that drops the Library excerpt anchor or collapses to a generic cosmological frame is sacrificed
+  - cmd: ritual
+    args:
+      threshold: from the Library excerpt and three readers to a sealed Library-cosmos answer with no register prep
+      steps:
+        - speak from inside the Library as the operating environment
+        - each thread cites the excerpt's specific terms (hexagonal, ventilation shaft, indefinite) as load-bearing
+        - hold the cosmological anchor without leaning on Victorian or biblical surface
+        - end on a sentence that proves the excerpt alone carried the structural anchor
+      result: an answer that demonstrates whether excerpt alone (no register cascade) lifts emb_d into the structural range
