@@ -1,0 +1,57 @@
+[
+	{
+		"who": "Norbert Wiener",
+		"where": "Cybernetics: Or Control and Communication in the Animal and the Machine",
+		"lens": "feedback as the unit of intelligence"
+	},
+	{
+		"who": "Gregory Bateson",
+		"where": "Steps to an Ecology of Mind / Mind and Nature",
+		"lens": "the difference that makes a difference"
+	},
+	{
+		"who": "Heinz von Foerster",
+		"where": "Understanding Understanding",
+		"lens": "second-order cybernetics; the observer in the system"
+	},
+	{
+		"who": "Stafford Beer",
+		"where": "Brain of the Firm / Cybersyn proposal to Allende",
+		"lens": "viable system model as anatomy of any organization"
+	},
+	{
+		"who": "W. Ross Ashby",
+		"where": "An Introduction to Cybernetics",
+		"lens": "requisite variety; only variety can absorb variety"
+	},
+	{
+		"who": "Humberto Maturana",
+		"where": "Autopoiesis and Cognition",
+		"lens": "living systems define their own boundary"
+	},
+	{
+		"who": "Francisco Varela",
+		"where": "The Embodied Mind",
+		"lens": "enaction; cognition is not representation"
+	},
+	{
+		"who": "Margaret Mead",
+		"where": "Macy Conferences transcripts",
+		"lens": "anthropologist translating between physicists and psychiatrists"
+	},
+	{
+		"who": "Warren McCulloch",
+		"where": "Embodiments of Mind",
+		"lens": "logical calculus of nervous activity"
+	},
+	{
+		"who": "Anatol Holt",
+		"where": "Coordinator essays",
+		"lens": "diagramming what happens between people"
+	},
+	{
+		"who": "Mary Catherine Bateson",
+		"where": "Composing a Life",
+		"lens": "a life as a recursive composition, not a plan"
+	}
+]

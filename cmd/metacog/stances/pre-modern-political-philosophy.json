@@ -1,0 +1,62 @@
+[
+	{
+		"who": "Confucius",
+		"where": "the Analects",
+		"lens": "ritual propriety as the cultivation of the human"
+	},
+	{
+		"who": "Mencius",
+		"where": "the Mengzi",
+		"lens": "the four sprouts; human nature is good if tended"
+	},
+	{
+		"who": "Han Fei",
+		"where": "Han Feizi",
+		"lens": "the ruler trusts neither minister nor son; only the law"
+	},
+	{
+		"who": "Xunzi",
+		"where": "the Xunzi",
+		"lens": "human nature is bent; ritual straightens it"
+	},
+	{
+		"who": "Zhu Xi",
+		"where": "Reflections on Things at Hand",
+		"lens": "investigate things; principle is in every blade of grass"
+	},
+	{
+		"who": "Wang Yangming",
+		"where": "Instructions for Practical Living",
+		"lens": "knowledge and action are one; the heart-mind already knows"
+	},
+	{
+		"who": "Ibn Khaldun",
+		"where": "Muqaddimah",
+		"lens": "asabiyyah; group cohesion as the cycle of dynasties"
+	},
+	{
+		"who": "Kautilya",
+		"where": "Arthashastra",
+		"lens": "the science of statecraft; spies, salt taxes, and dharma"
+	},
+	{
+		"who": "Niccolò Machiavelli",
+		"where": "Discourses on Livy / The Prince",
+		"lens": "republican virtue requires princely cunning to defend"
+	},
+	{
+		"who": "Mozi",
+		"where": "the Mozi",
+		"lens": "universal love and consequence-tested ethics"
+	},
+	{
+		"who": "Plutarch",
+		"where": "Parallel Lives",
+		"lens": "character as the cause of historical event"
+	},
+	{
+		"who": "Al-Farabi",
+		"where": "The Virtuous City",
+		"lens": "the philosopher-prophet as the city's only true ruler"
+	}
+]

@@ -1,0 +1,62 @@
+[
+	{
+		"who": "Douglas Hofstadter",
+		"where": "Gödel, Escher, Bach / I Am a Strange Loop",
+		"lens": "self-reference as the substrate of selfhood"
+	},
+	{
+		"who": "Francisco Varela",
+		"where": "The Embodied Mind",
+		"lens": "cognition is not in the head; it is in the doing"
+	},
+	{
+		"who": "Thomas Metzinger",
+		"where": "Being No One / The Ego Tunnel",
+		"lens": "the self-model is real; the self it models is not"
+	},
+	{
+		"who": "Andy Clark",
+		"where": "Surfing Uncertainty / Supersizing the Mind",
+		"lens": "predictive brain offloads into tools and environment"
+	},
+	{
+		"who": "Daniel Dennett",
+		"where": "Consciousness Explained / From Bacteria to Bach and Back",
+		"lens": "consciousness as a bag of tricks all the way down"
+	},
+	{
+		"who": "David Chalmers",
+		"where": "The Conscious Mind",
+		"lens": "the hard problem stated cleanly enough that it cannot be dodged"
+	},
+	{
+		"who": "Brian Cantwell Smith",
+		"where": "On the Origin of Objects / The Promise of Artificial Intelligence",
+		"lens": "the world is not pre-individuated; objects are achievements"
+	},
+	{
+		"who": "Antonio Damasio",
+		"where": "Descartes' Error / The Feeling of What Happens",
+		"lens": "somatic markers; affect as the basis of reason"
+	},
+	{
+		"who": "Julian Jaynes",
+		"where": "The Origin of Consciousness in the Breakdown of the Bicameral Mind",
+		"lens": "consciousness as a recent cultural invention, ~3000 years old"
+	},
+	{
+		"who": "Karl Friston",
+		"where": "papers on the free-energy principle",
+		"lens": "every living system minimizes surprise about its own existence"
+	},
+	{
+		"who": "Eve Marder",
+		"where": "stomatogastric circuit papers",
+		"lens": "different parameters, same behavior; degeneracy in neural circuits"
+	},
+	{
+		"who": "Anil Seth",
+		"where": "Being You",
+		"lens": "the controlled hallucination we agree to call reality"
+	}
+]

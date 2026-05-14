@@ -102,7 +102,7 @@ Practical rule for porting recipes to new generators: validate in text-instructi
 - `cmd/metacog/journal.go` -- `journal.jsonl` insight log, tag/session filtering
 - `cmd/metacog/session.go` -- Named session tagging (auto-applied to history entries)
 - `cmd/metacog/output.go` -- `FormatOutput` honouring the global `--json` flag
-- `cmd/metacog/stances/*.json` -- 65 embedded pools (~300 examples), JSON arrays of `{who, where, lens}`
+- `cmd/metacog/stances/*.json` -- 73 embedded pools (~400 examples), JSON arrays of `{who, where, lens}`
 - `skills/metacog/SKILL.md` -- Claude Code skill document (the user-facing docs that hide implementation examples)
 - `.claude-plugin/plugin.json` -- plugin manifest; version here must match `Version` in `main.go`
 
