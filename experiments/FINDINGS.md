@@ -949,6 +949,59 @@ runners:
    breaker. Excerpt's structural-axis role is special; not every
    "failed" primitive is a misclassified excerpt.
 
+### Round 7: commitment composability sweep
+
+Round 6's new emb_d champion was commitment-excerpt-biblical at
+0.322 (N=10). Three open questions: (a) does it replicate at N=20,
+(b) does commitment compose with the balanced champion silence-
+double-excerpt, (c) does commitment lift the saturated 3-excerpt
+regime, (d) is commitment alone (no excerpt) a structural-axis
+lever or only an additive helper. Four parallel runners:
+
+| Recipe                          | N  | delta   | emb_d   | Verdict                                              |
+|---------------------------------|----|---------|---------|------------------------------------------------------|
+| commitment-excerpt-biblical (N=20 replication) | 20 | +0.103 | **0.317** | REPLICATED above 0.313 trio ceiling (Round 6 N=10 was +0.054/0.322; delta lifted) |
+| **commitment-trio-biblical**    | 10 | **+0.189** | **0.290** | NEW BALANCED CHAMPION — commitment lifts the saturated 3-excerpt regime; Pareto-dominates silence-double-excerpt on both axes |
+| commitment-only-chorus          | 10 | +0.173  | 0.258   | commitment is a structural-axis primitive on its own — emb_d 0.258 vs chorus baseline ~0.180 |
+| commitment-silence-double-excerpt | 10 | +0.191 | 0.253   | FAILED COMPOSITION — the two Round 6 winners DON'T compose; emb_d collapsed below either parent |
+
+**Round 7 findings:**
+
+1. **commitment-excerpt-biblical replicates at N=20** (+0.103/0.317).
+   The emb_d above the 0.313 trio ceiling is firm. Delta lifted
+   from the N=10's +0.054 to +0.103 — small-N had under-sampled
+   delta as much as it over-sampled emb_d.
+2. **commitment-trio-biblical is the new balanced champion.**
+   +0.189/0.290 Pareto-dominates the prior balanced champion
+   silence-double-excerpt (+0.175/0.286) on both axes
+   simultaneously. Commitment + biblical + 3 excerpts + 3 becomes
+   + fork + ritual is the strongest balanced result of 7 rounds.
+   The trio's saturated 0.313 emb_d came down to 0.290 with
+   commitment added — slight emb_d cost (0.023) for substantial
+   delta lift (+0.049 from trio's +0.140 to +0.189).
+3. **commitment is a structural-axis primitive on its own.**
+   commitment-only-chorus (no excerpt, no register) hit emb_d
+   0.258 — chorus baseline is ~0.180. Commitment alone adds
+   ~+0.08 emb_d. This answers the open question: commitment is
+   not just excerpt's helper. It's its own lever.
+4. **The two Round 6 winners DO NOT compose.**
+   commitment-silence-double-excerpt at +0.191/0.253 came in
+   below either parent on emb_d (commitment-excerpt 0.317,
+   silence-double-excerpt 0.286). The mechanisms interfere when
+   stacked — possibly because both commitment AND silence are
+   "refusal" structural-axis events at different scales, and
+   stacking two refusals produces over-refusal rather than
+   compounding.
+
+### Updated Pareto frontier after Round 7
+
+- **Delta champion (unchanged):** antinomy +0.347 / 0.162
+- **emb_d champion (replicated at N=20):**
+  commitment-excerpt-biblical +0.103 / 0.317
+- **Balanced champion (NEW from Round 7):**
+  **commitment-trio-biblical +0.189 / 0.290** — Pareto-dominates
+  silence-double-excerpt (+0.175 / 0.286) on both axes.
+
 ### Updated Pareto frontier after Round 6
 
 - **Delta champion (unchanged):** antinomy +0.347 / 0.162
@@ -1052,7 +1105,14 @@ v6.6.0 envoy-extreme (chorus + register, hand-curated authors)
                                                     ├── silence-double N=20 replicate +0.175 / 0.286
                                                     ├── excerpt-quadruple-biblical    +0.077 / 0.297  (saturation confirmed)
                                                     ├── glossolalia-excerpt            +0.131 / 0.277
-                                                    └── commitment-excerpt-bib (CHAMP) +0.054 / 0.322
+                                                    └── commitment-excerpt-bib (emb_d) +0.054 / 0.322
+
+                                                    └── Round 7 (commitment composability)
+                                                            │
+                                                            ├── commitment-excerpt-bib N=20 replicate +0.103 / 0.317
+                                                            ├── commitment-only-chorus              +0.173 / 0.258 (commitment is structural lever alone)
+                                                            ├── commitment-silence-double-excerpt   +0.191 / 0.253 (failed compose)
+                                                            └── commitment-trio-biblical (CHAMP)    +0.189 / 0.290
 ```
 
 ## Caveats
