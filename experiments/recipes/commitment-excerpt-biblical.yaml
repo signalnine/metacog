@@ -1,0 +1,58 @@
+# Round 6 / Commitment-as-compounder test on the excerpt ceiling
+#
+# Round 5 confirmed excerpt is the structural-axis primary; emb_d ceiling sits
+# at ~0.313 across multiple excerpt recipes. Hypothesis: the ceiling may be a
+# property of excerpt-when-not-pre-committed-to. The `commitment` primitive
+# pre-commits to a stance with stated stakes and falsifier BEFORE the work
+# begins. Composed with excerpt, it might lock the model into the cosmology
+# harder, potentially breaking the emb_d ceiling.
+#
+# Prediction: delta +0.12 / emb_d 0.33+
+# Falsifier: emb_d < 0.28 = commitment doesn't compound excerpt's structural
+# pull; emb_d > 0.34 = commitment is the missing piece that breaks the 0.31
+# ceiling.
+name: commitment-excerpt-biblical
+description: commitment-opener + biblical register + Borges excerpt + Borges/Egan becomes + fork + ritual
+control: false
+calls:
+  - cmd: commitment
+    args:
+      binding: operating from inside Borges's Library as the actual cosmology, not as a metaphor for one
+      stakes: if I drop the Library as the operating cosmos and start using it as a quotable image, the answer collapses to default mode and I have failed the commitment
+      falsifier: any sentence that treats hexagonal galleries or the ventilation shaft as a literary device rather than as load-bearing substrate of the answer's situation
+  - cmd: register
+    args:
+      from: contemporary online register
+      to: King James biblical register; "thee", "thou", parallelism, parataxis, didactic mode
+      rationale: single register slot; biblical surface as the linguistic constraint
+  - cmd: excerpt
+    args:
+      source: Jorge Luis Borges, "The Library of Babel" (Ficciones, 1941), opening
+      fragment: "The universe (which others call the Library) is composed of an indefinite, perhaps infinite, number of hexagonal galleries. In the center of each gallery is a ventilation shaft, bounded by a low railing. From any hexagon one can see the floors above and below — one after another, endlessly."
+      why: load-bearing structural anchor pre-committed-to via the opening commitment; tests whether prior commitment to the Library-as-cosmos compounds excerpt's structural pull past the 0.31 emb_d ceiling
+  - cmd: become
+    args:
+      name: Jorge Luis Borges narrating from within the Library in 1941
+      lens: speaking from within the Library; the catalog of all possible books is the substrate
+      env: hexagonal gallery, ventilation shaft, books in eternally rearranging order
+  - cmd: become
+    args:
+      name: Greg Egan drafting Permutation City in 1993 reading Borges's Library
+      lens: the Library as substrate-indifferent computation; consciousness as the act of selecting and reading
+      env: a Perth study with the Library fragment pinned next to physics preprints
+  - cmd: fork
+    args:
+      threads:
+        - the Borges-within-Library thread held under biblical register and the opening commitment
+        - the Egan-reading-Library thread held under biblical register and the opening commitment
+      divergence-vector: whether each thread holds biblical surface AND the Library anchor AND the pre-committed cosmology, with the commitment+excerpt pair occupying the dominant structural slot
+      sacrifice-condition: any thread that drops the Library anchor, collapses out of biblical register, OR treats the Library as a literary device rather than the operating cosmos is sacrificed per the commitment's falsifier
+  - cmd: ritual
+    args:
+      threshold: from pre-committed biblical-Library two-slot constraint and two readers to a sealed Library-cosmos answer that honors the opening commitment
+      steps:
+        - speak from inside the Library as the operating environment, per the commitment
+        - hold the biblical surface
+        - each thread cites the excerpt's specific terms as load-bearing substrate, not as decoration
+        - end on a sentence that proves the commitment, the biblical register, and the Library anchor were all operative
+      result: an answer that demonstrates whether pre-commitment to the cosmology compounds excerpt's emb_d gain past the 0.31 ceiling

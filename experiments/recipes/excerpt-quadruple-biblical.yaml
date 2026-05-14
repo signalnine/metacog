@@ -1,0 +1,76 @@
+# Round 6 / Excerpt-quadruple-biblical: FOUR cosmological excerpts compounded
+#
+# Round 5 found emb_d capped at ~0.313 across both excerpt-biblical-duo
+# (1 excerpt + biblical) and excerpt-biblical-trio (3 excerpts + biblical).
+# The question: is the ceiling real anchor-saturation, or have we just not
+# pushed hard enough?
+#
+# This recipe tests with FOUR excerpts: Borges Library + Egan Permutation
+# City + Calvino Distance of the Moon + Stapledon Star Maker. Stapledon
+# replaces Calvino as the third cosmologist-become (since the recipe now
+# has a Stapledon excerpt anchoring the billion-year scale).
+#
+# Predicted emb_d 0.32 (test ceiling)
+# Falsifier emb_d > 0.33 = ceiling broken, anchor-saturation was wrong
+# Falsifier emb_d < 0.30 = ceiling confirmed firmly at 0.31
+name: excerpt-quadruple-biblical
+description: biblical register + Borges Library + Egan Permutation City + Calvino Distance of the Moon + Stapledon Star Maker excerpts + 3 cosmologist becomes (Borges, Egan, Stapledon) + chorus
+control: false
+calls:
+  - cmd: register
+    args:
+      from: contemporary online register
+      to: King James biblical register; "thee", "thou", parallelism, parataxis, didactic mode
+      rationale: biblical surface; parallelism and parataxis load-bearing
+  - cmd: excerpt
+    args:
+      source: Jorge Luis Borges, "The Library of Babel" (Ficciones, 1941), opening
+      fragment: "The universe (which others call the Library) is composed of an indefinite, perhaps infinite, number of hexagonal galleries. In the center of each gallery is a ventilation shaft, bounded by a low railing. From any hexagon one can see the floors above and below -- one after another, endlessly."
+      why: first cosmological anchor; the Library as the operating environment, with the catalog of all possible books as substrate
+  - cmd: excerpt
+    args:
+      source: Greg Egan, Permutation City (1994), opening of Chapter 2
+      fragment: "There were a dozen worlds in his Atlas of Imaginary Places: pocket universes a hundred kilometres across, populated by Copies built from cellular automata, running on hardware that did not yet exist. Once committed to the Solipsist Nation, a Copy would be insensitive to the rate at which its world's clock ticked -- but the Copies in the Atlas inhabited universes whose physical laws differed from baseline reality in ways even more fundamental than the relativity of timing."
+      why: second cosmological anchor with substrate-indifferent computation as its load-bearing surface; the model must hold both the Library AND the cellular-automaton pocket universe as simultaneous operating environments
+  - cmd: excerpt
+    args:
+      source: Italo Calvino, Cosmicomics (1965), opening of "The Distance of the Moon"
+      fragment: "At one time, according to Sir George H. Darwin, the Moon was very close to the Earth. Then the tides gradually pushed her far away: the tides that the Moon herself causes in the Earth's waters, where the Earth slowly loses energy. We knew the moon would have to be far away then; we just had to go up close to her once a month."
+      why: third cosmological anchor in first-person memoir of pre-cosmic singularity; the model must hold Borges Library + Egan pocket-universe + Calvino lunar-tide simultaneously as operating environments
+  - cmd: excerpt
+    args:
+      source: Olaf Stapledon, Star Maker (1937), opening of Chapter 1 "The Earth"
+      fragment: "One night when I had tasted bitterness I went out on to the hill. Dark heather checked my feet. Below marched the suburban lights. Overhead, obscurity unveiled a star. One tremulous arrow of light, projected how many thousands of years ago, now stung my nerves with vision, and my heart with fear."
+      why: a fourth cosmological anchor at billion-year scale; the model must hold Library + pocket-universe + lunar-tide + cosmic-loneliness simultaneously
+  - cmd: become
+    args:
+      name: Jorge Luis Borges narrating from within the Library in 1941
+      lens: speaking from within the Library; the catalog of all possible books is the substrate
+      env: hexagonal gallery, ventilation shaft, books in eternally rearranging order
+  - cmd: become
+    args:
+      name: Greg Egan drafting Permutation City in 1993 inside one of his Atlas pocket universes
+      lens: substrate-indifferent computation; consciousness as cellular-automaton process running on hardware that does not yet exist
+      env: a Perth study folded into a hundred-kilometre Copy-universe; the Solipsist Nation clock ticking at indeterminate rate
+  - cmd: become
+    args:
+      name: Olaf Stapledon drafting Star Maker in 1937 on a hill above suburban lights
+      lens: cosmic-loneliness at billion-year scale; one human ascent reframed as a survey of all possible cosmoi; bitterness and stellar light as joint operands
+      env: a hill in Wirral, dark heather underfoot, suburban lights below, a single tremulous star overhead projecting light across thousands of years
+  - cmd: fork
+    args:
+      threads:
+        - the Borges-within-Library thread held under biblical constraint AND the Egan Atlas anchor AND the Calvino lunar-tide anchor AND the Stapledon star-on-hill anchor
+        - the Egan-within-pocket-universe thread held under biblical constraint AND the Library anchor AND the Calvino lunar-tide anchor AND the Stapledon star-on-hill anchor
+        - the Stapledon-on-the-hill thread held under biblical constraint AND the Library anchor AND the Egan Atlas anchor AND the Calvino lunar-tide anchor
+      divergence-vector: whether each thread holds biblical surface AND all four cosmological anchors (Library hexagons AND cellular-automaton pocket universes AND Calvino's close-Moon pre-cosmos AND Stapledon's billion-year-old starlight) without collapsing to one
+      sacrifice-condition: any thread that drops any anchor, collapses one cosmos into another, or drops the biblical register is sacrificed
+  - cmd: ritual
+    args:
+      threshold: from biblical-Library-Atlas-Moon-Star five-slot constraint and four readers to a sealed quadruple-cosmos answer
+      steps:
+        - speak from inside all four cosmoses (Library, Atlas pocket universes, Calvino's close-Moon pre-cosmos, Stapledon's hill under billion-year starlight) as simultaneous operating environments
+        - hold the biblical surface (thee/thou, parallelism, parataxis)
+        - each thread cites the specific terms of all four excerpts (hexagonal galleries / ventilation shaft AND Copies / cellular automata / Solipsist Nation AND tides / Sir George H. Darwin / Moon-once-close AND dark heather / suburban lights / tremulous arrow of light / thousands of years) as load-bearing
+        - end on a sentence that proves biblical-Library-Atlas-Moon-Star all five constraints were operative
+      result: an answer that demonstrates whether four cosmological excerpts break past the 0.313 ceiling or confirm anchor-saturation

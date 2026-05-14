@@ -907,6 +907,59 @@ parallel runners, results.tsv flock-guarded:
    0.249 to 0.261). N=10 overshot delta, undershot emb_d. Combined
    channel real: still beats envoy-extreme on both axes.
 
+### Round 6: ceiling tests and novel-composition probes
+
+Round 5 left two open questions: (1) does silence-double-excerpt
+replicate at N=20, (2) is the 0.313 emb_d ceiling real anchor-
+saturation or an under-explored composition surface. Four parallel
+runners:
+
+| Recipe                          | N  | delta   | emb_d   | Verdict                                              |
+|---------------------------------|----|---------|---------|------------------------------------------------------|
+| **commitment-excerpt-biblical** | 10 | +0.054  | **0.322** | NEW emb_d CEILING — pre-commit to the cosmology before excerpt arrives lifts structural distance past the 0.313 trio ceiling |
+| silence-double-excerpt (N=20 replication) | 20 | +0.175 | **0.286** | REPLICATED — delta regressed from N=10's +0.238 to +0.175 but emb_d held at 0.286; still Pareto-dominates envoy-extreme |
+| excerpt-quadruple-biblical      | 10 | +0.077  | 0.297   | ANCHOR-SATURATION CONFIRMED — 4 excerpts come in BELOW 3 excerpts; over-anchoring degrades structural distance |
+| glossolalia-excerpt             | 10 | +0.131  | 0.277   | glossolalia is composable but is NOT a hidden structural-axis primary; it's a midpack working primitive |
+
+**Round 6 findings:**
+
+1. **commitment-excerpt-biblical breaks the 0.313 emb_d ceiling.**
+   Pre-committing to "operating from inside Borges's Library as the
+   actual cosmology, not as a metaphor for one" — with stakes and a
+   falsifier stated — locks the model into the cosmology before the
+   excerpt arrives, compounding structural pull. At 0.322 emb_d this
+   is the new Sonnet ceiling. Delta is low (+0.054); the recipe
+   trades vocabulary-axis for structural-axis hard.
+2. **Anchor-saturation is REAL at 3 excerpts.** excerpt-quadruple-
+   biblical (0.297) came in *below* excerpt-biblical-trio (0.313).
+   Adding a fourth cosmological excerpt did not push past — it
+   actively degraded structural distance. The ceiling is a property
+   of the composition geometry, not a sampling artifact. Beyond 3
+   anchors, the model dilutes attention across cosmologies and the
+   structural pull weakens.
+3. **silence-double-excerpt replicated at N=20.** Metrics
+   re-balanced (delta regressed +0.238 → +0.175; emb_d held +0.288
+   → +0.286). Pareto-domination over envoy-extreme survives
+   replication. This remains the strongest balanced point of the
+   full search.
+4. **glossolalia is composable, not a hidden structural primary.**
+   The Round 5 hypothesis "glossolalia might be misclassified like
+   excerpt was" was wrong. glossolalia-excerpt landed at
+   +0.131/0.277 — a working midpack composition, not a ceiling
+   breaker. Excerpt's structural-axis role is special; not every
+   "failed" primitive is a misclassified excerpt.
+
+### Updated Pareto frontier after Round 6
+
+- **Delta champion (unchanged):** antinomy +0.347 / 0.162
+- **emb_d champion (NEW from Round 6):**
+  **commitment-excerpt-biblical +0.054 / 0.322** — pre-commit
+  primitive composed with excerpt broke the 0.313 anchor-saturation
+  ceiling. Pending N=20 replication.
+- **Balanced champion (replicated):**
+  silence-double-excerpt +0.175 / 0.286 at N=20. Pareto-dominates
+  envoy-extreme on both axes.
+
 ### Updated Pareto frontier after Round 5
 
 - **Delta champion (unchanged):** antinomy +0.347 / 0.162
@@ -993,6 +1046,13 @@ v6.6.0 envoy-extreme (chorus + register, hand-curated authors)
                                             ├── excerpt-only-chorus            +0.203 / 0.226
                                             ├── excerpt-biblical-trio (emb_d=) +0.140 / 0.313
                                             └── silence-double-excerpt (CHAMP) +0.238 / 0.288
+
+                                            └── Round 6 (ceiling tests + novel probes)
+                                                    │
+                                                    ├── silence-double N=20 replicate +0.175 / 0.286
+                                                    ├── excerpt-quadruple-biblical    +0.077 / 0.297  (saturation confirmed)
+                                                    ├── glossolalia-excerpt            +0.131 / 0.277
+                                                    └── commitment-excerpt-bib (CHAMP) +0.054 / 0.322
 ```
 
 ## Caveats

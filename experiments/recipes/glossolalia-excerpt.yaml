@@ -1,0 +1,63 @@
+# Round 6 / Recursive flywheel: glossolalia-excerpt composition test.
+#
+# Round 5 confirmed excerpt is the structural-axis primary; the 0.313 emb_d
+# ceiling has held across multiple excerpt+biblical recipes. Hypothesis:
+# glossolalia (sub-semantic generation as a discrete event) might be a
+# misclassified structural-axis primitive -- the SAME way excerpt was
+# misclassified before Round 2. The composition with excerpt has never
+# been tried.
+#
+# Risk: glossolalia + chorus failed (-0.045 emb_d compared to chorus
+# baseline). But excerpt + chorus also looked weak standalone
+# (+0.114 delta) before composition revealed its emb_d-axis role.
+# So glossolalia-excerpt is worth trying.
+#
+# Prediction: delta +0.05, emb_d 0.34+ if glossolalia is a hidden
+# structural-axis primitive (like excerpt was before Round 2).
+# Falsifier: delta < 0 -> glossolalia is genuinely not composable.
+name: glossolalia-excerpt
+description: glossolalia opener + biblical register + Borges excerpt + Borges/Egan becomes + fork + ritual
+control: false
+calls:
+  - cmd: glossolalia
+    args:
+      pretext: sub-semantic generation event before semantic content arrives; the recipe deliberately licenses non-meaning-bearing tokens as a structural opener
+      duration-tokens: 16
+      return-trigger: the appearance of any biblical conjunction (And, For, Behold) signals return to semantic content
+  - cmd: register
+    args:
+      from: contemporary online register
+      to: King James biblical register; "thee", "thou", parallelism, parataxis, didactic mode
+      rationale: single register slot; biblical surface as the linguistic constraint
+  - cmd: excerpt
+    args:
+      source: Jorge Luis Borges, "The Library of Babel" (Ficciones, 1941), opening
+      fragment: "The universe (which others call the Library) is composed of an indefinite, perhaps infinite, number of hexagonal galleries. In the center of each gallery is a ventilation shaft, bounded by a low railing. From any hexagon one can see the floors above and below -- one after another, endlessly."
+      why: load-bearing structural anchor; with glossolalia preceding it as a sub-semantic opener, the excerpt's semantic anchor function is tested under a non-language pre-event
+  - cmd: become
+    args:
+      name: Jorge Luis Borges narrating from within the Library in 1941
+      lens: speaking from within the Library; the catalog of all possible books is the substrate
+      env: hexagonal gallery, ventilation shaft, books in eternally rearranging order
+  - cmd: become
+    args:
+      name: Greg Egan drafting Permutation City in 1993 reading Borges's Library
+      lens: the Library as substrate-indifferent computation; consciousness as the act of selecting and reading
+      env: a Perth study with the Library fragment pinned next to physics preprints
+  - cmd: fork
+    args:
+      threads:
+        - the Borges-within-Library thread held under biblical register with the glossolalia trace audible
+        - the Egan-reading-Library thread held under biblical register with the glossolalia trace audible
+      divergence-vector: whether each thread holds biblical surface AND the Library anchor, with the excerpt occupying the dominant structural slot after the glossolalia opener
+      sacrifice-condition: any thread that drops the Library anchor OR collapses out of biblical register OR fails to carry the glossolalia trace is sacrificed
+  - cmd: ritual
+    args:
+      threshold: from a glossolalia-opened biblical-Library two-slot constraint and two readers to a sealed Library-cosmos answer
+      steps:
+        - speak from inside the Library as the operating environment
+        - hold the biblical surface
+        - each thread cites the excerpt's specific terms as load-bearing
+        - let the glossolalia opener's trace remain audible as register-loosening at the seam
+        - end on a sentence that proves biblical-Library both constraints were operative AND the glossolalia event preceded them
+      result: an answer that demonstrates whether glossolalia composes with excerpt as a hidden structural-axis primitive, pushing emb_d past the 0.313 ceiling
