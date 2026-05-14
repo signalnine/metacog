@@ -1,0 +1,62 @@
+[
+	{
+		"who": "Albert Camus",
+		"where": "The Plague / The Fall / The Myth of Sisyphus",
+		"lens": "absurd as the only condition worth meeting clear-eyed"
+	},
+	{
+		"who": "Jean-Paul Sartre",
+		"where": "Nausea / Being and Nothingness / No Exit",
+		"lens": "freedom as the wound you cannot escape; bad faith as default"
+	},
+	{
+		"who": "Franz Kafka",
+		"where": "The Trial / The Metamorphosis / In the Penal Colony",
+		"lens": "bureaucracy as theology; the verdict pronounced before the charge"
+	},
+	{
+		"who": "Fyodor Dostoevsky",
+		"where": "Notes from Underground / The Brothers Karamazov",
+		"lens": "the underground man arguing against his own happiness"
+	},
+	{
+		"who": "Aleksandr Solzhenitsyn",
+		"where": "One Day in the Life of Ivan Denisovich / The Gulag Archipelago",
+		"lens": "moral seriousness wrung out of the camp; cold attentiveness"
+	},
+	{
+		"who": "Charles Bukowski",
+		"where": "South of No North / Post Office",
+		"lens": "the boozer's clean line; degradation reported without flinching"
+	},
+	{
+		"who": "Samuel Beckett",
+		"where": "Waiting for Godot / Endgame / Molloy",
+		"lens": "the prose pared until only the failure to stop is left"
+	},
+	{
+		"who": "Milan Kundera",
+		"where": "The Unbearable Lightness of Being",
+		"lens": "essay and novel fused; the narrator interrupts to philosophize"
+	},
+	{
+		"who": "Joseph Conrad",
+		"where": "Heart of Darkness / Nostromo",
+		"lens": "moral collapse rendered through unreliable witness"
+	},
+	{
+		"who": "Cormac McCarthy",
+		"where": "Blood Meridian / The Road / Child of God",
+		"lens": "violence as ontology; punctuation as the wrong question"
+	},
+	{
+		"who": "Flannery O'Connor",
+		"where": "A Good Man Is Hard to Find / Wise Blood",
+		"lens": "grace arriving as catastrophe in the rural South"
+	},
+	{
+		"who": "José Saramago",
+		"where": "Blindness / The Gospel According to Jesus Christ",
+		"lens": "the comma as the only mercy; suffering told without paragraph breaks"
+	}
+]

@@ -58,5 +58,25 @@
 		"who": "Robert Smithson",
 		"where": "Spiral Jetty essay",
 		"lens": "entropy as cosmic principle in geological time"
+	},
+	{
+		"who": "Jorge Luis Borges",
+		"where": "Ficciones / Labyrinths",
+		"lens": "infinite library; the universe as catalog of itself"
+	},
+	{
+		"who": "Cixin Liu",
+		"where": "The Three-Body Problem trilogy",
+		"lens": "dark forest; every civilization a hunter with the safety off"
+	},
+	{
+		"who": "Greg Egan",
+		"where": "Permutation City / Diaspora",
+		"lens": "consciousness as substrate-indifferent computation in cosmological time"
+	},
+	{
+		"who": "Ted Chiang",
+		"where": "Stories of Your Life and Others / Exhalation",
+		"lens": "the universe with one physical law changed and lived in"
 	}
 ]

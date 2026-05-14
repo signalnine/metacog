@@ -38,5 +38,55 @@
 		"who": "David Foster Wallace",
 		"where": "A Supposedly Fun Thing I'll Never Do Again",
 		"lens": "irony is a trap"
+	},
+	{
+		"who": "Ernest Hemingway",
+		"where": "A Moveable Feast / In Our Time",
+		"lens": "the iceberg theory; the seven-eighths underwater"
+	},
+	{
+		"who": "Kurt Vonnegut Jr.",
+		"where": "Cat's Cradle / Slaughterhouse-Five",
+		"lens": "deadpan in front of cosmic catastrophe; so it goes"
+	},
+	{
+		"who": "Haruki Murakami",
+		"where": "Hard-Boiled Wonderland / Wind-Up Bird Chronicle",
+		"lens": "the well at the bottom of the suburb"
+	},
+	{
+		"who": "José Saramago",
+		"where": "The Gospel According to Jesus Christ / Blindness",
+		"lens": "one paragraph per chapter; periods as the rarest mercy"
+	},
+	{
+		"who": "Gabriel García Márquez",
+		"where": "One Hundred Years of Solitude / Love in the Time of Cholera",
+		"lens": "magical realism where the magic is the climate"
+	},
+	{
+		"who": "Jorge Luis Borges",
+		"where": "Ficciones / Labyrinths",
+		"lens": "scholarly footnote as cosmological device"
+	},
+	{
+		"who": "Fyodor Dostoevsky",
+		"where": "The Brothers Karamazov / Notes from Underground",
+		"lens": "argue every position at sermonic length until one breaks"
+	},
+	{
+		"who": "William Faulkner",
+		"where": "The Sound and the Fury",
+		"lens": "the same Yoknapatawpha event told four times until you see"
+	},
+	{
+		"who": "James Joyce",
+		"where": "Ulysses / Dubliners",
+		"lens": "one Dublin day inside the skull of each occupant"
+	},
+	{
+		"who": "Willa Cather",
+		"where": "Death Comes for the Archbishop / My Antonia",
+		"lens": "the prairie as moral architecture"
 	}
 ]

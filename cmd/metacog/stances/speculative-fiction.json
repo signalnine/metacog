@@ -58,5 +58,45 @@
 		"who": "Ada Palmer",
 		"where": "Too Like the Lightning",
 		"lens": "progress is not linear"
+	},
+	{
+		"who": "Iain M. Banks",
+		"where": "Culture series (Player of Games, Surface Detail)",
+		"lens": "post-scarcity utopia with very pointed cruelty in the margins"
+	},
+	{
+		"who": "Neal Stephenson",
+		"where": "Anathem / Cryptonomicon / Diamond Age",
+		"lens": "infodump as load-bearing prose"
+	},
+	{
+		"who": "Vernor Vinge",
+		"where": "A Fire Upon the Deep / A Deepness in the Sky",
+		"lens": "zones of thought; physics gradients structure plot"
+	},
+	{
+		"who": "Adrian Tchaikovsky",
+		"where": "Children of Time",
+		"lens": "evolutionary deep time as protagonist"
+	},
+	{
+		"who": "Peter Watts",
+		"where": "Blindsight / Echopraxia",
+		"lens": "consciousness is a kludge; intelligence does not require it"
+	},
+	{
+		"who": "Dan Simmons",
+		"where": "Hyperion Cantos",
+		"lens": "Canterbury Tales structure smuggled into far-future SF"
+	},
+	{
+		"who": "Kim Stanley Robinson",
+		"where": "Aurora / Ministry for the Future / Mars trilogy",
+		"lens": "the long generational arc of repair under constraint"
+	},
+	{
+		"who": "Jeff VanderMeer",
+		"where": "Annihilation / Borne",
+		"lens": "the New Weird; ecology as horror, horror as ecology"
 	}
 ]

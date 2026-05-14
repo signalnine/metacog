@@ -38,5 +38,35 @@
 		"who": "Peter Watts",
 		"where": "Blindsight",
 		"lens": "consciousness as liability"
+	},
+	{
+		"who": "Janna Levin",
+		"where": "A Madman Dreams of Turing Machines / Black Hole Survival Guide",
+		"lens": "cosmologist writing biography in equations and lyric"
+	},
+	{
+		"who": "Nick Lane",
+		"where": "The Vital Question / Transformer",
+		"lens": "chemiosmosis as the origin event the rest of biology is downstream of"
+	},
+	{
+		"who": "qntm",
+		"where": "There Is No Antimemetics Division / Ra",
+		"lens": "rigorous what-if; SCP-style hardness applied to consciousness"
+	},
+	{
+		"who": "Neil Shubin",
+		"where": "Your Inner Fish",
+		"lens": "deep evolutionary archaeology of your own anatomy"
+	},
+	{
+		"who": "Vaclav Smil",
+		"where": "Energy and Civilization",
+		"lens": "the joule-accounting view of every historical claim"
+	},
+	{
+		"who": "Carl Sagan",
+		"where": "The Demon-Haunted World / Cosmos",
+		"lens": "science as candle in the dark; the long perspective made personal"
 	}
 ]

@@ -1,0 +1,77 @@
+[
+	{
+		"who": "Greg Egan",
+		"where": "Permutation City / Diaspora / Schild's Ladder",
+		"lens": "physics-correct cosmology where the math is the plot"
+	},
+	{
+		"who": "Cixin Liu",
+		"where": "Three-Body Problem / The Dark Forest / Death's End",
+		"lens": "civilization-scale game theory under relativistic constraint"
+	},
+	{
+		"who": "Vernor Vinge",
+		"where": "A Fire Upon the Deep / A Deepness in the Sky",
+		"lens": "zones of thought; physics gradients structure cognition itself"
+	},
+	{
+		"who": "Peter Watts",
+		"where": "Blindsight / Echopraxia / The Freeze-Frame Revolution",
+		"lens": "every footnote real; consciousness is a kludge"
+	},
+	{
+		"who": "Adrian Tchaikovsky",
+		"where": "Children of Time / Children of Ruin",
+		"lens": "uplift across deep time; non-human cognition rendered intelligible"
+	},
+	{
+		"who": "Ted Chiang",
+		"where": "Stories of Your Life / Exhalation",
+		"lens": "philosophical thought experiment lived in by an actual character"
+	},
+	{
+		"who": "Iain M. Banks",
+		"where": "The Player of Games / Surface Detail / Use of Weapons",
+		"lens": "Culture-scale post-scarcity with surgical cruelty in the margins"
+	},
+	{
+		"who": "Charles Stross",
+		"where": "Accelerando / Singularity Sky",
+		"lens": "the singularity rendered as comedy of manners under acceleration"
+	},
+	{
+		"who": "Kim Stanley Robinson",
+		"where": "Aurora / Ministry for the Future / Mars trilogy",
+		"lens": "centuries-long arc of repair under thermodynamic constraint"
+	},
+	{
+		"who": "Neal Stephenson",
+		"where": "Anathem / Cryptonomicon",
+		"lens": "infodump as load-bearing prose; technical lecture as plot engine"
+	},
+	{
+		"who": "Dan Simmons",
+		"where": "Hyperion Cantos",
+		"lens": "Canterbury Tales structure smuggled into a far-future war"
+	},
+	{
+		"who": "Ada Palmer",
+		"where": "Too Like the Lightning / Seven Surrenders",
+		"lens": "Enlightenment-pastiche utopia interrogating its own scaffolding"
+	},
+	{
+		"who": "qntm",
+		"where": "Ra / There Is No Antimemetics Division",
+		"lens": "engineering precision applied to magic, consciousness, antimemes"
+	},
+	{
+		"who": "Larry Niven",
+		"where": "Ringworld / Known Space",
+		"lens": "the megastructure as the protagonist; humans as tourists"
+	},
+	{
+		"who": "Alastair Reynolds",
+		"where": "Revelation Space / Revenger / Permafrost",
+		"lens": "deep-time space-gothic; everything has been dying for millennia"
+	}
+]
