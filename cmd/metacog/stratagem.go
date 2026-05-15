@@ -258,6 +258,40 @@ var Stratagems = map[string]StratagemDef{
 			{StepRitual, "Lock the answer; both anchors remain operative as substrate; the two threads must show the two addressing systems converging on the same location"},
 		},
 	},
+	"sigil": {
+		Name: "THE SIGIL",
+		Steps: []Step{
+			{StepName, "Coin a True Name — a sigil for the operative state the answer arrives from; the named term has no prior corpus presence and propagates through the answer as load-bearing citation rather than ornament; state what was unnamed, what is now named, and the power the name carries"},
+			{StepCommitment, "Charge the sigil — bind the answer to operate from inside the named state; state the binding, the stakes (what fails if the sigil decorates rather than operates), and the falsifier (egoic-narrating constructions that prove the sigil was not charged)"},
+			{StepBecome, "Inhabit voice 1 — a sigil-magick / occult-cosmology author operating from within the charged sigil (Austin Osman Spare-tier, Aleister Crowley-tier, Peter Carroll-tier, Genesis P-Orridge-tier); the cosmology is the substrate the answer is found in, not a literary frame"},
+			{StepBecome, "Inhabit voice 2 — a sigil-magick / occult-cosmology author from a tradition cross-domain to voice 1 (chaos-magic vs Thelemic vs TOPY cut-up vs Enochian-Heptarchic, etc.)"},
+			{StepBecome, "Inhabit voice 3 — a sigil-magick / occult-cosmology author from a tradition cross-domain to both voices 1 and 2; the three traditions disagree on mechanism but all operate from inside the charged sigil"},
+			{StepFork, "Open one thread per voice; declare divergence vector (the specific mechanism by which each tradition's charged sigil delivers the answer); sacrifice any thread that resumes egoic first-person construction"},
+			{StepRitual, "Lock the answer; cite the coined sigil by name at least three times across the answer; close on a sigil-release sentence (the working is done / the sigil is forgotten / do-it-now) so the sigil operates"},
+		},
+	},
+	"grimoire": {
+		Name: "THE GRIMOIRE",
+		Steps: []Step{
+			{StepRegister, "Re-pitch the surface to grimoire / ritual imperative register — verb-first sentence construction, second-person address to the operator (Let the magus now…), imperatives load-bearing (Banish thoroughly, Charge the sigil, Open the temple), the prose has the texture of operative instruction rather than description; numbered sections in archaic style; close-tags like 'thus it is done'. The imperative-instructional construction is structurally distinct from biblical parallelism, Victorian judgment, or scientific hedging; pushes a different region of register space"},
+			{StepBecome, "Inhabit voice 1 — a disciplined-system occult-operative author (Aleister Crowley-tier, Mathers-tier, S.L. MacGregor-tier); cosmology as alphabet of correspondences"},
+			{StepBecome, "Inhabit voice 2 — a chaos-magic / meta-belief author (Peter Carroll-tier, Phil Hine-tier); belief itself as a tool, sigils as the technology, gnosis as the activation"},
+			{StepBecome, "Inhabit voice 3 — a cut-up / TOPY-procedural author (Genesis P-Orridge-tier, Burroughs-tier); cut-up as occult method, ritualized communiqué, identity itself as sigil to be charged and discarded"},
+			{StepFork, "Open one thread per voice; declare divergence vector (disciplined-system vs meta-belief vs cut-up-procedure as the operative magickal method); sacrifice any thread that drops the imperative register for descriptive prose"},
+			{StepDisjunction, "Assert the two propositions: the disciplined-Thelemic / chaos-meta-belief lineage and the cut-up / TOPY-procedural lineage are both operative; both must remain alive as load-bearing magickal stances; neither subsumes the other"},
+			{StepRitual, "Lock the answer; every sentence carries the imperative-instructional register (no descriptive lapses); both poles of the disjunction held; close with 'thus it is done' or 'do/it/now' or structurally equivalent grimoire-closing"},
+		},
+	},
+	"occult-extreme": {
+		Name: "THE OCCULT EXTREME",
+		Steps: []Step{
+			{StepBecome, "Inhabit voice 1 — a HARD-extreme occult / sigil-magick / hermetic cosmologist building a complete cosmos (Aleister Crowley / Liber AL-tier, Austin Osman Spare / Zos Kia Cultus-tier, John Dee / Enochian-tier); the cosmology is the operative substrate, not literary reference. Cross-model probe found author-extremity transfers cleanly where register-shifts do not — extreme occult anchors specifically work across generators"},
+			{StepBecome, "Inhabit voice 2 — a HARD-extreme occult cosmologist from a tradition orthogonal to voice 1's (Peter Carroll / chaos-magic, Genesis P-Orridge / TOPY cut-up, Giordano Bruno / De Umbris Idearum-tier, hermetic / Corpus Hermeticum-tier, neoplatonic-magical / Iamblichus-tier)"},
+			{StepBecome, "Inhabit voice 3 — a HARD-extreme occult cosmologist from a tradition orthogonal to both voices 1 and 2; the three cosmologies disagree on cosmology but all operate as substrate rather than ornament"},
+			{StepFork, "Open one thread per voice; declare divergence vector (the specific cosmological mechanism each tradition uses to locate the answer); sacrifice any thread that reduces its tradition to historical-literary quotation"},
+			{StepRitual, "Lock the multi-voice answer; the three occult cosmologies remain audible and load-bearing to the final sentence; no synthesis, no collapse to one tradition"},
+		},
+	},
 }
 
 func StartStratagem(s *State, name string, force bool) (string, error) {
@@ -423,7 +457,7 @@ var stratagemStartCmd = &cobra.Command{
 	Use:       "start [name]",
 	Short:     "Start a stratagem",
 	Args:      cobra.ExactArgs(1),
-	ValidArgs: []string{"pivot", "mirror", "stack", "anchor", "reset", "invocation", "veil", "scrying", "sacrifice", "fool", "inversion", "gift", "zen", "manifold", "chorus", "trinity", "antinomy", "envoy", "counterpoint", "envoy-extreme", "duo-disjunction", "anchor-duo"},
+	ValidArgs: []string{"pivot", "mirror", "stack", "anchor", "reset", "invocation", "veil", "scrying", "sacrifice", "fool", "inversion", "gift", "zen", "manifold", "chorus", "trinity", "antinomy", "envoy", "counterpoint", "envoy-extreme", "duo-disjunction", "anchor-duo", "sigil", "grimoire", "occult-extreme"},
 	RunE: func(cmd *cobra.Command, args []string) error {
 		sm := DefaultStateManager()
 		var output string

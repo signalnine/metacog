@@ -1515,6 +1515,36 @@ v6.6.0 envoy-extreme (chorus + register, hand-curated authors)
                                                                                     └── R9B4 commit-drugs-disjunction        +0.028 / 0.262 (fail)
 ```
 
+## v6.7.3 productionization (2026-05-15)
+
+Three Round 12 winners productionized as stratagems:
+
+- **sigil** (`name` + `commitment` + 3 becomes + fork + ritual) -- True-Name
+  champion on Sonnet. Validates `name` primitive in composition. N=10 hit
+  +0.327/0.201. The coined sigil (Zos-Kia-Aleph-tier, no prior corpus
+  presence) propagates as load-bearing citation because the answer keeps
+  re-citing the name. Sonnet-specific (collapsed to +0.008 on codex).
+  Distinct from anchor-duo: generates its own anchor in-place rather than
+  borrowing two external excerpts.
+- **grimoire** (register + 3 becomes + fork + disjunction + ritual) --
+  imperative-register variant. N=10 hit +0.307/0.238 on Sonnet (highest
+  emb_d of the round-12 family). New register direction beyond biblical /
+  Victorian / scientific. Sonnet-specific (partial transfer +0.127/0.221
+  on codex).
+- **occult-extreme** (3 becomes + fork + ritual with occult anchors in
+  step prose) -- cross-model variant of envoy-extreme. N=10 on codex
+  +0.281; beat Sonnet's +0.199. Occult anchors specifically transfer
+  cross-model where mild-academic-essayist authors don't. Author-extremity
+  + anchor-domain-specificity compound.
+
+Picks justification: the three cover three orthogonal axes (coined-vocab,
+new-register, cross-model). All three structurally distinct from existing
+22 stratagems. No stratagem removed -- the v6.7.x family is purely
+additive because Round 12 didn't dominate prior compositions on a single
+axis; each new stratagem occupies its own Pareto position.
+
+Total v6.7.3: 18 primitives, 25 stratagems.
+
 ## Caveats
 
 - Embedding distance is one operationalization of "conceptual reach,"
