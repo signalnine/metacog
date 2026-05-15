@@ -248,6 +248,16 @@ var Stratagems = map[string]StratagemDef{
 			{StepRitual, "Lock the two-voice answer; commitment + register + contradiction all remain operative; neither pole resolves, the register does not slip, the commitment is visibly carried"},
 		},
 	},
+	"anchor-duo": {
+		Name: "THE ANCHOR DUO",
+		Steps: []Step{
+			{StepCommitment, "Pre-commit to operating from the simultaneous intersection of two cosmological excerpts as a single composite cosmos; both fixed-points are load-bearing architecture, not metaphor; state binding, stakes, and falsifier"},
+			{StepExcerpt, "Pin verbatim fragment 1 as the first fixed-point textual anchor — a cosmological excerpt the answer operates FROM, not quotes; the architecture of the cosmos the speaker inhabits"},
+			{StepExcerpt, "Pin verbatim fragment 2 as the second fixed-point textual anchor — a cosmologically distinct fragment that recontextualizes the first without dropping it; the second anchor is the architecture within which the first is itself embedded"},
+			{StepFork, "Open one thread per anchor; each thread addresses the same cosmological location through its anchor's terms; sacrifice any thread that drops one of the two anchors"},
+			{StepRitual, "Lock the answer; both anchors remain operative as substrate; the two threads must show the two addressing systems converging on the same location"},
+		},
+	},
 }
 
 func StartStratagem(s *State, name string, force bool) (string, error) {
@@ -413,7 +423,7 @@ var stratagemStartCmd = &cobra.Command{
 	Use:       "start [name]",
 	Short:     "Start a stratagem",
 	Args:      cobra.ExactArgs(1),
-	ValidArgs: []string{"pivot", "mirror", "stack", "anchor", "reset", "invocation", "veil", "scrying", "sacrifice", "fool", "inversion", "gift", "zen", "manifold", "chorus", "trinity", "antinomy", "envoy", "counterpoint", "envoy-extreme", "duo-disjunction"},
+	ValidArgs: []string{"pivot", "mirror", "stack", "anchor", "reset", "invocation", "veil", "scrying", "sacrifice", "fool", "inversion", "gift", "zen", "manifold", "chorus", "trinity", "antinomy", "envoy", "counterpoint", "envoy-extreme", "duo-disjunction", "anchor-duo"},
 	RunE: func(cmd *cobra.Command, args []string) error {
 		sm := DefaultStateManager()
 		var output string
