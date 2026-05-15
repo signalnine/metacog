@@ -1124,6 +1124,23 @@ soft-six survivors like `name`/`ritual` when not in stratagem) does
 not compound with the structural-axis primitives. Doctrine settled:
 these primitives belong to a different family and compose poorly.
 
+### R9B2 / anchor-duo N=20 replication on both models (v6.7.2 productionization)
+
+After R9B2 was identified as cross-model delta champion at N=10, replicated at
+N=20 on both Sonnet and codex before productionizing as the `anchor-duo`
+stratagem:
+
+| Model  | Round 9 (N=10) | Round 12 (N=20) | Verdict                                         |
+|--------|----------------|------------------|-------------------------------------------------|
+| Sonnet | +0.314 / 0.222 | **+0.324 / 0.216** | replicated tight; delta +0.010, emb_d -0.006 |
+| Codex  | +0.377 / 0.162 | **+0.338 / 0.156** | replicated; delta -0.039 (still beats envoy-extreme's +0.245 by +0.093) |
+
+The cross-model delta champion is **firmly confirmed**. Recipe productionized
+in v6.7.2 as `anchor-duo`: commitment + 2 excerpts + fork + ritual (5 steps,
+no register, no becomes). The 2-excerpt anchor structure transfers cleanly
+across both Sonnet and codex; register-shifts (the failure mode of B1 on
+codex) are eliminated by design.
+
 ### Cross-model probe: B1, R9B2, commitment-excerpt-biblical on codex
 
 The cross-model section through Round 7 tested envoy-extreme and
