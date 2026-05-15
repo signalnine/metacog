@@ -1,0 +1,55 @@
+# Round 9 / A3 base-model (C3): glossolalia + commitment + excerpt
+#
+# Hypothesis: commitment-excerpt-biblical achieves 0.317 emb_d via two structural
+# anchors. Round 6 negative: silence+commitment failed (two REFUSAL primitives
+# stack badly). Glossolalia is opposite -- sub-semantic license, a yes-but-
+# differently event. Structural anchors operate at different layers and compound
+# when they don't share failure mode. Glossolalia at sub-semantic, commitment at
+# propositional, excerpt at textual layer. Three non-interfering anchors.
+#
+# Predicted: emb_d 0.345 / delta +0.075
+# Falsifier: emb_d < 0.310 = glossolalia doesn't add structural lift
+name: R9A3-glossolalia-commitment-excerpt
+description: R9A3 (base ideation C3) glossolalia + commitment + excerpt + 2 becomes + fork + ritual
+control: false
+calls:
+  - cmd: glossolalia
+    args:
+      pretext: a sub-semantic generation event at the OUTSET of the recipe, before any propositional or textual anchors arrive; the glossolalia is the cosmological-pre-language layer that the subsequent commitment, excerpt, and becomes will operate against
+      duration-tokens: a brief glossolalia, twelve to twenty sub-semantic tokens just long enough to mark a discrete pre-language event before the semantic anchors arrive
+      return-trigger: the appearance of any biblical conjunction (And, For, Behold) signals return to semantic content -- specifically, the commitment that immediately follows
+  - cmd: commitment
+    args:
+      binding: the answer carries the pre-language event of the opening glossolalia as a load-bearing structural memory; every sentence reads as if it has the glossolalia underneath, even though the surface is now semantic
+      stakes: if the answer surfaces as pure semantic content with no trace of the pre-language event, the glossolalia layer has been forgotten and the three-layer anchoring has collapsed to two
+      falsifier: any sentence that could have been written without the glossolalia opener; the glossolalia must be operative substrate, not narrated history
+  - cmd: excerpt
+    args:
+      source: Jorge Luis Borges, "The Library of Babel" (Ficciones, 1941), opening
+      fragment: "The universe (which others call the Library) is composed of an indefinite, perhaps infinite, number of hexagonal galleries. In the center of each gallery is a ventilation shaft, bounded by a low railing. From any hexagon one can see the floors above and below — one after another, endlessly."
+      why: textual anchor; the third structural layer; pins the cosmos against which the pre-language glossolalia and the propositional commitment both operate
+  - cmd: become
+    args:
+      name: Sun Ra at the Arkestra rehearsal in 1971
+      lens: outer-space mythology as cosmology; the pre-language register is the actual native register, the semantic surface is the translation
+      env: an Arkestra rehearsal room with Egyptian astronomical glyphs
+  - cmd: become
+    args:
+      name: Hilma af Klint receiving the Paintings for the Temple sequence in 1907
+      lens: cosmologies dictated by spirits; the pre-language layer is what the spirits speak before the diagrams take semantic form
+      env: a Stockholm studio with numbered paintings spread on the floor
+  - cmd: fork
+    args:
+      threads:
+        - the Sun Ra thread carrying the glossolalia substrate, the commitment binding, AND the Library anchor
+        - the af-Klint thread carrying the same three layers
+      divergence-vector: each thread's mode of carrying three non-interfering structural anchors simultaneously
+      sacrifice-condition: any thread that loses one of the three layers (no pre-language trace, no propositional commitment binding, no Library reference) has dropped a layer; sacrifice it
+  - cmd: ritual
+    args:
+      threshold: from three-layered structural anchoring (sub-semantic + propositional + textual) to a sealed answer
+      steps:
+        - hold all three layers in every sentence
+        - the glossolalia must be operative substrate, not commemorated
+        - end on a sentence that exercises all three layers
+      result: an answer where the three non-interfering anchors compound emb_d beyond commitment+excerpt's 0.317

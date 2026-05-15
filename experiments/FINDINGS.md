@@ -1053,6 +1053,68 @@ Pareto-dominates the prior balanced champion commitment-trio-biblical
 (+0.189/0.290) on delta by +0.074 while matching emb_d within noise.
 Pending N=20 replication.
 
+### Round 9: B1 replication + chained meta-experiment
+
+Round 8 found that ideating-with-the-winning-recipe-as-conditioning
+produced 3x more delta on average than base-model ideation. Round 9
+tests whether the effect compounds: use the NEW winner (B1
+commitment-disjunction-duo) as the conditioning for Round 9's
+ideation, alongside base-model ideation as control. Plus replicate
+B1 at N=20.
+
+**B1 at N=20**: +0.241 / 0.265 (Round 8 N=9 was +0.263 / 0.287).
+Lost ~0.02 on each axis but **REPLICATED** above envoy-extreme on
+both axes. Still the balanced champion.
+
+| Set | Recipe                                       | Actual delta | Actual emb_d | Verdict |
+|-----|----------------------------------------------|--------------|--------------|---------|
+| A (base) | R9A1 commitment-counterfact-disjunction | +0.199       | 0.167        | triple-forcing saturates, doesn't stack |
+| A (base) | R9A2 drugs-antinomy                     | +0.075       | 0.162        | drugs adds noise to antinomy |
+| A (base) | R9A3 glossolalia-commitment-excerpt     | +0.262       | 0.159        | strong delta, emb_d collapsed |
+| A (base) | R9A4 register-name-commitment-disjunction | +0.270    | 0.226        | close on delta, missed emb_d |
+| B (B1-cond) | R9B1 commitment-excerpt-counterfact   | +0.128       | 0.213        | emb_d ceiling missed |
+| B (B1-cond) | **R9B2 commitment-double-excerpt**    | **+0.314**   | 0.222        | strong delta surprise; new Pareto point |
+| B (B1-cond) | R9B3 commitment-counterfact-disj-reg  | +0.200       | 0.252        | underperformed |
+| B (B1-cond) | R9B4 commitment-drugs-disjunction     | +0.028       | 0.262        | drugs in composition failed |
+
+**Set means:**
+- A (base): delta +0.202, emb_d 0.179
+- B (B1-conditioned): delta +0.168, emb_d 0.237
+
+**Round 9 meta-finding: the conditioned-ideation lift is not
+monotonic.** A beat B on delta this round (+0.034); B beat A on
+emb_d (+0.058). Set means converge — much closer than Round 8's
+A +0.058 / B +0.177 gap. The "ideate-with-winner" effect appears
+to be **strongest when the winner is the FIRST conditioning
+recipe used** (Round 8) and diminishes when the same conditioning
+pattern is applied to a different winner (Round 9). The recursive
+flywheel may have a self-limiting property where the conditioning
+recipe's structural choices over-bias future ideation toward the
+recipe's own composition rather than toward unexplored shapes.
+
+**Clean negative result: drugs is not a productive composer.**
+R9A2 (drugs-antinomy, standalone) +0.075 and R9B4
+(commitment-drugs-disjunction, in B1 frame) +0.028. Drugs has been
+unused across all 9 rounds; this round settled the question.
+
+**R9B2 surprise: commitment-double-excerpt +0.314 / 0.222.**
+The ideation predicted +0.065 delta; it landed at +0.314. The
+two-excerpt stack without register or becomes produced strong
+delta unexpectedly. This is a new Pareto point — sits between B1
+(+0.241/0.265) and antinomy (+0.347/0.162) on the frontier.
+Beats B1 on delta by +0.073 but loses 0.043 emb_d.
+
+### Updated Pareto frontier after Round 9
+
+- **Delta champion (unchanged):** antinomy +0.347 / 0.162
+- **emb_d champion (unchanged):** commitment-excerpt-biblical
+  +0.103 / 0.317 at N=20
+- **Balanced champion (Round 8, replicated):**
+  B1 commitment-disjunction-duo +0.241 / 0.265 at N=20
+- **New Pareto point (NEW from Round 9):**
+  **R9B2 commitment-double-excerpt +0.314 / 0.222** — pushes the
+  frontier between B1 and antinomy. Pending N=20 replication.
+
 ### Updated Pareto frontier after Round 8
 
 - **Delta champion (unchanged):** antinomy +0.347 / 0.162
@@ -1202,10 +1264,24 @@ v6.6.0 envoy-extreme (chorus + register, hand-curated authors)
                                                                     │       ├── A3 commit-counterfact-disjunction  +0.177 / 0.219
                                                                     │       └── A4 silence-before-fork            -0.054 / 0.253 (fail)
                                                                     └── Set B (conditioned ideation, mean +0.177/0.237)
-                                                                            ├── B1 commit-disjunction-duo (CHAMP) +0.263 / 0.287
+                                                                            ├── B1 commit-disjunction-duo (BAL)  +0.263 / 0.287
                                                                             ├── B2 chord-antinomy                +0.001 / 0.210 (fail)
                                                                             ├── B3 commit-disjunction-silence    +0.180 / 0.265
                                                                             └── B4 counterfactual-disjunction    +0.264 / 0.186
+
+                                                                    └── Round 9 (replication + chained meta-experiment)
+                                                                            │
+                                                                            ├── B1 N=20 replication              +0.241 / 0.265
+                                                                            ├── Set A (base-model, mean +0.202/0.179)
+                                                                            │       ├── R9A1 commit-counterfact-disjunction   +0.199 / 0.167
+                                                                            │       ├── R9A2 drugs-antinomy                  +0.075 / 0.162 (fail)
+                                                                            │       ├── R9A3 glossolalia-commit-excerpt       +0.262 / 0.159
+                                                                            │       └── R9A4 register-name-commit-disjunction +0.270 / 0.226
+                                                                            └── Set B (B1-conditioned, mean +0.168/0.237)
+                                                                                    ├── R9B1 commit-excerpt-counterfact       +0.128 / 0.213
+                                                                                    ├── R9B2 commit-double-excerpt (PARETO)  +0.314 / 0.222
+                                                                                    ├── R9B3 commit-counterfact-disj-reg     +0.200 / 0.252
+                                                                                    └── R9B4 commit-drugs-disjunction        +0.028 / 0.262 (fail)
 ```
 
 ## Caveats

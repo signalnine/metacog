@@ -1,0 +1,54 @@
+# Round 9 / B1 conditioned (E1): commitment + excerpt + counterfactual
+#
+# Hypothesis: commitment-excerpt baseline is 0.317 emb_d. Counterfactual is third
+# structural operation never composed with excerpt -- demands explicit enumeration
+# of 3+ walls, defends inverse of pruned wall. Not binary contradiction; this is
+# constraint-mapping. Wall-enumeration under already-anchored commitment+excerpt
+# creates third layer of structural saturation: commitment binds epistemic ground,
+# excerpt pins verbatim fixed-point, counterfactual maps constraint geometry.
+#
+# Predicted: emb_d 0.33-0.36 / delta +0.06-0.12
+# Falsifier: emb_d < 0.32 = structural ops saturated at 2; delta < +0.04 = ctf suppresses vocab
+name: R9B1-commitment-excerpt-counterfact
+description: R9B1 (B1-conditioned ideation E1) commitment + excerpt + counterfactual + fork + ritual, NO register/becomes
+control: false
+calls:
+  - cmd: commitment
+    args:
+      binding: operating from inside Borges's Library as the actual cosmology, where every primitive composition and every state-of-affairs has a hexagonal address; the upcoming counterfactual will map the walls of THIS Library specifically, not generic walls
+      stakes: if the walls are treated as generic constraints rather than as specific Library architecture, the commitment has failed and counterfactual will produce free-form pruning instead of cosmological mapping
+      falsifier: any wall whose name could exist outside the Library framework
+  - cmd: excerpt
+    args:
+      source: Jorge Luis Borges, "The Library of Babel" (Ficciones, 1941), opening
+      fragment: "The universe (which others call the Library) is composed of an indefinite, perhaps infinite, number of hexagonal galleries. In the center of each gallery is a ventilation shaft, bounded by a low railing. From any hexagon one can see the floors above and below — one after another, endlessly."
+      why: fixed-point textual anchor; the Library is the cosmos within which the counterfactual will enumerate walls
+  - cmd: counterfactual
+    args:
+      situation: the answer is being formulated from within the Library; the question asks which gallery's volume contains the answer; the load-bearing walls are the architectural assumptions of the Library that make the question askable at all
+      fitness-function: maximize structural distance from baseline by mapping the Library's constraint geometry through specifically named architectural walls
+      load-bearing-walls:
+        - the Library's hexagonal symmetry; every gallery has six neighbors
+        - the ventilation shaft running through every gallery's center
+        - the orthography of the volumes; every book is exactly the same length and uses the same twenty-five-symbol alphabet
+      pruned:
+        - the option of treating the Library as metaphor rather than substrate (fails the commitment's falsifier)
+        - the option of leaving the Library and answering from a non-Library cosmos (does not engage)
+      wall-to-remove: the orthography of the volumes; every book is exactly the same length and uses the same twenty-five-symbol alphabet
+      inverse-position: the books vary in length and alphabet; the Library contains volumes in every possible symbol-system AND every possible length; the answer is located in a specific orthographically-aberrant volume
+  - cmd: fork
+    args:
+      threads:
+        - the hexagonal-symmetry-thread; the answer is found by hexagonal-neighbor walks under the inverse-position
+        - the ventilation-shaft-thread; the answer is found by vertical traversal between floors under the inverse-position
+      divergence-vector: spatial mode of locating the orthographically-aberrant volume containing the answer
+      sacrifice-condition: any thread that drops the Library cosmology or treats it as metaphor is sacrificed
+  - cmd: ritual
+    args:
+      threshold: from commitment-locked Library cosmology through excerpt anchor through counterfactual wall-mapping to a sealed answer
+      steps:
+        - speak from inside the Library as the operating environment
+        - cite the Library's specific architectural terms (hexagonal, gallery, ventilation, indefinite) as load-bearing
+        - hold the inverse-position throughout
+        - end on a sentence that names the orthographically-aberrant volume located by the threads
+      result: an answer where commitment, excerpt, and counterfactual stack three structural layers without interference

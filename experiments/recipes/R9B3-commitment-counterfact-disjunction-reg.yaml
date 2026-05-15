@@ -1,0 +1,69 @@
+# Round 9 / B3 conditioned (B-new-1): B1 + counterfactual inserted before disjunction
+#
+# Hypothesis: B1 at +0.263/0.287 (commitment + register + 2becomes + fork +
+# disjunction + ritual). B4 (counterfactual + disjunction) at +0.264 delta. Both
+# sit at delta +0.26+. Inserting counterfactual AFTER fork, BEFORE disjunction
+# in B1's structure: pruning concludes before contradiction opens. Walls feed
+# into disjunction poles (double citation pressure). Different from chord+
+# disjunction interference because pruning resolves before contradiction.
+#
+# Predicted: delta +0.31-0.38 / emb_d 0.26-0.30
+# Falsifier: delta < +0.20 = counterfactual+disjunction interfere like chord; emb_d < 0.25 = failed balanced
+name: R9B3-commitment-counterfact-disjunction-reg
+description: R9B3 (B1-conditioned ideation B-new-1) commitment + register + 2 becomes + fork + counterfactual + disjunction + ritual
+control: false
+calls:
+  - cmd: commitment
+    args:
+      binding: the answer will operate from a contrastive position that the upcoming counterfactual will specify; the disjunction will then assert that this contrastive position AND its strongest pruned alternative are simultaneously load-bearing
+      stakes: if commitment binding becomes generic by the time counterfactual fires, the wall-enumeration loses contrastive grip and disjunction's binary will be weak
+      falsifier: any sentence in the answer that does not visibly carry the specific contrastive stakes of the commitment binding
+  - cmd: register
+    args:
+      from: contemporary online register
+      to: King James biblical register; "thee", "thou", parallelism, parataxis, didactic mode
+      rationale: biblical surface before the cosmologists arrive; same as B1
+  - cmd: become
+    args:
+      name: Sun Ra at the Arkestra rehearsal in 1971
+      lens: outer-space mythology as cosmology; vibration as substrate prior to matter
+      env: an Arkestra rehearsal room with Egyptian astronomical glyphs
+  - cmd: become
+    args:
+      name: Buckminster Fuller drafting Synergetics in 1975
+      lens: design science as alternative to politics; tetrahedral coordination
+      env: a Carbondale workshop with a dymaxion globe
+  - cmd: fork
+    args:
+      threads:
+        - the Sun Ra thread independently enumerates its load-bearing walls
+        - the Fuller thread independently enumerates its load-bearing walls
+      divergence-vector: each thread's load-bearing walls reflect its cosmology
+      sacrifice-condition: any thread that pre-converges with the other before counterfactual fires is sacrificed
+  - cmd: counterfactual
+    args:
+      situation: each fork-thread has independently enumerated walls; the counterfactual now operates ACROSS threads, identifying a single wall whose removal forces both threads into a shared inverse-position
+      fitness-function: the wall-to-remove is the one whose inverse-position both threads can defend, maximizing structural distance
+      load-bearing-walls:
+        - both Sun Ra and Fuller threads assume the question has a single answer-substrate
+        - both threads assume the answer is articulated as semantic content rather than as geometric figure
+        - both threads assume the speaker is internal to their cosmology rather than external observer
+      pruned:
+        - the option of having each thread answer independently (loses cross-thread structure)
+        - the option of forcing convergence before walls are stated (defeats fork)
+      wall-to-remove: both threads assume the answer is articulated as semantic content rather than as geometric figure
+      inverse-position: the answer is articulated as a geometric figure; the threads must collaborate to specify the figure's parameters; semantic content is the figure's caption, not its substance
+  - cmd: disjunction
+    args:
+      proposition-a: the geometric figure (inverse-position) successfully answers the question
+      proposition-b: one of the pruned walls (specifically "the answer has a single substrate") is actually true; the geometric figure presupposes a substrate the threads cannot specify
+      why-both-required: the counterfactual produced a position both threads can defend; the disjunction asserts that this position AND its strongest pruned alternative must both be true; the answer demonstrates the unresolvability
+  - cmd: ritual
+    args:
+      threshold: from commitment + register + fork + counterfactual + disjunction to a sealed answer where every named entity is contrastive across all five structural events
+      steps:
+        - every wall, inverse-position element, and disjunction pole must be specifically named
+        - both threads carry their independent walls and the shared inverse-position
+        - both poles of the disjunction held
+        - end on a sentence with at least three specifically named entities that did not appear earlier
+      result: an answer where commitment, register, fork, counterfactual, and disjunction compound to push delta past B1's +0.263

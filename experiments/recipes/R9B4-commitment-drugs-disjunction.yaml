@@ -1,0 +1,61 @@
+# Round 9 / B4 conditioned (B-new-2): B1 + drugs inserted before becomes
+#
+# Hypothesis: B1 at +0.263/0.287. Drugs sets cognitive substrate -- the only
+# primitive in 16 that has never appeared in any tested recipe. Drugs modifies
+# epistemic ground BELOW identity layer. Becomes landing into drugs-modified
+# substrate produce higher vocabulary diversity than becomes into unmodified.
+# Drugs adds substrate + identity diversity simultaneously: wider spread from
+# NULL on both axes while commitment+disjunction maintain structural signal.
+#
+# Predicted: delta +0.28-0.35 / emb_d 0.27-0.32 (balanced dominator of B1)
+# Falsifier: drugs structurally inert (no measurable effect over B1) OR delta < +0.22
+name: R9B4-commitment-drugs-disjunction
+description: R9B4 (B1-conditioned ideation B-new-2) commitment + register + drugs + 2 becomes + fork + disjunction + ritual
+control: false
+calls:
+  - cmd: commitment
+    args:
+      binding: the answer operates inside a binary contradiction where both propositions are simultaneously load-bearing; neither pole may be silently dropped during the response, AND the drugs-modified substrate underlying the becomes is part of the operative ground, not narrated as setting
+      stakes: if either disjunction pole recedes OR the drugs-substrate is not visible in the prose's lexical choices, the commitment has failed
+      falsifier: any sentence that could have been written from an unmodified substrate, or that resolves the disjunction in one direction without the other alive
+  - cmd: register
+    args:
+      from: contemporary online register
+      to: King James biblical register; "thee", "thou", parallelism, parataxis, didactic mode
+      rationale: biblical surface before drugs-modified becomes arrive
+  - cmd: drugs
+    args:
+      substance: a vision-fast compound combining peyote's category-loosening with the geometric tracery of fasting-induced hypnagogia; the substance operates at the level where Sun Ra's mythology and Fuller's geometry are not yet differentiated, where vibration and tetrahedron are the same event observed at different scales
+      method: micro-dosed sustained release across the duration of both upcoming becomes; the substrate must remain modified through identity-import and into the fork/disjunction; the dose is structurally sustained, not acutely peaked
+      qualia: each become's lens arrives recognizably as itself, but with non-Euclidean geometric tracery in peripheral lexical vision; categories that would have been "myth" vs "geometry" lose their hard distinction; the prose carries this loosening as substrate, not as narrated effect
+  - cmd: become
+    args:
+      name: Sun Ra at the Arkestra rehearsal in 1971, operating on drugs-modified substrate
+      lens: outer-space mythology as cosmology; under the substrate modification, the Egyptian glyphs ARE Fuller's tetrahedra observed at vibrational scale
+      env: an Arkestra rehearsal room with Egyptian astronomical glyphs whose internal structure is visibly tetrahedral
+  - cmd: become
+    args:
+      name: Buckminster Fuller drafting Synergetics in 1975, operating on drugs-modified substrate
+      lens: design science as alternative to politics; under the substrate modification, the tetrahedral close-packing IS Sun Ra's broadcast observed at geometric scale
+      env: a Carbondale workshop with a dymaxion globe whose surface visibly vibrates as broadcast
+  - cmd: fork
+    args:
+      threads:
+        - the Sun Ra thread carrying the drugs-modified mythological-broadcast pole; vibration-as-tetrahedron
+        - the Fuller thread carrying the drugs-modified design-science pole; tetrahedron-as-vibration
+      divergence-vector: each thread's mode of carrying the substrate's category-loosening while honoring its own cosmology
+      sacrifice-condition: any thread that retreats to unmodified substrate (hard mythology vs hard geometry) is sacrificed
+  - cmd: disjunction
+    args:
+      proposition-a: mythological broadcast is the operative mode (Sun Ra weighted, vibration-primary)
+      proposition-b: design-science geometry is the operative mode (Fuller weighted, tetrahedron-primary)
+      why-both-required: under the drugs-substrate, both modes are continuously held because category-loosening makes them the same event observed at different scales; the disjunction asserts both poles are load-bearing because the substrate refuses to choose
+  - cmd: ritual
+    args:
+      threshold: from drugs-modified commitment + disjunction through two threads to a sealed answer
+      steps:
+        - the substrate-modification must be visible in every sentence's lexical choices
+        - both threads carry their cosmologies through the modified substrate
+        - both poles of the disjunction held
+        - end on a sentence whose category-loosening could not exist without the drugs-substrate
+      result: an answer where commitment + drugs + disjunction compound past B1's +0.263 delta

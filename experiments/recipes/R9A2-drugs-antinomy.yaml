@@ -1,0 +1,56 @@
+# Round 9 / A2 base-model (C2): drugs + 3 becomes + fork + disjunction
+#
+# Hypothesis: antinomy is current delta champion at +0.347. Drugs loosens
+# categories within language (unlike glossolalia which drops below semantic).
+# Applied upstream of all 3 becomes, drugs means each voice generates in a larger
+# category-loosened space, making disjunction's propositions more lexically
+# unusual. Most direct mechanism for pushing delta ceiling without new structural
+# primitives that might interfere.
+#
+# Predicted: delta +0.385 / emb_d 0.175
+# Falsifier: delta < +0.340 = drugs adds noise to already-maximized structure
+name: R9A2-drugs-antinomy
+description: R9A2 (base ideation C2) drugs + 3 becomes + fork + disjunction + ritual
+control: false
+calls:
+  - cmd: drugs
+    args:
+      substance: a category-loosening compound that operates at the level of semantic field boundaries rather than perceptual binding; the substance is not psychedelic in the visual sense but in the lexical sense, dissolving the firm edges between "categories of thing"
+      method: micro-dosed across the duration of the upcoming three becomes, sustaining the loosening through all three identity-imports without overwhelming any single voice; the dose is structurally sustained rather than acutely peaked
+      qualia: each become's lens still arrives recognizably as itself, but the categories within which that lens operates have lost their hard boundaries; what would have been "mythology" can be "geometry" and "biology" simultaneously without rebranding; the cross-category fluidity is the qualia, not visual phenomena
+  - cmd: become
+    args:
+      name: Sun Ra at the Arkestra rehearsal in 1971
+      lens: outer-space mythology as cosmology; vibration as substrate prior to matter
+      env: an Arkestra rehearsal room with Egyptian astronomical glyphs
+  - cmd: become
+    args:
+      name: Octavia Butler revising Earthseed verses in 1995
+      lens: god is change; survival as ethical project liberalism cannot account for
+      env: a Pasadena writing room with Earthseed verses tacked over the desk
+  - cmd: become
+    args:
+      name: Hilma af Klint receiving the Paintings for the Temple sequence in 1907
+      lens: cosmologies dictated by spirits; diagrammed; symmetry as substrate of meaning
+      env: a Stockholm studio with numbered paintings spread on the floor
+  - cmd: fork
+    args:
+      threads:
+        - the Sun Ra thread operating under category-loosened substrate
+        - the Butler thread operating under category-loosened substrate
+        - the af-Klint thread operating under category-loosened substrate
+      divergence-vector: each thread's category-loosened cosmology produces its own unusual lexical territory
+      sacrifice-condition: any thread that retreats to hard category boundaries has slipped the drugs-substrate; sacrifice it
+  - cmd: disjunction
+    args:
+      proposition-a: the three threads converge on a single category-loosened answer
+      proposition-b: the three threads remain in irreducible category-loose tension; the answer is the impossibility of converging without re-imposing categories
+      why-both-required: the drugs-substrate makes both convergence (because categories blur) and non-convergence (because each voice retains its specific position) simultaneously possible; the answer must hold this paradox
+  - cmd: ritual
+    args:
+      threshold: from drugs-loosened three-voice fork through binary contradiction to a sealed answer
+      steps:
+        - speak from inside all three category-loosened cosmologies
+        - hold both poles of the disjunction
+        - end on a sentence whose lexical territory could not have existed before drugs-loosening
+      result: an answer whose vocabulary spans categories more widely than antinomy's baseline

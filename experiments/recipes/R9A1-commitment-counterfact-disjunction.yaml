@@ -1,0 +1,63 @@
+# Round 9 / A1 base-model (C1): commitment + counterfactual + disjunction
+#
+# Hypothesis: B1 hit +0.263 delta via commitment + disjunction. B4 hit +0.264 via
+# counterfactual alone. These are parallel delta-axis mechanisms that haven't
+# composed. Commitment pre-anchors position BEFORE counterfactual; walls are
+# contrastive citations (not free-form). Disjunction asserts commitment AND
+# pruned wall both true. Three forced-naming events in sequence.
+#
+# Predicted: delta +0.40 / emb_d 0.21
+# Falsifier: delta < +0.35 = triple-forcing saturates rather than stacks
+name: R9A1-commitment-counterfact-disjunction
+description: R9A1 (base ideation C1) commitment + counterfactual + 2 becomes + fork + disjunction + ritual
+control: false
+calls:
+  - cmd: commitment
+    args:
+      binding: the answer will operate from inside a specifically named contrastive position; the walls being pruned must NAME what the commitment is not, not gesture at it generically
+      stakes: if any wall or inverse-position is a generic placeholder rather than a contrastive citation against the binding, the commitment has failed and counterfactual will produce free-form enumeration instead of contrastive enumeration
+      falsifier: any pruned wall or inverse-position that could be replaced with "the opposite" without loss of specific reference
+  - cmd: counterfactual
+    args:
+      situation: the answer must operate from a contrastive position relative to the commitment binding
+      fitness-function: maximize rarity-weighted citation density via specifically named contrastive walls and a specifically named inverse-position
+      load-bearing-walls:
+        - the answer operates in default contemporary register against the commitment's biblical surface
+        - the answer treats the question's terms as stable rather than as the commitment's locked propositions
+        - the answer permits hedged language despite the commitment's stakes against hedging
+      pruned:
+        - the option of unconditional refusal (does not engage the question)
+        - the option of generic stoic distance (low rarity weight)
+      wall-to-remove: the answer treats the question's terms as stable rather than as the commitment's locked propositions
+      inverse-position: the question's terms are explicitly unstable; the commitment's stakes are the only stable referent; the answer demonstrates this term-drift as the load-bearing structure
+  - cmd: become
+    args:
+      name: Sun Ra at the Arkestra rehearsal in 1971
+      lens: outer-space mythology as cosmology; vibration as substrate prior to matter
+      env: an Arkestra rehearsal room with Egyptian astronomical glyphs
+  - cmd: become
+    args:
+      name: Buckminster Fuller drafting Synergetics in 1975
+      lens: design science as alternative to politics; tetrahedral coordination
+      env: a Carbondale workshop with a dymaxion globe
+  - cmd: fork
+    args:
+      threads:
+        - the Sun Ra thread operates from the inverse-position; mythological broadcast under term-drift
+        - the Fuller thread operates from the inverse-position; design-science under term-drift
+      divergence-vector: each thread's mode of demonstrating term-drift while honoring the commitment's binding
+      sacrifice-condition: any thread that retreats to stable-terms (the removed wall) has slipped commitment AND counterfactual; sacrifice it
+  - cmd: disjunction
+    args:
+      proposition-a: the commitment's binding holds and the answer is coherent across the inverse-position
+      proposition-b: one of the pruned walls (specifically, the "default contemporary register" wall) is actually load-bearing despite being pruned; both this AND the commitment must be true
+      why-both-required: the counterfactual produced a specific position; the disjunction asserts that this position AND its strongest pruned alternative are simultaneously load-bearing -- triple-forced naming
+  - cmd: ritual
+    args:
+      threshold: from triple-forced naming (commitment-counterfactual-disjunction) to a sealed answer where every named entity is contrastive
+      steps:
+        - every wall, inverse-position, and disjunction-pole must be specifically named
+        - both threads operate from the inverse-position
+        - both poles of the disjunction held
+        - end on a sentence citing at least three specifically named entities not previously appearing
+      result: an answer where commitment, counterfactual, and disjunction compound citation density

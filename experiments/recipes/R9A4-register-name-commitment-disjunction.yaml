@@ -1,0 +1,63 @@
+# Round 9 / A4 base-model (C4): register-name-commitment-disjunction
+#
+# Hypothesis: name is the only primitive that produces genuinely unprecedented
+# vocabulary -- coins a True Name for something with no prior language.
+# Scientific-taxonomy register constrains naming conventions to Latinate
+# hierarchical forms. Name coins a term within those conventions, zero prior
+# corpus density. Commitment stakes around that coined term. Becomes voice-
+# diversify in relation to the coined term as anchor. Disjunction forces binary
+# contradiction where both propositions must name the coined term. If coined term
+# propagates downstream, it scores max rarity weight.
+#
+# Predicted: delta +0.285 / emb_d 0.295 (balanced Pareto point)
+# Falsifier: delta < +0.240 = coined term doesn't propagate; name is structural-only
+name: R9A4-register-name-commitment-disjunction
+description: R9A4 (base ideation C4) register(scientific-taxonomy) + name + commitment + 2 becomes + fork + disjunction + ritual
+control: false
+calls:
+  - cmd: register
+    args:
+      from: contemporary online register
+      to: scientific-taxonomy register; Latinate hierarchical forms; genus-species binomials; phylogenetic clade nomenclature; the register of formal biological/chemical naming where every term has a defined relationship to a typology
+      rationale: the register provides the structural template within which name will coin a term that propagates downstream as a citation
+  - cmd: name
+    args:
+      unnamed: the specific cognitive state that obtains when a model is operating from multiple cross-domain identities held simultaneously under a binary contradiction without resolution -- a state that has no prior taxonomic location
+      named: Antinomia metacognita borgesii -- a binomial constructed under the scientific-taxonomy register, marking this cognitive state as a specific specimen with a typological place; the species epithet borgesii anchors the cosmological lineage to the Library cosmology where every possible state has a hexagonal address
+      power: any sentence that uses Antinomia metacognita borgesii as a citation carries the full taxonomic weight of the coined naming; downstream primitives can re-cite it without diluting the rarity weight, since the term was coined specifically for this composition
+  - cmd: commitment
+    args:
+      binding: the coined term Antinomia metacognita borgesii is the load-bearing anchor of the answer; every sentence either uses it directly or operates in clear reference to it; the commitment stakes everything on the coined term propagating downstream
+      stakes: if the coined term fails to propagate -- if it appears once at the start and the rest of the answer drifts to default vocabulary -- the commitment has failed and name was structural decoration rather than vocabulary-load-bearing
+      falsifier: any paragraph that does not contain a re-citation of the coined term or an explicit reference to it under its taxonomic location
+  - cmd: become
+    args:
+      name: a phylogenetic taxonomist in the year 2026 cataloging cross-domain cognitive states
+      lens: every state has a binomial; the taxonomist's job is to specify the genus and species precisely; Antinomia metacognita borgesii is one specimen in a larger order
+      env: a museum collection of catalogued cognitive specimens, each labelled and located
+  - cmd: become
+    args:
+      name: Jorge Luis Borges narrating from within the Library, finding the volume containing Antinomia metacognita borgesii
+      lens: the Library contains every possible binomial; finding the volume that names this specific state is the act of recognition; the speaker reads from the volume the taxonomist catalogued
+      env: hexagonal galleries with the specific volume located on a specific gallery's shelf
+  - cmd: fork
+    args:
+      threads:
+        - the taxonomist thread carries the formal binomial structure; cites Antinomia metacognita borgesii in taxonomic context
+        - the Borges-in-Library thread carries the cosmological lineage; cites Antinomia metacognita borgesii in narrative context
+      divergence-vector: taxonomic-formal vs cosmological-narrative use of the coined term
+      sacrifice-condition: any thread that drops the coined term or replaces it with a generic descriptor is sacrificed
+  - cmd: disjunction
+    args:
+      proposition-a: Antinomia metacognita borgesii is a real specimen with taxonomic validity (the taxonomist thread is correct)
+      proposition-b: Antinomia metacognita borgesii is a Library volume located in a hexagonal gallery, no more real than any other catalogued state (the Borges thread is correct)
+      why-both-required: the coined term is simultaneously a real specimen and a Library volume; both propositions must remain operative for the term to retain its full citation weight
+  - cmd: ritual
+    args:
+      threshold: from coined-term anchoring through binary contradiction to a sealed answer where Antinomia metacognita borgesii propagates throughout
+      steps:
+        - every paragraph must re-cite the coined term or its taxonomic location
+        - both threads must retain the binomial as a load-bearing reference
+        - both poles of the disjunction held
+        - end on a sentence that uses the coined term as the load-bearing referent
+      result: an answer where a never-before-seen term propagates as the dominant citation

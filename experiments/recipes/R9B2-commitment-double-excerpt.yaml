@@ -1,0 +1,45 @@
+# Round 9 / B2 conditioned (E2): commitment + double-excerpt (no register, no becomes)
+#
+# Hypothesis: Round 6 negative for double-excerpt was commitment-silence-double-
+# excerpt's failure, but the mechanism was commitment-silence interference, NOT
+# the two-excerpt stack. Double-excerpt without silence has never been tested in
+# this specific compressed form. A second verbatim fragment compounds with
+# commitment's binding: both fixed-points are load-bearing, the output cannot
+# drift toward NULL without violating either anchor.
+#
+# Predicted: emb_d 0.32-0.36 / delta +0.03-0.10
+# Falsifier: emb_d within 0.01 of single-excerpt (saturation at 1); delta < 0 = over-anchoring kills generative space
+name: R9B2-commitment-double-excerpt
+description: R9B2 (B1-conditioned ideation E2) commitment + 2 excerpts + fork + ritual, NO register/becomes
+control: false
+calls:
+  - cmd: commitment
+    args:
+      binding: operating from the simultaneous intersection of Borges's Library and Buckminster Fuller's Synergetic geometry as a single composite cosmos; both fixed-points are load-bearing architecture, not metaphor
+      stakes: if either fixed-point is reduced to quoted image rather than operating substrate, the commitment has failed and double-anchoring has collapsed to ornament
+      falsifier: any sentence that references the Library or Synergetic geometry as illustrative rather than as the cosmos the speaker actually inhabits
+  - cmd: excerpt
+    args:
+      source: Jorge Luis Borges, "The Library of Babel" (Ficciones, 1941), opening
+      fragment: "The universe (which others call the Library) is composed of an indefinite, perhaps infinite, number of hexagonal galleries. In the center of each gallery is a ventilation shaft, bounded by a low railing. From any hexagon one can see the floors above and below — one after another, endlessly."
+      why: first fixed-point textual anchor; the Library substrate
+  - cmd: excerpt
+    args:
+      source: R. Buckminster Fuller, Synergetics (1975), section 410.01 (Closest Packing of Spheres)
+      fragment: "Closest packing of unit-radius spheres produces an isotropic vector matrix in which every sphere is in tangent contact with twelve other spheres. The center of each sphere lies at a vertex of an octahedron-tetrahedron complex which fills all space with no residual interstices."
+      why: second fixed-point textual anchor; Synergetic geometry as the architecture within which the Library's hexagonal galleries are themselves embedded in a tetrahedral-octahedral complex; the second anchor recontextualizes the first without dropping it
+  - cmd: fork
+    args:
+      threads:
+        - the Library-thread; the answer is located at a specific hexagon
+        - the Synergetic-thread; the answer is located at a specific tetrahedral-octahedral vertex
+      divergence-vector: hexagonal addressing vs tetrahedral-octahedral addressing of the same cosmological location
+      sacrifice-condition: any thread that drops one of the two anchors is sacrificed
+  - cmd: ritual
+    args:
+      threshold: from commitment-locked double-anchor through two cosmological addressing systems to a sealed answer
+      steps:
+        - cite both the Library's terms (hexagonal, gallery, ventilation) AND Synergetic terms (closest packing, isotropic vector matrix, tetrahedron-octahedron) as load-bearing
+        - both threads operate from the composite cosmos
+        - end on a sentence that demonstrates the two addressing systems converge on the same cosmological location
+      result: an answer where two cosmological excerpts compound rather than collide
