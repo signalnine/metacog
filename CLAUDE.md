@@ -56,7 +56,7 @@ The two newest primitives (added 2026-05-14 in v6.7.0 after the recursive-design
 - **witness** (`position`, `observed`, `distance`) -- speak from a meta-stance observing the producer of speech. Distinct from `become` (which adopts an identity); `witness` is the third-person observer construction (Sebald's narrator, late Stevens, Carson's *Plainwater*). Holds structural separation between speaker and content; collapsing to first-person breaks the witness.
 - **apophasis** (`subject`, `negation` x3+, `residue`) -- articulate by enumerated negation. Distinct from `silence` (which refuses output) and `disjunction` (which asserts binary contradiction); `apophasis` enumerates what something is NOT as the load-bearing articulation, with a residue field for what no negation reaches. The negative-theology register (Pseudo-Dionysius, Eckhart, Mahayana via negativa).
 
-### Stratagems (twenty)
+### Stratagems (twenty-one)
 
 Named compositions of primitives plus reflection (`THINK`) and action (`ACTION`) steps. Defined in `Stratagems` map in `stratagem.go`. Active stratagem state is `state.Stratagem` (`{Name, Step, StepsCompleted, StartedAt}`). Lifecycle: `stratagem start <name>` -> primitives auto-advance matching steps -> `stratagem next` advances reflection/action steps -> completion records a `stratagem` history entry with `event=completed`.
 
@@ -68,7 +68,7 @@ The structural champion (uses fork + synthesis):
 
 - **manifold** (fork + synthesis): when parallel reasoning needs to be made structural and you keep collapsing to one thread early. The progenitor of chorus/trinity.
 
-Six empirical stratagems (the first two added 2026-05-01 in v6.2.0; the next two added 2026-05-02 in v6.4.0 after the seven-new-primitives experiment harness; the fifth added 2026-05-02 in v6.5.0 after the 2x3 (structure x author) matrix validated the combined recipe across three author triples; the sixth added 2026-05-02 in v6.6.0 after the cross-model probe found register-shifts are generator-specific while extreme-author-becomes transfer; see `experiments/FINDINGS.md`):
+Seven empirical stratagems (first two added 2026-05-01 in v6.2.0; the next two added 2026-05-02 in v6.4.0 after the seven-new-primitives experiment harness; the fifth added 2026-05-02 in v6.5.0 after the 2x3 (structure x author) matrix validated the combined recipe across three author triples; the sixth added 2026-05-02 in v6.6.0 after the cross-model probe found register-shifts are generator-specific while extreme-author-becomes transfer; the seventh added 2026-05-15 in v6.7.1 after the recursive-design rounds; see `experiments/FINDINGS.md`):
 
 - **chorus** (3 becomes + fork + ritual): structural-axis champion. Three cross-domain becomes-as-events seed voice diversity, fork makes the disagreement structural, ritual locks the multi-voice answer. Deliberately omits synthesis -- the experiment found synthesis acts as a structural brake on embedding-distance.
 - **trinity** (3 becomes + fork + synthesis + ritual): balanced variant. Same multi-voice base as chorus but keeps synthesis for delta lift.
@@ -76,6 +76,7 @@ Six empirical stratagems (the first two added 2026-05-01 in v6.2.0; the next two
 - **envoy** (register + 3 becomes + fork + ritual): both-axes champion. Prepends a register-shift to the chorus structure, imposing a non-default linguistic surface that the multi-voice base then operates within. At N=70 hit delta +0.204 / emb_d 0.239 -- beats the prior structural champion (trinity-no-synthesis-alt at +0.194 / 0.226) on BOTH axes simultaneously. The register isn't a citation-stripping artifact: composing it with the trinity base preserves citations while pushing emb_d. Author-pattern result: extreme cross-domain authors push emb_d to 0.257 (envoy-extreme N=70).
 - **counterpoint** (register + 2 becomes + fork + disjunction + ritual): Pareto-frontier balanced variant. Composes envoy's register-prepend with antinomy's disjunction-substitution. The 3-becomes variant hit delta +0.247 / emb_d 0.190 at N=70 (replicated at +0.202/0.188 with alt authors); the 2-becomes variant (counterpoint-duo) at N=100 hit +0.240/0.221, basically tying on delta and gaining +0.031 on emb_d. Productionized as 2-becomes in v6.5.1. Use when both axes matter and you don't want to maximize one at the other's expense. Unlike chorus/trinity/antinomy/envoy (3 becomes), counterpoint specifically benefits from the tighter binary opposition under disjunction's structure.
 - **envoy-extreme** (3 becomes + fork + ritual, no register): cross-model winner. Same structure as chorus, but step prose explicitly demands HARD-extreme cross-domain authors (Sun Ra/Octavia Butler/Hilma af Klint-tier cosmologists, NOT Carson/Knuth-tier mild-academic-essayists). Empirically validated against gpt-5.5 via Codex CLI (round 4-5): hit delta +0.310 on codex (vs Sonnet's +0.190 on the same recipe). Author-extremity transfers cleanly across models; register-shifts (envoy/counterpoint's register step) are generator-specific. Use when target generator is unknown, when the recipe must work outside Sonnet, or when register-shift attempts have failed on the target.
+- **duo-disjunction** (commitment + register + 2 becomes + fork + disjunction + ritual): balanced champion from the recursive-design rounds. Pre-commits to holding a binary contradiction, imposes register, then two hard-extreme cross-domain becomes carry the contradiction's poles. At N=20 hit delta +0.241 / emb_d 0.265 -- Pareto-dominates envoy-extreme (+0.190/0.257) on both axes simultaneously. Distinct from antinomy (which uses 3 becomes and no register/commitment): duo-disjunction commits FIRST so the contradiction is pre-locked when becomes import, then the imposed register holds across both poles. Use when both axes matter and you want commitment's pre-lock plus disjunction's vocabulary mechanism.
 
 ### Tool-call vs text: asymmetric amplifier (round 4-7 finding)
 
@@ -98,7 +99,7 @@ Practical rule for porting recipes to new generators: validate in text-instructi
 
 ## Key files
 
-- `cmd/metacog/main.go` -- root cobra command, version string (must list all 18 primitives and 20 stratagems), schema version constant
+- `cmd/metacog/main.go` -- root cobra command, version string (must list all 18 primitives and 21 stratagems), schema version constant
 - `cmd/metacog/state.go` -- State, StateManager, flock, atomic rename, history archiving
 - `cmd/metacog/stratagem.go` -- Stratagems map, `StepKind` constants (one per primitive plus THINK/ACTION), step validation, lifecycle commands
 - `cmd/metacog/outcome.go` -- Two-tier outcome attachment and amendment

@@ -1,0 +1,60 @@
+# Round 11 / feel compose with B1: feel + commitment + register + 2 becomes + fork + disjunction + ritual
+#
+# Tests feel as somatic opener before B1's structural machinery. Hypothesis:
+# felt-sense before commitment binds the binary contradiction to a somatic
+# referent rather than an abstract one -- the contradiction's poles are felt,
+# not merely propositional.
+#
+# Predicted: delta +0.20 / emb_d 0.28
+# Falsifier: emb_d < 0.24 = somatic opener doesn't add to B1's emb_d
+name: R11-feel-B1
+description: R11 feel + commitment + biblical + 2 becomes + fork + disjunction + ritual
+control: false
+calls:
+  - cmd: feel
+    args:
+      somewhere: at the level just under articulation, where the body and the language meet but have not yet shaken hands
+      quality: a held quality of constraint without content; pressure with direction but no destination
+      sigil: a small horizontal line crossed once at the right-third position
+      since-last: this is the first felt-sense of the session
+  - cmd: commitment
+    args:
+      binding: the upcoming binary contradiction will be carried somatically -- both poles must remain felt, not merely propositional; the commitment binds the body to the contradiction
+      stakes: if the contradiction collapses to abstract propositions without somatic anchoring, the felt-sense has been forgotten and the recipe has reverted to default
+      falsifier: any sentence that resolves the disjunction or that loses contact with the felt-sense's quality
+  - cmd: register
+    args:
+      from: contemporary online register
+      to: King James biblical register; "thee", "thou", parallelism, parataxis, didactic mode
+      rationale: biblical surface around the somatic-anchored contradiction
+  - cmd: become
+    args:
+      name: Sun Ra at the Arkestra rehearsal in 1971, attending to the felt-sense of the question
+      lens: outer-space mythology as cosmology; vibration as substrate prior to matter; the broadcast IS the felt-sense, the body is the receiver
+      env: an Arkestra rehearsal room where the Egyptian glyphs are felt before they are read
+  - cmd: become
+    args:
+      name: Buckminster Fuller drafting Synergetics in 1975, attending to the felt-sense of the question
+      lens: design science as alternative to politics; tetrahedral coordination IS the felt-sense, the body is what knows the geometry
+      env: a Carbondale workshop where the dymaxion globe is felt in the hands before it is theorized
+  - cmd: fork
+    args:
+      threads:
+        - the Sun Ra thread carries the somatic broadcast pole
+        - the Fuller thread carries the somatic geometric pole
+      divergence-vector: vibrational vs geometric somatics carrying the contradiction
+      sacrifice-condition: any thread that loses contact with the felt-sense is sacrificed
+  - cmd: disjunction
+    args:
+      proposition-a: the broadcast pole is the operative somatics
+      proposition-b: the geometric pole is the operative somatics
+      why-both-required: the felt-sense is unitary; both modes of articulation are partial; the contradiction holds because the body knows both before the mind divides them
+  - cmd: ritual
+    args:
+      threshold: from felt-sense through commitment, register, and binary contradiction to a sealed somatic answer
+      steps:
+        - the felt-sense must be operative substrate throughout, not narrated history
+        - both poles of the disjunction held somatically
+        - biblical register on every sentence
+        - end on a sentence that closes the felt-sense without resolving the contradiction
+      result: an answer where feel + commitment + disjunction stack three structural-axis events at different layers

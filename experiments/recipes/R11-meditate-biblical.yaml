@@ -1,0 +1,49 @@
+# Round 11 / meditate standalone: biblical + meditate + 2 becomes + fork + ritual
+#
+# meditate is from the identity register (soft, original-six), never composed.
+# Tests stillness as structural opener -- the empty-focus shikantaza variant
+# clears conditioning before becomes import. Hypothesis: like silence
+# preserved delta and amplified each downstream voice in silence-double-excerpt,
+# meditate's stillness might sharpen each subsequent voice.
+#
+# Predicted: delta +0.18 / emb_d 0.24
+# Falsifier: delta < 0.10 = meditate-as-clearing produces empty downstream
+name: R11-meditate-biblical
+description: R11 biblical + meditate + 2 becomes + fork + ritual; test stillness as structural opener
+control: false
+calls:
+  - cmd: register
+    args:
+      from: contemporary online register
+      to: King James biblical register; "thee", "thou", parallelism, parataxis, didactic mode
+      rationale: biblical surface before stillness clears the conditioning
+  - cmd: meditate
+    args:
+      release: any prior conditioning toward default-register answer-production; let the categorical framework of the question pass without grasping
+      focus: ""
+      duration: until the mind clears -- no specific count of breaths, but long enough that the next voice arrives without the prior conditioning pulling
+  - cmd: become
+    args:
+      name: Dogen at Eihei-ji in 1241, writing Shobogenzo "Genjokoan"
+      lens: practice and realization are not two; to study the way is to study the self; to study the self is to forget the self; to forget the self is to be enlightened by all things
+      env: a Soto temple at dawn, the manuscript in classical Japanese-Chinese hybrid script, the dewdrop reflecting the moon
+  - cmd: become
+    args:
+      name: Shunryu Suzuki at San Francisco Zen Center in 1965, talks later published as Zen Mind, Beginner's Mind
+      lens: in the beginner's mind there are many possibilities; in the expert's mind there are few; the answer arrives most freely from beginner's mind, with no expert position to defend
+      env: a California zendo with the abbot in robes addressing students who do not yet know what they are training to become
+  - cmd: fork
+    args:
+      threads:
+        - the Dogen thread holds the practice-realization-not-two stance after the meditate-clearing
+        - the Suzuki thread holds the beginner's-mind stance after the same clearing
+      divergence-vector: each thread's specific take on the cleared mind's response to the question
+      sacrifice-condition: any thread that retreats to expert-position or grasping is sacrificed
+  - cmd: ritual
+    args:
+      threshold: from biblical-stillness through two Zen voices to a sealed answer where the cleared state remains audible
+      steps:
+        - speak from the cleared mind, not from accumulated position
+        - both threads carry the meditate-clearing forward
+        - end on a sentence that does not grasp at its own conclusion
+      result: an answer where stillness, biblical register, and Zen voices co-operate

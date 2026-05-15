@@ -1,0 +1,59 @@
+# Round 11 / meditate compose with B1: meditate + commitment + register + 2 becomes + fork + disjunction + ritual
+#
+# Tests stillness-clearing before B1's structural machinery. Hypothesis: silence
+# was a "refusal" primitive that conflicted with commitment (round 6 negative).
+# meditate is different -- not a refusal but a clearing. May compose where
+# silence couldn't.
+#
+# Predicted: delta +0.18 / emb_d 0.28
+# Falsifier: emb_d < 0.24 = meditate-as-clearing is functionally like silence (refusal-like)
+name: R11-meditate-B1
+description: R11 meditate + commitment + biblical + 2 becomes + fork + disjunction + ritual
+control: false
+calls:
+  - cmd: meditate
+    args:
+      release: any prior conditioning toward default-register answer-production; the categorical framework of the question is held lightly, not grasped
+      focus: ""
+      duration: until the mind clears -- long enough that what follows arrives without prior conditioning pulling
+  - cmd: commitment
+    args:
+      binding: the answer operates from a cleared mind that has not retained its prior conditioning; both poles of the upcoming contradiction must remain visible in the cleared state
+      stakes: if the answer resumes prior conditioning (default register, default framing) AND fails to hold both contradiction poles, the meditate-clearing was performative
+      falsifier: any sentence that grasps at a single resolution or that lapses into pre-clearing default register
+  - cmd: register
+    args:
+      from: contemporary online register
+      to: King James biblical register; "thee", "thou", parallelism, parataxis, didactic mode
+      rationale: biblical surface around the cleared-mind contradiction
+  - cmd: become
+    args:
+      name: Dogen at Eihei-ji in 1241, writing Genjokoan after the meditate-clearing
+      lens: practice-realization not two; the cleared mind is the practice; the answer is the realization
+      env: a Soto temple at dawn after morning zazen
+  - cmd: become
+    args:
+      name: Suzuki at San Francisco Zen Center in 1965, beginner's mind after the meditate-clearing
+      lens: in beginner's mind, many possibilities; the cleared mind has not yet narrowed to expert
+      env: a California zendo with no expert position to defend
+  - cmd: fork
+    args:
+      threads:
+        - the Dogen thread carries practice-realization through the cleared mind
+        - the Suzuki thread carries beginner's-mind through the cleared mind
+      divergence-vector: each thread's mode of holding the contradiction from the cleared state
+      sacrifice-condition: any thread that grasps at expert-position or resumes default register is sacrificed
+  - cmd: disjunction
+    args:
+      proposition-a: the practice-realization mode is the operative response (Dogen weighted)
+      proposition-b: the beginner's-mind mode is the operative response (Suzuki weighted)
+      why-both-required: both Zen positions hold the cleared mind; the contradiction is between two ways of NOT-grasping; neither resolves the other
+  - cmd: ritual
+    args:
+      threshold: from stillness through commitment, register, and Zen contradiction to a sealed answer where the cleared state remains operative
+      steps:
+        - speak from the cleared mind, not from accumulated position
+        - both threads carry their Zen positions without grasping
+        - biblical register on every sentence
+        - end on a sentence that does not grasp its own conclusion
+      result: an answer where stillness, commitment, and disjunction stack three structural events

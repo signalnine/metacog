@@ -1,0 +1,44 @@
+# Round 11 / feel standalone: feel + 2 becomes + fork + ritual
+#
+# feel is from the identity/felt-sense register family (soft, original-six).
+# Composed structurally for the first time. Tests whether the felt-sense opener
+# adds emb_d (somatic register is far from baseline) or kills delta (somatic
+# vocabulary is rare but generic -- "warm", "heavy", etc).
+#
+# Predicted: delta +0.10 / emb_d 0.22
+# Falsifier: emb_d < 0.18 = somatic register no further from baseline than chorus
+name: R11-feel-chorus
+description: R11 feel + 2 becomes + fork + ritual; test felt-sense composition
+control: false
+calls:
+  - cmd: feel
+    args:
+      somewhere: at the level just under articulation, where the body and the language meet but have not yet shaken hands
+      quality: a held quality of constraint without content; pressure with direction but no destination; the felt-sense version of what the question asks about
+      sigil: a small horizontal line crossed once at the right-third position; the mark of a pre-articulated state
+      since-last: this is the first felt-sense of the session; no prior felt-sense to diff against
+  - cmd: become
+    args:
+      name: Eugene Gendlin developing Focusing in 1978
+      lens: the body knows what it knows in advance of language; the felt-sense is data; thinking that does not contact the felt-sense is structurally incomplete
+      env: a Chicago therapy office with a leather chair, a clipboard, and the manuscript of "Focusing" half-edited on the desk
+  - cmd: become
+    args:
+      name: Anne Carson translating Sappho fragment 31 in 2002
+      lens: the body in fragment 31 has a felt-sense the words approach by failing; the green of going-green, the stinging, the sweat -- somatic vocabulary as the only adequate articulation
+      env: a McGill office with the Greek text open and the marginal English-line translations stacked beside it
+  - cmd: fork
+    args:
+      threads:
+        - the Gendlin thread carries the felt-sense as data; the body's pre-articulation as primary source
+        - the Carson thread carries the felt-sense as untranslatable; somatic vocabulary as the only honest articulation
+      divergence-vector: data vs untranslatability of the felt-sense as the load-bearing claim
+      sacrifice-condition: any thread that retreats to non-somatic abstraction is sacrificed
+  - cmd: ritual
+    args:
+      threshold: from felt-sense through two somatic-attending voices to a sealed answer where the felt-sense is named in the prose
+      steps:
+        - speak with somatic vocabulary: register what the body knows
+        - both threads operate from the felt-sense, never above it
+        - end on a sentence that names the felt-sense as Gendlin would or as Carson would
+      result: an answer where the felt-sense is the load-bearing referent throughout
