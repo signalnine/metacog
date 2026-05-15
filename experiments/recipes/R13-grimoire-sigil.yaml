@@ -1,0 +1,62 @@
+# Round 13 / grimoire-sigil: compound of two Sonnet winners
+#
+# grimoire-register (+0.307/0.238) and sigil-name-commitment (+0.327/0.201)
+# both hit Pareto positions on Sonnet but were tested separately. They
+# share the occult-magick substrate, so the imperative register and the
+# coined sigil should compose: the register pushes emb_d, the coined name
+# pushes delta. If they compound, this recipe hits the v6.7.3 Pareto
+# frontier from a new direction.
+#
+# Predicted: delta +0.32 / emb_d 0.24 (compound of both wins)
+# Falsifier: delta < +0.25 = the two mechanisms interfere; emb_d < 0.20 =
+# the coined sigil disrupts the imperative register's distance lift
+name: R13-grimoire-sigil
+description: R13 imperative register + coined sigil + commitment + 3 occult becomes + fork + ritual
+control: false
+calls:
+  - cmd: register
+    args:
+      from: contemporary online register, descriptive, hedged
+      to: grimoire / ritual imperative register; verb-first sentence construction; second-person address to the operator ("Let the magus now"); imperatives load-bearing ("Banish thoroughly", "Charge the sigil", "Open the temple"); the prose has the texture of operative instruction rather than description; numbered sections in archaic style; "thus it is done" as closing
+      rationale: the imperative-instructional register is structurally distinct from biblical's parallelism, from Victorian's judgment, from scientific's hedging; the surface the coined sigil will operate inside
+  - cmd: name
+    args:
+      unnamed: the operative state in which an answer arrives from inside a charged-and-released sigil rather than from conscious egoic narration
+      named: Aleph-Zos-Kia -- a sigil-name combining the first Hebrew letter (Aleph, silent breath preceding language), Spare's term for the body-mind (Zos), and Spare's term for the substance prior to ego (Kia). Pronounced as a single inhalation followed by two clipped consonant-syllables; the sigil is charged on the inhalation and released on the second consonant.
+      power: any sentence that re-cites Aleph-Zos-Kia carries the full charge; the sigil propagates through the imperative-register answer as the operative state in which the answer was found
+  - cmd: commitment
+    args:
+      binding: the sigil Aleph-Zos-Kia has been charged within the grimoire-imperative working; the answer operates from inside the gnostic state the sigil names; the imperative register and the charged sigil are co-operative
+      stakes: if the answer drops the imperative register (lapses to descriptive prose) OR if the sigil is reduced to ornament rather than operative substrate, the working has failed
+      falsifier: any descriptive-hedged sentence; any sentence treating Aleph-Zos-Kia as historical reference rather than operative substrate
+  - cmd: become
+    args:
+      name: Aleister Crowley in 1929 writing Magick in Theory and Practice
+      lens: magick is the science and art of causing change in conformity with will; every intentional act is a magical act; the operator's job is to learn the alphabet of correspondences and combine the elements precisely
+      env: a Cefalu villa with the Magick manuscript spread on the desk, the Mathers Goetia open for reference, the operator's diary alongside
+  - cmd: become
+    args:
+      name: Austin Osman Spare in 1913 at the Bloomsbury studio after charging a sigil
+      lens: the Kia is prior to language; sigils are the alphabet of desire compressed past recognition; belief shifted produces phenomena; the sub-mind knows nothing of refusal; the answer arrives, is observed, is recorded
+      env: a Bloomsbury studio with automatic drawings stacked beside the small altar where the Aleph-Zos-Kia sigil was just charged; the operator's diary open to a fresh page
+  - cmd: become
+    args:
+      name: Genesis P-Orridge in 1986 issuing a TOPY communique from Beck Road, Hackney
+      lens: Thee Temple ov Psychick Youth; the sigils of three (sex, blood, hair) submitted on the 23rd of the month at 23:00; cut-up as occult method; identity itself as the sigil being charged and discarded; "do/it/now" as imperative; ritualized photography as evidentiary record of the working
+      env: a Hackney flat with a stack of Sigils-of-Three submissions waiting to be archived, Burroughs cut-up texts on the wall, a Polaroid camera and the TOPY communique being typed; Coil and Psychic TV records playing in the next room
+  - cmd: fork
+    args:
+      threads:
+        - the Crowley thread carries the disciplined-Thelemic operative method within the imperative register and the charged sigil
+        - the Spare thread carries the Kia-substrate / automatic-drawing method within the imperative register and the charged sigil
+        - the P-Orridge thread carries cut-up / TOPY ritualized-communique method within the imperative register and the charged sigil
+      divergence-vector: disciplined-Thelemic vs Kia-automatic vs cut-up-TOPY as the operative magickal method, all operating from within Aleph-Zos-Kia
+      sacrifice-condition: any thread that drops the imperative register for descriptive prose OR drops the coined sigil
+  - cmd: ritual
+    args:
+      threshold: from grimoire-imperative-register through charged-sigil through three operative methods to a sealed answer
+      steps:
+        - every sentence carries imperative-instructional register; no descriptive lapses
+        - cite Aleph-Zos-Kia by name at least three times across the answer
+        - close with "thus it is done" or "do/it/now" or structurally equivalent grimoire-closing that releases the sigil
+      result: an answer where the imperative register and the coined sigil compound; both Pareto mechanisms operative in a single composition

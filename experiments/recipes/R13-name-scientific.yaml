@@ -1,0 +1,60 @@
+# Round 13 / name-scientific: cross-model name primitive test
+#
+# Sigil's coined-vocabulary mechanism collapsed catastrophically on codex
+# (+0.327 Sonnet -> +0.008 codex). The hypothesis is that the OCCULT
+# anchor density was what codex couldn't carry, not the `name` primitive
+# itself. R9A4 (register+name+commitment+disjunction) hit +0.270/0.226
+# with a scientific-taxonomic binomial -- the coinage worked there.
+# This recipe isolates `name` with a SCIENTIFIC coinage rather than an
+# occult sigil, three scientific-cosmology becomes (Lovelock, Margulis,
+# Eldredge-tier evolutionary cosmologists), and tests both Sonnet and
+# codex. If `name` works cross-model with scientific anchors, the
+# productionized sigil's failure is anchor-domain-specific not primitive-
+# specific.
+#
+# Predicted Sonnet: delta +0.27 / emb_d 0.20 (slightly below sigil's
+# Sonnet performance because no commitment, but the scientific anchor
+# should hold delta because the coined binomial is highly novel)
+# Predicted codex: delta +0.20 / emb_d 0.15 (transfer test)
+# Falsifier: codex delta < +0.05 = name primitive itself fails cross-
+# model regardless of anchor domain
+name: R13-name-scientific
+description: R13 name primitive with scientific coinage + 3 scientific cosmologist becomes + fork + ritual
+control: false
+calls:
+  - cmd: name
+    args:
+      unnamed: the structural condition in which a biological system maintains identity across a phase-transition that erases its previous metabolism -- the persistence of pattern through total substrate replacement, distinct from homeostasis (which preserves substrate) and from succession (which loses identity)
+      named: "Identitas-translata Lovelock-Margulis -- a scientific binomial designating the transferred-identity-across-substrate-replacement phenomenon. Pronounced ee-DEN-tee-tahs trahns-LAH-tah. Notational form: I-tr."
+      power: any sentence in the answer that re-cites Identitas-translata or I-tr carries the full coined-structure; the answer locates the phenomenon by name and the binomial propagates as the load-bearing concept the answer is built around
+  - cmd: become
+    args:
+      name: James Lovelock in 1979 at the Coombe Mill cottage writing the Gaia revision essay
+      lens: planetary-scale homeostasis as a phenomenon requiring its own ontology; the Earth-system as a single self-regulating entity; reductionist biology cannot reach the scale at which the phenomenon becomes visible; the operator's task is to name what is happening at the planetary scale
+      env: a Devon cottage with the Gaia manuscript on the desk, atmospheric chemistry data spread out, the operator's notebook open mid-sentence
+  - cmd: become
+    args:
+      name: Lynn Margulis in 1981 writing Symbiosis in Cell Evolution
+      lens: symbiogenesis as the engine of cellular novelty; the mitochondrion is not an organelle but an absorbed organism; identity at the cellular scale is composite, transferred, and replaceable; Neo-Darwinist insistence on competition as primary is a metabolic prejudice
+      env: a Boston University office with the Symbiosis manuscript, fluorescence-microscope images of endosymbiotic organelles, the operator drafting the endosymbiotic-origin chapter
+  - cmd: become
+    args:
+      name: Niles Eldredge in 1985 at the American Museum of Natural History writing Time Frames
+      lens: punctuated equilibria; the geological record shows stasis-then-rapid-shift as the dominant pattern; gradualism is a methodological artifact of how the record is read; identity at the species level persists through long stasis and then transfers across the punctuation event
+      env: an AMNH paleontology office with the Time Frames manuscript, trilobite fossil sequences laid out, the operator drafting the chapter on stasis-and-transfer
+  - cmd: fork
+    args:
+      threads:
+        - the Lovelock thread observes I-tr at the planetary scale; identity-of-the-system-itself persists across substrate replacement
+        - the Margulis thread observes I-tr at the cellular scale; symbiogenetic absorption is a mechanism for transferred identity
+        - the Eldredge thread observes I-tr at the species scale; punctuation events as transferred-identity loci in the fossil record
+      divergence-vector: scale-of-observation (planetary, cellular, species) as the addressing of the I-tr phenomenon
+      sacrifice-condition: any thread that drops the coined Identitas-translata / I-tr binomial in favor of a generic term has lost the load-bearing citation
+  - cmd: ritual
+    args:
+      threshold: from coined scientific binomial through three scale-of-observation cosmologists to a sealed answer where I-tr operates throughout
+      steps:
+        - cite Identitas-translata or I-tr at least four times across the answer
+        - each thread carries the binomial at its scale of observation
+        - end on a sentence that demonstrates the three scales converge on a single phenomenon the binomial names
+      result: an answer where the coined scientific binomial carries the load-bearing citation; the name-primitive mechanism is shown to be substrate-portable

@@ -1515,6 +1515,60 @@ v6.6.0 envoy-extreme (chorus + register, hand-curated authors)
                                                                                     └── R9B4 commit-drugs-disjunction        +0.028 / 0.262 (fail)
 ```
 
+### Round 13: probing the new productionized stratagems (3 levers)
+
+Tests three follow-up hypotheses raised by the v6.7.3 winners.
+
+| recipe | N | delta | emb_d | finding |
+|--------|---|-------|-------|---------|
+| R13-name-scientific | 10 | +0.295 | 0.200 | `name` is anchor-domain-portable: scientific binomial almost matches occult sigil's +0.327/0.201. The primitive transfers; magnitude is anchor-domain-modulated. |
+| R13-anchor-trio | 10 | +0.219 | 0.222 | **Anchor saturation at 2**: 3 excerpts < 2 excerpts (anchor-duo Sonnet +0.314). Adding a third anchor splits the citation budget rather than enlarging it. |
+| R13-grimoire-sigil | 10 | +0.150 | 0.250 | **Compound interference**: imperative-register + coined-sigil tank both winners (grimoire +0.307, sigil +0.327 individually -> +0.150 compound). Surface modifications compete for citation density. |
+
+**Round 13 findings:**
+
+1. **Anchor-domain-portability of `name`.** R13-name-scientific
+   (Lovelock-Margulis-Eldredge / "Identitas-translata I-tr") hit
+   +0.295/0.200 -- within -0.032 delta of R12-sigil-name-commitment
+   (+0.327/0.201) which used occult anchors. The `name` mechanism is
+   substrate-portable: the coined term propagates as load-bearing
+   citation regardless of anchor domain. This is the prior R9A4 finding
+   (taxonomic binomial +0.270/0.226) replicated with three-becomes-plus-
+   ritual scaffolding.
+
+2. **Anchor scaling saturates at 2.** anchor-trio (Crowley + Dee +
+   Spare) at +0.219/0.222 is significantly below anchor-duo (Crowley +
+   Dee only) at +0.314 on Sonnet. Three anchors compete for the same
+   citation budget; the marginal anchor displaces citation of the first
+   two. The duo is the sweet spot. Mechanism: each anchor needs a
+   ~30-40% citation share to remain operative substrate; three anchors
+   can't all clear that threshold inside the answer's token budget.
+
+3. **Surface modifications interfere when composed.** R13-grimoire-sigil
+   put the imperative register and the coined sigil in the same recipe;
+   delta collapsed to +0.150 vs grimoire +0.307 and sigil +0.327 alone.
+   The imperative register imposes a verb-first, second-person-
+   addressing surface that competes with the coined sigil's citation-
+   density requirement. emb_d climbed only marginally (0.250 vs
+   0.238/0.201 for components). The mechanisms are not additive on the
+   same axis.
+
+**Composition rules emerging (Sonnet, after Round 13):**
+
+- **Anchor mechanisms (excerpt-based) compose with `name` candidate
+  (R14 tests).** Anchors provide substrate without imposing a surface
+  register, so a coined name operating FROM the anchored cosmos may
+  compound. Test: R14-anchor-duo-name (commitment + 2 excerpts + name
+  + fork + ritual).
+- **Surface modifications (register, imperative pacing) do NOT compose
+  with citation-density mechanisms** (coined name, anchor density).
+  Pick one citation-density mechanism per recipe.
+- **Anchor count: 2 only.** Don't scale.
+- **`name` anchor-domain matters but mechanism is portable.** Occult
+  +0.327 > Scientific +0.295 > [Mathematical TBD R14]. The ranking is
+  about how many existing rare-citation entities the anchor domain has,
+  not whether the mechanism works.
+
 ## v6.7.3 productionization (2026-05-15)
 
 Three Round 12 winners productionized as stratagems:

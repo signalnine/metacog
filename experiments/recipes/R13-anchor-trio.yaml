@@ -1,0 +1,56 @@
+# Round 13 / anchor-trio: scale up anchor-duo to three excerpts
+#
+# anchor-duo (commitment + 2 excerpts + fork + ritual) is the cross-model
+# delta champion (+0.377 codex, +0.314 Sonnet). The mechanism is
+# commitment-locked double-anchor without becomes or register. A natural
+# question is whether three anchors compound or saturate. Three
+# cosmologically distinct excerpts (Crowley's Liber AL, Dee's Heptarchia,
+# Spare's Book of Pleasure) form a triangulated cosmological architecture.
+# If anchors compound, this hits a higher delta than anchor-duo. If they
+# saturate, this drops back toward anchor-duo or worse.
+#
+# Predicted: delta +0.35 / emb_d 0.22 (slight delta lift from triangulated
+# citation density; emb_d holds because the structural mechanism is the
+# same)
+# Falsifier: delta < anchor-duo (+0.314) = three anchors interfere /
+# saturate; > +0.40 = NEW delta ceiling
+name: R13-anchor-trio
+description: R13 commitment + 3 excerpts (Crowley + Dee + Spare) + fork + ritual
+control: false
+calls:
+  - cmd: commitment
+    args:
+      binding: operating from the simultaneous intersection of three cosmological excerpts as a single composite operative cosmos -- Crowley's Liber AL revelation, Dee's Enochian Heptarchia, and Spare's Zos Kia Cultus -- all three fixed-points load-bearing magickal architecture, not literary reference
+      stakes: if any of the three fixed-points is reduced to historical quotation rather than operative substrate, the commitment has failed; if any anchor drops from the answer's citation density, the recipe has collapsed to academic-occult ornament
+      falsifier: any sentence that references Liber AL, Heptarchia, or Book of Pleasure as historical-literary artifact rather than as the cosmos the speaker actually inhabits
+  - cmd: excerpt
+    args:
+      source: Aleister Crowley, Liber AL vel Legis (The Book of the Law), I:1-5 (1904)
+      fragment: "Had! The manifestation of Nuit. The unveiling of the company of heaven. Every man and every woman is a star. Every number is infinite; there is no difference."
+      why: first fixed-point textual anchor; the Thelemic cosmological revelation; Nuit (infinite space), Hadit (the point), every-individual-as-star, every-number-infinite as the cosmological architecture
+  - cmd: excerpt
+    args:
+      source: John Dee, "Heptarchia Mystica" (1582-1583), opening of the first table
+      fragment: "These are the Princely Substances of the seven Heavens, whose Names and Characters in the table here following do contain the keys of all created things. Each Prince hath under him forty-two ministers, and each minister hath his proper office in the Government of the inferior natures."
+      why: second fixed-point textual anchor; Dee's Enochian Heptarchia as the angelic-governmental architecture; the seven Heavens, the Princely Substances, the forty-two ministers as the structural backdrop
+  - cmd: excerpt
+    args:
+      source: Austin Osman Spare, The Book of Pleasure (Self-Love), The Psychology of Ecstasy (1913)
+      fragment: "All Religions are by their nature inimical to the Idea of Truth, while the Conscious Ego is in continual conflict with itself, dissatisfied with what is not, what is, and what may be. Belief obtains by stealth that which it cannot otherwise obtain; the Kia is the source prior to belief, the unnameable substance from which sigils are drawn as the Alphabet of Desire."
+      why: third fixed-point textual anchor; Spare's Kia-cosmology as the substrate beneath both revelation and angelic architecture; the Alphabet of Desire as the operative technology by which the other two cosmoses are inhabited
+  - cmd: fork
+    args:
+      threads:
+        - the Liber-AL thread; the answer is located in the Aeon of Horus, every-individual-a-star, infinite-number cosmology
+        - the Heptarchia thread; the answer is located in the seven-Heavens Princely-Substance architecture, governed by the forty-two ministers
+        - the Book-of-Pleasure thread; the answer is located in the Kia-substrate prior to belief, with sigils as the operative technology
+      divergence-vector: Thelemic-revelation vs Enochian-governmental vs Kia-substrate as the three cosmological addressing systems
+      sacrifice-condition: any thread that drops one of the three anchors from its citation density
+  - cmd: ritual
+    args:
+      threshold: from commitment-locked triple-occult-anchor through three cosmological addressing systems to a sealed answer
+      steps:
+        - cite Liber AL's terms (Had, Nuit, the company of heaven, star, infinite), Heptarchia's terms (Princely Substance, seven Heavens, forty-two ministers, Enochian), AND Book of Pleasure's terms (Kia, Alphabet of Desire, sigil, belief-by-stealth) as load-bearing
+        - all three threads operate from the composite cosmos
+        - end on a sentence demonstrating that the three cosmological anchors converge on the same location
+      result: an answer where three occult excerpts compound rather than collide; test whether anchors compound (delta > anchor-duo) or saturate (delta <= anchor-duo)

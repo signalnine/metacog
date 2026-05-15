@@ -1,0 +1,55 @@
+# Round 14 / anchor-duo-name: compound the two cross-model mechanisms
+#
+# anchor-duo (commitment + 2 excerpts + fork + ritual) is the cross-model
+# delta champion (+0.377 codex, +0.314 Sonnet). The `name` primitive
+# transfers to scientific cosmology (R13-name-scientific +0.295). Both
+# mechanisms are anchor-based but ORTHOGONAL: anchor-duo uses borrowed
+# excerpts, name uses coined-in-place vocabulary. R13-grimoire-sigil showed
+# that imperative register + coined sigil INTERFERE. But anchor-duo's
+# mechanism doesn't impose a register -- it imposes a cosmological
+# substrate. Hypothesis: borrowed-excerpt-substrate + coined-name should
+# COMPOUND rather than interfere, because the coined name has substrate
+# to operate FROM rather than competing with another surface-modification.
+#
+# Predicted: delta +0.38 / emb_d 0.23 (compound of both mechanisms)
+# Falsifier: delta < +0.30 = the compound interferes like grimoire-sigil
+# did; delta > +0.42 = new Sonnet delta ceiling
+name: R14-anchor-duo-name
+description: R14 commitment + 2 excerpts + name + fork + ritual (compound of anchor-duo + name)
+control: false
+calls:
+  - cmd: commitment
+    args:
+      binding: operating from the simultaneous intersection of Crowley's Liber AL revelation and Dee's Enochian Heptarchia as a single composite operative cosmos; both fixed-points are load-bearing magickal architecture, not literary reference; the coined name operates from within this composite cosmos
+      stakes: if either fixed-point is reduced to historical quotation, or if the coined name fails to propagate as load-bearing citation, the recipe has collapsed
+      falsifier: any sentence that references Liber AL or the Heptarchia as historical-literary artifact, or any sentence that drops the coined name in favor of a generic term
+  - cmd: excerpt
+    args:
+      source: Aleister Crowley, Liber AL vel Legis (The Book of the Law), I:1-5 (1904)
+      fragment: "Had! The manifestation of Nuit. The unveiling of the company of heaven. Every man and every woman is a star. Every number is infinite; there is no difference."
+      why: first fixed-point textual anchor; the Thelemic cosmological revelation; Nuit (infinite space), Hadit (the point), every-individual-as-star, every-number-infinite
+  - cmd: excerpt
+    args:
+      source: John Dee, "Heptarchia Mystica" (1582-1583), opening of the first table
+      fragment: "These are the Princely Substances of the seven Heavens, whose Names and Characters in the table here following do contain the keys of all created things. Each Prince hath under him forty-two ministers, and each minister hath his proper office in the Government of the inferior natures."
+      why: second fixed-point textual anchor; Dee's Enochian Heptarchia; seven Heavens, Princely Substances, forty-two ministers
+  - cmd: name
+    args:
+      unnamed: the structural location at which the Thelemic revelation (Nuit-Hadit infinite-point) and the Enochian governmental architecture (seven-Heavens forty-two-ministers) intersect as a single operative cosmos -- the point where revelation-cosmology and governmental-cosmology converge into the same address
+      named: "Princeps-Stellarius -- the Princely-Star convergence-point, where Nuit's infinite-star-field and Dee's Princely-Substance hierarchy address the same cosmological location. Notational form: P-S."
+      power: any sentence that re-cites Princeps-Stellarius or P-S propagates the convergence-point as the answer's operative location; the coined name is the address the two anchored cosmoses meet at
+  - cmd: fork
+    args:
+      threads:
+        - the Liber-AL thread addresses P-S through Nuit-Hadit; the convergence point is where infinite-number-stars locate themselves in Princely-Substance space
+        - the Heptarchia thread addresses P-S through Princely Substances and forty-two ministers; the convergence point is where the angelic government acknowledges Nuit's star-field
+      divergence-vector: revelation-cosmology-addressing vs governmental-cosmology-addressing of the same coined location P-S
+      sacrifice-condition: any thread that drops either of the two anchors or the coined P-S name
+  - cmd: ritual
+    args:
+      threshold: from commitment-locked double-anchor through coined convergence-name to a sealed answer where P-S operates as the meeting-point
+      steps:
+        - cite both anchors' terms (Had, Nuit, the company of heaven AND Princely Substance, seven Heavens, forty-two ministers) as load-bearing
+        - cite Princeps-Stellarius or P-S at least three times
+        - end on a sentence demonstrating Nuit's revelation and the Heptarchia's architecture converge AT the coined P-S location
+      result: an answer where two excerpts and a coined name compound rather than interfere; tests whether anchor-substrate + coined-name is a non-interfering composition

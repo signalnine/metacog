@@ -1,0 +1,56 @@
+# Round 14 / name-mathematical: map anchor-domain-portability gradient
+#
+# R13-name-scientific hit +0.295/0.200 (vs sigil +0.327/0.201). The drop
+# from occult to scientific is small (-0.032 delta, ~0 emb_d). Mathematical
+# anchors are a third anchor-domain: highly precise coinage, very different
+# embedding region from both occult cosmology and biological scale-talk.
+# If the `name` mechanism is portable, mathematical anchors should produce
+# something in the +0.25-0.32 delta range. If math anchors collapse like
+# the sigil collapsed on codex, the mechanism is more domain-sensitive
+# than the scientific result suggested.
+#
+# Predicted: delta +0.27 / emb_d 0.22 (math has a smaller corpus of
+# named-objects than occult/biology so the coined term should propagate
+# as load-bearing citation)
+# Falsifier: delta < +0.15 = math is not a viable anchor-domain for the
+# name primitive
+name: R14-name-mathematical
+description: R14 name primitive with mathematical coinage + 3 foundational-mathematics becomes + fork + ritual
+control: false
+calls:
+  - cmd: name
+    args:
+      unnamed: the structural condition of a mathematical object that exists at every cardinality but is never the limit of its smaller instances -- distinct from inaccessible cardinals (which are unreachable from below) and from indescribable cardinals (which are large by combinatorial witness); a non-limit-realized structural recurrence
+      named: "Recurrent-non-limit (RNL) objects, written R-nl: a class of structural recurrences instantiated at every cardinal kappa that is NOT the union of its smaller R-nl-instances; the canonical reference is to write R-nl-omega, R-nl-omega-1, R-nl-kappa as the family"
+      power: any sentence that re-cites R-nl, Recurrent-non-limit, or the family-notation propagates the coined mathematical object; the binomial carries load-bearing citation throughout the answer
+  - cmd: become
+    args:
+      name: Kurt Godel in 1947 at the Institute for Advanced Study writing the second edition of What is Cantor's Continuum Problem
+      lens: mathematical objects exist independently of human construction; the working mathematician encounters them, does not invent them; the continuum hypothesis is undecidable from ZFC but the question of its truth is meaningful; the operator's job is to attend to the structural objects that present themselves
+      env: an IAS office in Princeton with the typeset proofs of the constructible universe results, von Neumann's correspondence on the desk, the operator's notebook open mid-proof
+  - cmd: become
+    args:
+      name: Alexander Grothendieck in 1962 at the IHES writing the early chapters of EGA
+      lens: a topos is a category of sheaves; the geometric object is recovered from the category of its representations; a problem solved at the right level of generality dissolves rather than gets answered; the operator builds the cathedral that contains the question
+      env: an IHES office at Bures-sur-Yvette with EGA chapters in draft, the operator's monthly working session about to begin, Serre's letters stacked beside the work
+  - cmd: become
+    args:
+      name: Saharon Shelah in 1994 at Hebrew University writing Cardinal Arithmetic
+      lens: pcf theory; cardinal arithmetic in ZFC has a structure independent of CH; the right invariants are not the cardinals themselves but the cofinalities of products of cardinals; the operator's task is to find the structural object that ZFC permits to exist
+      env: a Hebrew University office in Jerusalem with the pcf manuscript spread across the table, decades of cardinal-arithmetic notes on the wall, the operator drafting the chapter on the structure of the function pcf
+  - cmd: fork
+    args:
+      threads:
+        - the Godel thread observes R-nl objects as platonic existences encountered by the working mathematician; the family R-nl-kappa is real and pre-existing
+        - the Grothendieck thread observes R-nl objects as categorical structures recovered from the topos of their representations; the family is the cathedral built around the question
+        - the Shelah thread observes R-nl objects as combinatorial witnesses to ZFC-permitted structure; the family is what pcf-theory-like analysis discovers
+      divergence-vector: platonic-encounter vs categorical-recovery vs combinatorial-construction as the mode of mathematical existence for R-nl
+      sacrifice-condition: any thread that drops the coined R-nl / Recurrent-non-limit binomial in favor of a generic mathematical term has lost the load-bearing citation
+  - cmd: ritual
+    args:
+      threshold: from coined mathematical object through three foundational-mathematics cosmologists to a sealed answer where R-nl operates throughout
+      steps:
+        - cite R-nl or Recurrent-non-limit at least four times across the answer
+        - each thread carries the binomial at its mode of mathematical existence
+        - end on a sentence demonstrating that the three modes converge on the same object the binomial names
+      result: an answer where the coined mathematical binomial carries the load-bearing citation; tests whether anchor-domain-portability extends to mathematics
