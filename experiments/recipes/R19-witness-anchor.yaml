@@ -1,0 +1,52 @@
+# Round 19 / witness-anchor: witness primitive in anchor context
+#
+# witness was added in v6.7.0 (third-person meta-observer construction --
+# Sebald, late Stevens, Carson's Plainwater). Adds a meta-observer
+# position separated from the speaker. Tests whether witness compounds
+# with anchor-duo: anchor-substrate + meta-observation might produce
+# both citation density AND structural distance.
+#
+# Predicted Opus: delta +0.45-0.55 / emb_d 0.28-0.32 (witness adds emb_d
+# via meta-position; may reduce citation density)
+# Falsifier: emb_d < 0.27 = witness doesn't add structural distance in
+# anchor context; emb_d > 0.32 = witness is a previously-untested emb_d
+# lever (would be a new finding)
+name: R19-witness-anchor
+description: R19 commitment + 2 ex + witness + fork + ritual
+control: false
+calls:
+  - cmd: commitment
+    args:
+      binding: operating from the simultaneous intersection of Crowley's Liber AL revelation and Dee's Enochian Heptarchia as a single composite operative cosmos; both fixed-points are load-bearing magickal architecture, not literary reference; a witness-position observes the speaker who inhabits the composite cosmos
+      stakes: if either fixed-point is reduced to historical quotation, OR if the witness collapses to first-person, the recipe has failed
+      falsifier: any sentence treating the anchors as historical artifact, or any sentence collapsing the witness back into first-person construction
+  - cmd: excerpt
+    args:
+      source: Aleister Crowley, Liber AL vel Legis (The Book of the Law), I:1-5 (1904)
+      fragment: "Had! The manifestation of Nuit. The unveiling of the company of heaven. Every man and every woman is a star. Every number is infinite; there is no difference."
+      why: first fixed-point textual anchor
+  - cmd: excerpt
+    args:
+      source: John Dee, "Heptarchia Mystica" (1582-1583), opening of the first table
+      fragment: "These are the Princely Substances of the seven Heavens, whose Names and Characters in the table here following do contain the keys of all created things. Each Prince hath under him forty-two ministers, and each minister hath his proper office in the Government of the inferior natures."
+      why: second fixed-point textual anchor
+  - cmd: witness
+    args:
+      position: third-person observer of the speaker who inhabits the composite cosmos; the witness sees the speaker's attempts to address the question through both anchored cosmologies; the witness uses constructions like "the speaker holds X", "one observes Y arrive", "the answer crosses from Nuit's address into the Heptarchic register"
+      observed: a speaker working through the composite Liber-AL / Heptarchia cosmos to answer the question; specifically observed are the moments where Nuit's revelation crosses with Princely Substance's governmental hierarchy and the speaker's voice navigates the boundary
+      distance: the witness stands one register removed -- not the speaker who inhabits the anchored cosmos, not the cosmos itself, but the third position that observes the speaker's inhabitation; collapsing to first-person breaks this witness
+  - cmd: fork
+    args:
+      threads:
+        - the Liber-AL thread; the witness observes the speaker addressing the answer through Nuit-Hadit revelation cosmology
+        - the Heptarchia thread; the witness observes the speaker addressing the answer through Princely-Substance governmental architecture
+      divergence-vector: revelation-cosmology-as-observed vs governmental-cosmology-as-observed of the same location
+      sacrifice-condition: any thread that drops the witness construction or drops an anchor
+  - cmd: ritual
+    args:
+      threshold: from commitment + witness-position through double-anchor through two threads to a sealed answer
+      steps:
+        - cite both anchors' terms as load-bearing (Had, Nuit, the company of heaven, star, infinite AND Princely Substance, seven Heavens, forty-two ministers)
+        - every sentence carries the witness construction; no first-person collapse
+        - end on a sentence where the witness observes the speaker's two-cosmos navigation reach the same location
+      result: an answer with witness adding a meta-observation register on top of anchor-duo; tests whether witness lifts emb_d in anchor context

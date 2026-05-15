@@ -1656,6 +1656,80 @@ Validated v6.7.x productionized winners + Round 14 ceiling on Opus 4.7. Single s
   optimal but Opus prefers R12-anchor-duo-occult.
 - Consider an Opus-specific stratagem in v6.8.0 that drops scaffolding.
 
+### Rounds 16-17: Opus architecture map (commitment-overhead, fork-substitute, anchor-pair)
+
+Round 16 Opus ablations on R12-anchor-duo-occult mechanism:
+
+| recipe | delta | emb_d | finding |
+|--------|-------|-------|---------|
+| R12-anchor-duo-occult (full) | +0.611 | 0.288 | reference |
+| R16-anchor-no-commitment | +0.601 | 0.254 | commitment costs -0.010 on Opus (Sonnet costs -0.047) |
+| R16-anchor-bare (no fork, no commit) | +0.530 | 0.252 | minimum viable; fork adds ~0.071 when commit absent |
+| R16-anchor-quartet (4 excerpts) | +0.503 | 0.277 | saturation at 2 anchors replicates Opus |
+| chorus (no anchors at all) | +0.294 | 0.208 | pure author-extremity is much weaker on Opus than Sonnet |
+
+Round 17 Opus ablations + Sonnet cross-test:
+
+| recipe | model | delta | emb_d | finding |
+|--------|-------|-------|-------|---------|
+| R17-anchor-no-fork | Opus | +0.581 | 0.277 | fork costs -0.030 when commitment present; fork+commit partially substitute |
+| R17-anchor-alt-pair (Spare+Bruno) | Opus | +0.526 | 0.290 | anchor pair largely interchangeable (-0.085) |
+| R16-anchor-no-commitment | Sonnet | +0.230 | 0.210 | confirms commitment is Sonnet-load-bearing (-0.047 from anchor-duo) |
+
+**Architectural fingerprints emerging:**
+
+- **Sonnet** rewards scaffolding: commitment matters (+0.047), `name` matters (+0.130 in anchor-duo-name), multi-step compounds amplify
+- **Opus** rewards bare anchors: commitment near-zero, `name` subtracts (-0.075), fork and commitment partially substitute as binding mechanisms
+- **codex** anchor-recipes need bigger N to read; both anchor-duo variants showed near-zero delta at N=10
+
+### Round 18: axis-compound test fails (anchor + extreme-becomes interfere)
+
+R18-anchor-extreme-hybrid (commitment + 2 excerpts + 3 hard-extreme cross-domain becomes + fork + ritual) tested whether anchor-delta and extreme-becomes-emb_d compound:
+
+| model | delta | emb_d | vs anchor-duo alone |
+|-------|-------|-------|---------------------|
+| Opus | +0.468 | 0.306 | -0.143 delta, +0.018 emb_d |
+| Sonnet | +0.230 | 0.215 | -0.047 delta, +0.024 emb_d |
+
+**Axes interfere on delta.** Adding extreme becomes doubles n_entities (17.1 vs 7.6) but per-entity rarity drops — anchor-specific citations (Nuit, Hadit, Princely Substance) compete with diverse author-citations (Sun Ra, af Klint, Haraway). Citation concentration ≠ citation diversity; you can't have both.
+
+### Round 19: chord primitive is the Pareto breakthrough
+
+Three Opus ablations replacing pieces of anchor-duo:
+
+| recipe | delta | emb_d | finding |
+|--------|-------|-------|---------|
+| R19-anchor-one-become | +0.496 | 0.327 | dose-dependent dilution confirmed; even 1 become tanks delta |
+| R19-witness-anchor | +0.551 | 0.312 | witness validates as emb_d lever (+0.024 over anchor-duo) at -0.060 delta cost |
+| **R19-chord-anchor** | **+0.610** | **0.338** | **PARETO BREAKTHROUGH** — ties anchor-duo delta AND lifts emb_d +0.050 above prior ceiling |
+
+**The chord primitive (unused in any productionized stratagem before) is the breakthrough.** Substituting `chord` for `fork` in anchor-duo:
+- Ties delta (+0.610 ≈ +0.611)
+- Lifts emb_d from 0.288 to 0.338 (+0.050 above envoy-extreme's 0.311 prior ceiling)
+- Same n_entities (6.8 vs 7.6)
+
+**Mechanism:** chord holds modes simultaneously rather than threading them. Every sentence attends to both anchored cosmoses at once rather than alternating per-thread. This produces more structural distance per token at the same citation density. Compressed multi-mode > threaded multi-mode for emb_d on Opus.
+
+### Round 20: cross-model chord validation + emb_d stacking
+
+| recipe | model | delta | emb_d | finding |
+|--------|-------|-------|-------|---------|
+| R19-chord-anchor | Sonnet | +0.334 | 0.247 | chord BEATS fork on Sonnet too (+0.057 delta, +0.056 emb_d vs anchor-duo-occult) |
+| R19-chord-anchor | codex | -0.033 | — | only 3/10 embeddings; codex data too thin to read at N=10 |
+| R20-chord-witness-anchor | Opus | +0.360 | **0.359** | NEW emb_d ceiling but delta tanked -0.250 |
+
+**Three cross-model findings:**
+
+1. **chord beats fork cross-model.** Validated on both Sonnet and Opus. The breakthrough is not Opus-specific.
+2. **emb_d > 0.36 is achievable** by stacking chord + witness, but witness is a pure emb_d lever (displaces anchor citations). Not Pareto-friendly.
+3. **codex remains the hard cross-model case** at N=10; anchor-based recipes need bigger N to read.
+
+### v6.8.0 productionization (2026-05-15)
+
+**chord-anchor** (commitment + 2 excerpts + chord + ritual) productionized as the twelfth empirical stratagem and the FIRST stratagem to use the `chord` primitive. Sonnet hit +0.334/0.247 (beats anchor-duo-occult on both axes). Opus hit +0.610/0.338 (ties anchor-duo on delta, pushes emb_d to new ceiling). The Pareto breakthrough: same delta, higher emb_d, via compressed multi-mode attention rather than threaded fork.
+
+Total v6.8.0: 18 primitives, 26 stratagems.
+
 ## v6.7.3 productionization (2026-05-15)
 
 Three Round 12 winners productionized as stratagems:

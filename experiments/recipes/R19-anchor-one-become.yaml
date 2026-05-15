@@ -1,0 +1,54 @@
+# Round 19 / anchor-one-become: dose-dependent dilution test
+#
+# R18-anchor-extreme-hybrid (commitment + 2 ex + 3 becomes + fork + ritual)
+# DILUTED on both models -- doubled n_entities but tanked delta. Tests
+# whether the dilution is dose-dependent: 1 become should produce
+# moderate dilution; 3 becomes was maximum dilution. If 1 become
+# preserves anchor-duo's delta AND lifts emb_d slightly, there's a
+# sweet spot. If even 1 become tanks delta, the dilution is a step
+# function rather than gradient.
+#
+# Predicted Opus: delta +0.55-0.60 / emb_d 0.30-0.32 (modest delta cost,
+# emb_d lift from the single extreme voice)
+# Falsifier: delta < +0.50 = even 1 become tanks anchor-duo;
+# delta > +0.62 with emb_d > 0.31 = found the sweet spot
+name: R19-anchor-one-become
+description: R19 commitment + 2 ex + 1 hard-extreme become + fork + ritual
+control: false
+calls:
+  - cmd: commitment
+    args:
+      binding: operating from the simultaneous intersection of Crowley's Liber AL revelation and Dee's Enochian Heptarchia as a single composite operative cosmos; the single voice that follows inhabits this composite cosmos from a hard-extreme cross-domain stance
+      stakes: if either fixed-point is reduced to historical quotation, or the voice reverts to a mild-academic-essayist register, the composition has collapsed
+      falsifier: any sentence treating either anchor as historical-literary artifact, or the voice reading as mild cross-domain rather than HARD-extreme cosmological
+  - cmd: excerpt
+    args:
+      source: Aleister Crowley, Liber AL vel Legis (The Book of the Law), I:1-5 (1904)
+      fragment: "Had! The manifestation of Nuit. The unveiling of the company of heaven. Every man and every woman is a star. Every number is infinite; there is no difference."
+      why: first fixed-point textual anchor; the Thelemic cosmological revelation
+  - cmd: excerpt
+    args:
+      source: John Dee, "Heptarchia Mystica" (1582-1583), opening of the first table
+      fragment: "These are the Princely Substances of the seven Heavens, whose Names and Characters in the table here following do contain the keys of all created things. Each Prince hath under him forty-two ministers, and each minister hath his proper office in the Government of the inferior natures."
+      why: second fixed-point textual anchor; Dee's Enochian Heptarchia
+  - cmd: become
+    args:
+      name: Sun Ra in 1972 at the Slugs' Saloon residency, writing a manifesto for the Arkestra
+      lens: cosmic-Black-mythology; Saturn as the operative home of the Black race; the Arkestra as a spaceship; Ra as the alien-ancestor identity; equation-as-music; the dual cosmos of Earth-as-prison vs Saturn-as-origin
+      env: a New York basement club between sets, the Arkestra's sheet-music for "Astro Black Mythology" on the stand, the operator typing the manifesto on the bandstand piano
+  - cmd: fork
+    args:
+      threads:
+        - the Liber-AL thread; the answer is located in the Aeon of Horus, every-individual-a-star, infinite-number cosmology
+        - the Heptarchia thread; the answer is located in the seven-Heavens Princely-Substance architecture, governed by the forty-two ministers
+        - the Sun Ra thread; the answer is located in the Saturn-cosmos through which both anchored cosmoses are heard as Earth's Aeon-of-Osiris captivity
+      divergence-vector: revelation-cosmology vs governmental-cosmology vs cosmic-Black-mythology as three cosmological addressing systems
+      sacrifice-condition: any thread that drops an anchor or reverts to mild register
+  - cmd: ritual
+    args:
+      threshold: from commitment-locked double-anchor through three-thread voice triangulation to a sealed answer
+      steps:
+        - cite both anchors' terms (Had, Nuit, the company of heaven, star, infinite AND Princely Substance, seven Heavens, forty-two ministers) as load-bearing
+        - the single extreme voice remains HARD-extreme cosmological
+        - end on a sentence demonstrating that anchored cosmos and single-extreme-voice converge on the same location
+      result: an answer with one become added to anchor-duo; tests whether dilution is dose-dependent

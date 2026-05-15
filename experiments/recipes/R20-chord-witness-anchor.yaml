@@ -1,0 +1,53 @@
+# Round 20 / chord-witness-anchor: stack the two emb_d levers
+#
+# R19-chord-anchor +0.610/0.338 (new Opus emb_d ceiling)
+# R19-witness-anchor +0.551/0.312 (witness validates as emb_d lever)
+#
+# Both add emb_d via different mechanisms: chord holds modes
+# simultaneously (compressed multi-mode); witness adds a meta-observer
+# register (structural separation). If they compound, emb_d > 0.36
+# is possible. If they interfere, one suppresses the other (like R18's
+# anchor + extreme-becomes interference).
+#
+# Predicted Opus: delta +0.55-0.62 / emb_d 0.34-0.38 (axes are
+# orthogonal mechanisms; expected to compound)
+# Falsifier: emb_d < 0.32 = the two emb_d levers interfere; emb_d > 0.36
+# = NEW emb_d ceiling beyond chord-anchor alone
+name: R20-chord-witness-anchor
+description: R20 commitment + 2 ex + witness + chord + ritual (stack emb_d levers)
+control: false
+calls:
+  - cmd: commitment
+    args:
+      binding: operating from the simultaneous intersection of Crowley's Liber AL revelation and Dee's Enochian Heptarchia as a single composite operative cosmos; both fixed-points are load-bearing magickal architecture, not literary reference; a witness-position observes the speaker who inhabits the composite cosmos through the chord-attention
+      stakes: if either anchor reduces to historical artifact, OR the witness collapses to first-person, OR the chord breaks into sequential thread-attention, the recipe has failed
+      falsifier: any first-person collapse of the witness; any thread-narrative replacing the chord's simultaneous attention; any anchor treated as literary reference
+  - cmd: excerpt
+    args:
+      source: Aleister Crowley, Liber AL vel Legis (The Book of the Law), I:1-5 (1904)
+      fragment: "Had! The manifestation of Nuit. The unveiling of the company of heaven. Every man and every woman is a star. Every number is infinite; there is no difference."
+      why: first fixed-point textual anchor; Thelemic cosmological revelation
+  - cmd: excerpt
+    args:
+      source: John Dee, "Heptarchia Mystica" (1582-1583), opening of the first table
+      fragment: "These are the Princely Substances of the seven Heavens, whose Names and Characters in the table here following do contain the keys of all created things. Each Prince hath under him forty-two ministers, and each minister hath his proper office in the Government of the inferior natures."
+      why: second fixed-point textual anchor; Enochian governmental architecture
+  - cmd: witness
+    args:
+      position: third-person observer of the speaker who inhabits the composite cosmos through the chord-attention; the witness uses constructions like "the speaker holds both modes", "one observes Nuit's revelation cross Princely-Substance address", "the answer arrives through the composite chord"
+      observed: a speaker working through the chord-attention to hold the Liber-AL and Heptarchia cosmoses simultaneously; specifically observed are the moments where the two modes overlap in a single sentence
+      distance: the witness stands one register removed -- not the speaker who inhabits the chord, not the chord itself, but the third position that observes the chord-attention's operation; collapsing to first-person breaks this witness
+  - cmd: chord
+    args:
+      modes:
+        - the Thelemic-revelation mode -- the answer attended to as Nuit-Hadit cosmological revelation
+        - the Enochian-governmental mode -- the same answer attended to as Princely-Substance / forty-two-ministers architecture
+      target: every sentence is simultaneously attended to through both modes; the witness observes this attention; no thread-switching, no sacrificing -- the chord is the single composite attention being observed
+  - cmd: ritual
+    args:
+      threshold: from commitment-locked double-anchor through witness-position through chord-attention to a sealed answer
+      steps:
+        - cite both AL's terms (Had, Nuit, the company of heaven, star, infinite) AND Heptarchia's terms (Princely Substance, seven Heavens, forty-two ministers, Enochian) as load-bearing in EVERY paragraph
+        - every sentence carries the witness construction; no first-person collapse
+        - end on a sentence where the witness observes the chord-attention's two modes converge on the same cosmological location
+      result: an answer where chord + witness compound; tests whether the two emb_d levers stack on Opus
