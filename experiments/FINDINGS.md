@@ -1124,6 +1124,60 @@ soft-six survivors like `name`/`ritual` when not in stratagem) does
 not compound with the structural-axis primitives. Doctrine settled:
 these primitives belong to a different family and compose poorly.
 
+### Round 12: occult/magick recipes (4 levers)
+
+After the v6.7.2 productionization, an open question was whether
+occult/magick conditioning could push the frontier in a new
+direction. Four recipes, each testing one specific lever:
+
+| Recipe                       | N  | delta   | emb_d   | Verdict                                          |
+|------------------------------|----|---------|---------|--------------------------------------------------|
+| **R12-sigil-name-commitment** | 10 | **+0.327** | 0.201 | NEW Pareto-tilted point; `name` primitive finally works in composition |
+| R12-grimoire-register        | 10 | +0.307  | **0.238** | both axes lifted; new register direction; matches counterpoint emb_d |
+| R12-anchor-duo-occult        | 10 | +0.277  | 0.191   | anchor-duo mechanism transfers with occult anchors; -0.047 delta vs Borges/Fuller |
+| R12-occult-cosmologists      | 10 | +0.199  | 0.234   | matches envoy-extreme exactly; cosmologists-as-conditioning is weaker than as-citation |
+
+**Round 12 findings:**
+
+1. **The `name` primitive works in composition.** R12-sigil-name-
+   commitment hit +0.327 delta -- the strongest of the round and
+   tied with R9B2 anchor-duo. The Spare sigil mechanism (`name`
+   coins a True Name, `commitment` charges the sigil) maps cleanly
+   to a productive composition. The coined term "Zos-Kia-Aleph"
+   propagated through the answer as load-bearing citation. R9A4's
+   prior `name` attempt (+0.270 with a scientific binomial) was a
+   weaker version of this same mechanism. **name + commitment is
+   the validated way to use `name` in composition.**
+2. **Occult corpus is rarity-dense IFF the recipe demands citation.**
+   Three-recipe gradient: occult-cosmologists (no register, no
+   commitment) +0.199 -- vocabulary drifts to default; grimoire-
+   register (imperative surface forces citation) +0.307; sigil-name-
+   commitment (named anchor demands re-citation) +0.327. The lift
+   scales with how strongly the recipe forces specific occult
+   citations.
+3. **anchor-duo mechanism transferred with occult anchors** at
+   +0.277. Below the Borges/Fuller baseline (+0.324) but solidly
+   above envoy-extreme. The mechanism is structural, not anchor-
+   specific. Confirms anchor-duo is a general lever.
+4. **grimoire-register pushed both axes** (+0.307/0.238). The
+   imperative speech-act register (Crowley/Carroll/P-Orridge) is
+   a structurally new direction -- different from biblical's
+   parallelism, Victorian's judgment, scientific's hedging. New
+   Pareto-cluster point worth knowing.
+
+**Doctrine after Round 12:**
+
+- Occult/magick conditioning is a productive direction -- three of
+  four recipes cleared +0.27 delta at meaningful emb_d.
+- `name` is no longer a dead primitive -- it works in
+  composition with `commitment` when the coined term is set up to
+  propagate downstream.
+- The imperative speech-act register is a new register family,
+  distinct from the biblical/Victorian/scientific cluster.
+- Cosmologists-as-conditioning is weaker than cosmologists-as-
+  citation: the recipe must demand specific named entities to
+  realize the corpus's rarity weight.
+
 ### R9B2 / anchor-duo N=20 replication on both models (v6.7.2 productionization)
 
 After R9B2 was identified as cross-model delta champion at N=10, replicated at

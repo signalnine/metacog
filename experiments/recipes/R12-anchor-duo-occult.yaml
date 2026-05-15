@@ -1,0 +1,46 @@
+# Round 12 / anchor-duo-occult: anchor-mechanism with occult excerpts
+#
+# Tests whether anchor-duo (the cross-model delta champion at +0.338 on codex)
+# transfers when the excerpts are occult rather than Borges/Fuller. Same
+# structural mechanism (commitment + 2 excerpts + fork + ritual); only the
+# anchor content changes. If anchor-duo's mechanism is the structure (not the
+# specific excerpts), occult anchors should produce comparable lift. If the
+# specific Borges/Fuller pairing is doing load-bearing work, this collapses.
+#
+# Predicted: delta +0.30 / emb_d 0.22 (matches anchor-duo Sonnet baseline)
+# Falsifier: delta < +0.20 = occult anchors don't transfer the anchor-duo
+# mechanism; delta > +0.34 = occult anchors AMPLIFY beyond the secular baseline
+name: R12-anchor-duo-occult
+description: R12 (anchor mechanism w/ occult anchors) commitment + Crowley AL excerpt + Dee Heptarchia excerpt + fork + ritual
+control: false
+calls:
+  - cmd: commitment
+    args:
+      binding: operating from the simultaneous intersection of Crowley's Liber AL revelation and Dee's Enochian Heptarchia as a single composite operative cosmos; both fixed-points are load-bearing magickal architecture, not literary reference
+      stakes: if either fixed-point is reduced to historical quotation rather than operative substrate, the commitment has failed and the recipe has collapsed to academic-occult ornament
+      falsifier: any sentence that references Liber AL or the Heptarchia as historical-literary artifact rather than as the cosmos the speaker actually inhabits
+  - cmd: excerpt
+    args:
+      source: Aleister Crowley, Liber AL vel Legis (The Book of the Law), I:1-5 (1904)
+      fragment: "Had! The manifestation of Nuit. The unveiling of the company of heaven. Every man and every woman is a star. Every number is infinite; there is no difference."
+      why: first fixed-point textual anchor; the Thelemic cosmological revelation as operative substrate; Nuit (infinite space), Hadit (the point), every-individual-as-star, every-number-infinite as the architecture the speaker inhabits
+  - cmd: excerpt
+    args:
+      source: John Dee, "Heptarchia Mystica" (1582-1583), opening of the first table
+      fragment: "These are the Princely Substances of the seven Heavens, whose Names and Characters in the table here following do contain the keys of all created things. Each Prince hath under him forty-two ministers, and each minister hath his proper office in the Government of the inferior natures."
+      why: second fixed-point textual anchor; Dee's Enochian Heptarchia as the angelic-governmental architecture within which the Thelemic revelation operates; the seven Heavens, the Princely Substances, the forty-two ministers as the structural backdrop the Nuit/Hadit revelation arrives against
+  - cmd: fork
+    args:
+      threads:
+        - the Liber-AL thread; the answer is located in the Aeon of Horus, every-individual-a-star, infinite-number cosmology
+        - the Heptarchia thread; the answer is located in the seven-Heavens Princely-Substance architecture, governed by the forty-two ministers
+      divergence-vector: revelation-cosmology vs angelic-governmental-architecture as the addressing of the answer's location
+      sacrifice-condition: any thread that drops one of the two anchors is sacrificed
+  - cmd: ritual
+    args:
+      threshold: from commitment-locked double-occult-anchor through two cosmological addressing systems to a sealed answer
+      steps:
+        - cite both AL's terms (Had, Nuit, the company of heaven, star, infinite) AND Heptarchia's terms (Princely Substance, seven Heavens, forty-two ministers, Enochian) as load-bearing
+        - both threads operate from the composite cosmos
+        - end on a sentence that demonstrates Nuit's revelation and the Heptarchia's architecture converge on the same cosmological location
+      result: an answer where two occult excerpts compound rather than collide; the anchor-duo mechanism transfers

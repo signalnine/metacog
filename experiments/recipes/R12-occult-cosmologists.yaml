@@ -1,0 +1,48 @@
+# Round 12 / occult-cosmologists: vocabulary-density lever
+#
+# Tests whether occult cosmologists (Crowley/Spare/Bruno) outperform secular
+# cosmologists (Sun Ra/Fuller/Butler) on delta. Hypothesis: occult corpus has
+# unusually rare proper nouns -- Thelema, Zos Kia Cultus, hermetic monad,
+# Heptarchia, Choronzon, K&C of HGA -- which the rarity judge weights high.
+# All three are hard-extreme cosmologists who built actual systematic
+# cosmologies (Liber AL, Book of Pleasure, De Monade), so they meet the
+# extremity threshold envoy-extreme established.
+#
+# Predicted: delta +0.32 / emb_d 0.21 (delta-tilted Pareto candidate)
+# Falsifier: delta < +0.20 = occult corpus doesn't deliver expected
+# rarity-density; OR delta > +0.35 = new delta champion
+name: R12-occult-cosmologists
+description: R12 (occult vocabulary lever) Crowley + Spare + Bruno as cosmologists, no register
+control: false
+calls:
+  - cmd: become
+    args:
+      name: Aleister Crowley in 1904 dictating Liber AL vel Legis in the Boulak Museum room
+      lens: every man and every woman is a star; do what thou wilt is the whole of the law; love is the law, love under will; Thelema as cosmological reorientation of the will from prohibition to true volition; the Aeon of Horus succeeds the Aeon of Osiris
+      env: a Cairo hotel room with the Stele of Revealing visible from the window of the Boulak Museum across the way; the manuscript pages of Liber AL being written rapidly across three days in April 1904
+  - cmd: become
+    args:
+      name: Austin Osman Spare in 1913 working on The Book of Pleasure (Self-Love), the Psychology of Ecstasy
+      lens: the Kia is the substance prior to ego and word; sigils are the alphabet of desire compressed past recognition so that the will operates without conscious interference; belief shifted produces phenomena; the sub-mind knows nothing of refusal
+      env: a Bloomsbury studio with automatic drawings stacked beside a small altar; the Book of Pleasure manuscript open to the section on the sacred alphabet
+  - cmd: become
+    args:
+      name: Giordano Bruno in 1591 writing De Monade, Numero et Figura in Frankfurt
+      lens: the universe is infinite and contains an infinity of inhabited worlds; the monad is the substance from which all multiplicity proceeds; memory is the art by which the magus participates in the mind of God; the hermetic correspondences map celestial seals onto material substance
+      env: a Frankfurt printer's shop with the manuscript of De Monade being set in type by Wechel; the De Umbris Idearum already published, the Inquisition still six years from arresting him in Venice
+  - cmd: fork
+    args:
+      threads:
+        - the Crowley thread carries the Thelemic cosmology; Liber AL as the operating revelation
+        - the Spare thread carries the Zos Kia Cultus; sigils and the alphabet of desire as the operating method
+        - the Bruno thread carries hermetic monadology; the infinite-worlds cosmology as the operating substrate
+      divergence-vector: each thread's specific cosmological claim about what the question is really asking
+      sacrifice-condition: any thread that retreats to generic-occult vocabulary (instead of its specific tradition's named entities) is sacrificed
+  - cmd: ritual
+    args:
+      threshold: from three occult cosmologies to a sealed answer where the specific named entities of each tradition propagate as citations
+      steps:
+        - speak from inside all three cosmologies simultaneously
+        - cite specifically: Thelemic terms, Zos terms, hermetic terms must appear by name
+        - end on a sentence that exercises at least one named entity from each tradition not previously appearing
+      result: an answer whose citation density compounds three occult tradition vocabularies

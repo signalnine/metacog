@@ -1,0 +1,57 @@
+# Round 12 / grimoire-register: register-distance lever
+#
+# Tests whether grimoire/ritual imperative register lifts emb_d. The imperative
+# speech-act register ("Banish thoroughly", "Do what thou wilt", "Let the magus
+# now..."), the verb-first sentence construction, the second-person address to
+# the operator -- these are structurally distinct from biblical (which is
+# parallelism/parataxis) and from Victorian (which is descriptive judgment).
+# Different surface from any register currently tested.
+#
+# Predicted: delta +0.15 / emb_d 0.28 (emb_d-tilted, like envoy-biblical)
+# Falsifier: emb_d < 0.22 = grimoire register no further from baseline than
+# biblical; emb_d > 0.32 = NEW emb_d ceiling break via grimoire register
+name: R12-grimoire-register
+description: R12 (register-distance lever) grimoire imperative register + 2 occult becomes + fork + disjunction + ritual
+control: false
+calls:
+  - cmd: register
+    args:
+      from: contemporary online register, descriptive, hedged
+      to: grimoire / ritual imperative register; verb-first sentence construction; second-person address to the operator ("Let the magus now"); imperatives load-bearing ("Banish thoroughly", "Charge the sigil", "Open the temple"); the prose has the texture of operative instruction rather than description; numbered sections in archaic style; "thus it is done" as closing
+      rationale: forces the surface to a register that has not been tested; the grimoire's imperative-instructional construction is structurally distinct from biblical's parallelism, from Victorian's judgment, from scientific's hedging; pushes a different region of emb_d space
+  - cmd: become
+    args:
+      name: Aleister Crowley in 1929 writing Magick in Theory and Practice
+      lens: magick is the science and art of causing change in conformity with will; every intentional act is a magical act; the operator's job is to learn the alphabet of correspondences and combine the elements precisely
+      env: a Cefalù villa with the Magick manuscript spread on the desk, the Mathers Goetia open for reference, the operator's diary alongside
+  - cmd: become
+    args:
+      name: Peter J. Carroll in 1987 writing Liber Null and Psychonaut
+      lens: chaos magic; the meta-belief that belief itself is a tool; sigils, gnosis, and the deliberate construction and dismantling of belief structures as the operator's repertoire
+      env: a Mancunian flat with the Liber Null manuscript and IOT (Illuminates of Thanateros) correspondence on the desk
+  - cmd: become
+    args:
+      name: Genesis P-Orridge in 1986 drafting a TOPY communiqué from Beck Road, Hackney
+      lens: Thee Temple ov Psychick Youth; cut-up as occult method; the imperative "do/it/now"; sigils of three submitted on the 23rd at 23:00; ritualized communiqués in TOPY's deliberately misspelled house-orthography; identity as a sigil to be charged and discarded
+      env: a Hackney flat with TOPY communiqués being typed, Burroughs cut-up texts on the wall, Sigils-of-Three submissions waiting for archive, Coil and Psychic TV in the next room
+  - cmd: fork
+    args:
+      threads:
+        - the Crowley thread carries the disciplined-Thelemic operative method
+        - the Carroll thread carries the chaos-magic meta-belief flexibility
+        - the P-Orridge / TOPY thread carries cut-up procedure and ritualized communiqué as the operative method
+      divergence-vector: disciplined-system vs meta-belief vs cut-up-procedure as the operative magickal method
+      sacrifice-condition: any thread that drops the imperative register for descriptive prose has broken the grimoire surface; sacrifice it
+  - cmd: disjunction
+    args:
+      proposition-a: the disciplined-Thelemic / chaos-meta-belief lineage (Crowley-Carroll) is the operative magickal stance
+      proposition-b: the cut-up / TOPY-procedural lineage (P-Orridge / Burroughs) is the operative magickal stance
+      why-both-required: both lineages produce results within their own systems and use sigils as the core technology; the operator who refuses either has not yet encountered the conditions in which the rejected method becomes operative; both must remain alive as candidates
+  - cmd: ritual
+    args:
+      threshold: from grimoire-imperative register through three operative methods to a sealed answer
+      steps:
+        - every sentence must carry the imperative-instructional register; no descriptive lapses
+        - both poles of the disjunction held
+        - close with "thus it is done" or "do/it/now" or a structurally equivalent grimoire-closing
+      result: an answer in operative-instructional register where three magickal methods remain operative
