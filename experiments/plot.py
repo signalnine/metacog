@@ -396,6 +396,142 @@ def plot_cross_model(sonnet: dict[str, dict], codex: dict[str, dict]) -> None:
     plt.close(fig)
 
 
+def plot_pareto_current(sonnet: dict[str, dict], codex: dict[str, dict]) -> None:
+    """Updated Pareto frontier with post-v6.5.1 winners: anchor-duo,
+    duo-disjunction, commitment-excerpt-biblical, and the cross-model
+    anchor-duo champion on codex."""
+    fig, ax = plt.subplots(figsize=(12, 8.5))
+
+    # All Sonnet recipes as small grey dots (with N>=10).
+    others_d, others_e = [], []
+    HIGHLIGHTS_S = {
+        "chorus-plus-disjunction": "antinomy",
+        "trinity-prepended-register": "envoy",
+        "envoy-extreme": "envoy-extreme",
+        "counterpoint-duo": "counterpoint",
+        "envoy-biblical": "envoy-biblical",
+        "B1-commitment-disjunction-duo": "duo-disjunction",
+        "R9B2-commitment-double-excerpt": "anchor-duo (Sonnet)",
+        "commitment-excerpt-biblical": "commit-excerpt-bib",
+        "commitment-trio-biblical": "commit-trio-bib",
+        "excerpt-biblical-trio": "excerpt-trio",
+        "excerpt-biblical-duo": "excerpt-bib-duo",
+        "silence-double-excerpt": "silence-double",
+        "manifold-cascade": "manifold-cascade",
+    }
+    for name, r in sonnet.items():
+        if r["n"] < 10 or r["control"]:
+            continue
+        if name in HIGHLIGHTS_S:
+            continue
+        others_d.append(r["delta"])
+        others_e.append(r["emb_dist"])
+    ax.scatter(others_d, others_e, c="#cccccc", s=18, alpha=0.5,
+               label="other Sonnet recipes", zorder=1)
+
+    # Sonnet productionized stratagems as larger blue dots, labeled.
+    PRODUCTIONIZED_S = {
+        "chorus-plus-disjunction": "antinomy",
+        "trinity-prepended-register": "envoy",
+        "envoy-extreme": "envoy-extreme",
+        "counterpoint-duo": "counterpoint",
+        "B1-commitment-disjunction-duo": "duo-disjunction",
+        "R9B2-commitment-double-excerpt": "anchor-duo",
+    }
+    for recipe, label in PRODUCTIONIZED_S.items():
+        if recipe not in sonnet:
+            continue
+        r = sonnet[recipe]
+        ax.scatter([r["delta"]], [r["emb_dist"]], c="#1f77b4", s=180,
+                   edgecolors="black", linewidths=1.4, zorder=4)
+        # Place labels carefully for the densely-packed frontier.
+        offset = {"antinomy": (8, 4), "envoy": (8, 4),
+                  "envoy-extreme": (-90, 4), "counterpoint": (8, -12),
+                  "duo-disjunction": (8, 4), "anchor-duo": (8, -14)}
+        dx, dy = offset.get(label, (8, 6))
+        ax.annotate(label, (r["delta"], r["emb_dist"]),
+                    xytext=(dx, dy), textcoords="offset points",
+                    fontsize=11, fontweight="bold", color="#1f77b4")
+
+    # Additional Pareto-interesting Sonnet recipes (non-productionized winners).
+    EXTRAS_S = {
+        "commitment-excerpt-biblical": ("emb_d champion (Sonnet)", "#2ca02c", (8, 4)),
+        "envoy-biblical": ("envoy-biblical", "#2ca02c", (-90, -12)),
+    }
+    for recipe, (label, color, off) in EXTRAS_S.items():
+        if recipe not in sonnet:
+            continue
+        r = sonnet[recipe]
+        ax.scatter([r["delta"]], [r["emb_dist"]], c=color, s=160,
+                   edgecolors="black", linewidths=1.4, zorder=4, marker="D")
+        ax.annotate(label, (r["delta"], r["emb_dist"]),
+                    xytext=off, textcoords="offset points",
+                    fontsize=10, fontweight="bold", color=color)
+
+    # Codex anchor-duo and envoy-extreme as separate red markers.
+    CODEX_HIGHLIGHTS = {
+        "R9B2-commitment-double-excerpt": "anchor-duo (codex)",
+        "envoy-extreme": "envoy-extreme (codex)",
+    }
+    for recipe, label in CODEX_HIGHLIGHTS.items():
+        if recipe not in codex:
+            continue
+        r = codex[recipe]
+        ax.scatter([r["delta"]], [r["emb_dist"]], c="#d62728", s=180,
+                   edgecolors="black", linewidths=1.4, zorder=4, marker="s")
+        offset = {"anchor-duo (codex)": (8, -14), "envoy-extreme (codex)": (-130, 4)}
+        dx, dy = offset.get(label, (8, 6))
+        ax.annotate(label, (r["delta"], r["emb_dist"]),
+                    xytext=(dx, dy), textcoords="offset points",
+                    fontsize=11, fontweight="bold", color="#d62728")
+
+    # Draw the Sonnet Pareto frontier as a connecting line through champions.
+    pareto_recipes_s = [
+        "commitment-excerpt-biblical",
+        "B1-commitment-disjunction-duo",
+        "R9B2-commitment-double-excerpt",
+        "chorus-plus-disjunction",
+    ]
+    pareto_points = sorted(
+        [(sonnet[r]["delta"], sonnet[r]["emb_dist"])
+         for r in pareto_recipes_s if r in sonnet],
+        key=lambda p: p[0])
+    if pareto_points:
+        ax.plot([p[0] for p in pareto_points],
+                [p[1] for p in pareto_points],
+                color="#1f77b4", linestyle="--", linewidth=1.5,
+                alpha=0.4, zorder=2, label="Sonnet Pareto frontier")
+
+    # NULL noise floor reference line.
+    ax.axhline(0.090, color="#999", linestyle=":", linewidth=1, zorder=0)
+    ax.text(0.42, 0.092, "NULL noise floor (emb_d ~0.09)",
+            fontsize=8, color="#666", va="bottom", ha="right")
+    ax.axvline(0, color="#999", linestyle=":", linewidth=1, zorder=0)
+
+    ax.set_xlabel("delta  (rarity-weighted citation density above NULL baseline)",
+                  fontsize=11)
+    ax.set_ylabel("emb_d  (cosine distance from NULL embedding centroid)",
+                  fontsize=11)
+    ax.set_title("Current Pareto frontier: 8 productionized stratagems\n"
+                 "(v6.0.0 -> v6.7.2, 12 rounds, ~80 recipes, ~3500 trials; "
+                 "Sonnet blue, Codex red square)",
+                 fontsize=12)
+
+    handles = [
+        mpatches.Patch(color="#1f77b4", label="productionized stratagem (Sonnet)"),
+        mpatches.Patch(color="#d62728", label="cross-model probe (Codex)"),
+        mpatches.Patch(color="#2ca02c", label="emb_d champion / register variant"),
+        mpatches.Patch(color="#cccccc", label="other Sonnet recipe"),
+    ]
+    ax.legend(handles=handles, loc="lower right", fontsize=10)
+    ax.grid(True, alpha=0.3)
+    fig.tight_layout()
+    out = FIGURES_DIR / "pareto-frontier-current.png"
+    fig.savefig(out, dpi=140)
+    print(f"wrote {out}")
+    plt.close(fig)
+
+
 def main():
     recipes = aggregate_recipes()
     print(f"loaded {len(recipes)} recipes")
@@ -409,6 +545,7 @@ def main():
         codex = aggregate_recipes(codex_path)
         print(f"loaded {len(codex)} codex recipes")
         plot_cross_model(recipes, codex)
+        plot_pareto_current(recipes, codex)
 
 
 if __name__ == "__main__":
