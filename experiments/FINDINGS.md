@@ -1104,6 +1104,52 @@ delta unexpectedly. This is a new Pareto point — sits between B1
 (+0.241/0.265) and antinomy (+0.347/0.162) on the frontier.
 Beats B1 on delta by +0.073 but loses 0.043 emb_d.
 
+### Round 10: new primitives (v6.7.0 -- witness and apophasis)
+
+After 9 rounds the existing 16-primitive surface was well-mapped:
+delta ceiling at +0.347 (antinomy), emb_d ceiling at 0.317
+(commitment-excerpt-biblical), balanced champions at B1 and R9B2.
+The recursive-design analysis identified two prose moves the surface
+didn't cover: meta-stance observer-construction (Sebald-Stevens-
+Carson register) and articulated-negation (negative theology / via
+negativa). Added as `witness` and `apophasis` primitives in v6.7.0.
+
+| Recipe                   | N  | delta   | emb_d   | Verdict                                          |
+|--------------------------|----|---------|---------|--------------------------------------------------|
+| R10-witness-chorus       | 10 | +0.178  | 0.242   | midpack standalone -- composable, not a champion |
+| R10-apophasis-biblical   | 10 | +0.172  | 0.252   | midpack standalone -- composable, not a champion |
+| **R10-witness-B1**       | 10 | +0.155  | **0.275** | witness COMPOUNDS emb_d when added to B1 (+0.010 vs B1's 0.265) |
+| R10-apophasis-B1         | 8  | +0.180  | 0.248   | apophasis composes but adds nothing vs B1        |
+
+**Round 10 findings:**
+
+1. **Both new primitives clear the failure threshold.** All 4 recipes
+   landed delta in [+0.15, +0.18] and emb_d in [0.24, 0.28]. Compare
+   to genuinely failed primitives in earlier rounds: drugs-antinomy
+   +0.075/0.162, chord-antinomy +0.001/0.210. The new primitives are
+   composable midpack.
+2. **witness compounds emb_d on B1.** witness + B1 hit emb_d 0.275
+   vs B1's 0.265. Meta-stance separation IS a real structural-axis
+   direction; the lift is small (+0.010) but consistent with the
+   "half-strength commitment" interpretation. Delta cost is real
+   (-0.086 vs B1).
+3. **apophasis is midpack standalone, slightly negative composed.**
+   The via-negativa cosmologists (Eckhart, Pseudo-Dionysius) cite
+   less rarely than Sun Ra/Fuller; the enumeration mechanism is real
+   but doesn't dominate.
+4. **Neither broke the Pareto frontier.** Both new primitives
+   validated as composable; the empirical frontier still belongs to
+   the 16-primitive surface.
+
+**Doctrine after Round 10:**
+
+- The 18-primitive surface is now mapped at delta-ceiling +0.347
+  and emb_d-ceiling 0.317 on Sonnet.
+- New primitives can be added without disrupting the frontier; they
+  occupy real positions in design space without dominating any axis.
+- Adding more primitives at this point is unlikely to break either
+  ceiling -- the easy wins have been found.
+
 ### Updated Pareto frontier after Round 9
 
 - **Delta champion (unchanged):** antinomy +0.347 / 0.162
