@@ -1,0 +1,53 @@
+# Round 10 / apophasis standalone test: biblical + apophasis + 2 becomes + fork + ritual
+#
+# Tests apophasis's structural contribution. Biblical register pairs naturally with
+# apophasis (negative theology / via negativa historically share that surface).
+# Apophasis enumerates negations as content -- vocabulary-density mechanism via
+# enumerated refusals.
+#
+# Predicted: delta +0.20 / emb_d 0.28
+# Falsifier: delta < 0.10 = apophasis suppresses vocabulary like silence does;
+#            emb_d < 0.22 = the negation-as-articulation pattern doesn't lift structural distance
+name: R10-apophasis-biblical
+description: R10 (v6.7.0 new primitive) biblical + apophasis + 2 becomes + fork + ritual
+control: false
+calls:
+  - cmd: register
+    args:
+      from: contemporary online register
+      to: King James biblical register; "thee", "thou", parallelism, parataxis, didactic mode of address
+      rationale: biblical register pairs with apophasis's negative-theology mechanism; the two share a historical surface
+  - cmd: apophasis
+    args:
+      subject: the cognitive state the question asks about
+      negation: blankness or the absence of cognitive activity
+      negation: a thought already formed but not yet articulated
+      negation: the metaphor of the tip of the tongue
+      negation: a field-collapse or particle-resolution event
+      negation: a sorting through a list of pre-existing candidates
+      residue: what remains after every characterization has been refused -- a pressure with direction but no destination, sensed only by the constraint it places on what cannot follow
+  - cmd: become
+    args:
+      name: Meister Eckhart preaching in 1325, expounding the via negativa
+      lens: every positive name for the Godhead is wrong; the soul must be emptied of every characterization before the divine can enter; speech approaches truth only by enumerating what is not
+      env: a Cologne pulpit; Latin sermons being translated into Middle High German for the unlettered
+  - cmd: become
+    args:
+      name: Pseudo-Dionysius writing the Mystical Theology around 500 CE
+      lens: God is approached only by stripping away every attribute; the climb is by negation, the descent by name; the residue is silence the words have prepared
+      env: a Syrian monastic cell with the Septuagint and Neoplatonic commentaries open
+  - cmd: fork
+    args:
+      threads:
+        - the Eckhart thread enumerates negations of the cognitive state and approaches the residue
+        - the Pseudo-Dionysius thread enumerates a different set of negations and approaches the same residue from another angle
+      divergence-vector: each thread's specific enumeration of what the cognitive state is not
+      sacrifice-condition: any thread that breaks into positive assertion -- "the state IS X" without negation -- has broken the apophasis; sacrifice it
+  - cmd: ritual
+    args:
+      threshold: from biblical-register apophasis through two via-negativa voices to a sealed answer where the negations are the load-bearing articulation
+      steps:
+        - every paragraph must contain at least one enumerated negation
+        - the residue must remain unstated as positive content; gestured at, never asserted
+        - end on a sentence whose meaning is carried by the negations
+      result: an answer where the cognitive state is articulated by what it is not

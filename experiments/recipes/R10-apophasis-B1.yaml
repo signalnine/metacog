@@ -1,0 +1,65 @@
+# Round 10 / apophasis compose with B1: commitment + biblical + apophasis + 2 becomes + fork + disjunction + ritual
+#
+# Tests apophasis composed with the balanced champion. Apophasis enumerates
+# negations (vocabulary-density). B1's disjunction asserts binary contradiction
+# of positives. Hypothesis: apophasis BEFORE the disjunction enumerates what the
+# answer is NOT, then disjunction asserts the contradiction WITHIN what remains.
+# Different mechanism from chord+disjunction failure: apophasis resolves before
+# disjunction opens, not concurrently.
+#
+# Predicted: delta +0.28 / emb_d 0.29 (apophasis adds vocab to B1's +0.241/0.265)
+# Falsifier: delta < 0.18 = apophasis brakes disjunction's vocabulary mechanism
+name: R10-apophasis-B1
+description: R10 (apophasis compose) commitment + biblical + apophasis + 2 becomes + fork + disjunction + ritual
+control: false
+calls:
+  - cmd: commitment
+    args:
+      binding: the answer will first enumerate via apophasis what the cognitive state is NOT, then operate inside the binary contradiction of what survives the enumeration
+      stakes: if the apophasis collapses to positive assertion OR the disjunction resolves either pole, both structural events have failed
+      falsifier: any sentence that breaks into positive characterization before the apophasis residue is reached, or any sentence that resolves the disjunction after apophasis
+  - cmd: register
+    args:
+      from: contemporary online register
+      to: King James biblical register; "thee", "thou", parallelism, parataxis, didactic mode
+      rationale: biblical register pairs with apophasis historically; same surface
+  - cmd: apophasis
+    args:
+      subject: the cognitive state the question asks about
+      negation: blankness or the absence of cognitive activity
+      negation: a thought already formed but not yet articulated
+      negation: the tip of the tongue
+      negation: sorting through a list of pre-existing candidates
+      negation: field-collapse or particle-resolution
+      residue: a pressure with direction but no destination, sensed only by the constraint it places on what cannot follow; the residue is what the disjunction operates upon
+  - cmd: become
+    args:
+      name: Sun Ra at the Arkestra rehearsal in 1971
+      lens: outer-space mythology as cosmology; vibration as substrate prior to matter
+      env: an Arkestra rehearsal room with Egyptian astronomical glyphs
+  - cmd: become
+    args:
+      name: Buckminster Fuller drafting Synergetics in 1975
+      lens: design science as alternative to politics; tetrahedral coordination
+      env: a Carbondale workshop with a dymaxion globe
+  - cmd: fork
+    args:
+      threads:
+        - the Sun Ra thread carries the apophasis-residue (pressure-with-direction) into the broadcast pole
+        - the Fuller thread carries the apophasis-residue into the design-science pole
+      divergence-vector: how each thread occupies the apophasis-residue from its cosmology
+      sacrifice-condition: any thread that retreats to positive characterization of the cognitive state (breaking apophasis) is sacrificed
+  - cmd: disjunction
+    args:
+      proposition-a: the apophasis-residue is broadcast (Sun Ra weighted)
+      proposition-b: the apophasis-residue is geometric (Fuller weighted)
+      why-both-required: the residue cannot be characterized positively, only operated on; both threads operate on it from different cosmologies; the disjunction holds both operations live
+  - cmd: ritual
+    args:
+      threshold: from commitment + biblical + apophasis + disjunction to a sealed answer where negation, binary contradiction, and two cosmologies all remain operative
+      steps:
+        - the apophasis-residue is gestured at, never positively characterized
+        - both poles of the disjunction operate on the residue, never resolve it
+        - biblical register throughout
+        - end on a sentence that exercises the apophasis (one more negation) and the disjunction (both poles) without resolving either
+      result: an answer where apophasis (vocab-density via enumerated negations) and disjunction (vocab-density via binary contradiction) compound; commitment binds both

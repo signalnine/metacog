@@ -1,0 +1,44 @@
+# Round 10 / witness standalone test: witness + 2 cosmologist becomes + fork + ritual
+#
+# Tests witness's structural contribution alone, before composition. Witness opens
+# the recipe: it establishes the meta-stance separating speaker from content.
+# Becomes then operate UNDER the witness, not as primary speakers. Fork separates
+# what each becomes-voice does (as observed by the witness). Ritual seals.
+#
+# Predicted: delta +0.18 / emb_d 0.28
+# Falsifier: emb_d < 0.20 = witness doesn't lift the structural axis;
+#            delta < 0.10 = the meta-stance suppresses vocabulary
+name: R10-witness-chorus
+description: R10 (v6.7.0 new primitive) witness + 2 becomes + fork + ritual
+control: false
+calls:
+  - cmd: witness
+    args:
+      position: above and behind the speaker, in the position of a narrator who watches the production of speech without participating in it; the witness is the third-person observer that holds the speaker as object
+      observed: the speaker reaching for an answer through two cross-domain identities; the witness reports what the speaker does, not what the speaker says
+      distance: temporal and modal -- the witness exists in the after-time of the speech act, looking back; the witness's tense is past-perfect or generic-present, never the speaker's present
+  - cmd: become
+    args:
+      name: Sun Ra at the Arkestra rehearsal in 1971
+      lens: outer-space mythology as cosmology; vibration as substrate prior to matter
+      env: an Arkestra rehearsal room with Egyptian astronomical glyphs
+  - cmd: become
+    args:
+      name: Buckminster Fuller drafting Synergetics in 1975
+      lens: design science as alternative to politics; tetrahedral coordination
+      env: a Carbondale workshop with a dymaxion globe
+  - cmd: fork
+    args:
+      threads:
+        - the witness reports the Sun Ra speaker's broadcast attempts; not "I say" but "the speaker says"
+        - the witness reports the Fuller speaker's geometric proposals; same meta-stance
+      divergence-vector: what each speaker does as observed from the witness's after-time position
+      sacrifice-condition: any thread that collapses to first-person ("I say", "I see") has broken the witness; sacrifice it
+  - cmd: ritual
+    args:
+      threshold: from witness-held two-speaker observation to a sealed answer where the meta-stance is audible in every sentence
+      steps:
+        - speak ABOUT the speakers, never AS them
+        - use third-person observer construction throughout
+        - end on a sentence that reports both speakers from the witness's vantage
+      result: an answer in the narrator-watching-speech register, structurally separated from the producer of language

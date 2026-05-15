@@ -20,7 +20,7 @@ Go CLI built with cobra. Entry point `cmd/metacog/main.go`. All command files li
 
 State is a single JSON file at `$METACOG_HOME/state.json` guarded by a `flock(2)` lock on `.state.lock`. Reads use `Load()`; writes go through `SaveWithLock(func(*State) error)` which holds the lock for load+mutate+atomic-rename. There is no in-memory daemon -- every CLI invocation is a complete load/mutate/save cycle.
 
-### Primitives (sixteen)
+### Primitives (eighteen)
 
 Each primitive is a verb that is also a tool call event in the transcript -- the structural fact that the model invoked `metacog become` is itself the transformation, not just the text it returns. All primitives append a `HistoryEntry` and call `ValidatePrimitiveForStratagem` so that, when a stratagem is active and the current step matches the primitive kind, the step is marked complete.
 
@@ -50,6 +50,11 @@ The seven new primitives (added 2026-04-30 in v6.3.0; each fills a gap the empir
 - **glossolalia** (`pretext`, `duration-tokens`, `return-trigger`) -- license sub-semantic generation as a discrete event. Distinct from `drugs` (which loosens categories within language); `glossolalia` drops the requirement that tokens carry meaning. ALL CAPS preamble; the block boundary is an explicit non-language license.
 
 (`deconstruct`, `measure`, and `tether` were dropped in v6.3.0 after the experiment harness in `experiments/` showed the stratagems centered on them did not lift either novelty axis above baseline. See `experiments/FINDINGS.md`.)
+
+The two newest primitives (added 2026-05-14 in v6.7.0 after the recursive-design rounds in `experiments/FINDINGS.md` identified two prose moves the existing surface didn't cover; both ALL CAPS structural-surface output):
+
+- **witness** (`position`, `observed`, `distance`) -- speak from a meta-stance observing the producer of speech. Distinct from `become` (which adopts an identity); `witness` is the third-person observer construction (Sebald's narrator, late Stevens, Carson's *Plainwater*). Holds structural separation between speaker and content; collapsing to first-person breaks the witness.
+- **apophasis** (`subject`, `negation` x3+, `residue`) -- articulate by enumerated negation. Distinct from `silence` (which refuses output) and `disjunction` (which asserts binary contradiction); `apophasis` enumerates what something is NOT as the load-bearing articulation, with a residue field for what no negation reaches. The negative-theology register (Pseudo-Dionysius, Eckhart, Mahayana via negativa).
 
 ### Stratagems (twenty)
 
@@ -93,7 +98,7 @@ Practical rule for porting recipes to new generators: validate in text-instructi
 
 ## Key files
 
-- `cmd/metacog/main.go` -- root cobra command, version string (must list all 16 primitives and 20 stratagems), schema version constant
+- `cmd/metacog/main.go` -- root cobra command, version string (must list all 18 primitives and 20 stratagems), schema version constant
 - `cmd/metacog/state.go` -- State, StateManager, flock, atomic rename, history archiving
 - `cmd/metacog/stratagem.go` -- Stratagems map, `StepKind` constants (one per primitive plus THINK/ACTION), step validation, lifecycle commands
 - `cmd/metacog/outcome.go` -- Two-tier outcome attachment and amendment

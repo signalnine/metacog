@@ -27,6 +27,8 @@ const (
 	StepCommitment     StepKind = "commitment"
 	StepDisjunction    StepKind = "disjunction"
 	StepGlossolalia    StepKind = "glossolalia"
+	StepWitness        StepKind = "witness"
+	StepApophasis      StepKind = "apophasis"
 	StepThink          StepKind = "THINK"
 	StepAction         StepKind = "ACTION"
 )

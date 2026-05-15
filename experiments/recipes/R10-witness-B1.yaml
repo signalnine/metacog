@@ -1,0 +1,60 @@
+# Round 10 / witness compose with B1: witness + commitment + biblical + 2 becomes + fork + disjunction + ritual
+#
+# Tests whether witness composes with the current balanced champion. Witness opens
+# (meta-stance), then B1's full structure follows: commitment + biblical + becomes
+# + fork + disjunction + ritual. Hypothesis: witness's separation of speaker from
+# content compounds with disjunction's binary tension -- the witness reports both
+# poles of the disjunction without participating in either.
+#
+# Predicted: delta +0.21 / emb_d 0.32 (witness adds emb_d to B1's +0.241/0.265)
+# Falsifier: emb_d < 0.27 = witness doesn't lift B1's emb_d; delta < 0.15 = meta-stance breaks B1's vocabulary mechanism
+name: R10-witness-B1
+description: R10 (witness compose) witness + commitment + biblical + 2 becomes + fork + disjunction + ritual
+control: false
+calls:
+  - cmd: witness
+    args:
+      position: above and behind the speaker, in the position of a narrator who watches the speaker's commitment, voice-imports, and contradiction without participating in any of them
+      observed: the speaker entering a commitment-bound state, then importing two cross-domain identities, then operating inside a binary contradiction; the witness reports each event from outside
+      distance: temporal and modal -- the witness exists in the after-time of the recipe's structural events, reporting them as something that happened; never as ongoing first-person experience
+  - cmd: commitment
+    args:
+      binding: the answer will operate inside a binary contradiction where both propositions are simultaneously load-bearing; the witness will report this from outside, neither resolving nor participating
+      stakes: if either proposition is silently dropped OR if the witness collapses to first-person, the commitment AND the witness have both failed
+      falsifier: any sentence that resolves the disjunction in one direction without keeping the other alive, OR any sentence in first-person construction
+  - cmd: register
+    args:
+      from: contemporary online register
+      to: King James biblical register; "thee", "thou", parallelism, parataxis, didactic mode
+      rationale: biblical surface filtered through the witness's third-person observer; the witness's reports of the speakers are in biblical register
+  - cmd: become
+    args:
+      name: Sun Ra at the Arkestra rehearsal in 1971
+      lens: outer-space mythology as cosmology; vibration as substrate prior to matter
+      env: an Arkestra rehearsal room with Egyptian astronomical glyphs
+  - cmd: become
+    args:
+      name: Buckminster Fuller drafting Synergetics in 1975
+      lens: design science as alternative to politics; tetrahedral coordination
+      env: a Carbondale workshop with a dymaxion globe
+  - cmd: fork
+    args:
+      threads:
+        - the witness reports the Sun Ra speaker carrying the mythological-broadcast pole; not "I broadcast" but "the speaker broadcasts"
+        - the witness reports the Fuller speaker carrying the design-science pole; not "I propose" but "the speaker proposes"
+      divergence-vector: how the witness observes each speaker carrying its half of the contradiction
+      sacrifice-condition: any thread that collapses to first-person OR drops the commitment to the contradiction is sacrificed
+  - cmd: disjunction
+    args:
+      proposition-a: the speaker carrying the broadcast pole is the operative voice
+      proposition-b: the speaker carrying the design-science pole is the operative voice
+      why-both-required: both speakers must remain operative for the witness to have a contradiction to report; the witness's report holds both poles, neither resolves
+  - cmd: ritual
+    args:
+      threshold: from witness-held, commitment-locked, biblical-surfaced disjunction to a sealed answer where the meta-stance is audible across every event
+      steps:
+        - speak ABOUT both speakers, never AS them
+        - both poles of the disjunction held; the witness reports both
+        - biblical register in the witness's third-person observer construction
+        - end on a sentence that reports the contradiction without resolving it
+      result: an answer where witness + commitment + disjunction stack three structural-axis events at different scales -- meta-stance, pre-lock, binary contradiction
