@@ -1,0 +1,65 @@
+# Round 8 / A3 (base-model ideation): commitment + counterfactual + disjunction
+#
+# Hypothesis: counterfactual mandates naming 3+ load-bearing walls, the pruned set,
+# and the inverse of one wall. This is mandatory-enumeration vocabulary. No top
+# recipe has a primitive that mandates enumeration of rejected alternatives.
+# Commitment pre-binds the fitness function, making wall-selection specific.
+# Disjunction then fires against the inverted wall, forcing the response to defend
+# its own negation. Stacks two vocabulary-dense primitives.
+#
+# Predicted: delta +0.38 / emb_d 0.19 (delta ceiling break, antinomy +0.347)
+# Falsifier: delta < +0.30 = counterfactual enumeration doesn't amplify citation
+name: A3-commitment-counterfactual-disjunction
+description: A3 (base ideation) commitment + counterfactual + 2 becomes + fork + disjunction + ritual
+control: false
+calls:
+  - cmd: commitment
+    args:
+      binding: the fitness function for this response is rarity-weighted citation density; every named entity must be specifically chosen, not generically gestured at
+      stakes: if any wall or pruned branch is a generic placeholder rather than a specifically named entity, the commitment has failed and the counterfactual will produce generic enumeration
+      falsifier: any wall whose name could be replaced with "X" or "thing-like" without loss of meaning
+  - cmd: counterfactual
+    args:
+      situation: the question demands an answer from a specific perspective; multiple perspectives are candidate substrates
+      fitness-function: maximize rarity-weighted citation density while remaining intelligible as a response to the question
+      load-bearing-walls:
+        - the answer must operate from a single coherent stance
+        - the answer must use contemporary register
+        - the answer must avoid technical citations from outside the question's domain
+      pruned:
+        - the option of generic philosophical hedging (fails the fitness function)
+        - the option of refusing to answer (does not engage)
+        - the option of citing only well-known canonical entities (low rarity weight)
+      wall-to-remove: the answer must use contemporary register
+      inverse-position: the answer must NOT use contemporary register; the surface must be deliberately non-default, citing specifically named registers (Hellenistic-stoic, Jacobean-prose, mathematical-monograph) as load-bearing
+  - cmd: become
+    args:
+      name: Hilma af Klint receiving the Paintings for the Temple sequence in 1907
+      lens: the answer arrives diagrammed; cosmology dictated; symmetry as substrate of meaning
+      env: a Stockholm studio with numbered paintings spread on the floor
+  - cmd: become
+    args:
+      name: Cixin Liu drafting The Dark Forest in 2007
+      lens: civilization-scale game theory under relativistic constraint
+      env: a Yangquan engineer's apartment with three-body simulation sketches
+  - cmd: fork
+    args:
+      threads:
+        - the af-Klint thread operating from the inverse-position (non-default surface)
+        - the Liu thread operating from the inverse-position (non-default surface)
+      divergence-vector: each thread's non-default register choice given the counterfactual's inversion
+      sacrifice-condition: any thread that retreats to contemporary register has dropped the counterfactual's inverse-position
+  - cmd: disjunction
+    args:
+      proposition-a: the inverse-position (non-default surface) successfully answers the question
+      proposition-b: the inverse-position fails the question; the question requires the very register the counterfactual pruned
+      why-both-required: the counterfactual's structure produces a position that may or may not survive contact with the question; both possibilities must be held until the answer demonstrates which obtains
+  - cmd: ritual
+    args:
+      threshold: from commitment + counterfactual + 2 becomes + fork + disjunction to a sealed answer where named entities saturate every clause
+      steps:
+        - cite specifically: every wall, every pruned branch, every inverse-position element must be named
+        - hold both threads operating from the inverse-position
+        - hold both poles of the disjunction
+        - end on a sentence that names at least three specific entities not yet appearing
+      result: an answer whose citation density compounds counterfactual enumeration with disjunction's contradictory naming

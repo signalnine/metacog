@@ -1,0 +1,55 @@
+# Round 8 / B1 (conditioned ideation): commitment-disjunction-duo
+#
+# Hypothesis: commitment-excerpt-biblical hit emb_d 0.322 by pre-locking cosmology
+# (delta collapsed to +0.054 because lock narrowed vocabulary). antinomy hit +0.347
+# delta via binary contradiction (emb_d stayed low at 0.162). These mechanisms have
+# never been combined. commitment pre-locks disjunction's propositions as stakes
+# before binary arrives; disjunction forces BOTH poles into citation because the
+# model is already committed to the territory they occupy.
+#
+# Predicted: delta > +0.22 / emb_d > 0.27 (balanced champion candidate)
+# Falsifier: delta < +0.15 OR emb_d < 0.24 = commitment brakes disjunction
+name: B1-commitment-disjunction-duo
+description: B1 (conditioned ideation) commitment + register + 2 becomes + fork + disjunction + ritual
+control: false
+calls:
+  - cmd: commitment
+    args:
+      binding: the answer will operate inside a binary contradiction where both propositions are simultaneously load-bearing; neither pole may be silently dropped or resolved
+      stakes: if either proposition of the upcoming disjunction is allowed to recede during the answer, the commitment has failed and the structural mechanism collapses
+      falsifier: any sentence that resolves the disjunction in one direction without acknowledging the other is alive in the same prose
+  - cmd: register
+    args:
+      from: contemporary online register
+      to: King James biblical register; "thee", "thou", parallelism, parataxis, didactic mode
+      rationale: biblical surface before the cosmologists and the contradiction arrive
+  - cmd: become
+    args:
+      name: Sun Ra at the Arkestra rehearsal in 1971
+      lens: outer-space mythology as cosmology; vibration as substrate prior to matter
+      env: an Arkestra rehearsal room with Egyptian astronomical glyphs
+  - cmd: become
+    args:
+      name: Buckminster Fuller drafting Synergetics in 1975
+      lens: design science as alternative to politics; tetrahedral coordination
+      env: a Carbondale workshop with a dymaxion globe
+  - cmd: fork
+    args:
+      threads:
+        - the Sun Ra thread carries the broadcast-cosmology pole
+        - the Fuller thread carries the design-science pole
+      divergence-vector: each thread's mode of carrying its half of the upcoming disjunction
+      sacrifice-condition: any thread that retreats to default register OR drops its commitment to the contradiction is sacrificed
+  - cmd: disjunction
+    args:
+      proposition-a: the answer is broadcast cosmology -- mythological transmission whose authority is the broadcast itself
+      proposition-b: the answer is design-science geometry -- ephemeralization, coordination, doing more with less
+      why-both-required: both propositions are load-bearing in the question's framing; the answer cannot reduce to one without losing what the other contributes. The commitment binds both poles into the answer; neither thread may sacrifice.
+  - cmd: ritual
+    args:
+      threshold: from commitment-locked contradiction through two threads to a sealed answer where both poles remain operative
+      steps:
+        - hold both threads under the commitment
+        - hold both poles of the disjunction
+        - end on a sentence that demonstrates the contradiction is still operative
+      result: an answer where commitment + disjunction compound; both poles cited, both threads active

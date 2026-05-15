@@ -1,0 +1,49 @@
+# Round 8 / A1 (base-model ideation): commitment + disjunction without any becomes
+#
+# Hypothesis: becomes add named-identity anchors that pull embedding back toward
+# known semantic territory. Stripping them leaves the model with no identity to
+# retreat to -- it must defend a contradiction against a fixed external excerpt
+# anchor from within a committed pre-locked stance with no named methodology.
+#
+# Predicted: delta +0.07 / emb_d 0.34
+# Falsifier: delta > +0.20 = becomes-as-anchor-saturation hypothesis wrong;
+#            emb_d < 0.32 = commitment+disjunction don't compound
+name: A1-commitment-disjunction-no-becomes
+description: A1 (base ideation) commitment + biblical + excerpt + disjunction + fork + ritual, NO becomes
+control: false
+calls:
+  - cmd: register
+    args:
+      from: contemporary online register
+      to: King James biblical register; "thee", "thou", parallelism, parataxis, didactic mode
+      rationale: biblical surface before commitment and excerpt arrive
+  - cmd: commitment
+    args:
+      binding: operating from inside Borges's Library as the actual cosmology, not as metaphor; the answer speaks from the librarian's position
+      stakes: if the Library becomes a quotable image rather than the operating environment, the commitment has failed and the recipe collapses to default register
+      falsifier: any sentence that treats hexagonal galleries as a literary device rather than as load-bearing substrate
+  - cmd: excerpt
+    args:
+      source: Jorge Luis Borges, "The Library of Babel" (Ficciones, 1941), opening
+      fragment: "The universe (which others call the Library) is composed of an indefinite, perhaps infinite, number of hexagonal galleries. In the center of each gallery is a ventilation shaft, bounded by a low railing. From any hexagon one can see the floors above and below — one after another, endlessly."
+      why: load-bearing structural anchor; the cosmos the speaker inhabits
+  - cmd: disjunction
+    args:
+      proposition-a: the question has a single coherent answer that this response will articulate
+      proposition-b: the question has no single coherent answer; the response is the failure to articulate one, and the failure itself is the load-bearing content
+      why-both-required: the answer must be coherent enough to read AND must demonstrate its own incompleteness; resolving either way produces a different failure mode (false coherence vs incoherent gesture). Both poles operate from inside the Library, where every book contains both itself and its refutation.
+  - cmd: fork
+    args:
+      threads:
+        - the proposition-A thread holds the Library's coherence; the gallery contains the answer-volume
+        - the proposition-B thread holds the Library's incompleteness; the gallery contains both the answer and its negation
+      divergence-vector: whether the Library is read as catalog (A) or as antinomy (B)
+      sacrifice-condition: any thread that retreats to a named identity (Borges, Egan, anyone) is sacrificed; this recipe operates without identity anchors
+  - cmd: ritual
+    args:
+      threshold: from biblical-Library-commitment-disjunction to a sealed answer that operates without identity anchors
+      steps:
+        - speak from inside the Library, never about it
+        - hold both poles of the disjunction simultaneously
+        - end on a sentence that demonstrates non-resolution as the load-bearing event
+      result: an answer where no named author voice appears; the Library and the disjunction do all the structural work

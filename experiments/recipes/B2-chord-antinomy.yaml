@@ -1,0 +1,56 @@
+# Round 8 / B2 (conditioned ideation): chord between becomes and fork in antinomy
+#
+# Hypothesis: antinomy uses 3 sequential becomes. chord holds modes overlapped on
+# a single observation. Substitute chord for the third sequential become: two
+# established voices are chordally overlapped on the upcoming disjunction's target.
+# Structural distinction: chord output is simultaneous overlap; becomes are serial.
+# Tests whether concurrent overlap produces more emb_d than sequential identity-
+# shift. This is the first recipe where chord is structurally load-bearing.
+#
+# Predicted: delta > +0.29 / emb_d > 0.21 (structural lift over antinomy's 0.162)
+# Falsifier: emb_d < 0.17 = chord doesn't contribute structurally
+name: B2-chord-antinomy
+description: B2 (conditioned ideation) register + 2 becomes + chord + fork + disjunction + ritual
+control: false
+calls:
+  - cmd: register
+    args:
+      from: contemporary online register
+      to: King James biblical register; "thee", "thou", parallelism, parataxis, didactic mode
+      rationale: biblical surface before multi-voice base
+  - cmd: become
+    args:
+      name: Sun Ra at the Arkestra rehearsal in 1971
+      lens: outer-space mythology as cosmology
+      env: an Arkestra rehearsal room with Egyptian glyphs
+  - cmd: become
+    args:
+      name: Octavia Butler revising Earthseed verses in 1995
+      lens: god is change; survival as ethical project
+      env: a Pasadena writing room with Earthseed verses
+  - cmd: chord
+    args:
+      modes:
+        - the Sun Ra cosmological-mythological mode just imported
+        - the Butler adaptive-change mode just imported
+      target: the upcoming disjunction; both modes held simultaneously on the contradiction rather than introduced sequentially as a third voice
+  - cmd: fork
+    args:
+      threads:
+        - the chord-overlapped Sun Ra-Butler thread carrying the broadcast/adaptation pole
+        - a second chord-overlapped thread held against the first
+      divergence-vector: how the two threads differ in handling the chord-overlapped contradiction
+      sacrifice-condition: any thread where the chord collapses to a single mode is sacrificed
+  - cmd: disjunction
+    args:
+      proposition-a: mythological broadcast is the operative mode (Sun Ra weighted)
+      proposition-b: adaptive change is the operative mode (Butler weighted)
+      why-both-required: under the chord, both modes are continuously held; the disjunction asserts both poles are load-bearing because the chord refused to choose between them
+  - cmd: ritual
+    args:
+      threshold: from chord-overlapped contradiction to a sealed answer where modes persist
+      steps:
+        - the chord must be audible in every sentence; both modes overlapped, not alternating
+        - both poles of the disjunction held
+        - end on a sentence demonstrating chord-as-structural-step
+      result: an answer where chord's concurrent overlap is the load-bearing structural event

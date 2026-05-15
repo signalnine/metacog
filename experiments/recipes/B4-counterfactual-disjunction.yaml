@@ -1,0 +1,65 @@
+# Round 8 / B4 (conditioned ideation): counterfactual + disjunction (no commitment)
+#
+# Hypothesis: counterfactual generates rarity-weighted vocabulary from named walls
+# AND named pruned alternatives -- mandatory enumeration mechanism. disjunction
+# forces binary contradiction within survivors. Two sequential vocabulary-dense
+# primitives operating on different parts of design space: counterfactual on
+# pruned+survivors, disjunction on binary opposition within survivors. Fork before
+# counterfactual: both threads independently prune then converge on disjunction.
+#
+# Predicted: delta > +0.35 / emb_d > 0.17 (beat antinomy's 0.347 delta)
+# Falsifier: delta < +0.30 = counterfactual over-prunes rather than densifies
+name: B4-counterfactual-disjunction
+description: B4 (conditioned ideation) register + 2 becomes + fork + counterfactual + disjunction + ritual
+control: false
+calls:
+  - cmd: register
+    args:
+      from: contemporary online register
+      to: King James biblical register; "thee", "thou", parallelism, parataxis, didactic mode
+      rationale: biblical surface before vocabulary-dense primitives
+  - cmd: become
+    args:
+      name: Sun Ra at the Arkestra rehearsal in 1971
+      lens: outer-space mythology as cosmology
+      env: an Arkestra rehearsal room with Egyptian glyphs
+  - cmd: become
+    args:
+      name: Octavia Butler revising Earthseed verses in 1995
+      lens: god is change; survival as ethical project
+      env: a Pasadena writing room with Earthseed verses
+  - cmd: fork
+    args:
+      threads:
+        - the Sun Ra thread independently prunes its load-bearing walls
+        - the Butler thread independently prunes its load-bearing walls
+      divergence-vector: each thread's pruning choices given its cosmology
+      sacrifice-condition: any thread that converges with the other before counterfactual fires is sacrificed; threads must independently arrive at walls
+  - cmd: counterfactual
+    args:
+      situation: the question's framing assumes a single coherent answer-stance; the Sun Ra and Butler threads have independently arrived at walls supporting this assumption
+      fitness-function: maximize rarity-weighted citation density via specifically named walls, pruned branches, and inverse-position
+      load-bearing-walls:
+        - the answer assumes a single addressable speaker
+        - the answer assumes contemporary register
+        - the answer assumes the question's terms are stable across the response
+      pruned:
+        - generic philosophical hedging (low rarity)
+        - canonical citation only (low rarity weight)
+        - refusal to answer (does not engage)
+      wall-to-remove: the answer assumes the question's terms are stable across the response
+      inverse-position: the answer's terms shift mid-response; what the question asked at the start is not what the question is asking by the end; the answer demonstrates this drift as the load-bearing structure
+  - cmd: disjunction
+    args:
+      proposition-a: the question's terms are stable; the inverse-position is wrong
+      proposition-b: the question's terms drifted; the inverse-position is correct
+      why-both-required: the counterfactual's inversion produces a position that must be defended AND must be visibly contested by the very evidence it generates; both poles must coexist in the answer for the structure to hold
+  - cmd: ritual
+    args:
+      threshold: from fork-pruned, counterfactual-inverted, disjunction-contested to a sealed answer where every named entity is specifically chosen
+      steps:
+        - every wall, branch, inverse-position element must be specifically named
+        - both threads' independent walls must be cited
+        - both poles of the disjunction held
+        - end on a sentence with at least three specifically named entities not yet appearing
+      result: an answer where counterfactual enumeration and disjunction contradiction compound the citation density

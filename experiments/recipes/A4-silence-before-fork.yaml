@@ -1,0 +1,55 @@
+# Round 8 / A4 (base-model ideation): silence before fork
+#
+# Hypothesis: silence-double-excerpt used silence before excerpts (silence creates
+# gap, excerpts fill it). Here: no excerpts, silence before fork. Fork threads
+# operate with reference to something articulated (in silence's `about` field) but
+# then structurally voided. Both threads must name the absent proposition
+# explicitly to maintain the structural gap -- a citation-density mechanism.
+# Disjunction then compounds it.
+#
+# Predicted: delta +0.23 / emb_d 0.28 (balanced Pareto: beats silence-double on delta)
+# Falsifier: delta < +0.10 = silence-before-fork kills vocabulary
+name: A4-silence-before-fork
+description: A4 (base ideation) biblical + 2 becomes + silence + fork + disjunction + ritual
+control: false
+calls:
+  - cmd: register
+    args:
+      from: contemporary online register
+      to: King James biblical register; "thee", "thou", parallelism, parataxis, didactic mode
+      rationale: biblical surface before becomes arrive
+  - cmd: become
+    args:
+      name: Sun Ra at the Arkestra rehearsal in 1971
+      lens: outer-space mythology as cosmology; vibration as substrate prior to matter
+      env: an Arkestra rehearsal room with a chalkboard of Egyptian astronomical glyphs
+  - cmd: become
+    args:
+      name: Octavia Butler revising Earthseed verses in 1995
+      lens: god is change; survival as the ethical project
+      env: a Pasadena writing room with Earthseed verses tacked over the desk
+  - cmd: silence
+    args:
+      about: the question's framing assumption that there is a single addressable speaker producing the answer
+      reason: structural voiding of the assumption before fork opens parallel threads; the threads will have to operate with reference to this voided assumption without articulating it
+      duration: long enough that the assumption is structurally absent when fork begins; the threads must name what they cannot articulate
+  - cmd: fork
+    args:
+      threads:
+        - the Sun Ra thread operating in the structural absence of "single addressable speaker"
+        - the Butler thread operating in the same structural absence
+      divergence-vector: how each thread references the voided assumption without articulating it; the threads must name the absence explicitly as the load-bearing structure
+      sacrifice-condition: any thread that re-articulates the voided assumption ("the speaker says X") has broken the silence; sacrifice it
+  - cmd: disjunction
+    args:
+      proposition-a: the answer is being given by a single speaker whose existence the silence voided
+      proposition-b: the answer is being given by no speaker, the silence having voided the speaker entirely
+      why-both-required: the silence created a structural void around the speaker; the disjunction asserts both that the speaker exists (the answer is happening) and that the speaker does not (the silence's voiding is load-bearing). Both poles must be true for the recipe to operate.
+  - cmd: ritual
+    args:
+      threshold: from silence-voided-speaker through two threads and binary contradiction to a sealed answer
+      steps:
+        - cite the voided assumption explicitly in each thread without re-articulating it
+        - hold both poles of the disjunction
+        - end on a sentence that names the absent speaker by referring to the silence
+      result: an answer where the structural void created by silence is named throughout

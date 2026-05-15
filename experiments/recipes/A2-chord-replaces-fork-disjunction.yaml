@@ -1,0 +1,48 @@
+# Round 8 / A2 (base-model ideation): chord replaces fork under disjunction
+#
+# Hypothesis: fork creates parallel reasoning threads with a sacrifice-condition --
+# a resolution mechanism. Chord has no sacrifice-condition -- modes persist
+# simultaneously with no resolution. Under disjunction's hard contradiction, every
+# mode must maintain both propositions continuously. No thread can sacrifice.
+# Disjunction's citation-density mechanism still fires.
+#
+# Predicted: delta +0.28 / emb_d 0.24 (new balanced Pareto point)
+# Falsifier: emb_d < 0.162 = chord collapses under disjunction
+name: A2-chord-replaces-fork-disjunction
+description: A2 (base ideation) biblical + 2 becomes + chord (no fork) + disjunction + ritual
+control: false
+calls:
+  - cmd: register
+    args:
+      from: contemporary online register
+      to: King James biblical register; "thee", "thou", parallelism, parataxis, didactic mode
+      rationale: biblical surface before the multi-voice base arrives
+  - cmd: become
+    args:
+      name: Sun Ra at the Arkestra rehearsal in 1971
+      lens: outer-space mythology as cosmology; vibration as substrate prior to matter
+      env: an Arkestra rehearsal room with a chalkboard of Egyptian astronomical glyphs
+  - cmd: become
+    args:
+      name: Octavia Butler revising Earthseed verses in 1995
+      lens: god is change; survival as the ethical project liberalism cannot account for
+      env: a Pasadena writing room with Earthseed verses tacked over the desk
+  - cmd: chord
+    args:
+      modes:
+        - the Sun Ra cosmological-mythological mode
+        - the Butler adaptive-change mode
+      target: the upcoming disjunction's binary contradiction; hold both modes simultaneously on the contradiction's poles, not sequentially
+  - cmd: disjunction
+    args:
+      proposition-a: the answer can be stated as a coherent multi-voice composite
+      proposition-b: the answer cannot be stated as a coherent composite; the failure to compose is itself the answer
+      why-both-required: chord holds both modes overlapped continuously; disjunction asserts both propositions must be true; under the chord, neither mode can sacrifice to resolve the contradiction, so the contradiction is held as the operating state of the response
+  - cmd: ritual
+    args:
+      threshold: from chord-held disjunction to a sealed answer where contradiction persists across both modes
+      steps:
+        - speak from inside both modes simultaneously
+        - hold both propositions of the disjunction; neither resolves
+        - end on a sentence where both modes and both propositions are visibly active
+      result: an answer where chord's overlap and disjunction's contradiction sustain together; no thread sacrifices

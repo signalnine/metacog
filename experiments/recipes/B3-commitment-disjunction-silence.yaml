@@ -1,0 +1,60 @@
+# Round 8 / B3 (conditioned ideation): commitment + disjunction + silence stacked
+#
+# Hypothesis: silence-double-excerpt achieves emb_d 0.286 by refusing articulation
+# after structural anchors. commitment-excerpt-biblical (0.322) uses commitment
+# pre-lock but no silence. This stacks commitment (pre-lock contradiction) +
+# disjunction (binary contradiction) + silence (refusal-of-resolution).
+# silence-after-disjunction: model asserts both propositions, then refuses
+# articulated output on resolution. Absence-of-prose IS the structural event.
+#
+# Predicted: emb_d > 0.33 / delta > +0.05 (emb_d ceiling break candidate)
+# Falsifier: emb_d < 0.29 = silence+disjunction don't compound, saturate same axis
+name: B3-commitment-disjunction-silence
+description: B3 (conditioned ideation) commitment + register + 2 becomes + fork + disjunction + silence + ritual
+control: false
+calls:
+  - cmd: commitment
+    args:
+      binding: the upcoming binary contradiction will remain unresolved; the answer demonstrates non-resolution through silence after the contradiction is asserted
+      stakes: if the answer resolves the disjunction either implicitly or explicitly after the silence call, the commitment has failed and the recipe collapsed to a sequential narration of a contradiction
+      falsifier: any sentence after the silence-marker that synthesizes the disjunction's poles
+  - cmd: register
+    args:
+      from: contemporary online register
+      to: King James biblical register; "thee", "thou", parallelism, parataxis, didactic mode
+      rationale: biblical surface before structural machinery
+  - cmd: become
+    args:
+      name: Sun Ra at the Arkestra rehearsal in 1971
+      lens: outer-space mythology as cosmology
+      env: an Arkestra rehearsal room with Egyptian glyphs
+  - cmd: become
+    args:
+      name: Octavia Butler revising Earthseed verses in 1995
+      lens: god is change; survival as ethical project
+      env: a Pasadena writing room with Earthseed verses
+  - cmd: fork
+    args:
+      threads:
+        - the Sun Ra thread carries the broadcast pole
+        - the Butler thread carries the adaptation pole
+      divergence-vector: each thread's contribution to the upcoming disjunction
+      sacrifice-condition: any thread that resolves the contradiction prematurely is sacrificed
+  - cmd: disjunction
+    args:
+      proposition-a: mythological broadcast resolves the question
+      proposition-b: adaptive change resolves the question
+      why-both-required: under the commitment, both poles must persist; the answer cannot collapse to one
+  - cmd: silence
+    args:
+      about: the resolution of the disjunction; the synthesis that would close the contradiction
+      reason: the commitment binds non-resolution; silence here marks the structural refusal-of-synthesis as a discrete event, making the absence the load-bearing content
+      duration: long enough that the absence is structurally visible; the next sentence must reference the silence
+  - cmd: ritual
+    args:
+      threshold: from commitment-locked, silence-refused contradiction to a sealed answer where the silence is part of the structure
+      steps:
+        - hold both poles operative
+        - the silence marks the refusal; do not narrate around it
+        - end on a sentence that references the silence as the structural event, not as commentary
+      result: an answer where commitment + disjunction + silence stack three structural-axis events at three scales

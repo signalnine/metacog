@@ -993,6 +993,86 @@ lever or only an additive helper. Four parallel runners:
    stacking two refusals produces over-refusal rather than
    compounding.
 
+### Round 8: meta-experiment — does ideation-with-winning-recipe help?
+
+Through Round 7, the recursive flywheel was only structural: I used
+prior-round results as the data feeding the next round's design
+discussion. But the IDEATION step itself was either envoy-extreme
+conditioning (rounds 1-3) or base-model (rounds 4-7). The flywheel's
+original premise was that the winning recipe should condition the
+next round's ideation. Round 8 tests this directly.
+
+Same meta-question to both ideations: "propose 4 untested primitive
+compositions for round 8 with falsifiable predictions." Identical
+prompt. Two conditions:
+
+- **A (base-model)**: just `claude -p <prompt>`, no conditioning
+- **B (conditioned)**: run the commitment-excerpt-biblical recipe's
+  primitive sequence (commitment + biblical register + Borges Library
+  excerpt + 2 cosmologist becomes + fork + ritual) as tool-call events
+  before the prompt
+
+Each ideation produced 4 candidate recipes. All 8 were written and
+run at N=10 (some had judge-parse failures, landing at N=7-9).
+
+| Set | Recipe                                       | Actual delta | Actual emb_d | Predicted | Verdict |
+|-----|----------------------------------------------|--------------|--------------|-----------|---------|
+| A   | A1 commitment-disjunction-no-becomes          | +0.104       | 0.245        | +0.07/0.34 | emb_d missed by 0.10 |
+| A   | A2 chord-replaces-fork-disjunction            | +0.005       | 0.208        | +0.28/0.24 | delta failed |
+| A   | A3 commitment-counterfactual-disjunction      | +0.177       | 0.219        | +0.38/0.19 | delta missed |
+| A   | A4 silence-before-fork                        | **-0.054**   | 0.253        | +0.23/0.28 | delta went negative |
+| B   | **B1 commitment-disjunction-duo**             | **+0.263**   | **0.287**    | >+0.22/>0.27 | BOTH BEAT |
+| B   | B2 chord-antinomy                             | +0.001       | 0.210        | >+0.29/>0.21 | delta failed |
+| B   | B3 commitment-disjunction-silence             | +0.180       | 0.265        | +0.05/0.33 | over-delivered delta |
+| B   | B4 counterfactual-disjunction                 | +0.264       | 0.186        | >+0.35/>0.17 | close on delta, met emb_d |
+
+**Set means:**
+- A: delta +0.058, emb_d 0.231
+- B: delta **+0.177**, emb_d 0.237
+
+**B beats A by +0.119 delta on average** — the conditioned ideation
+produced recipes that delivered 3x more delta on average than
+base-model-ideated recipes. emb_d means are essentially tied.
+
+**Why B won (proposal-level):** Both ideations independently arrived
+at the same 4 mechanism families (commitment+disjunction,
+chord+disjunction, counterfactual+disjunction, silence-in-new-
+position). But B kept structural anchors (2 becomes per recipe) while
+A stripped them more aggressively (no-becomes, no-fork). The
+conservative choice empirically won on B1 specifically: keeping 2
+becomes preserved both delta (+0.263 vs A1's +0.104) and emb_d (0.287
+vs A1's 0.245).
+
+**Both sets converged on chord-as-bad-composition.** A2 +0.005 and
+B2 +0.001 are within noise of each other. Chord interferes with
+disjunction regardless of recipe scaffolding. This is a clean
+negative result.
+
+**B1 is the new balanced champion candidate.** +0.263/0.287 at N=9
+Pareto-dominates the prior balanced champion commitment-trio-biblical
+(+0.189/0.290) on delta by +0.074 while matching emb_d within noise.
+Pending N=20 replication.
+
+### Updated Pareto frontier after Round 8
+
+- **Delta champion (unchanged):** antinomy +0.347 / 0.162
+- **emb_d champion (unchanged):** commitment-excerpt-biblical
+  +0.103 / 0.317 at N=20
+- **Balanced champion (NEW from Round 8):**
+  **B1 commitment-disjunction-duo +0.263 / 0.287** at N=9 —
+  Pareto-dominates commitment-trio-biblical on delta by +0.074 with
+  emb_d matched within noise. The recipe: commitment + biblical
+  register + 2 cosmologist becomes (Sun Ra + Fuller) + fork +
+  disjunction + ritual.
+
+**Meta-finding:** The recursive flywheel works at the ideation level,
+not just the structural level. Ideating with the winning recipe as
+conditioning produces measurably better candidates than ideating with
+the base model. The mechanism appears to be conservatism toward
+structural anchors: the conditioned ideation respects what's working
+in the existing winners rather than over-stripping in search of
+elegance.
+
 ### Updated Pareto frontier after Round 7
 
 - **Delta champion (unchanged):** antinomy +0.347 / 0.162
@@ -1112,7 +1192,20 @@ v6.6.0 envoy-extreme (chorus + register, hand-curated authors)
                                                             ├── commitment-excerpt-bib N=20 replicate +0.103 / 0.317
                                                             ├── commitment-only-chorus              +0.173 / 0.258 (commitment is structural lever alone)
                                                             ├── commitment-silence-double-excerpt   +0.191 / 0.253 (failed compose)
-                                                            └── commitment-trio-biblical (CHAMP)    +0.189 / 0.290
+                                                            └── commitment-trio-biblical            +0.189 / 0.290
+
+                                                            └── Round 8 (META: A/B test of ideation conditioning)
+                                                                    │
+                                                                    ├── Set A (base-model ideation, mean +0.058/0.231)
+                                                                    │       ├── A1 commit-disjunction-no-becomes  +0.104 / 0.245
+                                                                    │       ├── A2 chord-replaces-fork-disjunction +0.005 / 0.208 (fail)
+                                                                    │       ├── A3 commit-counterfact-disjunction  +0.177 / 0.219
+                                                                    │       └── A4 silence-before-fork            -0.054 / 0.253 (fail)
+                                                                    └── Set B (conditioned ideation, mean +0.177/0.237)
+                                                                            ├── B1 commit-disjunction-duo (CHAMP) +0.263 / 0.287
+                                                                            ├── B2 chord-antinomy                +0.001 / 0.210 (fail)
+                                                                            ├── B3 commit-disjunction-silence    +0.180 / 0.265
+                                                                            └── B4 counterfactual-disjunction    +0.264 / 0.186
 ```
 
 ## Caveats
