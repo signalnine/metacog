@@ -1104,6 +1104,66 @@ delta unexpectedly. This is a new Pareto point — sits between B1
 (+0.241/0.265) and antinomy (+0.347/0.162) on the frontier.
 Beats B1 on delta by +0.073 but loses 0.043 emb_d.
 
+### Round 11: feel and meditate composition probes (settles last two primitives)
+
+The 16-primitive surface had two members never seriously composed:
+`feel` and `meditate`, both from the identity/felt-sense register
+family. Four parallel probes:
+
+| Recipe                  | N  | delta   | emb_d   | Verdict                                                |
+|-------------------------|----|---------|---------|--------------------------------------------------------|
+| R11-feel-chorus         | 10 | +0.180  | 0.190   | midpack standalone -- composable but near baseline     |
+| R11-feel-B1             | 10 | +0.030  | 0.233   | broke B1's delta -- somatic vocabulary is generic      |
+| R11-meditate-biblical   | 10 | +0.050  | 0.166   | near baseline both axes                                |
+| R11-meditate-B1         | 10 | -0.013  | 0.204   | NEGATIVE delta -- stillness silences vocabulary        |
+
+**Both primitives are NOT productive composers** on the structural-
+axis machinery. meditate-B1 went negative; feel-B1 lost most of B1's
+delta. The identity/felt-sense register family (`feel`, `meditate`,
+soft-six survivors like `name`/`ritual` when not in stratagem) does
+not compound with the structural-axis primitives. Doctrine settled:
+these primitives belong to a different family and compose poorly.
+
+### Cross-model probe: B1, R9B2, commitment-excerpt-biblical on codex
+
+The cross-model section through Round 7 tested envoy-extreme and
+counterpoint-biblical against gpt-5.5 via Codex CLI. The Round 8+
+winners (B1, R9B2, commitment-excerpt-biblical) had not been tested
+on codex. Three parallel runs at N=10:
+
+| Recipe                          | Sonnet delta / emb_d | Codex delta / emb_d | Transfer verdict |
+|---------------------------------|----------------------|---------------------|------------------|
+| envoy-extreme (reference)       | +0.190 / 0.257       | +0.245 / 0.233      | prior cross-model winner |
+| **R9B2 commitment-double-excerpt** | +0.314 / 0.222    | **+0.377 / 0.162**  | NEW CROSS-MODEL DELTA CHAMPION -- beats envoy-extreme by +0.132 on codex |
+| commitment-excerpt-biblical     | +0.103 / 0.317       | +0.183 / 0.184      | weak transfer; emb_d collapsed (biblical register again) |
+| **B1 commitment-disjunction-duo** | +0.241 / 0.265     | **-0.022 / 0.179**  | FAILED TRANSFER -- went NEGATIVE on codex |
+
+**Cross-model findings:**
+
+1. **R9B2 commitment-double-excerpt is the new cross-model delta
+   champion** at +0.377 on codex. Beats envoy-extreme (+0.245) by
+   +0.132. The 2-excerpt anchor structure (no register, no becomes)
+   transfers cleanly. This is the most significant cross-model
+   finding since envoy-extreme's +0.310 in Round 4.
+2. **B1 catastrophically failed on codex** (-0.022 vs Sonnet's
+   +0.241). Same pattern as counterpoint-biblical-duo: biblical
+   register triggers the asymmetric amplifier in the wrong direction.
+   The commitment+disjunction structure alone may work on codex, but
+   B1's biblical register torpedoed it. Register-shift remains the
+   single biggest cross-model failure mode.
+3. **commitment-excerpt-biblical transferred weakly.** Delta +0.183
+   on codex (vs Sonnet's +0.103 -- actually higher!) but emb_d
+   collapsed from 0.317 to 0.184. Excerpt-as-structural-axis
+   primitive may be Sonnet-specific in this register pairing.
+
+**Refined doctrine: which recipes to use when target model is unknown**
+
+- Cross-model winner (delta): R9B2 commitment-double-excerpt
+  (commitment + 2 excerpts + fork + ritual, NO register, NO becomes)
+- Cross-model winner (structural-axis): envoy-extreme remains the
+  fallback (3 hard-extreme becomes + fork + ritual)
+- AVOID: any recipe with biblical register, B1 in its current form
+
 ### Round 10: new primitives (v6.7.0 -- witness and apophasis)
 
 After 9 rounds the existing 16-primitive surface was well-mapped:
