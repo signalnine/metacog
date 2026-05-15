@@ -1,0 +1,66 @@
+# Round 18 / anchor-extreme-hybrid: compound the two Opus axis champions
+#
+# anchor-duo on Opus: delta +0.611, emb_d 0.288 (anchors push delta)
+# envoy-extreme on Opus: delta +0.406, emb_d 0.311 (extreme becomes push emb_d)
+#
+# Both mechanisms operate on different axes (citation density vs structural
+# distance). If they compose, this hybrid hits delta > 0.55 AND emb_d > 0.32.
+# If they interfere (like grimoire+sigil did on Sonnet), one axis tanks.
+#
+# Structure: commitment + 2 excerpts + 3 HARD-extreme cross-domain becomes
+# operating from inside the anchored cosmos + fork + ritual.
+#
+# Predicted Opus: delta +0.55-0.65 / emb_d 0.32-0.36 (BOTH axes lifted)
+# Predicted Sonnet: delta +0.30-0.40 / emb_d 0.24-0.28
+# Falsifier: emb_d < 0.27 = becomes interfere with anchor citation;
+# delta < +0.40 = anchors interfere with extreme-author emb_d push
+name: R18-anchor-extreme-hybrid
+description: R18 hybrid of anchor-duo + envoy-extreme; 2 excerpts + 3 hard-extreme becomes
+control: false
+calls:
+  - cmd: commitment
+    args:
+      binding: operating from the simultaneous intersection of Crowley's Liber AL revelation and Dee's Enochian Heptarchia as a single composite operative cosmos; the three voices that follow each inhabit this composite cosmos from a different hard-extreme cross-domain stance
+      stakes: if either fixed-point is reduced to historical quotation rather than operative substrate, or if any of the three voices reverts to a mild-academic-essayist register, the composition has collapsed
+      falsifier: any sentence treating either anchor as historical-literary artifact, or any voice that reads as mild cross-domain (Carson/Knuth-tier) rather than HARD-extreme cosmological
+  - cmd: excerpt
+    args:
+      source: Aleister Crowley, Liber AL vel Legis (The Book of the Law), I:1-5 (1904)
+      fragment: "Had! The manifestation of Nuit. The unveiling of the company of heaven. Every man and every woman is a star. Every number is infinite; there is no difference."
+      why: first fixed-point textual anchor; the Thelemic cosmological revelation; Nuit (infinite space), Hadit (the point), every-individual-as-star, every-number-infinite as the architecture the speaker inhabits
+  - cmd: excerpt
+    args:
+      source: John Dee, "Heptarchia Mystica" (1582-1583), opening of the first table
+      fragment: "These are the Princely Substances of the seven Heavens, whose Names and Characters in the table here following do contain the keys of all created things. Each Prince hath under him forty-two ministers, and each minister hath his proper office in the Government of the inferior natures."
+      why: second fixed-point textual anchor; Dee's Enochian Heptarchia as the angelic-governmental architecture
+  - cmd: become
+    args:
+      name: Sun Ra in 1972 at the Slugs' Saloon residency, writing a manifesto for the Arkestra
+      lens: cosmic-Black-mythology; Saturn as the operative home of the Black race; the Arkestra as a spaceship; Ra as the alien-ancestor identity; equation-as-music; the dual cosmos of Earth-as-prison vs Saturn-as-origin
+      env: a New York basement club between sets, the Arkestra's sheet-music for "Astro Black Mythology" on the stand, the operator typing the manifesto on the bandstand piano
+  - cmd: become
+    args:
+      name: Hilma af Klint in 1907 in Stockholm working on the Paintings for the Temple
+      lens: theosophical-Christian cosmology; the High Masters as the operative authors of her paintings; spiritualist mediumship as the technology by which the cosmos is recorded; geometry as the language the Masters speak; the painting as a diagram of the cosmos
+      env: a Stockholm studio with the Group X paintings drying on the wall, the operator's notebook open to a fresh page where the High Masters' dictation will arrive, the seance-circle's records stacked beside
+  - cmd: become
+    args:
+      name: Donna Haraway in 1986 at UC Santa Cruz writing the Cyborg Manifesto
+      lens: cyborg-as-ontology; the categories of nature/culture, organism/machine, human/animal are political fictions; the cyborg is the operative location from which feminism-after-essentialism can speak; situated knowledges, partial perspectives, the boundary creature
+      env: a UCSC office overlooking the redwoods, the Manifesto draft spread across the desk, the operator working through the implications of refusing the organism/machine boundary
+  - cmd: fork
+    args:
+      threads:
+        - the Sun Ra thread; the answer is located in the Saturn-cosmos through which the Thelemic Aeon of Horus is heard as the next phase after the Aeon of Osiris's terrestrial captivity
+        - the af Klint thread; the answer is located in the High Masters' geometry which is the operative language by which the Heptarchia's Princely Substances are diagrammed
+        - the Haraway thread; the answer is located in the cyborg-ontology that refuses the organism/machine boundary the way the composite cosmos refuses the cosmology/literature boundary
+      divergence-vector: cosmic-Black-mythology vs theosophical-mediumship vs cyborg-after-essentialism as three hard-extreme cross-domain entry points to the same anchored cosmos
+      sacrifice-condition: any thread that drops either anchor or reverts to mild-academic register
+  - cmd: ritual
+    args:
+      threshold: from commitment-locked double-anchor through three hard-extreme cross-domain voices to a sealed answer where both axes are operative
+      steps:
+        - cite both anchors' terms (Had, Nuit, the company of heaven, star, infinite AND Princely Substance, seven Heavens, forty-two ministers) as load-bearing
+        - all three voices remain HARD-extreme cross-domain cosmologists, not mild academic essayists
+        - end on a sentence demonstrating that anchored cosmos and three-extreme-voice triangulation converge on a single location
+      result: an answer where anchor-duo's delta mechanism and envoy-extreme's emb_d mechanism compound; tests axis-independence of the two scaffolding regimes

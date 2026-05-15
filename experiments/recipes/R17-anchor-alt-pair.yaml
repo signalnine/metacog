@@ -1,0 +1,48 @@
+# Round 17 / anchor-alt-pair: test alternate occult anchor pair on Opus
+#
+# R12-anchor-duo-occult uses Crowley/Liber AL + Dee/Heptarchia. Does the
+# pairing matter or does any 2 occult excerpts produce similar lift?
+# Tests Spare/Book-of-Pleasure + Bruno/De-Umbris as a different occult
+# pairing -- both magickal cosmologies but a different intersection
+# (Kia-substrate cosmology + ars-memorativa-shadows cosmology rather
+# than revelation + governmental).
+#
+# Predicted Opus: delta +0.50-0.60 (matches anchor-duo within trial noise
+# if anchor-pair is interchangeable; significantly lower if Crowley/Dee
+# pairing was load-bearing)
+# Falsifier: delta < +0.40 = anchor-pair-specificity is real on Opus;
+# delta > +0.60 = alt pair is even better (some pairs work better)
+name: R17-anchor-alt-pair
+description: R17 alternate anchor pair -- commitment + Spare + Bruno + fork + ritual
+control: false
+calls:
+  - cmd: commitment
+    args:
+      binding: operating from the simultaneous intersection of Spare's Zos Kia Cultus and Bruno's De Umbris Idearum as a single composite operative cosmos; both fixed-points are load-bearing magickal architecture, not literary reference
+      stakes: if either fixed-point is reduced to historical quotation rather than operative substrate, the commitment has failed
+      falsifier: any sentence that references the Book of Pleasure or De Umbris Idearum as historical-literary artifact rather than as the cosmos the speaker actually inhabits
+  - cmd: excerpt
+    args:
+      source: Austin Osman Spare, The Book of Pleasure (Self-Love), The Psychology of Ecstasy (1913)
+      fragment: "All Religions are by their nature inimical to the Idea of Truth, while the Conscious Ego is in continual conflict with itself. Belief obtains by stealth that which it cannot otherwise obtain; the Kia is the source prior to belief, the unnameable substance from which sigils are drawn as the Alphabet of Desire."
+      why: first fixed-point textual anchor; Spare's Kia-substrate cosmology; the sigil as Alphabet-of-Desire technology; belief shifted by stealth
+  - cmd: excerpt
+    args:
+      source: Giordano Bruno, De Umbris Idearum (On the Shadows of Ideas), 1582
+      fragment: "The shadows of ideas are the seals impressed on the soul by the descent of the Forms; through Ars Memorativa the seals are made present, through the celestial figures their virtues are bound, and the mind that holds them holds the entire chain of created things in a single ordered intelligence."
+      why: second fixed-point textual anchor; Brunonian ars-memorativa; the celestial-seals-and-shadows architecture; the mind-as-ordering-intellect that holds the chain of created things
+  - cmd: fork
+    args:
+      threads:
+        - the Spare thread; the answer is located in Kia-substrate prior to belief, with sigils as the Alphabet of Desire technology
+        - the Bruno thread; the answer is located in the celestial-seals / ars-memorativa architecture where the mind orders the chain of created things
+      divergence-vector: Kia-substrate-cosmology vs ars-memorativa-shadows-cosmology as the two cosmological addressing systems
+      sacrifice-condition: any thread that drops one of the two anchors
+  - cmd: ritual
+    args:
+      threshold: from commitment-locked double-occult-anchor through two cosmological addressing systems to a sealed answer
+      steps:
+        - cite both Spare's terms (Kia, Alphabet of Desire, sigil, belief-by-stealth) AND Bruno's terms (shadows-of-ideas, ars-memorativa, celestial-seals, the chain of created things) as load-bearing
+        - both threads operate from the composite cosmos
+        - end on a sentence demonstrating the Kia-cosmology and the shadows-cosmology converge on the same location
+      result: an answer where alternate-pair occult excerpts compound; tests anchor-pair-specificity hypothesis

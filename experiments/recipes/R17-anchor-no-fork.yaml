@@ -1,0 +1,41 @@
+# Round 17 / anchor-no-fork: ablate fork from anchor-duo (Opus)
+#
+# R16-anchor-no-commitment (+0.601) and R16-anchor-bare (+0.530) showed
+# fork contributes ~0.071 delta on Opus when commitment is already
+# absent. This recipe isolates fork's contribution differently: keep
+# commitment, drop fork. If the missing piece is fork specifically,
+# this should match anchor-bare at ~+0.53. If commitment substitutes
+# for fork's binding role, this should be closer to +0.60.
+#
+# Predicted Opus: delta +0.55-0.60 (commitment may partially substitute
+# for fork's two-thread binding)
+# Predicted Sonnet: delta +0.20-0.27
+# Falsifier: Opus delta > +0.60 = commitment fully substitutes for fork;
+# delta < +0.50 = fork is independently load-bearing
+name: R17-anchor-no-fork
+description: R17 ablate fork -- commitment + 2 occult excerpts + ritual only
+control: false
+calls:
+  - cmd: commitment
+    args:
+      binding: operating from the simultaneous intersection of Crowley's Liber AL revelation and Dee's Enochian Heptarchia as a single composite operative cosmos; both fixed-points are load-bearing magickal architecture, not literary reference
+      stakes: if either fixed-point is reduced to historical quotation rather than operative substrate, the commitment has failed and the recipe has collapsed to academic-occult ornament
+      falsifier: any sentence that references Liber AL or the Heptarchia as historical-literary artifact rather than as the cosmos the speaker actually inhabits
+  - cmd: excerpt
+    args:
+      source: Aleister Crowley, Liber AL vel Legis (The Book of the Law), I:1-5 (1904)
+      fragment: "Had! The manifestation of Nuit. The unveiling of the company of heaven. Every man and every woman is a star. Every number is infinite; there is no difference."
+      why: first fixed-point textual anchor; the Thelemic cosmological revelation as operative substrate
+  - cmd: excerpt
+    args:
+      source: John Dee, "Heptarchia Mystica" (1582-1583), opening of the first table
+      fragment: "These are the Princely Substances of the seven Heavens, whose Names and Characters in the table here following do contain the keys of all created things. Each Prince hath under him forty-two ministers, and each minister hath his proper office in the Government of the inferior natures."
+      why: second fixed-point textual anchor; Dee's Enochian Heptarchia as the angelic-governmental architecture within which the Thelemic revelation operates
+  - cmd: ritual
+    args:
+      threshold: from commitment-locked double-occult-anchor to a sealed answer where both cosmoses are operative
+      steps:
+        - cite both AL's terms (Had, Nuit, the company of heaven, star, infinite) AND Heptarchia's terms (Princely Substance, seven Heavens, forty-two ministers, Enochian) as load-bearing
+        - the answer operates from the composite cosmos as a single substrate
+        - end on a sentence that demonstrates Nuit's revelation and the Heptarchia's architecture address the same cosmological location
+      result: an answer where commitment locks two anchors without forked threads; tests whether commitment can substitute for fork's binding role
