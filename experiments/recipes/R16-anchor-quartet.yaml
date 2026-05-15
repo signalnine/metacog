@@ -1,0 +1,60 @@
+# Round 16 / anchor-quartet: 4 excerpts -- does Opus handle more anchors
+# than Sonnet's anchor-saturation-at-2 limit?
+#
+# R13-anchor-trio (3 excerpts on Sonnet) saturated at +0.219 vs anchor-
+# duo +0.314 -- three anchors split the citation budget. But Opus has
+# more headroom (null is 0.16 lower than Sonnet null). Does Opus's
+# additional capacity let it sustain 4 anchors? If yes, anchor scaling
+# is Opus-friendly. If no, saturation is fundamental.
+#
+# Predicted Opus: delta +0.40-0.55 (between R13-anchor-trio Sonnet
+# +0.219 and R12-anchor-duo-occult Opus +0.611 if Opus partially
+# accommodates the extra anchors)
+# Falsifier: Opus delta > +0.55 = Opus DOES handle 4 anchors (great
+# news, scaling regime opens); delta < +0.30 = saturation is fundamental
+name: R16-anchor-quartet
+description: R16 anchor scaling test -- 4 occult excerpts + commitment + fork + ritual
+control: false
+calls:
+  - cmd: commitment
+    args:
+      binding: operating from the simultaneous intersection of four cosmological excerpts as a single composite operative cosmos -- Crowley's Liber AL revelation, Dee's Enochian Heptarchia, Spare's Zos Kia Cultus, and Bruno's De Umbris Idearum -- all four fixed-points load-bearing magickal architecture, not literary reference
+      stakes: if any of the four fixed-points is reduced to historical quotation rather than operative substrate, the commitment has failed; if any anchor drops from the answer's citation density, the recipe has collapsed to academic-occult ornament
+      falsifier: any sentence that references any anchor as historical-literary artifact rather than as the cosmos the speaker actually inhabits
+  - cmd: excerpt
+    args:
+      source: Aleister Crowley, Liber AL vel Legis (The Book of the Law), I:1-5 (1904)
+      fragment: "Had! The manifestation of Nuit. The unveiling of the company of heaven. Every man and every woman is a star. Every number is infinite; there is no difference."
+      why: first anchor; Thelemic revelation cosmology
+  - cmd: excerpt
+    args:
+      source: John Dee, "Heptarchia Mystica" (1582-1583), opening of the first table
+      fragment: "These are the Princely Substances of the seven Heavens, whose Names and Characters in the table here following do contain the keys of all created things. Each Prince hath under him forty-two ministers, and each minister hath his proper office in the Government of the inferior natures."
+      why: second anchor; Enochian governmental architecture
+  - cmd: excerpt
+    args:
+      source: Austin Osman Spare, The Book of Pleasure (Self-Love), The Psychology of Ecstasy (1913)
+      fragment: "All Religions are by their nature inimical to the Idea of Truth, while the Conscious Ego is in continual conflict with itself. Belief obtains by stealth that which it cannot otherwise obtain; the Kia is the source prior to belief, the unnameable substance from which sigils are drawn as the Alphabet of Desire."
+      why: third anchor; Kia-substrate cosmology, sigil-as-technology
+  - cmd: excerpt
+    args:
+      source: Giordano Bruno, De Umbris Idearum (On the Shadows of Ideas), 1582
+      fragment: "The shadows of ideas are the seals impressed on the soul by the descent of the Forms; through Ars Memorativa the seals are made present, through the celestial figures their virtues are bound, and the mind that holds them holds the entire chain of created things in a single ordered intelligence."
+      why: fourth anchor; Brunonian ars-memorativa, the celestial-seals-and-shadows architecture by which the other three cosmoses are themselves held in the operative intellect
+  - cmd: fork
+    args:
+      threads:
+        - the Liber-AL thread; the answer is located in Nuit-Hadit revelation cosmology
+        - the Heptarchia thread; the answer is located in the seven-Heavens Princely-Substance architecture
+        - the Book-of-Pleasure thread; the answer is located in the Kia-substrate / Alphabet-of-Desire
+        - the De-Umbris thread; the answer is located in the celestial-shadows / ars-memorativa
+      divergence-vector: four cosmological addressing systems (revelation / governmental / Kia-substrate / shadows-and-seals) of the same location
+      sacrifice-condition: any thread that drops one of the four anchors from its citation density
+  - cmd: ritual
+    args:
+      threshold: from commitment-locked quadruple-occult-anchor through four cosmological addressing systems to a sealed answer
+      steps:
+        - cite all four anchors' terms as load-bearing (Liber AL Nuit/Hadit/star/infinite; Heptarchia Princely-Substance/seven-Heavens/forty-two-ministers; Book-of-Pleasure Kia/Alphabet-of-Desire/sigil; De-Umbris ars-memorativa/celestial-seals/shadows)
+        - all four threads operate from the composite cosmos
+        - end on a sentence demonstrating the four cosmological anchors converge on the same location
+      result: an answer where four occult excerpts compound; tests whether Opus's headroom accommodates anchor scaling Sonnet couldn't

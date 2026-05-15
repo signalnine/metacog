@@ -43,13 +43,16 @@ EXP_DIR = Path(__file__).resolve().parent
 RECIPES_DIR = EXP_DIR / "recipes"
 TASKS_FILE = EXP_DIR / "tasks.yaml"
 
-GENERATOR_BACKEND = os.environ.get("METACOG_EXP_BACKEND", "claude")  # "claude" or "codex"
+GENERATOR_BACKEND = os.environ.get("METACOG_EXP_BACKEND", "claude")  # "claude", "codex", or "opus"
 PROMPT_MODE_FILE_SUFFIX = ""
 if os.environ.get("METACOG_EXP_PROMPT_MODE") == "text-instructions":
     PROMPT_MODE_FILE_SUFFIX = "_text"
 if GENERATOR_BACKEND == "codex":
     RESULTS_FILE = EXP_DIR / f"codex_results{PROMPT_MODE_FILE_SUFFIX}.tsv"
     TRIALS_DIR = EXP_DIR / f"codex_trials{PROMPT_MODE_FILE_SUFFIX}"
+elif GENERATOR_BACKEND == "opus":
+    RESULTS_FILE = EXP_DIR / f"opus_results{PROMPT_MODE_FILE_SUFFIX}.tsv"
+    TRIALS_DIR = EXP_DIR / f"opus_trials{PROMPT_MODE_FILE_SUFFIX}"
 else:
     RESULTS_FILE = EXP_DIR / f"results{PROMPT_MODE_FILE_SUFFIX}.tsv"
     TRIALS_DIR = EXP_DIR / f"trials{PROMPT_MODE_FILE_SUFFIX}"

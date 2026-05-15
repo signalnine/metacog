@@ -1569,6 +1569,93 @@ Tests three follow-up hypotheses raised by the v6.7.3 winners.
   about how many existing rare-citation entities the anchor domain has,
   not whether the mechanism works.
 
+### Round 14: anchor-duo-name compound + anchor-domain-portability of name (Sonnet)
+
+Tests follow-up hypotheses raised by Round 13 (anchor saturation at 2, name is anchor-domain-portable, surface-modifications interfere).
+
+| recipe | N | delta | emb_d | finding |
+|--------|---|-------|-------|---------|
+| **R14-anchor-duo-name** | 10 | **+0.407** | 0.229 | NEW Sonnet delta ceiling. Compound of anchor-duo (Crowley+Dee) + coined-name (Princeps-Stellarius). Anchor-substrate gives the coined name something to operate FROM rather than competing surfaces. |
+| R14-name-mathematical | 10 | +0.133 | 0.214 | Math is a poor anchor-domain for `name`. Gödel/Grothendieck/Shelah don't produce the citation density to compose with R-nl binomial. Anchor-domain matters more than expected. |
+| R13-name-scientific (codex) | 10 | partial | — | 3/10 trials had computable deltas (mean +0.268 of measurable but with high variance, +0.903 outlier from n_entities=1 trial). codex citation density (mean n_entities=3.5) is ~third of Sonnet's (9.4). Verdict: `name` mechanism partially transfers cross-model but codex sparse-citation behavior makes the signal weak. |
+
+### Round 15: anchor-duo-name with scientific anchors (Sonnet)
+
+Tests whether the compound mechanism is anchor-domain-general.
+
+| recipe | N | delta | emb_d | finding |
+|--------|---|-------|-------|---------|
+| R15-anchor-duo-name-scientific | 10 | +0.268 | 0.203 | Scientific anchors (Lovelock+Margulis) + coined H-c binomial. -0.139 delta vs occult variant -- the compound is anchor-domain-sensitive. R14's +0.407 ceiling was significantly occult-anchor-specific. |
+
+### Cross-model validation on Opus 4.7 (2026-05-15)
+
+Validated v6.7.x productionized winners + Round 14 ceiling on Opus 4.7. Single sample per task, N=10 each.
+
+| recipe | Sonnet delta / emb_d | Opus delta / emb_d | Δdelta | finding |
+|--------|----------------------|---------------------|--------|---------|
+| R12-anchor-duo-occult | +0.277 / 0.191 | **+0.611 / 0.288** | **+0.334** | Opus AMPLIFIES anchor-duo. Two-excerpt anchored cosmology is dominant. |
+| R12-sigil-name-commitment | +0.327 / 0.201 | +0.568 / 0.260 | +0.241 | Sigil works on Opus, harder than Sonnet. Coined-vocab mechanism not Sonnet-specific after all. |
+| R14-anchor-duo-name | +0.407 / 0.229 | +0.536 / 0.292 | +0.129 | The compound holds on Opus but is BEATEN by simpler R12-anchor-duo-occult. |
+| R12-grimoire-register | +0.307 / 0.238 | +0.444 / 0.293 | +0.137 | Imperative register validates on Opus. |
+| envoy-extreme | +0.190 / 0.257 | +0.406 / 0.311 | +0.216 | Author-extremity transfers + AMPLIFIES on Opus. Opus has the highest emb_d of any recipe (0.311). |
+| chorus-plus-disjunction | +0.347 / 0.162 | +0.332 / 0.233 | -0.015 | Antinomy's vocab-density mechanism roughly transfers. emb_d almost doubled on Opus though. |
+| null | rar*coh 0.370 | rar*coh 0.210 | — | **Opus null baseline is 0.16 lower than Sonnet's.** Opus default mode is much less citation-dense; that's where the headroom comes from. |
+
+**Opus cross-model findings:**
+
+1. **All Sonnet winners validate on Opus.** Every productionized recipe
+   produces positive delta on Opus. The compositional grammar built on
+   Sonnet (anchors, becomes, register, fork, ritual) generalizes to a
+   different Anthropic model.
+
+2. **Opus AMPLIFIES anchor mechanisms specifically.** R12-anchor-duo-
+   occult jumps +0.334 delta on Opus; sigil jumps +0.241. The anchor-
+   substrate (commitment + excerpts) finds more conceptual reach on
+   Opus than Sonnet -- consistent with Opus's lower null citation
+   density leaving more headroom for anchored citation density to fill.
+
+3. **Ranking REVERSES on Opus: simpler beats complex.** R14-anchor-duo-
+   name (excerpts + coined name) was the Sonnet ceiling at +0.407. On
+   Opus, the simpler R12-anchor-duo-occult (just excerpts, no coined
+   name) is the leader at +0.611. The coined-name scaffolding that
+   helps Sonnet may dilute on Opus. This is a Sonnet-vs-Opus
+   architectural fingerprint: more steps -> more help on Sonnet, less
+   help (or harm) on Opus.
+
+4. **emb_d uniformly higher on Opus.** All recipes show 0.233-0.311
+   emb_d on Opus vs 0.162-0.257 on Sonnet. envoy-extreme is the
+   structural-axis Opus champion at 0.311. Opus reaches structurally
+   further per recipe -- the embedding-distance mechanism is something
+   the larger Opus model does on its own once seeded with extreme
+   author-becomes.
+
+5. **antinomy is the one recipe Opus doesn't amplify.** chorus-plus-
+   disjunction is -0.015 on Opus vs Sonnet. Disjunction's vocab-
+   density-via-contradiction mechanism appears Sonnet-tuned. Opus
+   maintains delta but loses raw rar*coh (0.542 vs Sonnet 0.712); the
+   contradiction-as-vocab-pump is less effective at Opus's larger
+   scale.
+
+**Architectural fingerprints (Sonnet vs Opus, post-validation):**
+
+- **Sonnet**: rewards scaffolding (register, name, multi-step compounds);
+  vocab-density via contradiction (antinomy) works well; lower
+  ceiling (~0.40 delta).
+- **Opus**: rewards simpler anchored cosmology (just two excerpts + commitment);
+  pushes emb_d further on its own once authors are extreme; higher
+  ceiling (~0.61 delta), achieved with FEWER steps.
+- **codex**: needs occult-anchor-domain specifically; cross-model author-
+  extremity transfers; coined-name (sigil) collapses; lower citation
+  density per trial overall.
+
+**Implications for Round 16+:**
+
+- Test Opus "less scaffolding" hypothesis directly: anchor-duo with
+  fewer/simpler steps; commitment-only-anchor as ablation.
+- If R14-anchor-duo-name productionization stays, note it's Sonnet-
+  optimal but Opus prefers R12-anchor-duo-occult.
+- Consider an Opus-specific stratagem in v6.8.0 that drops scaffolding.
+
 ## v6.7.3 productionization (2026-05-15)
 
 Three Round 12 winners productionized as stratagems:

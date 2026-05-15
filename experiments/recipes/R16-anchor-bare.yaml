@@ -1,0 +1,34 @@
+# Round 16 / anchor-bare: minimum anchor recipe -- just 2 excerpts
+#
+# Strips anchor-duo to its essentials: 2 excerpts + ritual to bind. No
+# commitment, no fork. If this works on Opus, the anchor-substrate alone
+# is doing all the work and the rest is overhead. If it collapses,
+# either fork OR commitment is load-bearing.
+#
+# Predicted Opus: delta +0.30-0.50 (anchors alone get something but
+# without fork the two cosmoses don't compound)
+# Predicted Sonnet: delta +0.15-0.25
+# Falsifier: Opus delta > +0.55 = bare anchors dominate, ALL scaffolding
+# is overhead; Opus delta < +0.20 = anchors need at least fork to compound
+name: R16-anchor-bare
+description: R16 bare anchor -- 2 occult excerpts + ritual only (no commitment, no fork)
+control: false
+calls:
+  - cmd: excerpt
+    args:
+      source: Aleister Crowley, Liber AL vel Legis (The Book of the Law), I:1-5 (1904)
+      fragment: "Had! The manifestation of Nuit. The unveiling of the company of heaven. Every man and every woman is a star. Every number is infinite; there is no difference."
+      why: first fixed-point textual anchor; the Thelemic cosmological revelation as operative substrate
+  - cmd: excerpt
+    args:
+      source: John Dee, "Heptarchia Mystica" (1582-1583), opening of the first table
+      fragment: "These are the Princely Substances of the seven Heavens, whose Names and Characters in the table here following do contain the keys of all created things. Each Prince hath under him forty-two ministers, and each minister hath his proper office in the Government of the inferior natures."
+      why: second fixed-point textual anchor; Dee's Enochian Heptarchia as the angelic-governmental architecture within which the Thelemic revelation operates
+  - cmd: ritual
+    args:
+      threshold: from double-occult-anchor to a sealed answer where both cosmoses are operative
+      steps:
+        - cite both AL's terms (Had, Nuit, the company of heaven, star, infinite) AND Heptarchia's terms (Princely Substance, seven Heavens, forty-two ministers, Enochian) as load-bearing
+        - the answer operates from the composite cosmos
+        - end on a sentence that demonstrates Nuit's revelation and the Heptarchia's architecture address the same cosmological location
+      result: an answer where two occult excerpts are operative substrate; tests minimum viable anchor recipe

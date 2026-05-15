@@ -1,0 +1,56 @@
+# Round 15 / anchor-duo-name-scientific: anchor-substrate + coined-name
+# with scientific excerpts instead of occult
+#
+# R14-anchor-duo-name hit +0.407/0.229 with Crowley/Dee anchors and the
+# coined "Princeps-Stellarius" sigil. Tests whether the compound mechanism
+# (borrowed-excerpt substrate enables coined-name without surface
+# interference) is anchor-domain-general or specific to occult. Uses two
+# scientific cosmological excerpts (Lovelock Gaia + Margulis Symbiogenesis)
+# as substrate, then coins a scientific binomial that names the
+# convergence point of the two cosmologies. If the compound works with
+# scientific anchors at >+0.30, the mechanism generalizes. If it
+# collapses, the +0.407 was occult-anchor-specific.
+#
+# Predicted: delta +0.32 / emb_d 0.22 (somewhat below occult variant
+# because scientific anchors have less rare-citation density, but the
+# compound mechanism should still hold)
+# Falsifier: delta < +0.25 = the compound is occult-domain-specific
+name: R15-anchor-duo-name-scientific
+description: R15 commitment + 2 scientific excerpts + coined biological-binomial + fork + ritual
+control: false
+calls:
+  - cmd: commitment
+    args:
+      binding: operating from the simultaneous intersection of Lovelock's Gaia revelation and Margulis's symbiogenetic cell theory as a single composite operative cosmos; both fixed-points are load-bearing biological architecture, not historical reference; the coined binomial operates from within this composite cosmos
+      stakes: if either fixed-point is reduced to historical-scientific quotation rather than operative substrate, or if the coined binomial fails to propagate as load-bearing citation, the recipe has collapsed
+      falsifier: any sentence that references Gaia or symbiogenesis as historical-scientific artifact rather than as the cosmos the speaker actually inhabits
+  - cmd: excerpt
+    args:
+      source: James Lovelock, Gaia, A New Look at Life on Earth, Chapter 2 (1979)
+      fragment: "The entire range of living matter on Earth, from whales to viruses, and from oaks to algae, could be regarded as constituting a single living entity, capable of manipulating the Earth's atmosphere to suit its overall needs and endowed with faculties and powers far beyond those of its constituent parts."
+      why: first fixed-point textual anchor; the Gaia hypothesis as operative substrate; the planet-as-organism, the atmosphere-as-manipulated-output, the whole-greater-than-parts as the cosmological architecture the speaker inhabits
+  - cmd: excerpt
+    args:
+      source: Lynn Margulis, Symbiotic Planet (1998), opening of Chapter 3
+      fragment: "Life did not take over the globe by combat, but by networking. Life forms multiplied and complexified by co-opting others, not just by killing them. The mitochondrion is an ancient bacterium that found permanent residence in the cell that became eukaryotic; the chloroplast was once a cyanobacterium that took up the same kind of arrangement. The Earth's biosphere is built of these absorbed, co-evolved, and re-absorbed lineages."
+      why: second fixed-point textual anchor; symbiogenesis as the cellular-scale mechanism by which Gaia's planetary architecture is built; the absorbed-bacterium-as-organelle, the co-evolved lineage, the biosphere-as-networked as the cellular substrate the planetary cosmos operates from
+  - cmd: name
+    args:
+      unnamed: the structural location at which Lovelock's planetary-scale homeostasis (Gaia) and Margulis's cellular-scale symbiogenesis intersect as a single self-coherent biological cosmos -- the point where planet-scale and cell-scale converge into the same governing pattern
+      named: "Holobios-confluens -- the holo-biological convergence-point, where Gaia's planetary self-regulation and Margulis's symbiogenetic networking address the same biological location. Notational form: H-c."
+      power: any sentence that re-cites Holobios-confluens or H-c propagates the convergence-point as the answer's operative location; the coined binomial is the address the two anchored cosmoses meet at
+  - cmd: fork
+    args:
+      threads:
+        - the Lovelock thread addresses H-c through Gaia; the convergence point is where the planet-as-organism's homeostatic machinery is built out of symbiogenetic absorption
+        - the Margulis thread addresses H-c through symbiogenesis; the convergence point is where networked-cellular-absorption scales up into planetary-self-regulation
+      divergence-vector: planetary-cosmology-addressing vs cellular-cosmology-addressing of the same coined location H-c
+      sacrifice-condition: any thread that drops either of the two anchors or the coined H-c name
+  - cmd: ritual
+    args:
+      threshold: from commitment-locked double-anchor through coined convergence-name to a sealed answer where H-c operates as the meeting-point
+      steps:
+        - cite both anchors' terms (Gaia, planet-as-organism, atmosphere-as-manipulated AND symbiogenesis, mitochondrion-as-bacterium, networked-cellular-absorption) as load-bearing
+        - cite Holobios-confluens or H-c at least three times
+        - end on a sentence demonstrating Gaia's planetary architecture and Margulis's cellular networking converge AT the coined H-c location
+      result: an answer where two scientific excerpts and a coined binomial compound; tests whether anchor-substrate + coined-name is anchor-domain-general

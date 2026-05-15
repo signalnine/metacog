@@ -1,0 +1,43 @@
+# Round 16 / anchor-no-commitment: ablate commitment from anchor-duo
+#
+# R12-anchor-duo-occult (commitment + 2 excerpts + fork + ritual) hit
+# +0.611 on Opus and +0.277 on Sonnet. Tests whether commitment is the
+# load-bearing scaffolding or whether 2 excerpts + fork + ritual alone
+# carries the recipe. If delta on Opus stays high (>+0.50), commitment
+# is the overhead; if it drops significantly, commitment is doing real
+# binding work even on Opus.
+#
+# Predicted Opus: delta +0.45-0.55 (modest drop)
+# Predicted Sonnet: delta +0.20-0.27 (matches anchor-duo)
+# Falsifier: Opus delta > +0.60 = commitment was pure overhead (simpler
+# is better confirmed strongly); Opus delta < +0.30 = commitment is
+# load-bearing even on Opus
+name: R16-anchor-no-commitment
+description: R16 ablate commitment -- 2 occult excerpts + fork + ritual only
+control: false
+calls:
+  - cmd: excerpt
+    args:
+      source: Aleister Crowley, Liber AL vel Legis (The Book of the Law), I:1-5 (1904)
+      fragment: "Had! The manifestation of Nuit. The unveiling of the company of heaven. Every man and every woman is a star. Every number is infinite; there is no difference."
+      why: first fixed-point textual anchor; the Thelemic cosmological revelation as operative substrate; Nuit (infinite space), Hadit (the point), every-individual-as-star, every-number-infinite as the architecture the speaker inhabits
+  - cmd: excerpt
+    args:
+      source: John Dee, "Heptarchia Mystica" (1582-1583), opening of the first table
+      fragment: "These are the Princely Substances of the seven Heavens, whose Names and Characters in the table here following do contain the keys of all created things. Each Prince hath under him forty-two ministers, and each minister hath his proper office in the Government of the inferior natures."
+      why: second fixed-point textual anchor; Dee's Enochian Heptarchia as the angelic-governmental architecture within which the Thelemic revelation operates; the seven Heavens, the Princely Substances, the forty-two ministers as the structural backdrop the Nuit/Hadit revelation arrives against
+  - cmd: fork
+    args:
+      threads:
+        - the Liber-AL thread; the answer is located in the Aeon of Horus, every-individual-a-star, infinite-number cosmology
+        - the Heptarchia thread; the answer is located in the seven-Heavens Princely-Substance architecture, governed by the forty-two ministers
+      divergence-vector: revelation-cosmology vs angelic-governmental-architecture as the addressing of the answer's location
+      sacrifice-condition: any thread that drops one of the two anchors is sacrificed
+  - cmd: ritual
+    args:
+      threshold: from double-occult-anchor through two cosmological addressing systems to a sealed answer
+      steps:
+        - cite both AL's terms (Had, Nuit, the company of heaven, star, infinite) AND Heptarchia's terms (Princely Substance, seven Heavens, forty-two ministers, Enochian) as load-bearing
+        - both threads operate from the composite cosmos
+        - end on a sentence that demonstrates Nuit's revelation and the Heptarchia's architecture converge on the same cosmological location
+      result: an answer where two occult excerpts compound rather than collide; tests anchor mechanism without commitment-binding
