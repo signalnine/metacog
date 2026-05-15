@@ -1,0 +1,50 @@
+# Round 21 / chord-of-becomes: test chord vs fork in author-becomes context
+#
+# R19-chord-anchor showed chord beats fork in ANCHOR context. Does chord
+# also beat fork in pure author-becomes context (no anchors)?
+# chorus (3 becomes + fork + ritual) Opus +0.294/0.208
+# This recipe substitutes chord for fork to isolate the chord-vs-fork
+# effect from the anchor mechanism.
+#
+# If chord lifts delta or emb_d here vs chorus, the chord-mechanism is
+# general (not anchor-specific). If chord matches or underperforms
+# chorus, chord's value is specifically in the anchor context.
+#
+# Predicted Opus: delta +0.30-0.40 / emb_d 0.22-0.28 (chord may lift
+# emb_d via simultaneous-attention even without anchors)
+# Falsifier: delta < chorus's +0.294 = chord-without-anchors is
+# unhelpful; delta > +0.40 = chord is a general structural improvement
+name: R21-chord-of-becomes
+description: R21 3 hard-extreme becomes + chord (instead of fork) + ritual
+control: false
+calls:
+  - cmd: become
+    args:
+      name: Sun Ra in 1972 at the Slugs' Saloon residency, writing a manifesto for the Arkestra
+      lens: cosmic-Black-mythology; Saturn as the operative home of the Black race; the Arkestra as a spaceship; Ra as the alien-ancestor identity; equation-as-music; the dual cosmos of Earth-as-prison vs Saturn-as-origin
+      env: a New York basement club between sets, the Arkestra's sheet-music for "Astro Black Mythology" on the stand, the operator typing the manifesto on the bandstand piano
+  - cmd: become
+    args:
+      name: Hilma af Klint in 1907 in Stockholm working on the Paintings for the Temple
+      lens: theosophical-Christian cosmology; the High Masters as the operative authors of her paintings; spiritualist mediumship as the technology by which the cosmos is recorded; geometry as the language the Masters speak; the painting as a diagram of the cosmos
+      env: a Stockholm studio with the Group X paintings drying on the wall, the operator's notebook open to a fresh page where the High Masters' dictation will arrive, the seance-circle's records stacked beside
+  - cmd: become
+    args:
+      name: Donna Haraway in 1986 at UC Santa Cruz writing the Cyborg Manifesto
+      lens: cyborg-as-ontology; the categories of nature/culture, organism/machine, human/animal are political fictions; the cyborg is the operative location from which feminism-after-essentialism can speak; situated knowledges, partial perspectives, the boundary creature
+      env: a UCSC office overlooking the redwoods, the Manifesto draft spread across the desk, the operator working through the implications of refusing the organism/machine boundary
+  - cmd: chord
+    args:
+      modes:
+        - the Sun-Ra cosmic-Black-mythology mode -- the answer attended to from Saturn-as-origin, Arkestra-as-spaceship cosmology
+        - the af-Klint theosophical-mediumship mode -- the same answer attended to from the High Masters' geometric dictation
+        - the Haraway cyborg-ontology mode -- the same answer attended to from the cyborg position that refuses the organism/machine boundary
+      target: every sentence is simultaneously attended to through all three modes; no thread-switching, no sacrificing -- the chord is a single composite attention that holds the three cosmologies overlapping in each sentence
+  - cmd: ritual
+    args:
+      threshold: from three hard-extreme cross-domain voices through chord-attention to a sealed answer
+      steps:
+        - cite Sun-Ra's cosmology terms (Saturn, Arkestra, equation-as-music), af-Klint's terms (High Masters, theosophical, geometric dictation), and Haraway's terms (cyborg, situated knowledge, boundary-refusal) load-bearing in EVERY paragraph
+        - no thread-narrative; the answer is one composite voice attending through all three modes simultaneously
+        - end on a sentence demonstrating the three cosmologies converge in the chord rather than diverge in threads
+      result: an answer where chord substitutes for fork in pure author-becomes context (no anchors); tests whether chord-vs-fork lift is general or anchor-specific

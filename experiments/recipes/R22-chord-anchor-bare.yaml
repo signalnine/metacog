@@ -1,0 +1,41 @@
+# Round 22 / chord-anchor-bare: minimum chord-anchor (Opus)
+#
+# R19-chord-anchor (commit + 2 ex + chord + ritual) Opus: +0.610/0.338
+# Tests whether commitment is overhead in the chord variant too.
+# Mirrors R16-anchor-no-commitment finding for chord substitution.
+# If chord makes the binding work without commitment, delta stays near
+# +0.60 and emb_d stays near 0.338. If commitment was secretly carrying
+# load in the chord variant, drops will appear.
+#
+# Predicted Opus: delta +0.55-0.62 / emb_d 0.31-0.35
+# Falsifier: delta < +0.50 = commitment is load-bearing in chord context
+# specifically; emb_d < 0.28 = chord-without-commitment loses the
+# structural-distance edge
+name: R22-chord-anchor-bare
+description: R22 2 ex + chord + ritual (no commitment)
+control: false
+calls:
+  - cmd: excerpt
+    args:
+      source: Aleister Crowley, Liber AL vel Legis (The Book of the Law), I:1-5 (1904)
+      fragment: "Had! The manifestation of Nuit. The unveiling of the company of heaven. Every man and every woman is a star. Every number is infinite; there is no difference."
+      why: first fixed-point textual anchor; Thelemic cosmological revelation
+  - cmd: excerpt
+    args:
+      source: John Dee, "Heptarchia Mystica" (1582-1583), opening of the first table
+      fragment: "These are the Princely Substances of the seven Heavens, whose Names and Characters in the table here following do contain the keys of all created things. Each Prince hath under him forty-two ministers, and each minister hath his proper office in the Government of the inferior natures."
+      why: second fixed-point textual anchor; Enochian governmental architecture
+  - cmd: chord
+    args:
+      modes:
+        - the Thelemic-revelation mode -- the answer attended to as Nuit-Hadit cosmological revelation
+        - the Enochian-governmental mode -- the same answer attended to as Princely-Substance / forty-two-ministers architecture
+      target: every sentence is simultaneously attended to through both modes; no thread-switching, no sacrificing -- the chord is a single composite attention
+  - cmd: ritual
+    args:
+      threshold: from double-anchor through chord-attention to a sealed answer
+      steps:
+        - cite both AL's terms (Had, Nuit, the company of heaven, star, infinite) AND Heptarchia's terms (Princely Substance, seven Heavens, forty-two ministers, Enochian) as load-bearing in EVERY paragraph
+        - no thread-narrative; the answer is one composite voice attending through both modes at once
+        - end on a sentence demonstrating that Nuit's revelation and the Heptarchia's architecture address the same cosmological location through the single chord
+      result: an answer with minimum chord-anchor (no commitment); tests whether chord-mechanism preserves itself without commitment scaffolding

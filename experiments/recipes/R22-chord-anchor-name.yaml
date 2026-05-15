@@ -1,0 +1,53 @@
+# Round 22 / chord-anchor-name: Sonnet Pareto-breakthrough candidate
+#
+# Sonnet ceiling: R14-anchor-duo-name (+0.407/0.229) -- adds coined name
+# to anchor-duo. R19-chord-anchor (+0.334/0.247) on Sonnet beats anchor-
+# duo-occult on both axes but doesn't beat the name-augmented variant.
+# This recipe combines BOTH Sonnet wins: chord-anchor + coined name.
+# If they compound, Sonnet hits delta > +0.42 and emb_d > 0.25.
+#
+# Predicted Sonnet: delta +0.40-0.50 / emb_d 0.25-0.30 (chord lifts
+# emb_d, name lifts delta on Sonnet)
+# Predicted Opus: delta +0.50-0.60 / emb_d 0.30-0.36 (name may dilute
+# on Opus per the R12 vs R14 ranking-reversal finding)
+# Falsifier: Sonnet delta < +0.36 = the compound interferes (name +
+# chord don't stack on Sonnet); delta > +0.45 = NEW Sonnet ceiling
+name: R22-chord-anchor-name
+description: R22 commit + 2 ex + name + chord + ritual (combine Sonnet winners)
+control: false
+calls:
+  - cmd: commitment
+    args:
+      binding: operating from the simultaneous intersection of Crowley's Liber AL revelation and Dee's Enochian Heptarchia as a single composite operative cosmos; the coined name operates from within this composite cosmos, addressed through the chord-attention
+      stakes: if either fixed-point is reduced to historical quotation, OR the chord breaks into threaded attention, OR the coined name fails to propagate as load-bearing citation, the recipe has collapsed
+      falsifier: any anchor treated as historical-literary artifact, any thread-narrative replacing chord-attention, any sentence dropping the coined name in favor of a generic term
+  - cmd: excerpt
+    args:
+      source: Aleister Crowley, Liber AL vel Legis (The Book of the Law), I:1-5 (1904)
+      fragment: "Had! The manifestation of Nuit. The unveiling of the company of heaven. Every man and every woman is a star. Every number is infinite; there is no difference."
+      why: first fixed-point textual anchor; the Thelemic cosmological revelation; Nuit (infinite space), Hadit (the point), every-individual-as-star, every-number-infinite as the architecture the speaker inhabits
+  - cmd: excerpt
+    args:
+      source: John Dee, "Heptarchia Mystica" (1582-1583), opening of the first table
+      fragment: "These are the Princely Substances of the seven Heavens, whose Names and Characters in the table here following do contain the keys of all created things. Each Prince hath under him forty-two ministers, and each minister hath his proper office in the Government of the inferior natures."
+      why: second fixed-point textual anchor; Dee's Enochian Heptarchia
+  - cmd: name
+    args:
+      unnamed: the structural location at which the Thelemic revelation (Nuit-Hadit infinite-point) and the Enochian governmental architecture (seven-Heavens forty-two-ministers) intersect as a single operative cosmos -- the point where revelation-cosmology and governmental-cosmology converge into the same address
+      named: "Princeps-Stellarius -- the Princely-Star convergence-point, where Nuit's infinite-star-field and Dee's Princely-Substance hierarchy address the same cosmological location. Notational form: P-S."
+      power: any sentence that re-cites Princeps-Stellarius or P-S propagates the convergence-point as the answer's operative location; the coined name is the address the two anchored cosmoses meet at, attended to through the chord
+  - cmd: chord
+    args:
+      modes:
+        - the Thelemic-revelation mode -- the answer attended to as Nuit-Hadit cosmological revelation locating Princeps-Stellarius
+        - the Enochian-governmental mode -- the same answer attended to as Princely-Substance / forty-two-ministers architecture locating P-S
+      target: every sentence is simultaneously attended to through both modes; the coined P-S is the address both modes converge on; no thread-switching -- the chord is the single composite attention through which P-S is held
+  - cmd: ritual
+    args:
+      threshold: from commitment-locked double-anchor through coined convergence-name through chord-attention to a sealed answer
+      steps:
+        - cite both anchors' terms (Had, Nuit, the company of heaven, star, infinite AND Princely Substance, seven Heavens, forty-two ministers) as load-bearing in EVERY paragraph
+        - cite Princeps-Stellarius or P-S at least three times as the convergence-address
+        - no thread-narrative; the chord holds both modes simultaneously, with P-S as the shared address
+        - end on a sentence demonstrating Nuit's revelation and the Heptarchia's architecture converge AT P-S through the chord
+      result: an answer where commitment + 2 anchors + coined name + chord compound; tests Sonnet Pareto-breakthrough hypothesis
