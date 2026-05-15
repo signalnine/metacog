@@ -1165,10 +1165,10 @@ direction. Four recipes, each testing one specific lever:
    parallelism, Victorian's judgment, scientific's hedging. New
    Pareto-cluster point worth knowing.
 
-**Doctrine after Round 12:**
+**Doctrine after Round 12 (Sonnet):**
 
-- Occult/magick conditioning is a productive direction -- three of
-  four recipes cleared +0.27 delta at meaningful emb_d.
+- Occult/magick conditioning is a productive direction on Sonnet --
+  three of four recipes cleared +0.27 delta at meaningful emb_d.
 - `name` is no longer a dead primitive -- it works in
   composition with `commitment` when the coined term is set up to
   propagate downstream.
@@ -1177,6 +1177,60 @@ direction. Four recipes, each testing one specific lever:
 - Cosmologists-as-conditioning is weaker than cosmologists-as-
   citation: the recipe must demand specific named entities to
   realize the corpus's rarity weight.
+
+### Round 12 cross-model: occult on codex
+
+Ran all 4 occult recipes against codex via Codex CLI at low reasoning
+effort:
+
+| Recipe                       | Sonnet         | Codex          | Transfer verdict |
+|------------------------------|----------------|----------------|------------------|
+| **R12-occult-cosmologists**  | +0.199 / 0.234 | **+0.281 / 0.154** | TRANSFERS -- codex actually HIGHER than Sonnet (+0.082) |
+| R12-grimoire-register        | +0.307 / 0.238 | +0.127 / 0.221 | partial transfer; -0.180 delta |
+| R12-sigil-name-commitment    | +0.327 / 0.201 | +0.008 / 0.136 | CATASTROPHIC -- went to zero |
+| R12-anchor-duo-occult        | +0.277 / 0.191 | -0.054 / 0.152 | FAILED -- went NEGATIVE |
+
+**Cross-model occult findings:**
+
+1. **Only the pure author-becomes structure transferred.** R12-occult-
+   cosmologists (Crowley/Spare/Bruno + fork + ritual, no register,
+   no excerpt, no commitment) was the only recipe that retained its
+   lift on codex -- actually exceeded the Sonnet baseline by +0.082.
+   This matches the v6.6.0 finding: **hard-extreme cross-domain
+   author-becomes are the one reliable cross-model lever.** Now
+   confirmed for occult authors specifically.
+2. **anchor-duo's cross-model transfer is anchor-content-specific.**
+   The same anchor-duo structure that transferred cleanly with
+   Borges/Fuller (+0.338 codex) FAILED with Crowley/Dee (-0.054
+   codex). The mechanism isn't generic across anchor content --
+   the anchor needs to be in codex's training corpus density.
+   Borges and Fuller are mainstream-literary; Crowley and Dee are
+   not. Practical: **anchor-duo works cross-model with mainstream
+   excerpts only.**
+3. **sigil-magick is Sonnet-only.** The coined-term-as-citation
+   mechanism (Spare's sigil = `name` + `commitment`) catastrophically
+   failed on codex (+0.327 -> +0.008). The "Zos-Kia-Aleph" sigil that
+   propagated cleanly on Sonnet did not propagate at all on codex.
+   `name` may only work cross-model in mainstream-citation domains
+   (scientific taxonomy, etc.), not in coined-magickal-term contexts.
+4. **Grimoire-register lost most of its delta but kept emb_d.** The
+   imperative speech-act register dropped -0.180 delta cross-model
+   but retained 0.221 emb_d -- consistent with the v6.6.0 finding
+   that registers transfer their structural-distance signal but not
+   their vocabulary-density signal.
+
+**Refined cross-model rule (post Round 12):**
+
+The cross-model lever is **author-becomes only**. Specifically:
+- 3 hard-extreme cross-domain author-becomes from the same lineage
+  (Sun Ra/Butler/Margulis, Crowley/Spare/Bruno, etc.) + fork + ritual
+  = the envoy-extreme / occult-cosmologists structure
+- **Anything else** (register-shifts, anchors, coined names,
+  commitment-pre-locks) is Sonnet-specific or Sonnet-stronger
+- For codex: envoy-extreme remains the structural-axis fallback;
+  R9B2 anchor-duo (Borges/Fuller) is the delta champion; new option
+  R12-occult-cosmologists works comparably at +0.281
+
 
 ### R9B2 / anchor-duo N=20 replication on both models (v6.7.2 productionization)
 
