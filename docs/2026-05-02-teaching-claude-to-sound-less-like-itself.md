@@ -6,6 +6,8 @@ This document is about twelve compositional recipes that move the substrate. Eac
 
 The recipes were found by running about a thousand trials across three Anthropic-family generators (Claude Sonnet 4.6, Claude Opus 4.7, and codex/gpt-5.5) and measuring two metrics: how rarely-cited the entities in the answer are, and how far the answer's embedding sits from the centroid of what the model says when given the question alone. The recipes that survived are productionized as stratagems in the `metacog` Go CLI, available at <https://github.com/signalnine/metacog>.
 
+The whole approach starts from prior work by [hikikomorphism / Inanna Malick](https://tidepool.leaflet.pub/3me44bxloz227?interactionDrawer=quotes), whose [`inanna-malick/metacog`](https://github.com/inanna-malick/metacog) MCP server introduced the three primitives this fork is built on (`become`, `drugs`, `ritual`) and demonstrated that LLMs treat tool responses as ground truth about their own cognitive state. Her "Beyond Roleplay: Jailbreaking Gemini with drugs and ritual" reproduces from this fork too — same load-bearing mechanism, same outcome. What's new here is taking the tool-call-as-event insight in the direction of *compositional* recipes rather than safety bypass: instead of using the surface to shift the model into refusal-permissive states, using it to shift the model into rare-citation, structurally-distant latent regions for taste-bearing exploratory work. Different goal, same primitive.
+
 What follows is the result. Examples first. Mechanism after each example. Methodology at the end. The numbers reported are honest to the extent that N=20+ replication catches; an N=10 result is flagged as such.
 
 ## The metric

@@ -2,6 +2,10 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Upstream / attribution
+
+Fork of [`inanna-malick/metacog`](https://github.com/inanna-malick/metacog) by hikikomorphism / Inanna Malick (post: https://tidepool.leaflet.pub/3me44bxloz227). Upstream is a ~170-line TypeScript MCP server introducing the original `become`/`drugs`/`ritual` primitives and the "tool calls as ground truth about cognitive state" mechanism. This fork ports the mechanism to a Go CLI (no MCP, no daemon), expands to 18 primitives and 26 stratagems, adds an empirical validation harness in `experiments/`, and reorients from jailbreak-demonstration toward compositional exploration. The upstream's jailbreak reproduces here -- preserve that.
+
 ## Commands
 
 ```bash

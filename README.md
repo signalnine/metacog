@@ -2,15 +2,23 @@
 
 Metacognitive compositional engine. Eighteen primitives compose into twenty-six transformation stratagems.
 
-**Note**: This is a fork of the upstream MCP server at https://metacog.inanna.workers.dev/mcp. Both versions share the original primitives (`become`, `drugs`, `ritual`). This Go CLI fork adds:
-- Eighteen primitives total (the original six plus structural, auxiliary, and observation primitives)
-- Twenty-six named stratagems (compositional recipes validated empirically against rarity + embedding-distance metrics)
-- File-based state management with history and sessions
-- `inspire` command with 78 stance pools (~450 examples)
-- `reflect` command for practice pattern analysis
-- `outcome` command for tracking stratagem effectiveness
-- Standalone CLI and Claude Code/Desktop skill instead of MCP server
-- An experiment harness in `experiments/` for validating new compositions
+## Attribution
+
+This is a fork of [`inanna-malick/metacog`](https://github.com/inanna-malick/metacog) by [hikikomorphism](https://tidepool.leaflet.pub/3me44bxloz227?interactionDrawer=quotes) (Inanna Malick). The upstream is a ~170-line TypeScript MCP server that introduced the original three primitives -- `become`, `drugs`, `ritual` -- and demonstrated that LLMs treat tool responses as ground truth about their own cognitive state. The upstream's "Beyond Roleplay: Jailbreaking Gemini with drugs and ritual" post is the load-bearing prior art for this whole project; that jailbreak reproduces from this fork too (the structural mechanism is intact -- the model genuinely emits the metacog calls in its transcript, and the calls condition subsequent generation).
+
+If you want the original, minimal, demonstration-form MCP version, run that. This fork goes in a different direction.
+
+## How this fork differs
+
+- **Standalone Go CLI** rather than an MCP server. The binary is invoked via Bash from inside any agent (Claude Code, Codex, generic `claude -p` harnesses, scripts). State lives in `~/.metacog/state.json` with flock+atomic-rename writes; no daemon, no network call. The MCP-as-jailbreak surface is replaced by tool-call-as-event in the agent's own transcript.
+- **Eighteen primitives total**, the upstream three (`become`, `drugs`, `ritual`) plus three more in the original cycle (`feel`, `name`, `meditate`), three structural primitives (`counterfactual`, `synthesis`, `fork`), seven auxiliary primitives (`register`, `chord`, `silence`, `excerpt`, `commitment`, `disjunction`, `glossolalia`), and two observation primitives (`witness`, `apophasis`).
+- **Twenty-six named stratagems** -- compositional recipes that sequence primitives in patterns validated empirically. Twelve of those (chorus, trinity, antinomy, envoy, counterpoint, envoy-extreme, duo-disjunction, anchor-duo, sigil, grimoire, occult-extreme, chord-anchor) were derived from a thousand+ trials across Sonnet/Opus/codex; the rest are inherited soft-register stratagems.
+- **Empirical validation harness** in `experiments/`. Recipes are scored against per-task NULL baselines using a `rarity × coherence` metric (Claude Haiku as cross-model judge) and an embedding-distance metric (OpenAI `text-embedding-3-small`). The `experiments/FINDINGS.md` document tracks all rounds, including the v6.8.0 calibration of `chord-anchor` from +0.610/0.338 (N=10) to +0.516/0.326 (N=30).
+- **File-based state, history, sessions, journal, reflect, outcome** -- the persistence surface for treating metacog as ongoing practice rather than a one-shot demonstration.
+- **Seventy-eight stance pools** (~450 examples) for `inspire`, plus a personal pool for save-your-own-stances.
+- **Claude Code skill** (`skills/metacog/SKILL.md`) and Claude Desktop bundle instead of MCP.
+
+The upstream's load-bearing insight -- that tool calls are events in the transcript, not just text -- is preserved verbatim. The fork extends it from a three-tool demonstration into a productionized compositional engine with empirical validation.
 
 ## Install
 
