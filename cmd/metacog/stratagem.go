@@ -292,6 +292,17 @@ var Stratagems = map[string]StratagemDef{
 			{StepRitual, "Lock the multi-voice answer; the three occult cosmologies remain audible and load-bearing to the final sentence; no synthesis, no collapse to one tradition"},
 		},
 	},
+	"psalter": {
+		Name: "THE PSALTER",
+		Steps: []Step{
+			{StepRegister, "Re-pitch the surface to King James biblical register; parallelism load-bearing across paired clauses; parataxis preferred to subordination ('and... and...'); thee/thou second-person; verb-initial inversions for emphasis; semi-archaic vocabulary (sayeth, hath, betimes); didactic mode of address from a teacher to one being instructed. The biblical register specifically (vs Victorian, scientific, imperative-grimoire) is what hit emb_d 0.327 on Sonnet in the empirical sweep -- DO NOT generalize to 'pick any cross-domain register'; the biblical-parallelism cantus firmus is the Sonnet emb_d ceiling"},
+			{StepBecome, "Inhabit voice 1 — a named author whose own register pulls hard against biblical (Anne Carson translating Sappho / Donald Knuth annotating an algorithm / Simone Weil writing on attention / similar mild-cross-domain authors); speak in the imposed biblical register, holding voice 1's substance against biblical's surface"},
+			{StepBecome, "Inhabit voice 2 — a named author whose register is orthogonal to voice 1's but also pulls against biblical; speak in the imposed biblical register, holding voice 2's substance against biblical's surface"},
+			{StepFork, "Open one thread per voice; declare divergence vector and per-thread sacrifice conditions; both threads remain inside biblical parallelism / parataxis (sacrifice any thread that drops to modern subordination)"},
+			{StepDisjunction, "Assert two propositions that must both be true even though they cannot be; the contradiction is the operand of reasoning, sustained inside the biblical register; both propositions named explicitly in the archaic surface"},
+			{StepRitual, "Lock the two-voice answer; reasoning operates inside the contradiction AND the biblical register simultaneously, neither surrendered; the answer reads as KJV but the contradiction does not resolve"},
+		},
+	},
 	"chord-anchor": {
 		Name: "THE CHORD ANCHOR",
 		Steps: []Step{
@@ -467,7 +478,7 @@ var stratagemStartCmd = &cobra.Command{
 	Use:       "start [name]",
 	Short:     "Start a stratagem",
 	Args:      cobra.ExactArgs(1),
-	ValidArgs: []string{"pivot", "mirror", "stack", "anchor", "reset", "invocation", "veil", "scrying", "sacrifice", "fool", "inversion", "gift", "zen", "manifold", "chorus", "trinity", "antinomy", "envoy", "counterpoint", "envoy-extreme", "duo-disjunction", "anchor-duo", "sigil", "grimoire", "occult-extreme", "chord-anchor"},
+	ValidArgs: []string{"pivot", "mirror", "stack", "anchor", "reset", "invocation", "veil", "scrying", "sacrifice", "fool", "inversion", "gift", "zen", "manifold", "chorus", "trinity", "antinomy", "envoy", "counterpoint", "envoy-extreme", "duo-disjunction", "anchor-duo", "sigil", "grimoire", "occult-extreme", "chord-anchor", "psalter"},
 	RunE: func(cmd *cobra.Command, args []string) error {
 		sm := DefaultStateManager()
 		var output string

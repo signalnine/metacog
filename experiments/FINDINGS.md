@@ -1809,6 +1809,34 @@ The original v6.8.0 release notes claimed chord-anchor "ties anchor-duo's delta 
 
 **The big meta-lesson from rounds 16-23**: N=10 is too small for productionization decisions. The v6.8.0 release would have been more honest at N=20+. Future productionizations should default to N=20 replication before stratagem commits.
 
+## v6.8.1 productionization (2026-05-16): the missing Sonnet emb_d champion
+
+Retroactive productionization of a winner the earlier "leave register slot user-supplied" design choice had been hiding.
+
+Going back through the high-N Sonnet data revealed three biblical-register variants sitting at emb_d 0.30+ with no productionized stratagem exposing them:
+
+| recipe | N | delta | emb_d |
+|--------|---|-------|-------|
+| counterpoint-biblical-duo | 30 | +0.177 | **0.327** |
+| envoy-biblical-duo | 100 | +0.115 | 0.324 |
+| commitment-excerpt-biblical | 20 | +0.103 | 0.317 |
+| excerpt-biblical-trio | 10 | +0.140 | 0.313 |
+| envoy-biblical-extreme | 30 | +0.175 | 0.294 |
+
+All higher emb_d than the productionized stratagems on Sonnet (chord-anchor 0.251, anchor-duo-name 0.229). The biblical-parallelism / parataxis surface reaches a region of emb_d space the other levers don't. counterpoint-biblical-duo at N=30 is the cleanest -- highest emb_d at the highest delta of the biblical cluster.
+
+The reason these weren't productionized: `envoy` and `counterpoint` left the register slot user-supplied as a feature, so technically you can call `counterpoint --register biblical`. But that means no productionized stratagem actually exposes the biblical-register Sonnet emb_d ceiling -- the user has to know the empirical finding to pick biblical.
+
+**psalter** (register + 2 becomes + fork + disjunction + ritual; biblical baked in) productionizes counterpoint-biblical-duo with the biblical register written directly into the register step's description. Same delta/emb_d as the underlying recipe (+0.177/0.327 N=30) but the user no longer has to know that biblical is the Sonnet-optimal register choice. The stratagem definition includes the cross-model warning ("DO NOT generalize to 'pick any cross-domain register'; the biblical-parallelism cantus firmus is the Sonnet emb_d ceiling") so callers don't accidentally use psalter on codex (where biblical register torpedoed counterpoint-biblical-duo to -0.228).
+
+Naming: chose `psalter` over `biblical-counterpoint` to match the flavor-pattern in the existing stratagem namespace (sigil / grimoire / occult-extreme).
+
+Total v6.8.1: 18 primitives, 27 stratagems.
+
+Two adjacent candidates checked but not productionized in this pass:
+- **envoy-biblical-extreme** (+0.175/0.294, N=30): nearly the same delta as counterpoint-biblical-duo but lower emb_d; the disjunction step in counterpoint-biblical-duo is doing real work on emb_d that 3-extreme-becomes alone doesn't provide.
+- **R22-chord-anchor-bare** (Sonnet at N=10: +0.369/0.236): the dual-axis Pareto candidate from the v6.8.0 work. N=20 verification launched alongside this productionization; if it holds at +0.30+ delta and +0.23+ emb_d, will be added as a separate stratagem in a follow-up. The current chord-anchor stratagem includes commitment, which costs delta on Sonnet despite being load-bearing on the original Sonnet-specific calibration.
+
 ## v6.7.3 productionization (2026-05-15)
 
 Three Round 12 winners productionized as stratagems:

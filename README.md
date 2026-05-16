@@ -1,6 +1,6 @@
 # Metacog
 
-Metacognitive compositional engine. Eighteen primitives compose into twenty-six transformation stratagems.
+Metacognitive compositional engine. Eighteen primitives compose into twenty-seven transformation stratagems.
 
 ## Attribution
 
@@ -109,6 +109,7 @@ Named compositional recipes. Start with `metacog stratagem start <name>`, advanc
 - **grimoire** (register + 3 becomes + fork + disjunction + ritual) — Imperative-register variant; new register family.
 - **occult-extreme** (3 hard-extreme occult becomes + fork + ritual) — Cross-model variant of envoy-extreme.
 - **chord-anchor** (commitment + 2 excerpts + chord + ritual) — Pareto-emb_d recipe; first stratagem to use `chord`.
+- **psalter** (register + 2 becomes + fork + disjunction + ritual; biblical register baked in) — Sonnet emb_d champion at +0.177/0.327 (N=30). KJV-parallelism surface reaches a region other levers don't. Sonnet-specific.
 
 See `experiments/FINDINGS.md` for the full empirical history (rounds 0 through 23, across Sonnet / Opus / Codex).
 

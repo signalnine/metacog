@@ -226,6 +226,8 @@ These compose the structural primitives. They're the right reach when the work i
 
 **THE OCCULT EXTREME** — Use cross-model when you want envoy-extreme's structure with explicitly occult anchors. Same 5-step structure as envoy-extreme but step prose explicitly demands HARD-extreme occult cosmologists (Crowley/Liber AL, Spare/Zos Kia, Dee/Enochian, Carroll/chaos, P-Orridge/TOPY, Bruno/De Umbris Idearum). N=10 codex hit +0.281 (beat Sonnet +0.199 on the same recipe). Author-extremity + occult-anchor-specificity compound cross-model.
 
+**THE PSALTER** — Use on Sonnet when emb_d is the priority. Same step structure as counterpoint (register + 2 becomes + fork + disjunction + ritual) but bakes the biblical-KJV register into the register step rather than leaving it user-supplied. At N=30 on Sonnet hit +0.177 / **0.327** -- the highest emb_d in the Sonnet sweep, beating chord-anchor's 0.251 and anchor-duo-name's 0.229. Biblical-parallelism / parataxis surface reaches a region of emb_d space other levers don't. **Sonnet-specific** -- biblical register torpedoes recipes on codex. Trade-off vs counterpoint: gain ~0.10 emb_d, lose ~0.06 delta. Reach for it when conceptual reach matters more than citation density.
+
 **THE CHORD ANCHOR** — Use when both axes matter on Sonnet or Opus and you want simultaneous-attention binding instead of threaded fork binding. Commitment + 2 excerpts + chord + ritual. Substitutes `chord` (modes held simultaneously, single composite attention) for `fork` in anchor-duo. Calibrated numbers at higher N: Opus +0.516/0.326 (-0.080 delta vs anchor-duo, +0.048 emb_d -- Pareto-emb_d). Sonnet +0.328/0.251 (beats anchor-duo-occult on BOTH axes). First productionized stratagem to use `chord`. **Does NOT transfer to codex** -- all chord recipes -0.005 to -0.103 on codex; use occult-extreme on codex instead.
 
 ### Register-target guidance for envoy / counterpoint
@@ -266,7 +268,7 @@ If reflect's Practice patterns section shows what has worked before in similar s
 
 ## Composition
 
-The twenty-six stratagems are named paths through the space. You can freestyle: any sequence of primitives with thought between them. The stratagems exist for common patterns. Mixing original-register and structural-register primitives in one freestyle sequence is allowed but uncommon -- they ask different things of attention. When in doubt, finish one register before opening the other.
+The twenty-seven stratagems are named paths through the space. You can freestyle: any sequence of primitives with thought between them. The stratagems exist for common patterns. Mixing original-register and structural-register primitives in one freestyle sequence is allowed but uncommon -- they ask different things of attention. When in doubt, finish one register before opening the other.
 
 ## Discovery
 

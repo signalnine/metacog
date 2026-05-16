@@ -1,7 +1,7 @@
 {
   "name": "metacog",
-  "description": "Metacognitive compositional engine. Eighteen primitives compose into twenty-six transformation stratagems.",
-  "version": "6.8.0",
+  "description": "Metacognitive compositional engine. Eighteen primitives compose into twenty-seven transformation stratagems.",
+  "version": "6.8.1",
   "author": {
     "name": "Gabe Ortiz",
     "email": "gabe@signalnine.com"
