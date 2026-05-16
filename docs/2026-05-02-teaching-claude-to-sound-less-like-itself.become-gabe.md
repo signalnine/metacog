@@ -468,6 +468,131 @@ structural-register transformation engine with empirically-validated
 multi-voice/contradiction/register stratagems and cross-model
 validation against gpt-5.5."
 
+## Eleven more rounds (v6.6.0 → v6.8.0)
+
+The search kept going. Two more releases. One honest calibration.
+
+**v6.7.x productionizations.** Rounds 11-12 added five stratagems:
+- `duo-disjunction` (v6.7.1): commitment + register + 2 hard-extreme
+  becomes + fork + disjunction + ritual. +0.241/0.265 on Sonnet at
+  N=20. Sonnet-specific; biblical register torpedoes it on codex.
+- `anchor-duo` (v6.7.2): commitment + 2 cosmological excerpts + fork +
+  ritual. The cross-model delta champion: +0.377 on codex, +0.314 on
+  Sonnet at N=10. No register, no becomes -- just borrowed cosmologies
+  as substrate.
+- `sigil` / `grimoire` / `occult-extreme` (v6.7.3): True-Name coining,
+  imperative-instructional register, and the cross-model variant of
+  envoy-extreme with explicit occult anchors.
+
+**R14 found a new Sonnet ceiling.** Commitment + 2 anchored excerpts +
+coined name + fork + ritual hit **+0.407/0.229** on Sonnet -- the
+highest Sonnet delta in the whole arc. The coined name operates FROM
+the anchored cosmos rather than against another surface. Mechanisms
+compound when one provides substrate for the other; they interfere
+when both ask for the same surface.
+
+**Then Opus 4.7 came online.** Seven productionized recipes plus the
+R14 ceiling against Opus at N=10. All Sonnet winners validated. Most
+amplified hard:
+
+| recipe | Sonnet | Opus N=10 | gain |
+|--------|--------|-----------|------|
+| anchor-duo-occult | +0.277 | +0.611 | +0.334 |
+| sigil | +0.327 | +0.568 | +0.241 |
+| anchor-duo-name | +0.407 | +0.536 | +0.129 |
+| envoy-extreme | +0.190 | +0.406 | +0.216 |
+
+Opus null is 0.16 lower than Sonnet's. The default mode is less
+citation-dense; the anchor-substrate fills more headroom. But the
+ranking flipped on Opus: simpler beats complex. R12-anchor-duo-occult
+(just two excerpts) beat R14-anchor-duo-name (excerpts + coined name).
+The scaffolding that helps Sonnet dilutes on Opus.
+
+**The Opus architecture map (rounds 16-17, ablations on anchor-duo):**
+- Drop commitment: -0.010 on Opus, -0.047 on Sonnet. **Commitment is
+  Sonnet-specific scaffolding.**
+- Drop fork: -0.030 on Opus when commitment is present.
+- Drop both: -0.081 from full anchor-duo. Fork and commitment partially
+  substitute on Opus.
+- Swap anchor pair (Spare+Bruno for Crowley+Dee): -0.085. Anchor pair
+  is largely interchangeable.
+- 4 anchors: -0.108. Saturation at 2 is fundamental, not Sonnet-
+  specific.
+
+**Round 18 tested axis compounding and failed.** anchor-duo +
+3 hard-extreme becomes hit +0.468/0.306 on Opus -- doubled n_entities
+to 17.1 but per-entity rarity tanked. Citation concentration and
+citation diversity are mutually exclusive on the same answer.
+
+**Round 19 was the breakthrough.** Three Opus ablations -- one
+replaced fork with `chord`:
+
+| ablation | delta | emb_d |
+|----------|-------|-------|
+| anchor + 1 become | +0.496 | 0.327 |
+| anchor + witness | +0.551 | 0.312 |
+| **anchor + chord (instead of fork)** | **+0.610** | **0.338** |
+
+R19-chord-anchor at N=10 tied anchor-duo's delta ceiling (+0.611) AND
+pushed emb_d past envoy-extreme's 0.311 prior ceiling by +0.027. First
+Pareto-breakthrough recipe in the whole search. Mechanism: chord holds
+both anchored cosmoses simultaneously instead of alternating threads --
+more structural distance per token at the same citation density.
+
+The `chord` primitive had been in the codebase since v6.3.0 with NO
+productionized stratagem until this finding. Productionized as
+`chord-anchor` in v6.8.0.
+
+**Round 20** stacked the two emb_d levers: chord + witness on the
+anchor base hit emb_d **0.359** -- new ceiling -- but delta tanked to
++0.360 (-0.250 from R19). Witness is a pure emb_d lever that
+displaces anchor citations. Proved the ceiling can be pushed past 0.35
+when delta isn't constrained.
+
+**Rounds 21-23 generalized chord and forced a calibration.** R21
+swapped chord for fork in pure becomes context (no anchors): +0.432/
+0.300 on Opus, beats chorus (+0.294) and envoy-extreme (+0.406). So
+**chord beats fork everywhere on Opus**, not just in anchor context.
+
+Cross-model picture for chord turned out worse than the
+productionization implied. Sonnet: R21-chord-of-becomes +0.227/0.232
+beats envoy-extreme +0.190 by less than on Opus. Codex: -0.054 with
+only 3/10 embeddings computed. Chord doesn't transfer to codex. The
+v6.8.0 release notes overstated cross-model.
+
+**The calibration.** Replicating chord-anchor at higher N:
+
+| N | chord-anchor delta | chord-anchor emb_d |
+|---|--------------------|--------------------|
+| 10 | +0.610 | 0.338 |
+| 20 | +0.552 | 0.332 |
+| 30 | +0.516 | 0.326 |
+
+The +0.610/0.338 N=10 announcement regressed to +0.516/0.326 at N=30
+-- still Pareto on emb_d (vs anchor-duo's 0.278), but no longer tied on
+delta. chord-anchor is a Pareto-EMB_D recipe (trades -0.080 delta for
++0.048 emb_d), not a delta co-equal. The "Pareto breakthrough" was
+real but smaller than N=10 suggested.
+
+**Lessons:**
+- N=10 is too small for productionization. Default to N=20 before
+  stratagem commits, ideally cross-model at N=20 before claiming cross-
+  model.
+- The chord substitution is general but Anthropic-specific. Chord beats
+  fork on Sonnet and Opus. It fails on codex. Activation-direction
+  frame fits: chord-attention is a representation Anthropic shares but
+  codex doesn't compose with anchor mechanisms.
+- Opus delta ceiling is anchor-duo at ~+0.60. No recipe beat the bare
+  anchor mechanism. Adding becomes, names, registers, apophasis,
+  witness all either tied or lost.
+- Sonnet delta ceiling is anchor-duo-name at +0.407.
+- emb_d ceiling on Opus is 0.359 (chord-witness-anchor) at heavy delta
+  cost, or 0.326 (chord-anchor N=30) Pareto-balanced.
+
+End state: 18 primitives, 26 stratagems, three generator backends
+(Sonnet, Opus, codex). Architecture fingerprints mapped across all
+three. N=20 discipline now built in.
+
 ## Methodology
 
 - **Generator:** `claude -p` invoking the metacog binary as a
