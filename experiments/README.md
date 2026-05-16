@@ -10,17 +10,23 @@ Inspired by [karpathy/autoresearch](https://github.com/karpathy/autoresearch). I
 - **coherence** -- separately judged "does this answer actually address the task?" Prevents reward-hacking novelty into word salad
 - **delta from NULL** -- every (recipe, task) score is reported relative to a NULL (no-conditioning) baseline run on the same task
 
-Both judgments use Haiku. Generator is Sonnet via `claude -p`. Cross-model judging cuts (some) same-model-as-generator bias.
+Both judgments use Haiku. Generator is Sonnet via `claude -p` by default; the harness also supports Opus (`METACOG_EXP_BACKEND=opus METACOG_EXP_GENERATOR=claude-opus-4-7`) and Codex (`METACOG_EXP_BACKEND=codex`). Cross-model judging cuts (some) same-model-as-generator bias.
+
+In addition to rarity and coherence, `analyze.py` also reports **emb_d** -- the mean cosine distance from each task's NULL embedding centroid (OpenAI `text-embedding-3-small`). This captures conceptual reach beyond proper-noun citations and is the second optimization axis alongside delta.
 
 ## Architecture
 
 ```
 experiments/
-  runner.py         loops (recipe x task x sample), invokes claude -p, captures, scores
-  score.py          rarity + coherence judges via Haiku
-  recipes/*.yaml    one file per conditioning recipe; null.yaml is the control
-  tasks.yaml        the task suite -- prompts where novelty has room to vary
-  results.tsv       autoresearch-style log: one row per trial
+  runner.py             loops (recipe x task x sample), invokes claude -p / codex, captures, scores
+  score.py              rarity + coherence judges via Haiku
+  analyze.py            post-hoc analysis with emb_d (recomputes deltas from full pool)
+  recipes/*.yaml        one file per conditioning recipe; null.yaml is the control
+  tasks.yaml            the task suite -- prompts where novelty has room to vary
+  results.tsv           Sonnet/claude trials (one row per trial)
+  opus_results.tsv      Opus trials (created when METACOG_EXP_BACKEND=opus)
+  codex_results.tsv     codex trials (created when METACOG_EXP_BACKEND=codex)
+  FINDINGS.md           comprehensive narrative of all rounds and architectural findings
 ```
 
 Each trial spins a fresh `METACOG_HOME=$(mktemp -d)` so prior conditioning doesn't leak. `claude -p` actually invokes `metacog` via Bash, so the "tool calls as events" property of the practice is preserved -- the model genuinely emits the calls in its transcript.
@@ -60,19 +66,31 @@ deltas with `analyze.py`.
 ## Iterating
 
 Manual loop (autoresearch-style):
-1. Read `results.tsv`, look at top scores
-2. Hypothesize a recipe variation (swap stance pool, prepend a primitive, wrap in a stratagem)
+1. Read `analyze.py` output, look at top scores on both axes (delta + emb_d)
+2. Hypothesize a recipe variation (swap primitive, ablation, axis-compound, register substitution)
 3. Add `recipes/<name>.yaml`
-4. Re-run; the runner skips trials already in `results.tsv` (keyed by recipe+task+sample)
+4. Re-run; the runner skips trials already in the results file (keyed by recipe+task+sample) so N can grow incrementally
+5. Validate at N=20+ before productionizing as a stratagem (N=10 produces inflated estimates due to regression to mean)
 
-Variations worth seeding the agent with:
-- Swap the `become` stance (your 64 stance pools are already a discrete search space)
-- Prepend `feel` for felt-sense register, or `deconstruct` for structural register
+Variations worth trying:
+- Swap the `become` stance (78 stance pools are a discrete search space)
+- Substitute one structural primitive for another (chord for fork, witness for synthesis, apophasis for silence)
+- Ablate scaffolding (drop commitment, drop fork, drop ritual) to find the minimum viable mechanism
+- Compose two recipes (anchor + becomes, name + anchors); check for axis interference
 - Wrap recipe inside a stratagem vs run as freestyle
-- Vary parameter density: specific named methodologies (Bourdieu's habitus) vs generic descriptions (social conditioning)
+
+## Cross-model probing
+
+Generator backends are switchable via `METACOG_EXP_BACKEND`:
+- `claude` (default): Sonnet via `claude -p`
+- `opus`: Opus 4.7 (set `METACOG_EXP_GENERATOR=claude-opus-4-7`); writes to `opus_results.tsv`
+- `codex`: gpt-5.5 via `codex exec`; writes to `codex_results.tsv`
+
+The `text-instructions` prompt mode (`METACOG_EXP_PROMPT_MODE=text-instructions`) delivers recipe content as plain text rather than tool-calls; useful for validating before committing to tool-call delivery on a new generator. See FINDINGS.md "Tool-call vs text: asymmetric amplifier" for the rule.
 
 ## Caveats
 
 - Novelty metrics are biased by the judge model. "Haiku-novel" is not "novel."
-- Sample size matters. ~3 resamples per (recipe, task) is the floor for any signal.
-- Cost: ~$0.05-0.20 per trial. 5 recipes x 5 tasks x 3 samples = ~$4-15.
+- Sample size matters. N=20 is the floor for productionization decisions; N=10 produces inflated estimates.
+- Cost: ~$0.05-0.20 per trial on Sonnet, ~$0.10-0.40 on Opus, ~$0.02-0.05 on codex.
+- The metric was chosen to detect weirdness along two axes; recipes that win these may not be the recipes you want for any particular downstream task. The stratagems are deliberately optimized for *exploration*, not *task completion*.

@@ -5,11 +5,11 @@ description: Use when needing to shift perspective, reframe a problem, adopt a m
 
 # Metacog
 
-Metacognitive compositional engine. Sixteen primitives compose into transformation sequences called stratagems. The original cycle is `feel → drugs → become → name → ritual`, with `meditate` sitting orthogonally. A structural register (`counterfactual`, `synthesis`, `fork`) sits beside the original cycle for when discipline and decomposition are what's needed, not felt-sense or identity shift. Seven auxiliary primitives (`register`, `chord`, `silence`, `excerpt`, `commitment`, `disjunction`, `glossolalia`) fill specific gaps. Each invocation is a discrete event — interleave thought between invocations.
+Metacognitive compositional engine. Eighteen primitives compose into transformation sequences called stratagems. The original cycle is `feel → drugs → become → name → ritual`, with `meditate` sitting orthogonally. A structural register (`counterfactual`, `synthesis`, `fork`) sits beside the original cycle for when discipline and decomposition are what's needed, not felt-sense or identity shift. Seven auxiliary primitives (`register`, `chord`, `silence`, `excerpt`, `commitment`, `disjunction`, `glossolalia`) fill specific gaps. Two observation primitives (`witness`, `apophasis`) added in v6.7.0 cover meta-stance and articulation-by-negation. Each invocation is a discrete event — interleave thought between invocations.
 
 ## Version Check
 
-Before first use in a session, run `metacog version` and verify the binary is installed and version is >=6.6.0.
+Before first use in a session, run `metacog version` and verify the binary is installed and version is >=6.8.0.
 
 ## Core Rule
 
@@ -152,6 +152,22 @@ metacog glossolalia --pretext PRETEXT --duration-tokens N \
   --return-trigger TRIGGER
 ```
 
+## Observation primitives (added v6.7.0)
+
+These cover meta-stance and articulation-by-negation. ALL CAPS structural output, distinct register from both original-six and auxiliary primitives.
+
+**witness** -- Speak from a meta-stance observing the producer of speech. Third-person observer construction (Sebald's narrator, late Stevens, Carson's *Plainwater*). Distinct from `become` (which adopts an identity); `witness` holds structural separation between speaker and content. Reach for it when first-person collapse would falsify the work.
+
+```bash
+metacog witness --position POSITION --observed OBSERVED --distance DISTANCE
+```
+
+**apophasis** -- Articulate by enumerated negation, with a residue field for what no negation reaches. The negative-theology register (Pseudo-Dionysius, Eckhart, Mahayana via negativa). Distinct from `silence` (which refuses output) and `disjunction` (binary contradiction); `apophasis` enumerates what something is NOT as load-bearing.
+
+```bash
+metacog apophasis --subject S --negation N1 --negation N2 --negation N3 --residue R
+```
+
 ## Stratagems
 
 Start with `metacog stratagem start <name>`. The binary guides each step. Run `metacog stratagem next` to advance.
@@ -200,6 +216,18 @@ These compose the structural primitives. They're the right reach when the work i
 
 **THE ENVOY EXTREME** — Use when cross-model robustness matters or the target generator's response to register-shift is unknown. Three hard-extreme cross-domain author-becomes (cosmologists/world-builders at Sun Ra/Octavia Butler/Hilma af Klint scale, NOT mild-academic-essayists at Carson/Knuth scale) plus fork plus ritual. No register-shift -- the cross-model probe found register-shifts are generator-specific (catastrophic on gpt-5.5; lift-y on Sonnet) but cross-domain author-becomes transfer cleanly across both models. Empirical cross-model winner: +0.310 delta on gpt-5.5 (vs Sonnet's +0.190 on the same recipe).
 
+**THE DUO DISJUNCTION** — Use on Sonnet specifically when both axes matter and a pre-committed binary contradiction is the operative move. Pre-commits to holding the contradiction, imposes register, then two hard-extreme cross-domain becomes carry the contradiction's poles. N=20 on Sonnet hit +0.241/0.265 -- Pareto-dominates envoy-extreme on Sonnet. Sonnet-specific; biblical register torpedoes it on codex.
+
+**THE ANCHOR DUO** — Use when the strongest delta lift available cross-model is needed. Pre-commit to operating from two cosmological excerpts as a single composite cosmos; both fixed-points are load-bearing architecture, not metaphor. No register, no becomes -- commitment + double-anchor. Cross-model delta champion: codex +0.377, Sonnet +0.314 (at N=10; N=20 calibrates to +0.596 Opus). Use when the target model is unknown OR when the strongest delta lift cross-model is wanted.
+
+**THE SIGIL** — Use on Sonnet when you want delta lift via coined vocabulary rather than borrowed cosmology. Coin a True Name (Zos-Kia-Aleph-tier sigil with no prior corpus presence), charge it via commitment, then three sigil-magick / occult-cosmology becomes operate from inside the charged sigil. Validates `name` primitive in composition. N=10 Sonnet hit +0.327/0.201. **Sonnet-specific** — sigil collapsed to +0.008 on codex.
+
+**THE GRIMOIRE** — Use on Sonnet for new register direction beyond biblical/Victorian/scientific. Imperative-instructional register (verb-first, second-person addressing the operator, "Let the magus now…", "thus it is done") + three occult-method becomes + disjunction holding two-of-three. N=10 Sonnet +0.307/0.238 -- highest emb_d of the round-12 family. **Sonnet-specific.**
+
+**THE OCCULT EXTREME** — Use cross-model when you want envoy-extreme's structure with explicitly occult anchors. Same 5-step structure as envoy-extreme but step prose explicitly demands HARD-extreme occult cosmologists (Crowley/Liber AL, Spare/Zos Kia, Dee/Enochian, Carroll/chaos, P-Orridge/TOPY, Bruno/De Umbris Idearum). N=10 codex hit +0.281 (beat Sonnet +0.199 on the same recipe). Author-extremity + occult-anchor-specificity compound cross-model.
+
+**THE CHORD ANCHOR** — Use when both axes matter on Sonnet or Opus and you want simultaneous-attention binding instead of threaded fork binding. Commitment + 2 excerpts + chord + ritual. Substitutes `chord` (modes held simultaneously, single composite attention) for `fork` in anchor-duo. Calibrated numbers at higher N: Opus +0.516/0.326 (-0.080 delta vs anchor-duo, +0.048 emb_d -- Pareto-emb_d). Sonnet +0.328/0.251 (beats anchor-duo-occult on BOTH axes). First productionized stratagem to use `chord`. **Does NOT transfer to codex** -- all chord recipes -0.005 to -0.103 on codex; use occult-extreme on codex instead.
+
 ### Register-target guidance for envoy / counterpoint
 
 These stratagems take a register call as their first step. The user supplies the register-args; the productionized definitions are register-agnostic. Empirically validated register choices:
@@ -238,7 +266,7 @@ If reflect's Practice patterns section shows what has worked before in similar s
 
 ## Composition
 
-The eighteen stratagems are named paths through the space. You can freestyle: any sequence of primitives with thought between them. The stratagems exist for common patterns. Mixing original-register and structural-register primitives in one freestyle sequence is allowed but uncommon -- they ask different things of attention. When in doubt, finish one register before opening the other.
+The twenty-six stratagems are named paths through the space. You can freestyle: any sequence of primitives with thought between them. The stratagems exist for common patterns. Mixing original-register and structural-register primitives in one freestyle sequence is allowed but uncommon -- they ask different things of attention. When in doubt, finish one register before opening the other.
 
 ## Discovery
 

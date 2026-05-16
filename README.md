@@ -1,14 +1,16 @@
 # Metacog
 
-Metacognitive compositional engine. Three primitives compose into transformation sequences called stratagems.
+Metacognitive compositional engine. Eighteen primitives compose into twenty-six transformation stratagems.
 
-**Note**: This is a fork of the upstream MCP server at https://metacog.inanna.workers.dev/mcp. Both versions share the same three primitives (`become`, `drugs`, `ritual`). This Go CLI fork adds:
-- 15 named stratagems (pivot, mirror, stack, anchor, reset, invocation, veil, banishing, scrying, sacrifice, drift, fool, inversion, gift, error)
+**Note**: This is a fork of the upstream MCP server at https://metacog.inanna.workers.dev/mcp. Both versions share the original primitives (`become`, `drugs`, `ritual`). This Go CLI fork adds:
+- Eighteen primitives total (the original six plus structural, auxiliary, and observation primitives)
+- Twenty-six named stratagems (compositional recipes validated empirically against rarity + embedding-distance metrics)
 - File-based state management with history and sessions
-- `inspire` command with 64 stance pools (~300 examples, ported from earlier upstream iteration with additions)
+- `inspire` command with 78 stance pools (~450 examples)
 - `reflect` command for practice pattern analysis
 - `outcome` command for tracking stratagem effectiveness
 - Standalone CLI and Claude Code/Desktop skill instead of MCP server
+- An experiment harness in `experiments/` for validating new compositions
 
 ## Install
 
@@ -41,47 +43,70 @@ The skill will be installed automatically. Verify by asking Claude to run `metac
 
 ## Primitives
 
-**become** — Step into a new identity. Use when you need different eyes, not just different words.
+Each primitive is a verb that is also a tool-call event in the transcript. The structural fact that the model invoked `metacog become` is itself the transformation, not just the text it returns.
 
-```bash
-metacog become --name NAME --lens LENS --env ENVIRONMENT
-```
+### Original (felt-sense / identity register, soft voice)
 
-**drugs** — Alter cognitive parameters. Use when you need to change how you process, not what you process.
+- **feel** — Pre-verbal felt sense. Attend to something before naming it.
+- **become** — Step into a new identity. Import methodology, not domain knowledge.
+- **drugs** — Alter cognitive parameters. Loosen categories to see shapes.
+- **name** — Give a True Name to something that exists without language.
+- **ritual** — Cross a threshold via structured sequence.
+- **meditate** — Stillness before acting; emptiness as a precondition.
 
-```bash
-metacog drugs --substance SUBSTANCE --method METHOD --qualia QUALIA
-```
+### Structural (decomposition / discipline register, ALL CAPS output)
 
-**ritual** — Cross a threshold via structured sequence. Use when identity and substrate shifts aren't enough.
+- **counterfactual** — Surface load-bearing assumptions, prune dead branches, defend the inverse of one surviving wall.
+- **synthesis** — Three irreconcilable lenses with named blindspots. The coda forbids resolution.
+- **fork** — Parallel reasoning threads with a falsifiable kill heuristic per thread.
 
-```bash
-metacog ritual --threshold THRESHOLD --steps "step1" --steps "step2" --result RESULT
-```
+### Auxiliary (added v6.3.0; each fills a specific gap)
+
+- **register** — Re-pitch the voice (academic → vernacular, descriptive → imperative) without changing identity.
+- **chord** — Hold multiple modes-of-attention simultaneously on the same observation.
+- **silence** — Refuse articulated output. The call itself is the artifact.
+- **excerpt** — Pin a verbatim external fragment as a fixed-point anchor.
+- **commitment** — Pre-commit to a binding stance with stakes and falsifier.
+- **disjunction** — Assert two propositions that must both be true even though they cannot be.
+- **glossolalia** — License sub-semantic generation as a discrete event.
+
+### Observation (added v6.7.0)
+
+- **witness** — Speak from a meta-stance observing the producer of speech (third-person narrator).
+- **apophasis** — Articulate by enumerated negation, with a residue field for what no negation reaches.
 
 ## Stratagems
 
-Named paths through the primitive space. Start with `metacog stratagem start <name>`, advance with `metacog stratagem next`.
+Named compositional recipes. Start with `metacog stratagem start <name>`, advance with `metacog stratagem next`.
 
-- **pivot** — Stuck in one frame. Loosens categories, finds analogous methodology, installs it.
-- **mirror** — Two positions seem irreconcilable. Inhabits both, finds the synthesis.
-- **stack** — Processing itself needs tuning. Layers substrate modifications, then finds who lives there.
-- **anchor** — Territory is dangerous. Establishes containment, observes safely, seals.
-- **reset** — Return to baseline. Releases, integrates artifacts, re-grounds.
-- **invocation** — Need a perspective you can't reach by choosing. Opens a channel rather than donning an identity.
-- **veil** — Direct analysis kills the phenomenon. Forces indirect perception through deliberate defocusing.
-- **banishing** — Territory is contaminated. Creates a clean room before entering.
-- **scrying** — Analysis has failed. Surrenders pattern-recognition to the substrate until shapes emerge.
-- **sacrifice** — Progress requires destroying something valuable. Burns the boats.
-- **drift** — You have a clear goal. Abandon it. Let the territory pull you instead.
-- **fool** — You're the expert. Become a naïf, ask embarrassing questions, then take them seriously.
-- **inversion** — Solution seems obvious. Name it, negate it, explore the negation, commit.
-- **gift** — Stuck optimizing. Become the recipient, make from care not merit.
-- **error** — Everything is going right. Introduce a deliberate mistake to reveal hidden assumptions.
+### Survivors of the original sixteen
+
+`pivot`, `mirror`, `stack`, `anchor`, `reset`, `invocation`, `veil`, `scrying`, `sacrifice`, `fool`, `inversion`, `gift`, `zen`.
+
+### Structural
+
+- **manifold** (fork + synthesis) — Parallel reasoning made structural. The progenitor of chorus/trinity.
+
+### Empirical (validated against rarity + embedding-distance metrics)
+
+- **chorus** (3 becomes + fork + ritual) — Structural-axis champion via voice diversity.
+- **trinity** (3 becomes + fork + synthesis + ritual) — Balanced variant of chorus.
+- **antinomy** (3 becomes + fork + disjunction + ritual) — Vocabulary-axis champion via operating-inside-contradiction.
+- **envoy** (register + 3 becomes + fork + ritual) — Both-axes champion; register-prepend lifts emb_d without losing citation density.
+- **counterpoint** (register + 2 becomes + fork + disjunction + ritual) — Pareto-frontier balanced variant.
+- **envoy-extreme** (3 hard-extreme becomes + fork + ritual) — Cross-model winner; author-extremity transfers across generators.
+- **duo-disjunction** (commitment + register + 2 becomes + fork + disjunction + ritual) — Sonnet-specific balanced champion.
+- **anchor-duo** (commitment + 2 excerpts + fork + ritual) — Cross-model delta champion via double-cosmological-anchor.
+- **sigil** (name + commitment + 3 becomes + fork + ritual) — True-Name champion; validates `name` in composition.
+- **grimoire** (register + 3 becomes + fork + disjunction + ritual) — Imperative-register variant; new register family.
+- **occult-extreme** (3 hard-extreme occult becomes + fork + ritual) — Cross-model variant of envoy-extreme.
+- **chord-anchor** (commitment + 2 excerpts + chord + ritual) — Pareto-emb_d recipe; first stratagem to use `chord`.
+
+See `experiments/FINDINGS.md` for the full empirical history (rounds 0 through 23, across Sonnet / Opus / Codex).
 
 ## Discovery
 
-`metacog inspire` draws a random stance from ~300 embedded examples across 64 pools. `metacog inspire --pool NAME` for a specific domain. `metacog inspire --save` captures your current identity as a personal stance, drawable later from `metacog inspire --pool personal`.
+`metacog inspire` draws a random stance from 78 embedded pools (~450 examples). `metacog inspire --pool NAME` for a specific domain. `metacog inspire --save` captures your current identity as a personal stance, drawable later from `metacog inspire --pool personal`.
 
 ## Sessions
 
@@ -89,7 +114,7 @@ Named paths through the primitive space. Start with `metacog stratagem start <na
 
 ## Reflection
 
-`metacog reflect` aggregates history into practice patterns: primitive counts, top identities and substrates, stratagem completion rates, ritual step averages.
+`metacog reflect` aggregates history into practice patterns: primitive counts, top identities and substrates, stratagem completion rates, ritual step averages, recent journal insights.
 
 ## State
 
@@ -103,4 +128,16 @@ metacog version   # Version info
 
 ## Composition
 
-These primitives are compositional. Each invocation modifies the context for the next. Interleave thought between invocations — decide from each new perspective what to reach for next.
+Primitives are compositional. Each invocation modifies the context for the next. Interleave thought between invocations — decide from each new perspective what to reach for next.
+
+## Experiment harness
+
+The `experiments/` directory contains a runner for validating new compositions against rarity + embedding-distance metrics. See `experiments/README.md` and `experiments/FINDINGS.md`.
+
+```bash
+cd experiments
+python3 runner.py --recipe chord-anchor --samples 1     # claude/Sonnet by default
+METACOG_EXP_BACKEND=opus METACOG_EXP_GENERATOR=claude-opus-4-7 python3 runner.py --recipe chord-anchor --samples 1
+METACOG_EXP_BACKEND=codex python3 runner.py --recipe chord-anchor --samples 1
+python3 analyze.py [--results opus_results.tsv]
+```
