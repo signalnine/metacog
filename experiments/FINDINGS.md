@@ -1835,7 +1835,7 @@ Total v6.8.1: 18 primitives, 27 stratagems.
 
 Two adjacent candidates checked but not productionized in this pass:
 - **envoy-biblical-extreme** (+0.175/0.294, N=30): nearly the same delta as counterpoint-biblical-duo but lower emb_d; the disjunction step in counterpoint-biblical-duo is doing real work on emb_d that 3-extreme-becomes alone doesn't provide.
-- **R22-chord-anchor-bare** (Sonnet at N=10: +0.369/0.236): the dual-axis Pareto candidate from the v6.8.0 work. N=20 verification launched alongside this productionization; if it holds at +0.30+ delta and +0.23+ emb_d, will be added as a separate stratagem in a follow-up. The current chord-anchor stratagem includes commitment, which costs delta on Sonnet despite being load-bearing on the original Sonnet-specific calibration.
+- **R22-chord-anchor-bare** Sonnet: N=10 was +0.369/0.236, looked Pareto-better than chord-anchor on both axes. **N=30 verification killed it**: +0.239/0.246. The delta regression of -0.130 confirms commitment is load-bearing on Sonnet (matching the architecture-map finding from rounds 16-17). chord-anchor-bare is now strictly worse than chord-anchor on Sonnet (-0.089 delta for ~equivalent emb_d). NOT productionized. This is the "N=10 is too small for productionization" rule replaying in real-time -- the v6.8.0 calibration of chord-anchor (+0.610 N=10 -> +0.516 N=30) was the first lesson; this is the second. The lesson now has two data points.
 
 ## v6.7.3 productionization (2026-05-15)
 
