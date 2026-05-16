@@ -1904,6 +1904,48 @@ do hold at N=30 within +/-0.04. The catastrophic regressions tend to
 cluster at low-emb_d codex recipes where citation density is sparse to
 begin with.
 
+## Tier 3 N=30 verification (2026-05-16): architecture-map ablations
+
+Final tier of N=10 → N=30 calibration. Seven compositional probes from
+rounds 16-23. All held within ±0.034.
+
+| recipe | N=10 d/e | N=30 d/e | Δd | Δe | claim verified |
+|--------|----------|----------|------|------|----------------|
+| R16-anchor-quartet | +0.503/0.277 | +0.514/0.277 | +0.011 | 0.000 | anchor saturation at 2 |
+| R18-anchor-extreme-hybrid | +0.468/0.306 | +0.488/0.291 | +0.020 | -0.015 | axis interference (anchor + extreme-becomes) |
+| R17-anchor-alt-pair | +0.526/0.290 | +0.523/0.285 | -0.003 | -0.005 | anchor pair interchangeable |
+| R19-witness-anchor | +0.551/0.312 | +0.541/0.327 | -0.010 | +0.015 | witness is real emb_d lever |
+| R19-anchor-one-become | +0.496/0.327 | +0.495/0.315 | -0.001 | -0.012 | dose-dependent dilution |
+| R23-chord-apophasis-anchor | +0.506/0.266 | +0.540/0.262 | +0.034 | -0.004 | apophasis composes cleanly |
+| R16-anchor-bare | +0.530/0.252 | +0.537/0.269 | +0.007 | +0.017 | minimum viable anchor |
+
+**Notable:** R19-witness-anchor at N=30 hit +0.541/**0.327** -- emb_d
+indistinguishable from chord-anchor (0.326). Witness + anchor reaches
+the same emb_d region as chord + anchor from a different mechanism
+(meta-observer construction vs simultaneous-mode attention). Not a
+Pareto improvement over chord-anchor (-0.025 delta cost) but confirms
+witness is a real emb_d lever, validated at N=30.
+
+**Calibration summary across all three N=30 batches today:**
+
+- 15 productionized stratagems / load-bearing claims verified at N=30
+- 1 collapsed (R12-occult-cosmologists codex; occult-extreme repositioned)
+- 1 rejected pre-productionization (R22-chord-anchor-bare Sonnet)
+- 0 productionizations added or removed (psalter productionized
+  separately for a different reason)
+
+The empirical surface is now stable at N=30 for every recipe cited in
+CLAUDE.md, README.md, SKILL.md, or the blog post. The "N=10 too small
+for productionization" rule's three negative cases (chord-anchor
+N=10 inflated by +0.094 delta; chord-anchor-bare Sonnet inflated by
++0.130 delta; occult-cosmologists codex inflated by +0.117 delta) all
+share the property of being structurally simpler recipes scored on
+smaller samples; the 15 positive confirmations include both structurally
+complex recipes and the same architectural ablation family that
+delivered the chord-anchor-bare-Sonnet false positive. The rule
+remains: replicate at N=30 before productionizing, but most N=10
+results that look strong on a working backend do hold.
+
 ## v6.8.1 productionization (2026-05-16): the missing Sonnet emb_d champion
 
 Retroactive productionization of a winner the earlier "leave register slot user-supplied" design choice had been hiding.
