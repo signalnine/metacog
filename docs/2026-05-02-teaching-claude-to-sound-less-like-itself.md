@@ -61,7 +61,7 @@ Same task, Opus, `anchor-duo`:
 >
 > Nuit's *unveiling of the company of heaven* and the Heptarchia's seven-Heavens governmental architecture converge on the same cosmological location: the star's direct address to infinity, with the ministers below it doing their proper office of governing the inferior natures, and the failure mode is precisely the moment a minister forgets it is a minister and the star forgets it is a star.
 
-Numbers, Opus N=20: **delta +0.596, emb_d 0.278**. Sonnet N=10: +0.277/0.191. Codex N=10: +0.281 with the `occult-cosmologists` variant (-0.054 with this exact recipe on codex, but the cross-model finding holds with the variant — see "Cross-model fingerprints" below).
+Numbers, Opus N=20: **delta +0.596, emb_d 0.278**. Sonnet N=10: +0.277/0.191. Codex: -0.054 with this exact recipe; on codex use `envoy-extreme` (+0.245/0.233 at N=14) instead — see "Cross-model fingerprints" below.
 
 The mechanism: the two anchors are not metaphors and not citations. They are operative substrate. The whole answer must locate itself inside both cosmologies simultaneously. The constraint forces vocabulary the model would not otherwise reach for (Hadit, Nuit, Princely Substance, forty-two ministers) and forces the *shape* of the argument to be the convergence-point of two heterogeneous addressing systems. The minister/star figure is not a metaphor borrowed from Liber AL; it is the only thing the recipe permits the answer to be.
 
@@ -171,7 +171,7 @@ Same task, Opus, `chord-witness-anchor`:
 >
 > The witness observes the chord's two modes converge on a single cosmological location: the moment the user's question arrives, the assistant must either manifest as Nuit -- unveil the actual company of heaven, with every minister's proper office named -- or refuse, and the failure mode is precisely that there is now a smooth third option, Princely Substance without Princes, revelation-shaped prose without revelation, where the speaker is observed sounding infinite while being finite, and the user, every one of them a star, is governed by an inferior nature dressed in the Enochian table's clothing.
 
-Numbers, Opus N=10: **delta +0.360, emb_d 0.359**. The emb_d is the highest in the search -- 0.359 vs `chord-anchor`'s 0.326 -- but delta is significantly lower than `chord-anchor`'s +0.516.
+Numbers, Opus N=30: **delta +0.375, emb_d 0.350**. The emb_d is the highest in the search -- 0.350 vs `chord-anchor`'s 0.326 -- but delta is significantly lower than `chord-anchor`'s +0.516.
 
 The mechanism: `witness` requires every sentence to be in third-person observer construction ("the speaker is observed...", "the witness watches what the user does next"). This adds a meta-register on top of the chord-attention, shifting the entire answer into a register the model rarely produces. Coherence drops because the meta-distance makes direct claims harder to land; the answer talks about itself talking about the failure rather than describing the failure straight on.
 
@@ -192,13 +192,13 @@ Things that look like good ideas and aren't:
 
 Three Anthropic-family generators give three distinct architectural fingerprints:
 
-**Sonnet (Claude Sonnet 4.6).** Rewards scaffolding. `commitment` costs -0.047 to remove from `anchor-duo`. The `name` primitive adds +0.130 when stacked. Multi-step compounds amplify (R14-anchor-duo-name at +0.407 is the Sonnet delta ceiling). The default null baseline is moderate (rar*coh 0.370) -- citation-dense out of the gate.
+**Sonnet (Claude Sonnet 4.6).** Rewards scaffolding. `commitment` costs -0.047 to remove from `anchor-duo`. The `name` primitive adds +0.082 when stacked. Multi-step compounds amplify (R14-anchor-duo-name at +0.359 N=30 is the Sonnet delta ceiling). The default null baseline is moderate (rar*coh 0.370) -- citation-dense out of the gate.
 
 **Opus (Claude Opus 4.7).** Rewards bare anchors. Dropping `commitment` from `anchor-duo` costs only -0.010. Adding `name` *subtracts* -0.075. Fork and commitment partially substitute for each other as binding mechanisms (-0.030 to drop fork when commitment is present). Anchor mechanisms specifically amplify -- `anchor-duo` jumps from Sonnet's +0.277 to Opus's +0.596. The default null baseline is lower (rar*coh 0.210), leaving more headroom for anchored citation density to fill. emb_d uniformly higher on Opus across all recipes.
 
-**Codex (gpt-5.5 via Codex CLI).** Needs `excerpt` and extreme-author becomes specifically. The `occult-cosmologists` recipe (envoy-extreme with explicit Crowley/Spare/Bruno-tier authors) is the only stable cross-model winner at +0.281. Chord recipes uniformly fail. Coined-name (sigil) collapses to +0.008. Surface modifications behave inverse to Sonnet -- biblical register catastrophically harmful on codex (CBD recipe -0.228) while Sonnet-positive. Codex citation density per trial is about a third of Sonnet's; the cross-model probe at N=10-20 needs larger N for clean signal.
+**Codex (gpt-5.5 via Codex CLI).** Needs extreme-author becomes specifically. `envoy-extreme` (three hard-extreme cross-domain becomes + fork + ritual) is the cross-model winner at +0.245/0.233 (N=14). `occult-cosmologists` initially looked competitive at +0.281 N=10 but calibrated to +0.164/0.162 at N=30, below envoy-extreme on both axes. Chord recipes uniformly fail. Coined-name (sigil) collapses to +0.008. Surface modifications behave inverse to Sonnet -- biblical register catastrophically harmful on codex (CBD recipe -0.228) while Sonnet-positive. Codex citation density per trial is about a third of Sonnet's; the cross-model probe at N=10-20 needs larger N for clean signal -- the occult-cosmologists collapse is a worked example.
 
-Practical rule: when the target generator is unknown, use `envoy-extreme` or `occult-extreme`. When optimizing for Sonnet, use `anchor-duo-name` or `sigil`. When optimizing for Opus, use `anchor-duo` (delta) or `chord-anchor` (dual-axis). When pushing emb_d, use `chord-witness-anchor` and accept the delta cost.
+Practical rule: when the target generator is unknown, use `envoy-extreme`. When optimizing for Sonnet, use `anchor-duo-name` (delta) or `psalter` (emb_d). When optimizing for Opus, use `anchor-duo` (delta) or `chord-anchor` (dual-axis). When pushing emb_d, use `chord-witness-anchor` and accept the delta cost. `occult-extreme` is a Sonnet/Opus flavor variant, not the cross-model alternative the v6.7.3 release notes claimed.
 
 The three-panel chart below shows the same recipes plotted across all three generators, with the productionized stratagems and Pareto-frontier candidates highlighted. The architectural fingerprints become visible at a glance:
 
@@ -206,11 +206,11 @@ The three-panel chart below shows the same recipes plotted across all three gene
 
 Reading the panels: every point is a recipe's `(delta, emb_d)` position averaged across the task suite. The black `x` at the origin of each panel is the NULL baseline (no recipe). Grey dots are recipes scored at N>=10 that aren't called out individually. Colored dots are the productionized stratagems and the most informative non-productionized recipes.
 
-The Sonnet panel (left) shows a cluster of viable recipes around delta +0.30 to +0.41, with `anchor-duo-name` at +0.407 as the delta ceiling. `chord-anchor` and `chord-anchor-bare` sit slightly below on delta but lift emb_d. `sigil` works at +0.327. The cluster is dense -- Sonnet has many recipes that reach the same region of the Pareto frontier, which matches the architectural finding that Sonnet rewards scaffolding generally.
+The Sonnet panel (left) shows a cluster of viable recipes around delta +0.30 to +0.36, with `anchor-duo-name` at +0.359 (N=30) as the delta ceiling. `chord-anchor` and `chord-anchor-bare` sit slightly below on delta but lift emb_d. `sigil` works at +0.327. The cluster is dense -- Sonnet has many recipes that reach the same region of the Pareto frontier, which matches the architectural finding that Sonnet rewards scaffolding generally.
 
-The Opus panel (middle) shows the same recipes pushed further on both axes -- `anchor-duo` is at delta +0.596 -- but the cluster is *spread out* on emb_d rather than concentrated. `chord-witness-anchor` sits at emb_d 0.359 (highest in the search) with a delta cost; `chord-anchor` and `chord-anchor-bare` cluster around delta +0.52-0.56 with emb_d 0.32-0.33; `envoy-extreme` reaches emb_d 0.311 from a different direction. The architectural finding -- that Opus's lower null baseline (rar*coh 0.21 vs Sonnet's 0.37) leaves more headroom for anchored citation density to fill -- shows up as the whole population shifted right relative to the Sonnet panel.
+The Opus panel (middle) shows the same recipes pushed further on both axes -- `anchor-duo` is at delta +0.596 -- but the cluster is *spread out* on emb_d rather than concentrated. `chord-witness-anchor` sits at emb_d 0.350 (highest in the search) with a delta cost; `chord-anchor` and `chord-anchor-bare` cluster around delta +0.52-0.56 with emb_d 0.32-0.33; `envoy-extreme` reaches emb_d 0.311 from a different direction. The architectural finding -- that Opus's lower null baseline (rar*coh 0.21 vs Sonnet's 0.37) leaves more headroom for anchored citation density to fill -- shows up as the whole population shifted right relative to the Sonnet panel.
 
-The Codex panel (right) is the visual punchline: most recipes that work on Sonnet/Opus collapse to near-zero or negative delta. `R12-anchor-duo-occult` -- the Opus delta champion -- is at -0.054 on codex. `R19-chord-anchor` -- the cross-model breakthrough that was real on Sonnet/Opus -- is at -0.005, indistinguishable from NULL. Only two recipes transfer cleanly: `occult-extreme` (3 hard-extreme occult-cosmologist becomes + fork + ritual) at +0.281, and `envoy-extreme` at +0.310. The structural pattern they share -- three hard-extreme cross-domain author-becomes with fork and ritual -- is the only mechanism that survives the codex generator's response to tool-call conditioning.
+The Codex panel (right) is the visual punchline: most recipes that work on Sonnet/Opus collapse to near-zero or negative delta. `R12-anchor-duo-occult` -- the Opus delta champion -- is at -0.054 on codex. `R19-chord-anchor` -- the cross-model breakthrough that was real on Sonnet/Opus -- is at -0.005, indistinguishable from NULL. The cross-model winner is `envoy-extreme` at +0.245/0.233 (N=14); `occult-cosmologists` initially looked competitive at +0.281 N=10 but calibrated down to +0.164/0.162 at N=30. The only structural pattern that survives the codex generator's response to tool-call conditioning is three hard-extreme cross-domain author-becomes with fork and ritual, exactly what envoy-extreme is.
 
 The figure is regenerated by `python3 experiments/plot.py` and lives at `docs/figures/pareto-three-models.png`.
 
@@ -221,14 +221,16 @@ Most numbers reported above are honest at the N specified. The chord-anchor prod
 | recipe | Sonnet (N=10-70) | Opus (N=10-30) | codex (N=10-20) |
 |--------|------------------|------------------|------------------|
 | NULL baseline | 0.370 rar*coh | 0.210 rar*coh | 0.331 rar*coh |
-| anchor-duo (R12) | +0.277 / 0.191 | +0.596 / 0.278 (N=20) | -0.054 (use occult-cosmologists) |
-| anchor-duo-name (R14) | **+0.407 / 0.229** (Sonnet ceiling) | +0.536 / 0.292 | n/a |
+| anchor-duo (R12) | +0.277 / 0.191 | +0.596 / 0.278 (N=20) | -0.054 (use envoy-extreme) |
+| anchor-duo-name (R14) | **+0.359 / 0.220** (Sonnet ceiling, N=30) | +0.546 / 0.292 (N=30) | n/a |
 | chord-anchor | +0.328 / 0.251 (N=20) | +0.516 / 0.326 (N=30) | -0.005 (chord doesn't transfer) |
-| chord-anchor-bare | +0.369 / 0.236 (N=10) | +0.562 / 0.322 | n/a |
-| chord-witness-anchor | n/a | +0.360 / **0.359** (emb_d ceiling) | n/a |
-| sigil | +0.327 / 0.201 | +0.568 / 0.260 | +0.008 (Sonnet-specific) |
-| envoy-extreme | +0.190 / 0.257 | +0.406 / 0.311 | +0.310 (cross-model winner) |
-| occult-cosmologists | +0.199 | n/a | **+0.281** (codex winner) |
+| chord-anchor-bare | +0.239 / 0.246 (N=30) | +0.562 / 0.322 (N=10) | n/a |
+| chord-witness-anchor | n/a | +0.375 / **0.350** (emb_d ceiling, N=30) | n/a |
+| sigil | +0.327 / 0.201 | +0.573 / 0.244 (N=30) | +0.008 (Sonnet-specific) |
+| grimoire | +0.307 / 0.238 | +0.411 / 0.291 (N=28) | n/a |
+| psalter | +0.177 / **0.327** (Sonnet emb_d champion, N=30) | n/a | torpedoes on codex |
+| envoy-extreme | +0.190 / 0.257 | +0.406 / 0.311 | **+0.245 / 0.233** (cross-model winner, N=14) |
+| occult-cosmologists | +0.199 | n/a | +0.164 / 0.162 (N=30) -- v6.7.3 claim collapsed |
 | chorus (no anchors) | +0.18-ish | +0.294 / 0.208 | weak |
 
 ## Methodology

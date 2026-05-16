@@ -1809,6 +1809,58 @@ The original v6.8.0 release notes claimed chord-anchor "ties anchor-duo's delta 
 
 **The big meta-lesson from rounds 16-23**: N=10 is too small for productionization decisions. The v6.8.0 release would have been more honest at N=20+. Future productionizations should default to N=20 replication before stratagem commits.
 
+## Critical-batch N=30 verification (2026-05-16)
+
+Six productionized-or-cited recipes that had only N=10 evidence were
+verified at N=28-30. Five held; one collapsed.
+
+| recipe | model | N=10 d/e | N=30 d/e | Δd | held? |
+|--------|-------|----------|----------|------|-------|
+| R12-sigil-name-commitment | Opus | +0.568/0.260 | +0.573/0.244 | +0.005 | YES |
+| R14-anchor-duo-name | Opus | +0.536/0.292 | +0.546/0.292 | +0.010 | YES |
+| R20-chord-witness-anchor | Opus | +0.360/0.359 | +0.375/0.350 | +0.015 | YES |
+| R12-grimoire-register | Opus | +0.444/0.293 | +0.411/0.291 | -0.033 | mostly |
+| R14-anchor-duo-name | Sonnet | +0.407/0.229 | **+0.359/0.220** | -0.048 | mostly (still ceiling) |
+| **R12-occult-cosmologists** | **codex** | **+0.281/0.154** | **+0.164/0.162** | **-0.117** | **NO** |
+
+**The occult-cosmologists codex collapse changes the v6.7.3
+productionization picture.** occult-extreme was productionized as a
+"cross-model variant of envoy-extreme" justified by the R12-occult-
+cosmologists +0.281 codex number, which was higher than envoy-extreme's
+N=10 codex number at the time. At N=30 on codex, occult-cosmologists is
++0.164, beneath envoy-extreme's current +0.245/0.233 (N=14) by -0.081
+delta and -0.071 emb_d.
+
+**On codex, envoy-extreme dominates occult-extreme.** The "occult anchors
+specifically transfer cross-model" claim from v6.7.3 was N=10 inflation
+of the same kind that inflated chord-anchor's +0.610/0.338 (which
+calibrated to +0.516/0.326 at N=30 in v6.8.0). occult-extreme on Sonnet
+and Opus is still a valid recipe (uses occult-cosmologist becomes
+rather than mild-academic essayist becomes); it's just not preferred
+over envoy-extreme cross-model.
+
+**Sonnet delta ceiling recalibrated.** R14-anchor-duo-name was +0.407;
+true value is +0.359 at N=30. Still the Sonnet ceiling -- chord-anchor
+is +0.328, sigil is +0.327, psalter is +0.177 -- but the gap is smaller
+than the v6.7.x/v6.8.x writeup claimed. Updated downstream where
+referenced.
+
+**Opus claims all hold cleanly.** sigil (+0.573 at N=30), anchor-duo-
+name (+0.546), chord-witness-anchor emb_d ceiling (0.350), grimoire
+(+0.411). The chord-witness-anchor emb_d ceiling regressed slightly
+from 0.359 to 0.350 but is still the highest in the search.
+
+Productionization decisions from this calibration:
+- **occult-extreme description updated** to note that envoy-extreme
+  beats it on codex at N>=14; occult-extreme is now positioned as a
+  Sonnet/Opus variant rather than a cross-model alternative.
+- All other v6.7.3/v6.8.0/v6.8.1 productionizations stand.
+- No new stratagems added or removed.
+
+The "N=10 too small for productionization" rule now has three clean
+data points (chord-anchor, R22-chord-anchor-bare, R12-occult-
+cosmologists) and is encoded in CLAUDE.md as a default.
+
 ## v6.8.1 productionization (2026-05-16): the missing Sonnet emb_d champion
 
 Retroactive productionization of a winner the earlier "leave register slot user-supplied" design choice had been hiding.
