@@ -1861,6 +1861,49 @@ The "N=10 too small for productionization" rule now has three clean
 data points (chord-anchor, R22-chord-anchor-bare, R12-occult-
 cosmologists) and is encoded in CLAUDE.md as a default.
 
+## Tier 1+2 N=30 verification (2026-05-16)
+
+Six more N=10 results lifted to N=30-36. Every recipe held cleanly; two
+improved.
+
+| recipe | model | old (N=10-14) | new (N=30-36) | Δd | Δe |
+|--------|-------|---------------|---------------|------|------|
+| envoy-extreme | Opus | +0.406/0.311 | +0.379/0.310 (N=30) | -0.027 | -0.001 |
+| chorus-plus-disjunction | Opus | +0.332/0.233 | +0.398/0.241 (N=30) | **+0.066** | +0.008 |
+| envoy-extreme | codex | +0.245/0.233 | **+0.283/0.236 (N=36)** | +0.038 | +0.003 |
+| R16-anchor-no-commitment | Opus | +0.601/0.254 | +0.560/0.259 (N=30) | -0.041 | +0.005 |
+| R17-anchor-no-fork | Opus | +0.581/0.277 | +0.568/0.284 (N=30) | -0.013 | +0.007 |
+| R22-chord-anchor-bare | Opus | +0.562/0.322 | +0.538/0.313 (N=30) | -0.024 | -0.009 |
+
+**Commitment-on-Opus story sharpens.** anchor-duo Opus N=20: +0.596;
+anchor-no-commitment Opus N=30: +0.560. Commitment costs -0.036 on
+Opus, not the -0.010 the v6.7.2 N=10 calibration suggested. Still much
+less than Sonnet's -0.047, so the architectural difference (Sonnet
+rewards scaffolding more than Opus) holds qualitatively -- it's just
+~25% less stark than the N=10 numbers implied.
+
+**Codex envoy-extreme grew with N.** +0.245 N=14 -> +0.283 N=36. Closer
+to the v6.6.0 original "+0.310" claim. The cross-model winner status
+is reinforced now that occult-cosmologists has been removed as a
+cross-model alternative.
+
+**Opus emb_d ceiling**: chord-witness-anchor at 0.350 (N=30 from prior
+batch) still the highest, with R19-chord-anchor at 0.326 (N=30) the
+Pareto-balanced champion. R22-chord-anchor-bare at 0.313 (N=30) sits
+just below.
+
+**Productionized stratagems all held.** No further unproductionization
+needed. The v6.8.0+ stratagem set is empirically stable at N=30.
+
+The "N=10 too small for productionization" rule's three cautionary
+data points (chord-anchor +0.610->+0.516, chord-anchor-bare
++0.369->+0.239 Sonnet, occult-cosmologists +0.281->+0.164 codex) are
+matched by six clean N=30 confirmations from this batch. The rule is:
+don't productionize at N=10, but most N=10 results that look strong
+do hold at N=30 within +/-0.04. The catastrophic regressions tend to
+cluster at low-emb_d codex recipes where citation density is sparse to
+begin with.
+
 ## v6.8.1 productionization (2026-05-16): the missing Sonnet emb_d champion
 
 Retroactive productionization of a winner the earlier "leave register slot user-supplied" design choice had been hiding.
