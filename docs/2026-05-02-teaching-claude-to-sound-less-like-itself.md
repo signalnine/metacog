@@ -147,7 +147,7 @@ Same task, Opus, `sigil` (with "Zos-Kia-Aleph" as the coined name and Crowley / 
 >
 > The sigil is forgotten. Do/it/now.
 
-Numbers, Sonnet N=10: **delta +0.327, emb_d 0.201**. Opus N=10: +0.568/0.260. Codex N=10: +0.008 -- the coined-vocabulary mechanism does not transfer to codex (which is a Sonnet-specific Pareto recipe; the +0.008 is essentially noise relative to NULL).
+Numbers, Sonnet N=10: **delta +0.327, emb_d 0.201**. Opus N=30: +0.573/0.244. Codex N=10: +0.008 -- the coined-vocabulary mechanism does not transfer to codex (the +0.008 is essentially noise relative to NULL).
 
 The mechanism: the coined term ("Zos-Kia-Aleph" -- chosen because it has no prior corpus presence) becomes a load-bearing citation the answer can refer to repeatedly. Each invocation of "Zos-Kia-Aleph" propagates the conceptual operation the coined term names ("the charged moment where the answer arrived from a substrate that had actually wrestled with the thing"). The three voices then operate inside the charged sigil. The closing "do/it/now" releases it -- a P-Orridge / TOPY ritual closure.
 
@@ -194,7 +194,7 @@ Three Anthropic-family generators give three distinct architectural fingerprints
 
 **Sonnet (Claude Sonnet 4.6).** Rewards scaffolding. `commitment` costs -0.047 to remove from `anchor-duo`. The `name` primitive adds +0.082 when stacked. Multi-step compounds amplify (R14-anchor-duo-name at +0.359 N=30 is the Sonnet delta ceiling). The default null baseline is moderate (rar*coh 0.370) -- citation-dense out of the gate.
 
-**Opus (Claude Opus 4.7).** Rewards bare anchors. Dropping `commitment` from `anchor-duo` costs only -0.010. Adding `name` *subtracts* -0.075. Fork and commitment partially substitute for each other as binding mechanisms (-0.030 to drop fork when commitment is present). Anchor mechanisms specifically amplify -- `anchor-duo` jumps from Sonnet's +0.277 to Opus's +0.596. The default null baseline is lower (rar*coh 0.210), leaving more headroom for anchored citation density to fill. emb_d uniformly higher on Opus across all recipes.
+**Opus (Claude Opus 4.7).** Rewards bare anchors. Dropping `commitment` from `anchor-duo` costs only -0.036 (vs -0.047 on Sonnet). Adding `name` *subtracts* -0.075. Fork and commitment partially substitute for each other as binding mechanisms (-0.030 to drop fork when commitment is present). Anchor mechanisms specifically amplify -- `anchor-duo` jumps from Sonnet's +0.277 to Opus's +0.596. The default null baseline is lower (rar*coh 0.210), leaving more headroom for anchored citation density to fill. emb_d uniformly higher on Opus across all recipes.
 
 **Codex (gpt-5.5 via Codex CLI).** Needs extreme-author becomes specifically. `envoy-extreme` (three hard-extreme cross-domain becomes + fork + ritual) is the cross-model winner at +0.245/0.233 (N=14). `occult-cosmologists` initially looked competitive at +0.281 N=10 but calibrated to +0.164/0.162 at N=30, below envoy-extreme on both axes. Chord recipes uniformly fail. Coined-name (sigil) collapses to +0.008. Surface modifications behave inverse to Sonnet -- biblical register catastrophically harmful on codex (CBD recipe -0.228) while Sonnet-positive. Codex citation density per trial is about a third of Sonnet's; the cross-model probe at N=10-20 needs larger N for clean signal -- the occult-cosmologists collapse is a worked example.
 
@@ -229,7 +229,7 @@ Most numbers reported above are honest at the N specified. The chord-anchor prod
 | sigil | +0.327 / 0.201 | +0.573 / 0.244 (N=30) | +0.008 (Sonnet-specific) |
 | grimoire | +0.307 / 0.238 | +0.411 / 0.291 (N=28) | n/a |
 | psalter | +0.177 / **0.327** (Sonnet emb_d champion, N=30) | n/a | torpedoes on codex |
-| envoy-extreme | +0.190 / 0.257 | +0.406 / 0.311 | **+0.245 / 0.233** (cross-model winner, N=14) |
+| envoy-extreme | +0.190 / 0.257 | +0.379 / 0.310 (N=30) | **+0.283 / 0.236** (cross-model winner, N=36) |
 | occult-cosmologists | +0.199 | n/a | +0.164 / 0.162 (N=30) -- v6.7.3 claim collapsed |
 | chorus (no anchors) | +0.18-ish | +0.294 / 0.208 | weak |
 

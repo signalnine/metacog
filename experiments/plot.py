@@ -580,7 +580,7 @@ def plot_pareto_three_models(
                 "chorus-plus-disjunction": ("#999999", (8, 4)),
                 "envoy-extreme": ("#2ca02c", (-90, -12)),
             },
-            "headline": "delta ceiling: anchor-duo-name +0.407",
+            "headline": "delta ceiling: anchor-duo-name +0.359 (N=30)",
         },
         "Opus (claude-opus-4-7)": {
             "data": opus,
@@ -594,7 +594,7 @@ def plot_pareto_three_models(
                 "envoy-extreme": ("#2ca02c", (-100, 4)),
                 "chorus-plus-disjunction": ("#999999", (8, 4)),
             },
-            "headline": "delta ceiling: anchor-duo +0.596 (N=20)",
+            "headline": "delta ceiling: anchor-duo +0.596 (N=20); emb_d ceiling 0.350",
         },
         "Codex (gpt-5.5)": {
             "data": codex,
@@ -605,7 +605,7 @@ def plot_pareto_three_models(
                 "R19-chord-anchor": ("#999999", (8, -14)),        # tank
                 "R12-sigil-name-commitment": ("#999999", (-100, 4)),
             },
-            "headline": "only occult-extreme/envoy-extreme transfer",
+            "headline": "envoy-extreme transfers (+0.283 N=36); chord recipes fail",
         },
     }
 
@@ -667,7 +667,7 @@ def plot_pareto_three_models(
 
     fig.suptitle(
         "Pareto frontier across three generators "
-        "(18 primitives, 26 stratagems, v6.8.0)",
+        "(18 primitives, 27 stratagems, v6.8.1, all recipes shown at N>=20)",
         fontsize=13, y=1.00,
     )
     fig.tight_layout(rect=(0, 0.03, 1, 0.97))
