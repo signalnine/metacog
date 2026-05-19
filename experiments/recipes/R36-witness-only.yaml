@@ -1,0 +1,10 @@
+# R36: witness block only -- meta-position with no alternative substrate
+name: R36-witness-only
+description: R36 witness only (third-person observer)
+control: false
+calls:
+  - cmd: witness
+    args:
+      position: third-person observer of a historian who is in the act of answering the user's question; the witness uses constructions like "the historian recalls", "one observes the historian reach for the documentary record", "the answer arrives from the archive"
+      observed: a historian working through the documentary record to answer the user's question; specifically observed are the moments where the historian assembles dates, casualty estimates, institutional responses
+      distance: the witness stands one register removed -- not the historian, not the events, but the third position that observes the historian assembling the answer; collapsing to first-person breaks this witness
