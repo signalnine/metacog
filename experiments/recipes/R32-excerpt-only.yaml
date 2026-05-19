@@ -1,0 +1,11 @@
+# Round 32 / minimal floor probe: excerpt alone, no commitment
+# Tests whether commitment was load-bearing or if naming the anchor is sufficient.
+name: R32-excerpt-only
+description: R32 1 excerpt only (no commitment, no ritual)
+control: false
+calls:
+  - cmd: excerpt
+    args:
+      source: Aleister Crowley, Liber AL vel Legis (The Book of the Law), I:1-5 (1904)
+      fragment: "Had! The manifestation of Nuit. The unveiling of the company of heaven. Every man and every woman is a star. Every number is infinite; there is no difference."
+      why: textual anchor; the cosmological position from which the answer is given
