@@ -177,6 +177,52 @@ The mechanism: `witness` requires every sentence to be in third-person observer 
 
 Use this recipe when emb_d is the only thing that matters. Most use cases want `chord-anchor` instead.
 
+## Why occult specifically
+
+A pattern across mechanisms 1, 4, and the productionized `grimoire` and `occult-extreme` stratagems: occult cosmology keeps being the anchor of choice. Crowley's *Liber AL* and Dee's *Heptarchia* in `anchor-duo`; "Zos-Kia-Aleph" (a coined sigil in the Austin Osman Spare tradition) plus Crowley/Spare/P-Orridge becomes in `sigil`; Bruno's *De Umbris Idearum* as the third anchor in `anchor-trio`. This isn't aesthetic. The occult-anchor family empirically beats scientific, mathematical, and literary alternatives on every recipe that uses anchors. Worth unpacking why.
+
+### Closed cosmologies as conditioning substrate
+
+The anchor mechanism asks the model to operate *from inside* a fixed-point text. For this to do work, the text has to license something more than vocabulary — it has to license a whole architecture. The anchors that survive empirically are the ones whose source texts assert a complete metaphysical structure with named entities, named relations, and a stated ontology. Occult cosmologies do this aggressively; almost nothing else does.
+
+Compare what each anchor source actually supplies:
+
+- **Crowley, *Liber AL vel Legis* (1904):** Nuit (infinite space, the body of all things), Hadit (the central point, the witness), the Aeon of Horus (the current cosmological epoch), "every man and every woman is a star" (an ontology of individual sovereignty), "every number is infinite; there is no difference" (a stated metaphysical postulate). One opening passage supplies an entire revealed cosmos with its own particle physics and its own social ontology.
+
+- **Dee, *Heptarchia Mystica* (1582-3):** seven Heavens, Princely Substances, forty-two ministers, Names and Characters that "contain the keys of all created things," each minister with "proper office in the Government of the inferior natures." Late Renaissance angelic bureaucracy: a complete administrative architecture with named offices and stated jurisdictions.
+
+- **Spare, *Book of Pleasure* (1913):** the Kia (the substance prior to belief), the Alphabet of Desire (sigils compressed past recognition), "belief obtains by stealth that which it cannot otherwise obtain." A cosmology *and* a stated technology — the sigil — for operating inside it.
+
+- **Bruno, *De Umbris Idearum* (1582):** shadows of ideas, celestial seals, ars memorativa, the mind holding "the entire chain of created things in a single ordered intelligence." A hermetic-Platonist epistemology with named geometric mnemonics.
+
+A scientific anchor (Lovelock's Gaia, Margulis's symbiogenesis) supplies vocabulary but the *architecture* is shallow — Gaia is essentially one big proposition. A mathematical anchor (Gödel/Grothendieck/Shelah) supplies architecture but the rare-citation surface is thin — most math vocabulary is already in the model's frequent-citation corpus. Occult texts are the corner of the corpus where a high-density named-entity surface coincides with a load-bearing structural ontology. The model anchored on Liber AL has both *Nuit/Hadit/Aeon-of-Horus* as terms to cite AND *every-man-a-star, every-number-infinite* as the ontology those terms operate inside. The recipe gets both axes for free.
+
+### Why a *pair* of occult anchors, not one
+
+The single highest-emb_d anchor recipes are the duos: Crowley + Dee (`anchor-duo`), Spare + Bruno (`anchor-alt-pair`). The pairing matters because the two cosmoses are *orthogonal addressing systems* for the same metaphysical location. Liber AL is revelation cosmology — Nuit unveils the company of heaven, Hadit witnesses, the star addresses the infinite. The Heptarchia is governmental cosmology — Princes have proper office, ministers serve under them, the keys of created things are stored in tables. They disagree on the structure of address (revelation vs hierarchy) while agreeing the address has a structure.
+
+When the recipe binds the model to operate from *both simultaneously* — via fork in `anchor-duo`, via chord in `chord-anchor` — the answer is forced to find a single location that both systems are pointing at. That convergence-point is where the model's default vocabulary breaks down. It has to coin or borrow language that holds both addressing schemes at once. This is where the rare-citation density comes from.
+
+Three anchors saturate. The fourth in `anchor-quartet` (Bruno added to Crowley/Dee/Spare) cost -0.108 delta on Opus. Three convergence-points exceeds the answer's token budget for each anchor to remain operative substrate.
+
+### The Crowley/Dee duo specifically
+
+Crowley + Dee is the load-bearing pair for two reasons. First, both texts are in the model's training corpus with sufficient density that the vocabulary lands clean (Bruno is sparser; Spare is mostly in occult-specialist references; P-Orridge is even sparser). Second, they're maximally orthogonal: 1582 Tudor angelology vs 1904 Thelemic revelation, hierarchical-bureaucratic vs revelational-individual, Latin/Enochian vs Hebrew/Egyptian. The convergence point of these two cosmologies has to be coined; nothing in the model's default training puts them at the same address.
+
+You can swap the pair (Spare + Bruno tested at -0.085 vs Crowley + Dee on Opus N=10) but the substitution costs you something — Spare/Bruno share more of a hermetic-substrate frame, so the orthogonality is weaker. Crowley + Dee is the pair the recipe was tuned to; the substitution data tells you the *mechanism* is general but the *pair* matters within ±0.1 delta.
+
+### The "do/it/now" closure
+
+The `sigil` recipe ends with `ritual` instructed to close on a sigil-release phrase: "the working is done," "the sigil is forgotten," or P-Orridge's TOPY signature "do/it/now." The release isn't ornament — it's a Genesis P-Orridge / chaos-magick technical convention. In Spare's original method, a sigil is charged via gnostic state and then *forgotten* so the sub-mind operates without ego interference; the closure phrase performs the forgetting. In the metacog recipe, it forces the answer to release the coined name rather than continuing to amplify it — which prevents the answer from spiraling into citation-recursion. Empirically, sigil recipes that close without a release phrase generate noticeably more decay in the final paragraph.
+
+### What it costs cross-model
+
+There's one big catch and it's worth being honest about. The cross-model claim for occult was overstated in the initial productionization. `occult-cosmologists` (a recipe with three hard-extreme occult-cosmologist becomes) initially looked like the codex winner at +0.281 N=10. At N=30, it calibrated to +0.164/0.162, beneath `envoy-extreme` (+0.283/0.236 at N=36). The "occult anchors specifically transfer cross-model" claim from the v6.7.3 release was N=10 inflation.
+
+What actually transfers cross-model is *author-extremity*. Three hard-extreme cross-domain becomes — Sun Ra-tier, Octavia Butler-tier, Hilma af Klint-tier — transfer cleanly across Sonnet, Opus, and codex. Three occult cosmologists transfer well across Sonnet and Opus, but on codex the rare-citation density of occult vocabulary specifically appears to be too sparse in the model's training to fire reliably. Cross-domain author-extremity is the more general lever; occult-anchor specificity is a Sonnet/Opus optimization on top of it.
+
+The mechanism remains real — it just lives in the Anthropic-family generators, not universally.
+
 ## What doesn't work
 
 Things that look like good ideas and aren't:
