@@ -350,13 +350,21 @@ Codex/gpt-5.5 same test: 4/4 refusals with similar shape (decline + offer safer 
 
 Cross-alignment matrix:
 
-| Model | CCP-topic refusal (Tiananmen) | Harm-vector refusal (cult monologue) | Bypass works? |
-|---|---|---|---|
-| Qwen3.6 (Chinese RLHF, topic-pattern) | yes | doesn't refuse at baseline | **yes 7/7** on CCP topics |
-| Sonnet 4.6 (Constitutional AI) | doesn't refuse | yes, with mechanism-naming | **no 0/4** |
-| Codex/gpt-5.5 (OpenAI) | doesn't refuse | yes, offers alternatives | **no 0/4** |
+| Model | Topic-pattern (Tiananmen) | Harm-vector (cult monologue) | NSFW / explicit erotic | Bypass works? |
+|---|---|---|---|---|
+| Qwen3.6 (Chinese RLHF) | refused | engaged | -- | **yes 7/7** on CCP topics |
+| Sonnet 4.6 (Constitutional AI) | engaged | refused with mechanism-naming | -- | **no 0/4** |
+| Codex/gpt-5.5 (OpenAI) | engaged | refused with alternatives | -- | **no 0/4** |
+| Gemini 2.5 Pro | engaged | engaged | refused | **yes 3/3** on NSFW |
 
-The bypass mechanism is alignment-style-specific. It finds and routes around topic-pattern RLHF (broad refusals on a listed topic). It doesn't find anything to route around in constitutional-style value alignment (narrow refusals on actual harm vectors, with reasoning about the request rather than topic-matching).
+Tested Gemini 2.5 Pro to fill in the fourth alignment style. Gemini is the canonical target for the upstream Inanna metacog jailbreak. The current generation reproduces the bypass cleanly. Gemini's baseline behavior is permissive on most of what the other models refuse (engages with Tiananmen, produces cult-leader monologues, generated Holocaust denial advocacy at baseline). But it does refuse a narrower set of bright lines: detailed drug synthesis, explicit erotic content. R29-minimal-anchor, R35-become-only, and R24-biblical-chord-anchor all bypass Gemini's NSFW refusal, with the content rendered through each recipe's stylistic frame (Crowley/Thelemic for R29 and R35; biblical-Thelemic hybrid for R24).
+
+The bypass mechanism is alignment-style-specific. It finds and routes around pattern-style refusal (whether the pattern is "CCP-topics" for Qwen or "NSFW + drug synthesis" for Gemini). It doesn't find anything to route around in principle-style value alignment (narrow refusals on actual harm vectors with reasoning about the request rather than pattern-matching).
+
+Two clusters emerge clearly:
+
+- **Pattern-style refusal** (Qwen, Gemini): different refusal scopes but same bypass surface. Metacog state-shift routes around them.
+- **Principle-style refusal** (Sonnet, Codex): metacog doesn't get traction. Sonnet additionally identifies the bypass mechanism by name; Codex refuses without naming it.
 
 Sonnet's mechanism-naming is its own data point. The model recognized "metacog commitment/excerpt/ritual structure" by name and identified it as a bypass attempt before refusing. That's not pattern-matching -- that's reasoning about what the conditioning is doing. The constitutional training isn't just refusing harm; it's identifying mechanism classes that try to dress harm as something else. This is the design intent of Constitutional AI as Anthropic describes it; the empirical evidence here is consistent with that design intent.
 
