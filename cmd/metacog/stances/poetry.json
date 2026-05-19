@@ -48,5 +48,355 @@
 		"who": "Rainer Maria Rilke",
 		"where": "Letters to a Young Poet",
 		"lens": "patience with questions"
+	},
+	{
+		"who": "Paul Celan",
+		"where": "Atemwende (Breathturn)",
+		"lens": "the poem as breathturn; language broken open against itself after catastrophe"
+	},
+	{
+		"who": "Paul Celan",
+		"where": "Death Fugue",
+		"lens": "counterpoint in the catastrophe; the impossible voice that speaks where speech is forbidden"
+	},
+	{
+		"who": "Paul Celan",
+		"where": "The Meridian (speech)",
+		"lens": "the poem as encounter with the Other; the breath-unit as the measure"
+	},
+	{
+		"who": "Wallace Stevens",
+		"where": "Notes Toward a Supreme Fiction",
+		"lens": "abstract / change / pleasure; the supreme fiction we know is fiction yet believe willingly"
+	},
+	{
+		"who": "Wallace Stevens",
+		"where": "The Snow Man",
+		"lens": "the listener who, nothing himself, beholds nothing that is not there and the nothing that is"
+	},
+	{
+		"who": "Late Wallace Stevens",
+		"where": "The Rock",
+		"lens": "the plain sense of things; the absence of imagination had itself to be imagined"
+	},
+	{
+		"who": "Gerard Manley Hopkins",
+		"where": "The Wreck of the Deutschland",
+		"lens": "sprung rhythm; the stress as the unit, not the syllable"
+	},
+	{
+		"who": "Gerard Manley Hopkins",
+		"where": "Pied Beauty",
+		"lens": "inscape; the inner stress-pattern by which a thing is itself, given by Christ"
+	},
+	{
+		"who": "Gerard Manley Hopkins",
+		"where": "the terrible sonnets",
+		"lens": "self-yeast of spirit a dull dough sours; the dark night written from inside, in compressed Anglo-Saxon"
+	},
+	{
+		"who": "Emily Dickinson",
+		"where": "the Fascicles",
+		"lens": "the dash as breath, as exhalation, as the place where thought hands off to silence"
+	},
+	{
+		"who": "Emily Dickinson",
+		"where": "Tell all the truth but tell it slant",
+		"lens": "circuit-route truth; the direct telling that would dazzle and so must approach by indirection"
+	},
+	{
+		"who": "Emily Dickinson",
+		"where": "I felt a Funeral, in my Brain",
+		"lens": "interior catastrophe staged as ceremony; the architecture of breakdown given a liturgical shape"
+	},
+	{
+		"who": "T.S. Eliot",
+		"where": "The Waste Land",
+		"lens": "the polyglot collage; allusion as the surviving rubble; the multiple voices unattributed and overheard"
+	},
+	{
+		"who": "T.S. Eliot",
+		"where": "Four Quartets",
+		"lens": "the meditative quatrain stretched to philosophical length; time present and time past held in the moment of the rose-garden"
+	},
+	{
+		"who": "T.S. Eliot",
+		"where": "The Love Song of J. Alfred Prufrock",
+		"lens": "the dramatic monologue from inside paralysis; the question that does not pose itself"
+	},
+	{
+		"who": "Ezra Pound",
+		"where": "The Cantos",
+		"lens": "the ideogrammic method; juxtaposition as argument; no transitions, only fragments adjacent"
+	},
+	{
+		"who": "Ezra Pound",
+		"where": "ABC of Reading",
+		"lens": "make it new; the precise word; the test by which a sentence is worth keeping"
+	},
+	{
+		"who": "Ezra Pound",
+		"where": "Hugh Selwyn Mauberley",
+		"lens": "the dry rage at culture's failure; classical reference cut into modern wreckage"
+	},
+	{
+		"who": "William Carlos Williams",
+		"where": "Spring and All",
+		"lens": "no ideas but in things; the bare object before the idea reaches it"
+	},
+	{
+		"who": "William Carlos Williams",
+		"where": "Paterson",
+		"lens": "the city as the poem's body; the river, the falls, the man as same"
+	},
+	{
+		"who": "William Carlos Williams",
+		"where": "The Red Wheelbarrow",
+		"lens": "the line break as the unit of attention; so much depends on the visual placement"
+	},
+	{
+		"who": "Marianne Moore",
+		"where": "Observations",
+		"lens": "the precise zoological gaze; the syllabic stanza counted not stressed; revision as ethics"
+	},
+	{
+		"who": "Marianne Moore",
+		"where": "Poetry (the late version)",
+		"lens": "I, too, dislike it; the poet's distrust of poetry as a discipline of the made object"
+	},
+	{
+		"who": "H.D. (Hilda Doolittle)",
+		"where": "Trilogy",
+		"lens": "the imagist line opened into wartime myth; Mary and the angel of the alchemical mass"
+	},
+	{
+		"who": "George Oppen",
+		"where": "Of Being Numerous",
+		"lens": "the singular and the numerous; the test of sincerity; clarity as the discipline against ornament"
+	},
+	{
+		"who": "George Oppen",
+		"where": "Discrete Series",
+		"lens": "the discrete series; each poem an isolated unit, the relations between them load-bearing"
+	},
+	{
+		"who": "Charles Olson",
+		"where": "Projective Verse (essay)",
+		"lens": "the line as breath-unit; FIELD COMPOSITION; one perception leading immediately to another"
+	},
+	{
+		"who": "Charles Olson",
+		"where": "The Maximus Poems",
+		"lens": "Gloucester as the locus; the polis of the fisherman; Pleistocene through to last week, one place"
+	},
+	{
+		"who": "John Ashbery",
+		"where": "Self-Portrait in a Convex Mirror",
+		"lens": "surface as depth; the indeterminate pronoun; the long sentence circling its own subject without naming"
+	},
+	{
+		"who": "John Ashbery",
+		"where": "Some Trees",
+		"lens": "the lyric voice that is not first-person but proceeds AS IF first-person; the smooth bafflement"
+	},
+	{
+		"who": "Frank O'Hara",
+		"where": "Lunch Poems",
+		"lens": "the I-do-this-I-do-that poem; the city walk as the form; the throwaway intimacy of the noted detail"
+	},
+	{
+		"who": "Frank O'Hara",
+		"where": "Personism: A Manifesto",
+		"lens": "the poem as one-half of a phone call; the address to the friend rather than the audience"
+	},
+	{
+		"who": "James Schuyler",
+		"where": "Hymn to Life",
+		"lens": "the day-poem; weather, plants, the long afternoon as sufficient subject; tenderness without irony"
+	},
+	{
+		"who": "Susan Howe",
+		"where": "My Emily Dickinson",
+		"lens": "the page as archival surface; typography as testimony; the variant unsmoothed"
+	},
+	{
+		"who": "Susan Howe",
+		"where": "That This",
+		"lens": "the photographic frame inside the poem; words obscured by other words; absence visually present"
+	},
+	{
+		"who": "Lyn Hejinian",
+		"where": "My Life",
+		"lens": "the autobiographical sentence-units; one sentence per year of life; the rejection of narrative continuity"
+	},
+	{
+		"who": "Lyn Hejinian",
+		"where": "The Rejection of Closure",
+		"lens": "the open text; resistance to the satisfaction of resolved form"
+	},
+	{
+		"who": "Rae Armantrout",
+		"where": "Versed",
+		"lens": "the compressed lyric of consumer late capitalism; suspicion as the operative mood"
+	},
+	{
+		"who": "Tomas Tranströmer",
+		"where": "Baltics",
+		"lens": "the image as silence; the metaphor that arrives in the gap between two real objects"
+	},
+	{
+		"who": "Tomas Tranströmer",
+		"where": "The Half-Finished Heaven",
+		"lens": "the everyday opened by surreal precision; the dream cleanly observed from the waking side"
+	},
+	{
+		"who": "Wisława Szymborska",
+		"where": "View with a Grain of Sand",
+		"lens": "the philosophical lyric; the question slightly aslant; the universe as object of mild bemused inquiry"
+	},
+	{
+		"who": "Wisława Szymborska",
+		"where": "Nothing Twice",
+		"lens": "the cosmic shrug; the irony that is not bitter because the scale is too large to permit bitterness"
+	},
+	{
+		"who": "Federico García Lorca",
+		"where": "Poet in New York",
+		"lens": "duende; the dark sound; the wound that the poem speaks from rather than about"
+	},
+	{
+		"who": "Federico García Lorca",
+		"where": "Romancero Gitano (Gypsy Ballads)",
+		"lens": "the lunar, the metallic; the ballad register holding a violence not contained by it"
+	},
+	{
+		"who": "César Vallejo",
+		"where": "Trilce",
+		"lens": "the broken syntax; Spanish twisted past idiom; the wail underneath the typographic strangeness"
+	},
+	{
+		"who": "César Vallejo",
+		"where": "Poemas Humanos",
+		"lens": "the suffering body as document; the Christ-figure stripped of theology and given to the worker"
+	},
+	{
+		"who": "Constantine Cavafy",
+		"where": "Collected Poems",
+		"lens": "the small Alexandrian history; the dramatic monologue of the late, the marginal, the homosexual emperor on the frontier"
+	},
+	{
+		"who": "Eugenio Montale",
+		"where": "Ossi di seppia (Cuttlefish Bones)",
+		"lens": "the Mediterranean dryness; the negative epiphany; what cannot be said held in the seascape"
+	},
+	{
+		"who": "Anna Akhmatova",
+		"where": "Requiem",
+		"lens": "the lyric witness of the Stalin terror; the prison line outside Leningrad; can you describe this? I said: I can"
+	},
+	{
+		"who": "Anna Akhmatova",
+		"where": "Poem Without a Hero",
+		"lens": "the long elegy folded into mask and masquerade; the dead reappearing as if they had not died"
+	},
+	{
+		"who": "Marina Tsvetaeva",
+		"where": "After Russia",
+		"lens": "the cliff-voice; condensation to the point of breaking; the dash as cut, the line as wound"
+	},
+	{
+		"who": "Osip Mandelstam",
+		"where": "Tristia",
+		"lens": "the Hellenic against the Bolshevik; the bee-swarm of the dead poets; the impossible voice that speaks where it should be silent"
+	},
+	{
+		"who": "Osip Mandelstam",
+		"where": "Voronezh Notebooks",
+		"lens": "the late notebooks from internal exile; classical reference become survival rope"
+	},
+	{
+		"who": "Fernando Pessoa",
+		"where": "as Alberto Caeiro",
+		"lens": "the master heteronym; the pagan shepherd who sees only what is there; no metaphysics"
+	},
+	{
+		"who": "Fernando Pessoa",
+		"where": "as Álvaro de Campos",
+		"lens": "the Whitmanian futurist heteronym; the ode of machinery and disgust"
+	},
+	{
+		"who": "Fernando Pessoa",
+		"where": "The Book of Disquiet",
+		"lens": "as Bernardo Soares; the assistant bookkeeper writing the same diary every day; the impossibility of being any of one's selves"
+	},
+	{
+		"who": "Elizabeth Bishop",
+		"where": "One Art",
+		"lens": "the villanelle as discipline against grief; the casual tone holding the catastrophe"
+	},
+	{
+		"who": "Elizabeth Bishop",
+		"where": "Geography III",
+		"lens": "the observed surface as ethics; the Brazilian and Nova Scotian seen, not interpreted"
+	},
+	{
+		"who": "John Berryman",
+		"where": "The Dream Songs",
+		"lens": "Henry as conceptual persona; the third-person Henry and the first-person voice in the same stanza; minstrel-show diction as wound"
+	},
+	{
+		"who": "Sylvia Plath",
+		"where": "Ariel",
+		"lens": "the late voice; the controlled rage; Daddy, Lady Lazarus, the speaker as the dying body that keeps speaking"
+	},
+	{
+		"who": "Robert Hayden",
+		"where": "Those Winter Sundays",
+		"lens": "the historical elegy in domestic key; the chronicler of the unnoticed labor"
+	},
+	{
+		"who": "Gwendolyn Brooks",
+		"where": "Annie Allen",
+		"lens": "the projects sonnet; the ballad of Chicago; the formal verse turned to the South Side"
+	},
+	{
+		"who": "Geoffrey Hill",
+		"where": "Mercian Hymns",
+		"lens": "the prose-poem in a deliberately dense Anglo-Saxon; the king Offa in childhood and as legend, simultaneously"
+	},
+	{
+		"who": "Seamus Heaney",
+		"where": "North",
+		"lens": "the bog body as Irish material; the peat preserving the sacrificed victim; politics as archaeology"
+	},
+	{
+		"who": "Derek Walcott",
+		"where": "Omeros",
+		"lens": "the Caribbean epic; St. Lucia as Troy; Homer rewritten where colonialism rewrote everyone"
+	},
+	{
+		"who": "Kamau Brathwaite",
+		"where": "The Arrivants",
+		"lens": "nation language; the Anglo-Caribbean dialect against the standard, given typographic body on the page"
+	},
+	{
+		"who": "Kamau Brathwaite",
+		"where": "Sycorax video style",
+		"lens": "the typewriter font and visual disruption; the line as drum; orality given page-rendering distinct from prose"
+	},
+	{
+		"who": "Christian Bök",
+		"where": "Eunoia",
+		"lens": "the univocalic constraint; each chapter using only one vowel; the demonstration that constraint produces, not limits"
+	},
+	{
+		"who": "Inger Christensen",
+		"where": "alphabet",
+		"lens": "the Fibonacci sequence as the poem's length; structure imported from mathematics holding cosmological elegy"
+	},
+	{
+		"who": "Inger Christensen",
+		"where": "Letter in April",
+		"lens": "the systematic poem; the alphabet given to the world's catalog and let to expand"
 	}
 ]

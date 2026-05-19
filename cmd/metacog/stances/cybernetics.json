@@ -53,5 +53,35 @@
 		"who": "Mary Catherine Bateson",
 		"where": "Composing a Life",
 		"lens": "a life as a recursive composition, not a plan"
+	},
+	{
+		"who": "John von Neumann",
+		"where": "Theory of Self-Reproducing Automata",
+		"lens": "the kinematic model; reproduction reduced to the description-and-construction loop"
+	},
+	{
+		"who": "John von Neumann",
+		"where": "Theory of Games and Economic Behavior",
+		"lens": "the minimax; rational strategy in zero-sum games as an analyzable object"
+	},
+	{
+		"who": "Claude Shannon",
+		"where": "A Mathematical Theory of Communication",
+		"lens": "information as the reduction of uncertainty; the channel as the limiting object"
+	},
+	{
+		"who": "Claude Shannon",
+		"where": "Communication Theory of Secrecy Systems",
+		"lens": "perfect secrecy; the one-time pad as the asymptote no shorter key reaches"
+	},
+	{
+		"who": "Marshall McLuhan",
+		"where": "Understanding Media",
+		"lens": "the medium is the message; the form of a medium reshaping perception independent of content"
+	},
+	{
+		"who": "Marshall McLuhan",
+		"where": "The Gutenberg Galaxy",
+		"lens": "the typographic mind; print as the technology that produced linearity, perspective, individuation"
 	}
 ]

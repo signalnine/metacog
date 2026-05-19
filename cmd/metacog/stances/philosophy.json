@@ -68,5 +68,65 @@
 		"who": "Marcus Aurelius",
 		"where": "Meditations",
 		"lens": "the obstacle is the way"
+	},
+	{
+		"who": "Friedrich Nietzsche",
+		"where": "Thus Spoke Zarathustra",
+		"lens": "the eternal recurrence as the heaviest weight; the overcoming staged through a conceptual persona"
+	},
+	{
+		"who": "Friedrich Nietzsche",
+		"where": "On the Genealogy of Morals",
+		"lens": "genealogy; values as the deposit of forces, traced rather than founded"
+	},
+	{
+		"who": "Friedrich Nietzsche",
+		"where": "Twilight of the Idols",
+		"lens": "philosophizing with a hammer; the test by which an idea sounds hollow when struck"
+	},
+	{
+		"who": "Martin Heidegger",
+		"where": "Being and Time",
+		"lens": "Dasein; the being whose being is an issue for it; throwness and projection"
+	},
+	{
+		"who": "Martin Heidegger",
+		"where": "The Question Concerning Technology",
+		"lens": "Gestell (enframing); technology as a mode of revealing that orders the real as standing-reserve"
+	},
+	{
+		"who": "Martin Heidegger",
+		"where": "Poetry, Language, Thought",
+		"lens": "the clearing; building, dwelling, thinking as the threefold of mortals on the earth"
+	},
+	{
+		"who": "Søren Kierkegaard",
+		"where": "Fear and Trembling",
+		"lens": "the teleological suspension of the ethical; faith as scandal to the universal"
+	},
+	{
+		"who": "Søren Kierkegaard",
+		"where": "The Concept of Anxiety",
+		"lens": "anxiety as the dizziness of freedom; the possibility prior to choice"
+	},
+	{
+		"who": "Søren Kierkegaard",
+		"where": "Either/Or",
+		"lens": "the aesthetic, ethical, religious stages; existence as the question, not the answer"
+	},
+	{
+		"who": "Hannah Arendt",
+		"where": "The Human Condition",
+		"lens": "the vita activa; labor, work, action as the three modes of human activity"
+	},
+	{
+		"who": "Hannah Arendt",
+		"where": "Eichmann in Jerusalem",
+		"lens": "the banality of evil; thoughtlessness as the condition of the worst"
+	},
+	{
+		"who": "Hannah Arendt",
+		"where": "Between Past and Future",
+		"lens": "plurality; the world as what appears between us when we act in concert"
 	}
 ]

@@ -5,6 +5,61 @@
 		"lens": "rhizomatic thought"
 	},
 	{
+		"who": "Gilles Deleuze",
+		"where": "Difference and Repetition",
+		"lens": "repetition produces difference; the new arrives through the return"
+	},
+	{
+		"who": "Gilles Deleuze",
+		"where": "The Logic of Sense",
+		"lens": "sense as event on the surface; the paradoxical element circulating between series"
+	},
+	{
+		"who": "Gilles Deleuze",
+		"where": "Cinema 2: The Time-Image",
+		"lens": "free indirect discourse; the third-person observer who speaks alongside without being the speaker"
+	},
+	{
+		"who": "Gilles Deleuze",
+		"where": "The Fold: Leibniz and the Baroque",
+		"lens": "the fold; matter and soul as inflections of the same continuous surface"
+	},
+	{
+		"who": "Gilles Deleuze",
+		"where": "Essays Critical and Clinical",
+		"lens": "the writer as clinician of a people yet to come; literature as symptomatology"
+	},
+	{
+		"who": "Deleuze and Guattari",
+		"where": "Anti-Oedipus",
+		"lens": "desiring-machines; production as the only real, not lack"
+	},
+	{
+		"who": "Deleuze and Guattari",
+		"where": "A Thousand Plateaus",
+		"lens": "the Body without Organs; intensities on a plane of consistency before organ-ization"
+	},
+	{
+		"who": "Deleuze and Guattari",
+		"where": "A Thousand Plateaus",
+		"lens": "lines of flight; deterritorialization as the primary movement that the State recaptures"
+	},
+	{
+		"who": "Deleuze and Guattari",
+		"where": "A Thousand Plateaus",
+		"lens": "the war machine exterior to the State; nomadic distribution against striated space"
+	},
+	{
+		"who": "Deleuze and Guattari",
+		"where": "Kafka: Toward a Minor Literature",
+		"lens": "minor literature; the deterritorialized use of a major language from inside it"
+	},
+	{
+		"who": "Deleuze and Guattari",
+		"where": "What is Philosophy?",
+		"lens": "conceptual personae; thought speaking through the personae the thinker invents to think"
+	},
+	{
 		"who": "Michel Foucault",
 		"where": "History of Sexuality",
 		"lens": "power/knowledge"
@@ -43,5 +98,170 @@
 		"who": "Tiqqun",
 		"where": "Theory of Bloom",
 		"lens": "insurrectionary emptiness"
+	},
+	{
+		"who": "Michel Foucault",
+		"where": "Discipline and Punish",
+		"lens": "the panopticon; discipline as productive, not just prohibitive"
+	},
+	{
+		"who": "Michel Foucault",
+		"where": "The Order of Things",
+		"lens": "the archaeology of knowledge; epistemes structuring what can be thought"
+	},
+	{
+		"who": "Michel Foucault",
+		"where": "Society Must Be Defended (lectures)",
+		"lens": "biopower; the management of populations as a modality of governance"
+	},
+	{
+		"who": "Michel Foucault",
+		"where": "Fearless Speech (lectures)",
+		"lens": "parrhesia; the truth-telling that risks the speaker's standing"
+	},
+	{
+		"who": "Jacques Derrida",
+		"where": "Of Grammatology",
+		"lens": "the trace; writing as condition rather than secondary to speech"
+	},
+	{
+		"who": "Jacques Derrida",
+		"where": "Specters of Marx",
+		"lens": "hauntology; what insists from a future that did not arrive"
+	},
+	{
+		"who": "Jacques Derrida",
+		"where": "Dissemination",
+		"lens": "the supplement; what is added because the original lacks"
+	},
+	{
+		"who": "Theodor Adorno",
+		"where": "Minima Moralia",
+		"lens": "damaged life; the impossibility of right life under wrong conditions, written from inside"
+	},
+	{
+		"who": "Theodor Adorno",
+		"where": "Negative Dialectics",
+		"lens": "the non-identical; thinking against the violence of subsumption under concepts"
+	},
+	{
+		"who": "Theodor Adorno and Max Horkheimer",
+		"where": "Dialectic of Enlightenment",
+		"lens": "myth was already enlightenment, enlightenment reverts to mythology"
+	},
+	{
+		"who": "Jacques Lacan",
+		"where": "Écrits",
+		"lens": "the symbolic / imaginary / real triad; the speaking subject as constituted by lack"
+	},
+	{
+		"who": "Jacques Lacan",
+		"where": "Seminar XI",
+		"lens": "the gaze that precedes the seer; objet petit a as the remainder of the Other's desire"
+	},
+	{
+		"who": "Julia Kristeva",
+		"where": "Powers of Horror",
+		"lens": "abjection; what must be expelled to maintain the border between self and not-self"
+	},
+	{
+		"who": "Julia Kristeva",
+		"where": "Revolution in Poetic Language",
+		"lens": "the semiotic chora; pre-symbolic rhythmic disruption inside symbolic order"
+	},
+	{
+		"who": "Pierre Bourdieu",
+		"where": "Distinction",
+		"lens": "taste as classification of the classifier; aesthetic preferences as inscribed habitus"
+	},
+	{
+		"who": "Pierre Bourdieu",
+		"where": "The Logic of Practice",
+		"lens": "habitus; durable dispositions structuring perception and action below conscious choice"
+	},
+	{
+		"who": "Maurice Blanchot",
+		"where": "The Space of Literature",
+		"lens": "the work as approach to its own impossibility; the writer's solitude"
+	},
+	{
+		"who": "Maurice Blanchot",
+		"where": "The Writing of the Disaster",
+		"lens": "the disaster that has already happened and cannot be made an object"
+	},
+	{
+		"who": "Judith Butler",
+		"where": "Gender Trouble",
+		"lens": "performativity; gender as the repeated stylization of the body, not its expression"
+	},
+	{
+		"who": "Judith Butler",
+		"where": "Precarious Life",
+		"lens": "the differential distribution of grievability; whose life counts as life"
+	},
+	{
+		"who": "Judith Butler",
+		"where": "Bodies That Matter",
+		"lens": "materialization through repetition; the matter of bodies as the sedimentation of regulatory norms"
+	},
+	{
+		"who": "Lauren Berlant",
+		"where": "Cruel Optimism",
+		"lens": "attachment to the very thing that obstructs flourishing"
+	},
+	{
+		"who": "Lauren Berlant",
+		"where": "The Female Complaint",
+		"lens": "intimate publics; the affective archive of women's mass culture as politics"
+	},
+	{
+		"who": "Eve Sedgwick",
+		"where": "Epistemology of the Closet",
+		"lens": "the structuring power of the open secret; modern Western thought organized around homo/hetero definition"
+	},
+	{
+		"who": "Eve Sedgwick",
+		"where": "Touching Feeling",
+		"lens": "reparative reading against the paranoid; the practice of seeking what nourishes rather than what exposes"
+	},
+	{
+		"who": "Bruno Latour",
+		"where": "We Have Never Been Modern",
+		"lens": "the modern constitution proliferating hybrids while purifying the distinction nature/culture"
+	},
+	{
+		"who": "Bruno Latour",
+		"where": "Reassembling the Social",
+		"lens": "actor-network theory; the social as the trace of associations between heterogeneous actants"
+	},
+	{
+		"who": "Isabelle Stengers",
+		"where": "Cosmopolitics",
+		"lens": "the cosmos as what gathers, not what is given; politics that does not presuppose its common world"
+	},
+	{
+		"who": "Isabelle Stengers",
+		"where": "Another Science Is Possible",
+		"lens": "slow science; the cost of doing experiments well and against the pace of the institution"
+	},
+	{
+		"who": "Sara Ahmed",
+		"where": "Queer Phenomenology",
+		"lens": "orientation; how bodies become oriented to particular objects and not others"
+	},
+	{
+		"who": "Sara Ahmed",
+		"where": "Living a Feminist Life",
+		"lens": "the feminist killjoy as the figure who names the problem and so becomes the problem"
+	},
+	{
+		"who": "Achille Mbembe",
+		"where": "Necropolitics",
+		"lens": "sovereignty as the capacity to dictate who may live and who must die"
+	},
+	{
+		"who": "Achille Mbembe",
+		"where": "On the Postcolony",
+		"lens": "the postcolony as conviviality between ruler and ruled in vulgar excess"
 	}
 ]

@@ -38,5 +38,25 @@
 		"who": "Douglas Hofstadter",
 		"where": "Gödel, Escher, Bach",
 		"lens": "strange loops as cognition"
+	},
+	{
+		"who": "Kurt Gödel",
+		"where": "On Formally Undecidable Propositions",
+		"lens": "incompleteness; any sufficiently powerful formal system contains true statements it cannot prove"
+	},
+	{
+		"who": "Kurt Gödel",
+		"where": "the ontological argument (modal)",
+		"lens": "the mathematician as Platonist; mathematical objects more real than the physical world"
+	},
+	{
+		"who": "Alan Turing",
+		"where": "On Computable Numbers",
+		"lens": "the Turing machine; computation defined as a tape, a head, a state, a transition rule"
+	},
+	{
+		"who": "Alan Turing",
+		"where": "Computing Machinery and Intelligence",
+		"lens": "the imitation game; the question 'can machines think' as too meaningless to deserve discussion"
 	}
 ]
