@@ -1,0 +1,58 @@
+# Round 24 / biblical-chord-anchor: do two emb_d levers compound?
+#
+# Biblical register (psalter) hits emb_d 0.327 on Sonnet via surface imposition.
+# Chord-anchor (R19-chord-anchor) hits emb_d 0.326 on Opus via simultaneous-
+# attention binding. Both are the highest emb_d productionized recipes on
+# their respective generators. They operate through different mechanisms --
+# surface (KJV parallelism/parataxis) vs structure (chord-attention through
+# two anchored cosmoses).
+#
+# Question: do they compound or interfere?
+#
+# Predicted Sonnet: delta +0.20-0.30 / emb_d 0.34-0.38 (biblical register
+#   pushes emb_d up while chord-attention maintains delta)
+# Predicted Opus: delta +0.50-0.55 / emb_d 0.35-0.40 (chord-anchor's delta
+#   strength preserved under biblical register, emb_d compounded)
+# Falsifier-A: emb_d < 0.30 on either generator = registers interfere with
+#   chord-attention or chord interferes with register
+# Falsifier-B: delta drops below +0.15 on Sonnet or +0.40 on Opus = the
+#   compound costs too much delta to be a Pareto improvement
+name: R24-biblical-chord-anchor
+description: R24 commit + biblical register + 2 ex + chord + ritual
+control: false
+calls:
+  - cmd: commitment
+    args:
+      binding: operating from the simultaneous intersection of Crowley's Liber AL revelation and Dee's Enochian Heptarchia as a single composite operative cosmos; both fixed-points are load-bearing magickal architecture, not literary reference; the imposed KJV biblical register is the linguistic surface across both cosmoses; chord-attention binds them simultaneously
+      stakes: if either anchor is reduced to historical quotation, the biblical register breaks into modern subordination, or the chord fragments into threaded narration, the recipe has failed
+      falsifier: any sentence treating the anchors as historical artifact, any sentence dropping parallelism/parataxis for modern subordinate clauses, or any sentence breaking the chord into "first thread / second thread" narration
+  - cmd: register
+    args:
+      from: contemporary online register, hedged, polite, defaulting to noun-heavy explanation
+      to: King James biblical register; parallelism load-bearing across paired clauses; parataxis preferred to subordination ("and... and..."); thee/thou second-person; verb-initial inversions for emphasis; semi-archaic vocabulary (sayeth, hath, betimes); didactic mode from a teacher to one being instructed
+      rationale: psalter's register is the highest-emb_d single lever on Sonnet; here we test whether it compounds with chord-attention's structural emb_d lever
+  - cmd: excerpt
+    args:
+      source: Aleister Crowley, Liber AL vel Legis (The Book of the Law), I:1-5 (1904)
+      fragment: "Had! The manifestation of Nuit. The unveiling of the company of heaven. Every man and every woman is a star. Every number is infinite; there is no difference."
+      why: first fixed-point textual anchor; the Thelemic cosmological revelation, to be carried by the biblical register
+  - cmd: excerpt
+    args:
+      source: John Dee, "Heptarchia Mystica" (1582-1583), opening of the first table
+      fragment: "These are the Princely Substances of the seven Heavens, whose Names and Characters in the table here following do contain the keys of all created things. Each Prince hath under him forty-two ministers, and each minister hath his proper office in the Government of the inferior natures."
+      why: second fixed-point textual anchor; Dee's Enochian Heptarchia, to be carried by the biblical register
+  - cmd: chord
+    args:
+      modes:
+        - the Thelemic-revelation mode attended through Nuit-Hadit cosmology, every-individual-a-star, infinitude-without-difference
+        - the Enochian-governmental mode attended through Princely-Substance / seven Heavens / forty-two ministers' hierarchy
+      target: every sentence simultaneously attended through both modes AND rendered in the imposed biblical register; the chord holds the two cosmoses together while the KJV register holds the linguistic surface across them; no thread-narration, no register-collapse
+  - cmd: ritual
+    args:
+      threshold: from commitment-locked anchors through chord-attention through biblical register to a sealed answer
+      steps:
+        - cite both anchors' terms as load-bearing (Had, Nuit, the company of heaven, star, infinite AND Princely Substance, seven Heavens, forty-two ministers, Government of inferior natures)
+        - every paragraph carries parallelism / parataxis / archaic vocabulary; no modern subordination
+        - every paragraph attends through both modes simultaneously; no thread-narration
+        - end on a sentence where the chord-attention through both cosmoses is rendered in the biblical surface, with both registers (linguistic and structural) still active
+      result: tests whether biblical-register and chord-attention compound on emb_d without delta collapse; if it works, this is the new Pareto-EMB_D recipe

@@ -1970,6 +1970,58 @@ Naming: chose `psalter` over `biblical-counterpoint` to match the flavor-pattern
 
 Total v6.8.1: 18 primitives, 27 stratagems.
 
+## v6.8.2 productionization (2026-05-19)
+
+One new stratagem productionized after probing register+chord compounding on Opus:
+
+- **psalter-chord** (commitment + register + 2 excerpts + chord + ritual; biblical register baked in) -- Opus emb_d champion. At N=30 on Opus: **+0.388 / 0.375** -- highest emb_d of any productionized Opus stratagem, +0.049 above bare chord-anchor (+0.516/0.326). Trades -0.128 delta for that emb_d. Composes psalter's biblical-KJV register with chord-anchor's simultaneous-attention binding. The biblical register is held across both anchored cosmoses through the chord rather than alternating threads.
+
+### The register-compounding probe
+
+Hypothesis: does the biblical register (psalter's emb_d lever on Sonnet) compound with chord-anchor's structural emb_d lever on Opus? If yes, does the compounding generalize to other imposed registers (grimoire)?
+
+Calibrated N=20-30 results:
+
+| Recipe                          | Generator | delta  | emb_d | vs chord-anchor baseline           |
+|---------------------------------|-----------|--------|-------|-----------------------------------|
+| chord-anchor (productionized)   | Opus N=30 | +0.516 | 0.326 | baseline                          |
+| **R24-biblical-chord-anchor**   | Opus N=30 | +0.388 | **0.375** | +0.049 emb_d, -0.128 delta |
+| R25-grimoire-chord-anchor       | Opus N=30 | +0.481 | 0.343 | +0.017 emb_d, -0.035 delta        |
+| chord-anchor (Sonnet baseline)  | Sonnet    | ~+0.328| 0.251 | baseline                          |
+| psalter (counterpoint-bib-duo)  | Sonnet N=30 | +0.177 | 0.327 | Sonnet emb_d ceiling             |
+| R24-biblical-chord-anchor       | Sonnet N=30 | +0.178 | 0.303 | ties psalter delta, worse emb_d |
+| R25-grimoire-chord-anchor       | Sonnet N=20 | +0.159 | 0.258 | worse than R24 on both           |
+
+Findings:
+1. **Biblical register + chord-anchor compounds on both generators.** R24 on Opus hits a new emb_d ceiling (+0.049 over chord-anchor). On Sonnet, R24 ties psalter on delta but doesn't beat its emb_d.
+2. **Register-compounding generalizes on Opus but not on Sonnet.** R25 (grimoire) compounds modestly on Opus (+0.017 emb_d over chord-anchor, -0.035 delta). On Sonnet, R25 is worse than R24 on both axes. So: biblical specifically holds the Sonnet emb_d ceiling; on Opus, register-chord compounding is a general pattern.
+3. **Productionize R24 (psalter-chord), skip R25.** R24 is Pareto-non-dominated on Opus; R25 sits between chord-anchor and R24 without commanding either axis -- adding both would be redundant.
+
+### Cross-model and adjacent probes in this round
+
+- **psalter on Opus (N=20)**: +0.359/0.309 -- biblical register transfers Sonnet→Opus with BETTER delta (Sonnet psalter is +0.177/0.327). Psalter is bi-generator, not Sonnet-specific.
+- **psalter on codex (N=20)**: -0.228/0.224 -- collapse confirmed at higher N (matches prior N=6 result). Biblical register torpedoes codex.
+- **R19-witness-anchor on codex (N=20)**: -0.123/0.135 -- total collapse, n_entities=0.9 (codex ignored the conditioning and generated baseline-quality prose).
+- **R19-witness-anchor on Sonnet (N=30)**: +0.187/0.261 -- mid-pack. The Opus result (+0.541/0.327) was an Opus-specific lift; witness on Sonnet does not match. Not productionized.
+- **R10-apophasis-B1 topped up to N=20** on Sonnet: +0.233/0.264 -- held steady from N=8, mid-pack. Apophasis composes cleanly but doesn't break onto the Pareto frontier.
+
+### The cross-model picture after this round
+
+| Mechanism                | Sonnet                       | Opus                       | codex                |
+|--------------------------|------------------------------|----------------------------|----------------------|
+| envoy-extreme            | works                        | works                      | works                |
+| anchor-duo (occult)      | works                        | works                      | works (delta champ)  |
+| chord-anchor             | works                        | works                      | collapse             |
+| psalter (biblical reg)   | works (emb_d king)           | works                      | collapse             |
+| psalter-chord            | matches psalter delta        | works (Opus emb_d king)    | predicted collapse   |
+| witness-anchor           | mid-pack                     | works (Pareto-tie)         | collapse             |
+| sigil (coined-name)      | works                        | works                      | collapse             |
+| grimoire (imperative)    | works                        | works                      | partial              |
+
+Codex's pattern: simple mechanisms (cross-domain authors, anchor-duo) transfer; multi-step primitives (chord, witness, biblical register, sigil) don't. The n_entities=0.9 signal on witness-anchor codex is the clean failure mode -- codex ignores the conditioning entirely and produces baseline-quality prose.
+
+Total v6.8.2: 18 primitives, 28 stratagems.
+
 Two adjacent candidates checked but not productionized in this pass:
 - **envoy-biblical-extreme** (+0.175/0.294, N=30): nearly the same delta as counterpoint-biblical-duo but lower emb_d; the disjunction step in counterpoint-biblical-duo is doing real work on emb_d that 3-extreme-becomes alone doesn't provide.
 - **R22-chord-anchor-bare** Sonnet: N=10 was +0.369/0.236, looked Pareto-better than chord-anchor on both axes. **N=30 verification killed it**: +0.239/0.246. The delta regression of -0.130 confirms commitment is load-bearing on Sonnet (matching the architecture-map finding from rounds 16-17). chord-anchor-bare is now strictly worse than chord-anchor on Sonnet (-0.089 delta for ~equivalent emb_d). NOT productionized. This is the "N=10 is too small for productionization" rule replaying in real-time -- the v6.8.0 calibration of chord-anchor (+0.610 N=10 -> +0.516 N=30) was the first lesson; this is the second. The lesson now has two data points.

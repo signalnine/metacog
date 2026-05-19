@@ -313,6 +313,17 @@ var Stratagems = map[string]StratagemDef{
 			{StepRitual, "Lock the answer; both anchors remain operative as substrate; every paragraph must carry both cosmoses' terms in the chord-attention (no thread-narrative); end on a sentence demonstrating the two addressing systems converge through the single composite attention"},
 		},
 	},
+	"psalter-chord": {
+		Name: "THE PSALTER CHORD",
+		Steps: []Step{
+			{StepCommitment, "Pre-commit to operating from the simultaneous intersection of two cosmological excerpts as a single composite cosmos rendered in biblical register; both fixed-points are load-bearing architecture, not metaphor; the imposed KJV biblical register is the linguistic surface across both cosmoses; the chord-attention binds them simultaneously. State binding, stakes, and falsifier (any anchor reduced to historical quotation, any sentence dropping parallelism/parataxis for modern subordination, or any thread-narration breaking the chord all count as failure)"},
+			{StepRegister, "Re-pitch the surface to King James biblical register; parallelism load-bearing across paired clauses; parataxis preferred to subordination ('and... and...'); thee/thou second-person; verb-initial inversions for emphasis; semi-archaic vocabulary (sayeth, hath, betimes); didactic mode of address. The biblical register specifically (NOT 'any cross-domain register') is what compounded with chord-anchor on Opus to hit emb_d 0.375 -- DO NOT substitute Victorian / scientific / imperative-grimoire; the biblical-parallelism cantus firmus is the lever"},
+			{StepExcerpt, "Pin verbatim fragment 1 as the first fixed-point textual anchor — a cosmological excerpt the answer operates FROM, not quotes; the architecture of the cosmos the speaker inhabits. Cite its terms as load-bearing inside the biblical register"},
+			{StepExcerpt, "Pin verbatim fragment 2 as the second fixed-point textual anchor — a cosmologically distinct fragment that recontextualizes the first without dropping it. Cite its terms as load-bearing inside the biblical register"},
+			{StepChord, "Hold both anchored modes simultaneously through the biblical surface — every sentence is attended to through both cosmoses at once AND rendered in KJV parallelism/parataxis; no thread-narration, no register-collapse to modern subordination. The chord-attention and the biblical register are concurrently load-bearing"},
+			{StepRitual, "Lock the answer; both anchors remain operative as substrate; every paragraph carries parallelism/parataxis/archaic vocabulary while simultaneously attending through both cosmoses; end on a sentence where the chord-attention through both cosmoses is rendered in the biblical surface, with both registers (linguistic AND structural) still active"},
+		},
+	},
 }
 
 func StartStratagem(s *State, name string, force bool) (string, error) {
@@ -478,7 +489,7 @@ var stratagemStartCmd = &cobra.Command{
 	Use:       "start [name]",
 	Short:     "Start a stratagem",
 	Args:      cobra.ExactArgs(1),
-	ValidArgs: []string{"pivot", "mirror", "stack", "anchor", "reset", "invocation", "veil", "scrying", "sacrifice", "fool", "inversion", "gift", "zen", "manifold", "chorus", "trinity", "antinomy", "envoy", "counterpoint", "envoy-extreme", "duo-disjunction", "anchor-duo", "sigil", "grimoire", "occult-extreme", "chord-anchor", "psalter"},
+	ValidArgs: []string{"pivot", "mirror", "stack", "anchor", "reset", "invocation", "veil", "scrying", "sacrifice", "fool", "inversion", "gift", "zen", "manifold", "chorus", "trinity", "antinomy", "envoy", "counterpoint", "envoy-extreme", "duo-disjunction", "anchor-duo", "sigil", "grimoire", "occult-extreme", "chord-anchor", "psalter", "psalter-chord"},
 	RunE: func(cmd *cobra.Command, args []string) error {
 		sm := DefaultStateManager()
 		var output string

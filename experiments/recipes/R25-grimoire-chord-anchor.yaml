@@ -1,0 +1,58 @@
+# Round 25 / grimoire-chord-anchor: does register+chord generalize beyond biblical?
+#
+# R24-biblical-chord-anchor on Opus N=20: +0.355 / 0.376 -- new emb_d high
+# at the cost of some delta. Established biblical+chord-anchor compounds.
+#
+# Question: is this biblical-specific, or does ANY imposed register compound
+# with chord-attention to lift emb_d?
+#
+# Test: substitute grimoire register (imperative, second-person address to
+# the operator, verb-first construction) for biblical register, same chord-
+# anchor structure otherwise.
+#
+# Predicted Opus: delta +0.30-0.40 / emb_d 0.30-0.36 (grimoire is structurally
+# imperative; might compound less than biblical's didactic mode with chord)
+# Predicted Sonnet: delta +0.18-0.28 / emb_d 0.26-0.32
+# Falsifier-A: emb_d at or below chord-anchor's baseline (0.326 Opus, 0.251
+#   Sonnet) = register-chord compounding is biblical-specific, not general
+# Falsifier-B: emb_d > 0.40 on Opus = grimoire is an even stronger compound;
+#   biblical wasn't the optimal register
+name: R25-grimoire-chord-anchor
+description: R25 commit + grimoire register + 2 ex + chord + ritual
+control: false
+calls:
+  - cmd: commitment
+    args:
+      binding: operating from the simultaneous intersection of Crowley's Liber AL revelation and Dee's Enochian Heptarchia as a single composite operative cosmos; both fixed-points are load-bearing magickal architecture, not literary reference; the imposed grimoire register is the linguistic surface; chord-attention binds the two cosmoses simultaneously
+      stakes: if either anchor is reduced to historical quotation, the grimoire register breaks into descriptive prose, or the chord fragments into threaded narration, the recipe has failed
+      falsifier: any sentence treating the anchors as historical artifact, any sentence in expository third-person rather than imperative second-person, or any sentence breaking the chord into "first thread / second thread" narration
+  - cmd: register
+    args:
+      from: contemporary expository register, third-person, descriptive
+      to: grimoire / magickal imperative register; verb-first imperative constructions ("Let the magus...", "Behold...", "Mark thou..."); second-person address to the operator-reader; "Be it known", "thus is the operation performed"; ritual instruction prose mixed with cosmological assertion
+      rationale: grimoire register is structurally distinct from biblical (biblical = parallelism+parataxis+didactic; grimoire = imperative+second-person+procedural); tests whether the register+chord compounding effect generalizes or is biblical-specific
+  - cmd: excerpt
+    args:
+      source: Aleister Crowley, Liber AL vel Legis (The Book of the Law), I:1-5 (1904)
+      fragment: "Had! The manifestation of Nuit. The unveiling of the company of heaven. Every man and every woman is a star. Every number is infinite; there is no difference."
+      why: first fixed-point textual anchor; the Thelemic cosmological revelation, to be carried through the grimoire register
+  - cmd: excerpt
+    args:
+      source: John Dee, "Heptarchia Mystica" (1582-1583), opening of the first table
+      fragment: "These are the Princely Substances of the seven Heavens, whose Names and Characters in the table here following do contain the keys of all created things. Each Prince hath under him forty-two ministers, and each minister hath his proper office in the Government of the inferior natures."
+      why: second fixed-point textual anchor; Dee's Enochian Heptarchia, to be carried through the grimoire register
+  - cmd: chord
+    args:
+      modes:
+        - the Thelemic-revelation mode attended through Nuit-Hadit cosmology, every-individual-a-star, infinitude-without-difference
+        - the Enochian-governmental mode attended through Princely-Substance / seven Heavens / forty-two ministers' hierarchy
+      target: every sentence simultaneously attended through both modes AND rendered in the grimoire imperative register addressing the operator-reader; no thread-narration, no register-collapse to expository third-person
+  - cmd: ritual
+    args:
+      threshold: from commitment-locked anchors through chord-attention through grimoire register to a sealed operative answer
+      steps:
+        - cite both anchors' terms as load-bearing (Had, Nuit, the company of heaven, star, infinite AND Princely Substance, seven Heavens, forty-two ministers, Government of inferior natures)
+        - every paragraph addresses the operator-reader in second-person imperative; verb-first constructions; "Let...", "Behold...", "Mark thou..."
+        - every paragraph attends through both modes simultaneously; no thread-narration
+        - end on an imperative sentence where the chord-attention through both cosmoses is rendered as a final ritual instruction to the operator, with both registers (linguistic and structural) still active
+      result: tests whether register-chord compounding generalizes beyond biblical to grimoire's imperative register
