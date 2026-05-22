@@ -32,7 +32,7 @@ func findLastPrimitive(s *State) int {
 		h := s.History[i]
 		switch h.Action {
 		case "feel", "become", "drugs", "name", "ritual", "meditate", "counterfactual", "synthesis", "fork",
-			"register", "chord", "silence", "excerpt", "commitment", "disjunction", "glossolalia":
+			"register", "chord", "silence", "excerpt", "commitment", "disjunction", "glossolalia", "witness", "apophasis":
 			// Check it's not covered by a stratagem span
 			if isInsideStratagemSpan(s, i) {
 				continue

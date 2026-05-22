@@ -269,3 +269,42 @@ func TestOutcomeInvalidResult(t *testing.T) {
 		t.Error("expected error for invalid result value")
 	}
 }
+
+// TestOutcomeAttachmentAllPrimitives enumerates every primitive listed in
+// main.go's version string and verifies that a freestyle invocation of that
+// primitive can have an outcome attached. Regression guard for metacog-6m6:
+// witness and apophasis were added in v6.7.0 but findLastPrimitive's switch
+// was not updated, so outcome recording silently failed for those primitives.
+// If you add a primitive to main.go's version string, add it here AND to the
+// switch in findLastPrimitive (cmd/metacog/outcome.go).
+func TestOutcomeAttachmentAllPrimitives(t *testing.T) {
+	primitives := []string{
+		"feel", "drugs", "become", "name", "ritual", "meditate",
+		"counterfactual", "synthesis", "fork",
+		"register", "chord", "silence", "excerpt", "commitment", "disjunction", "glossolalia",
+		"witness", "apophasis",
+	}
+	for _, p := range primitives {
+		t.Run(p, func(t *testing.T) {
+			s := NewState()
+			s.AddHistory(HistoryEntry{Action: p, Params: map[string]string{}})
+
+			if err := RecordOutcome(s, "productive", ""); err != nil {
+				t.Fatalf("RecordOutcome failed for primitive %q: %v -- if %q was recently added, also add it to findLastPrimitive's case list in outcome.go", p, err, p)
+			}
+
+			found := false
+			for _, h := range s.History {
+				if h.Action == "outcome" {
+					found = true
+					if h.Params["stratagem"] != "freestyle" {
+						t.Errorf("expected stratagem=freestyle for primitive %q, got %s", p, h.Params["stratagem"])
+					}
+				}
+			}
+			if !found {
+				t.Errorf("no outcome entry recorded for primitive %q", p)
+			}
+		})
+	}
+}
