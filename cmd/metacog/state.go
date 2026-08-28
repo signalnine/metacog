@@ -146,9 +146,17 @@ func (sm *StateManager) Load() (*State, error) {
 	}
 	defer sm.unlock(lockFile)
 
+	_, statErr := os.Stat(sm.filePath)
 	s, err := sm.loadUnlocked()
 	if err != nil {
 		return nil, loadErrorWithHint(err)
+	}
+	if os.IsNotExist(statErr) {
+		// First touch of this state dir: persist so the freshly minted
+		// session ID is the same one every later invocation sees.
+		if err := sm.saveUnlocked(s); err != nil {
+			return nil, err
+		}
 	}
 	return s, nil
 }

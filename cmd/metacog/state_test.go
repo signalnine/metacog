@@ -353,3 +353,22 @@ func TestSaveWithLockCorruptSuggestsRepair(t *testing.T) {
 		t.Errorf("reset cannot run on a corrupt file; do not suggest it: %v", err)
 	}
 }
+
+func TestLoadPersistsFreshSessionID(t *testing.T) {
+	dir := t.TempDir()
+	sm := NewStateManager(dir)
+	first, err := sm.Load()
+	if err != nil {
+		t.Fatal(err)
+	}
+	second, err := sm.Load()
+	if err != nil {
+		t.Fatal(err)
+	}
+	if first.SessionID != second.SessionID {
+		t.Errorf("session ID must be stable across reads: %s vs %s", first.SessionID, second.SessionID)
+	}
+	if _, err := os.Stat(filepath.Join(dir, "state.json")); err != nil {
+		t.Error("first Load should have written state.json")
+	}
+}
