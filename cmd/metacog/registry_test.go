@@ -58,3 +58,19 @@ func TestFindLastPrimitiveUsesRegistry(t *testing.T) {
 		}
 	}
 }
+
+func TestPrimitiveDescriptorsCoverRegistry(t *testing.T) {
+	if len(primitiveDescriptors) != len(PrimitiveKinds) {
+		t.Errorf("primitiveDescriptors has %d entries, PrimitiveKinds has %d", len(primitiveDescriptors), len(PrimitiveKinds))
+	}
+	for _, k := range PrimitiveKinds {
+		if primitiveDescriptors[string(k)] == "" {
+			t.Errorf("no descriptor for %s", k)
+		}
+	}
+	for name := range primitiveDescriptors {
+		if !IsPrimitive(name) {
+			t.Errorf("descriptor for non-primitive %q", name)
+		}
+	}
+}

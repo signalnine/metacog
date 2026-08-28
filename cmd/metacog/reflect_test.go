@@ -425,7 +425,8 @@ func TestPracticePatternsNoShift(t *testing.T) {
 
 func TestPracticePatternsUnderused(t *testing.T) {
 	s := NewState()
-	// 10 becomes, 1 drugs, 0 rituals = ritual at 0%, drugs at 9%
+	// 10 becomes, 1 drugs: become dominates, drugs is 9% (above the
+	// half-uniform threshold of ~2.8%), everything else never used.
 	for i := 0; i < 10; i++ {
 		s.AddHistory(HistoryEntry{Action: "become", Params: map[string]string{"name": "test"}})
 	}
@@ -435,14 +436,41 @@ func TestPracticePatternsUnderused(t *testing.T) {
 	if !strings.Contains(output, "Underused") {
 		t.Errorf("expected Underused section:\n%s", output)
 	}
-	if !strings.Contains(output, "ritual") {
-		t.Errorf("expected ritual flagged:\n%s", output)
+	if !strings.Contains(output, "never used:") {
+		t.Errorf("expected never-used line:\n%s", output)
 	}
-	if !strings.Contains(output, "threshold-crossing") {
-		t.Errorf("expected ritual descriptor:\n%s", output)
+	for _, want := range []string{"ritual (threshold-crossing)", "chord (simultaneous attention)", "apophasis (articulation by negation)"} {
+		if !strings.Contains(output, want) {
+			t.Errorf("expected %q flagged as never used:\n%s", want, output)
+		}
 	}
-	if !strings.Contains(output, "drugs") {
-		t.Errorf("expected drugs flagged:\n%s", output)
+	if strings.Contains(output, "become is") || strings.Contains(output, "drugs is") {
+		t.Errorf("become (91%%) and drugs (9%%) must not be flagged as rare:\n%s", output)
+	}
+}
+
+func TestPracticePatternsRareButUsed(t *testing.T) {
+	s := NewState()
+	for i := 0; i < 60; i++ {
+		s.AddHistory(HistoryEntry{Action: "feel", Params: map[string]string{}})
+	}
+	s.AddHistory(HistoryEntry{Action: "witness", Params: map[string]string{}}) // 1/61 = 1.6% < 2.8%
+	output := FormatPracticePatterns(s)
+	if !strings.Contains(output, "witness is 2% of your practice (1 of 61 primitive calls)") {
+		t.Errorf("expected witness flagged as rare:\n%s", output)
+	}
+}
+
+func TestReflectCountsAllPrimitives(t *testing.T) {
+	s := NewState()
+	for _, k := range PrimitiveKinds {
+		s.AddHistory(HistoryEntry{Action: string(k), Params: map[string]string{}})
+	}
+	output := FormatReflection(s)
+	for _, k := range PrimitiveKinds {
+		if !strings.Contains(output, fmt.Sprintf("  %s: 1\n", k)) {
+			t.Errorf("reflect should count %s:\n%s", k, output)
+		}
 	}
 }
 

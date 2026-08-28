@@ -17,6 +17,31 @@ func allStratagemNames() []string {
 	return names
 }
 
+// primitiveDescriptors is the short "what this primitive offers" phrase used
+// by the Underused section. Keep one entry per PrimitiveKinds member
+// (registry_test.go checks).
+var primitiveDescriptors = map[string]string{
+	"feel": "felt sensing", "drugs": "substrate modification", "become": "identity shifting",
+	"name": "true naming", "ritual": "threshold-crossing", "meditate": "stillness",
+	"counterfactual": "assumption pruning", "synthesis": "three-lens tension", "fork": "parallel threads",
+	"register": "voice re-pitching", "chord": "simultaneous attention", "silence": "withheld articulation",
+	"excerpt": "fixed-point anchoring", "commitment": "pre-binding", "disjunction": "held contradiction",
+	"glossolalia": "sub-semantic release", "witness": "observer stance", "apophasis": "articulation by negation",
+}
+
+// countPrimitives tallies primitive calls in history by action, plus the total.
+func countPrimitives(s *State) (map[string]int, int) {
+	counts := map[string]int{}
+	total := 0
+	for _, h := range s.History {
+		if IsPrimitive(h.Action) {
+			counts[h.Action]++
+			total++
+		}
+	}
+	return counts, total
+}
+
 func FormatReflection(s *State) string {
 	if len(s.History) == 0 {
 		return "No history to reflect on."
@@ -24,21 +49,17 @@ func FormatReflection(s *State) string {
 
 	var b strings.Builder
 
-	primitiveCounts := map[string]int{}
-	for _, h := range s.History {
-		switch h.Action {
-		case "feel", "become", "drugs", "name", "ritual":
-			primitiveCounts[h.Action]++
+	primitiveCounts, _ := countPrimitives(s)
+	b.WriteString("Primitive usage:\n")
+	anyUsed := false
+	for _, k := range PrimitiveKinds {
+		if c := primitiveCounts[string(k)]; c > 0 {
+			b.WriteString(fmt.Sprintf("  %s: %d\n", k, c))
+			anyUsed = true
 		}
 	}
-
-	b.WriteString("Primitive usage:\n")
-	for _, p := range []string{"feel", "become", "drugs", "name", "ritual"} {
-		if c, ok := primitiveCounts[p]; ok {
-			b.WriteString(fmt.Sprintf("  %s: %d\n", p, c))
-		} else {
-			b.WriteString(fmt.Sprintf("  %s: 0\n", p))
-		}
+	if !anyUsed {
+		b.WriteString("  (none)\n")
 	}
 
 	identityCounts := map[string]int{}
@@ -339,39 +360,35 @@ func FormatPracticePatterns(s *State) string {
 		}
 	}
 
-	// Underused — flag primitives at <20% of total when total >= 5
-	primitiveCounts := map[string]int{}
-	for _, h := range s.History {
-		switch h.Action {
-		case "feel", "become", "drugs", "name", "ritual":
-			primitiveCounts[h.Action]++
-		}
-	}
-	totalPrimitives := primitiveCounts["feel"] + primitiveCounts["become"] + primitiveCounts["drugs"] + primitiveCounts["name"] + primitiveCounts["ritual"]
-
+	// Underused: once there are >= 5 primitive calls, flag used-but-rare
+	// primitives (share below half the uniform share, i.e. 100/18/2 ~ 2.8%)
+	// one per line, and list never-used primitives on a single line.
+	primitiveCounts, totalPrimitives := countPrimitives(s)
 	if totalPrimitives >= 5 {
-		descriptors := map[string]string{
-			"feel":   "felt sensing",
-			"become": "identity shifting",
-			"drugs":  "substrate modification",
-			"name":   "true naming",
-			"ritual": "threshold-crossing",
-		}
-		var underused []string
-		for _, p := range []string{"feel", "become", "drugs", "name", "ritual"} {
+		threshold := 100.0 / float64(len(PrimitiveKinds)) / 2
+		var rare, never []string
+		for _, k := range PrimitiveKinds {
+			p := string(k)
 			count := primitiveCounts[p]
+			if count == 0 {
+				never = append(never, fmt.Sprintf("%s (%s)", p, primitiveDescriptors[p]))
+				continue
+			}
 			pct := float64(count) / float64(totalPrimitives) * 100
-			if pct < 20 {
-				underused = append(underused, fmt.Sprintf("    %s is %.0f%% of your practice (%d of %d primitives) — %s is available", p, pct, count, totalPrimitives, descriptors[p]))
+			if pct < threshold {
+				rare = append(rare, fmt.Sprintf("    %s is %.0f%% of your practice (%d of %d primitive calls) — %s is available", p, pct, count, totalPrimitives, primitiveDescriptors[p]))
 			}
 		}
-		if len(underused) > 0 {
+		if len(rare)+len(never) > 0 {
 			if !hasContent {
 				b.WriteString("\nPractice patterns:\n")
 			}
 			b.WriteString("\n  Underused:\n")
-			for _, u := range underused {
-				b.WriteString(u + "\n")
+			for _, r := range rare {
+				b.WriteString(r + "\n")
+			}
+			if len(never) > 0 {
+				b.WriteString(fmt.Sprintf("    never used: %s\n", strings.Join(never, ", ")))
 			}
 			hasContent = true
 		}
