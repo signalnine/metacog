@@ -423,7 +423,7 @@ func TestPracticePatternsNoShift(t *testing.T) {
 	}
 }
 
-func TestPracticePatternsUnderused(t *testing.T) {
+func TestPracticePatternsUnexplored(t *testing.T) {
 	s := NewState()
 	// 10 becomes, 1 drugs: become dominates, drugs is 9% (above the
 	// half-uniform threshold of ~2.8%), everything else never used.
@@ -433,19 +433,19 @@ func TestPracticePatternsUnderused(t *testing.T) {
 	s.AddHistory(HistoryEntry{Action: "drugs", Params: map[string]string{"substance": "caffeine"}})
 
 	output := FormatPracticePatterns(s)
-	if !strings.Contains(output, "Underused") {
-		t.Errorf("expected Underused section:\n%s", output)
+	if strings.Contains(output, "Underused") {
+		t.Errorf("nothing is used-but-rare here; no Underused section expected:\n%s", output)
 	}
-	if !strings.Contains(output, "never used:") {
-		t.Errorf("expected never-used line:\n%s", output)
+	if !strings.Contains(output, "Unexplored:") {
+		t.Errorf("expected Unexplored line:\n%s", output)
 	}
 	for _, want := range []string{"ritual (threshold-crossing)", "chord (simultaneous attention)", "apophasis (articulation by negation)"} {
 		if !strings.Contains(output, want) {
-			t.Errorf("expected %q flagged as never used:\n%s", want, output)
+			t.Errorf("expected %q listed as unexplored:\n%s", want, output)
 		}
 	}
-	if strings.Contains(output, "become is") || strings.Contains(output, "drugs is") {
-		t.Errorf("become (91%%) and drugs (9%%) must not be flagged as rare:\n%s", output)
+	if strings.Contains(output, "become (") || strings.Contains(output, "drugs (") {
+		t.Errorf("used primitives must not appear in Unexplored:\n%s", output)
 	}
 }
 
@@ -488,6 +488,9 @@ func TestPracticePatternsBalanced(t *testing.T) {
 	output := FormatPracticePatterns(s)
 	if strings.Contains(output, "Underused") {
 		t.Errorf("balanced practice should not show Underused:\n%s", output)
+	}
+	if !strings.Contains(output, "Unexplored: meditate (stillness)") {
+		t.Errorf("the 13 never-used primitives should be noted as Unexplored:\n%s", output)
 	}
 }
 

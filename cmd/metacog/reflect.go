@@ -361,8 +361,10 @@ func FormatPracticePatterns(s *State) string {
 	}
 
 	// Underused: once there are >= 5 primitive calls, flag used-but-rare
-	// primitives (share below half the uniform share, i.e. 100/18/2 ~ 2.8%)
-	// one per line, and list never-used primitives on a single line.
+	// primitives (share below half the uniform share, i.e. 100/18/2 ~ 2.8%).
+	// Never-used primitives go on a separate one-line Unexplored note: that
+	// is information about the surface, not a judgement on balance, so
+	// evenly balanced practice over a subset shows no Underused section.
 	primitiveCounts, totalPrimitives := countPrimitives(s)
 	if totalPrimitives >= 5 {
 		threshold := 100.0 / float64(len(PrimitiveKinds)) / 2
@@ -379,7 +381,7 @@ func FormatPracticePatterns(s *State) string {
 				rare = append(rare, fmt.Sprintf("    %s is %.0f%% of your practice (%d of %d primitive calls) — %s is available", p, pct, count, totalPrimitives, primitiveDescriptors[p]))
 			}
 		}
-		if len(rare)+len(never) > 0 {
+		if len(rare) > 0 {
 			if !hasContent {
 				b.WriteString("\nPractice patterns:\n")
 			}
@@ -387,9 +389,13 @@ func FormatPracticePatterns(s *State) string {
 			for _, r := range rare {
 				b.WriteString(r + "\n")
 			}
-			if len(never) > 0 {
-				b.WriteString(fmt.Sprintf("    never used: %s\n", strings.Join(never, ", ")))
+			hasContent = true
+		}
+		if len(never) > 0 {
+			if !hasContent {
+				b.WriteString("\nPractice patterns:\n")
 			}
+			b.WriteString(fmt.Sprintf("\n  Unexplored: %s\n", strings.Join(never, ", ")))
 			hasContent = true
 		}
 	}
