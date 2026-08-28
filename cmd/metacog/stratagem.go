@@ -33,6 +33,36 @@ const (
 	StepAction         StepKind = "ACTION"
 )
 
+// PrimitiveKinds is the canonical, ordered list of every primitive. Anything
+// that enumerates primitives (version output, reflect, outcome's freestyle
+// search, the registry test) derives from this, so adding a primitive means
+// adding it here exactly once.
+var PrimitiveKinds = []StepKind{
+	StepFeel, StepDrugs, StepBecome, StepName, StepRitual, StepMeditate,
+	StepCounterfactual, StepSynthesis, StepFork,
+	StepRegister, StepChord, StepSilence, StepExcerpt, StepCommitment, StepDisjunction, StepGlossolalia,
+	StepWitness, StepApophasis,
+}
+
+// IsPrimitive reports whether a history action name is a primitive.
+func IsPrimitive(action string) bool {
+	for _, k := range PrimitiveKinds {
+		if string(k) == action {
+			return true
+		}
+	}
+	return false
+}
+
+// PrimitiveNames returns PrimitiveKinds as plain strings, in canonical order.
+func PrimitiveNames() []string {
+	names := make([]string, len(PrimitiveKinds))
+	for i, k := range PrimitiveKinds {
+		names[i] = string(k)
+	}
+	return names
+}
+
 type Step struct {
 	Kind        StepKind
 	Description string

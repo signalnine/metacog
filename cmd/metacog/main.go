@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"strings"
 
 	"github.com/spf13/cobra"
 )
@@ -17,12 +18,20 @@ var rootCmd = &cobra.Command{
 
 var jsonOutput bool
 
+// formatVersion derives the primitive and stratagem lists from the registries
+// so they cannot drift from what the binary actually ships (registry_test.go).
+func formatVersion() string {
+	return fmt.Sprintf("metacog v%s\nstate schema: v%d\nprimitives: %s\nstratagems: %s",
+		Version, StateSchemaVersion,
+		strings.Join(PrimitiveNames(), " "),
+		strings.Join(allStratagemNames(), " "))
+}
+
 var versionCmd = &cobra.Command{
 	Use:   "version",
 	Short: "Print version information",
 	Run: func(cmd *cobra.Command, args []string) {
-		output := fmt.Sprintf("metacog v%s\nstate schema: v%d\nprimitives: feel drugs become name ritual meditate counterfactual synthesis fork register chord silence excerpt commitment disjunction glossolalia witness apophasis\nstratagems: pivot mirror stack anchor reset invocation veil scrying sacrifice fool inversion gift zen manifold chorus trinity antinomy envoy counterpoint envoy-extreme duo-disjunction anchor-duo sigil grimoire occult-extreme chord-anchor psalter psalter-chord synthesis-anchor deflection witness-anchor name-anchor name-chord named-chord-anchor glossolalia-chord", Version, StateSchemaVersion)
-		fmt.Println(FormatOutput(jsonOutput, output, nil))
+		fmt.Println(FormatOutput(jsonOutput, formatVersion(), nil))
 	},
 }
 

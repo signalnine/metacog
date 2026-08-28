@@ -30,19 +30,18 @@ func hasOutcomeAfter(s *State, afterIdx int) bool {
 func findLastPrimitive(s *State) int {
 	for i := len(s.History) - 1; i >= 0; i-- {
 		h := s.History[i]
-		switch h.Action {
-		case "feel", "become", "drugs", "name", "ritual", "meditate", "counterfactual", "synthesis", "fork",
-			"register", "chord", "silence", "excerpt", "commitment", "disjunction", "glossolalia", "witness", "apophasis":
-			// Check it's not covered by a stratagem span
-			if isInsideStratagemSpan(s, i) {
-				continue
-			}
-			// Check no outcome already covers it
-			if hasOutcomeAfter(s, i) {
-				continue
-			}
-			return i
+		if !IsPrimitive(h.Action) {
+			continue
 		}
+		// Check it's not covered by a stratagem span
+		if isInsideStratagemSpan(s, i) {
+			continue
+		}
+		// Check no outcome already covers it
+		if hasOutcomeAfter(s, i) {
+			continue
+		}
+		return i
 	}
 	return -1
 }
@@ -103,7 +102,7 @@ func RecordOutcome(s *State, result, shift string) error {
 
 	// If tier 1 found a stratagem but it already had an outcome
 	if idx >= 0 {
-		return fmt.Errorf("outcome already recorded for this stratagem. Use --amend to update")
+		return fmt.Errorf("outcome already recorded for the last completed stratagem (%s) and no unmarked freestyle primitive follows it. Use --amend to update it", name)
 	}
 
 	return fmt.Errorf("no completed stratagem or freestyle primitives found in history")
