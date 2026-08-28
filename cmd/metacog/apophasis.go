@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/spf13/cobra"
 )
@@ -66,10 +67,21 @@ func validateApophasis(subject string, negations []string, residue string) error
 func formatApophasis(subject string, negations []string, residue string) string {
 	out := fmt.Sprintf("APOPHASIS spoken (negative articulation held until ritual or stratagem boundary):\n\nSUBJECT: %s\n\nIT IS NOT:\n", subject)
 	for _, n := range negations {
-		out += fmt.Sprintf("  not %s\n", n)
+		out += fmt.Sprintf("  not %s\n", stripLeadingNot(n))
 	}
 	out += fmt.Sprintf("\nRESIDUE: %s\n\nThe answer articulates the subject by enumerating what it is not. Each negation is a citation. The residue is what no negation reaches. Collapsing to positive assertion breaks the apophasis.", residue)
 	return out
+}
+
+// stripLeadingNot drops a leading "not " (any case) so the template's own
+// "not " prefix does not double up when the user writes the negation the
+// natural way ("--negation 'not the body'").
+func stripLeadingNot(s string) string {
+	t := strings.TrimSpace(s)
+	if len(t) >= 4 && strings.EqualFold(t[:4], "not ") {
+		return strings.TrimSpace(t[4:])
+	}
+	return t
 }
 
 func applyApophasis(s *State, subject string, negations []string, residue string) {

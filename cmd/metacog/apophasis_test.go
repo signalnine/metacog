@@ -64,3 +64,15 @@ func TestApophasisAppendsHistory(t *testing.T) {
 		t.Errorf("negation-1 not stored; got %q", h.Params["negation-1"])
 	}
 }
+
+func TestFormatApophasisNormalizesLeadingNot(t *testing.T) {
+	out := formatApophasis("the self", []string{"not the body", "NOT the breath", "the name"}, "residue")
+	if strings.Contains(out, "not not") || strings.Contains(out, "not NOT") {
+		t.Errorf("double negation leaked:\n%s", out)
+	}
+	for _, want := range []string{"  not the body\n", "  not the breath\n", "  not the name\n"} {
+		if !strings.Contains(out, want) {
+			t.Errorf("expected %q in:\n%s", want, out)
+		}
+	}
+}
