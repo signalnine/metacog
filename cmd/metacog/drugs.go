@@ -20,20 +20,10 @@ var drugsCmd = &cobra.Command{
 			return fmt.Errorf("--substance, --method, and --qualia are all required.\n  Usage: metacog drugs --substance SUBSTANCE --method METHOD --qualia QUALIA")
 		}
 
-		sm := DefaultStateManager()
 		output := formatDrugs(drugsSubstance, drugsMethod, drugsQualia)
-
-		err := sm.SaveWithLock(func(s *State) error {
+		return runPrimitive(cmd, "drugs", output, func(s *State) {
 			applyDrugs(s, drugsSubstance, drugsMethod, drugsQualia)
-			ValidatePrimitiveForStratagem(s, "drugs")
-			return nil
 		})
-		if err != nil {
-			fmt.Fprintf(cmd.ErrOrStderr(), "Warning: could not save state: %v\n", err)
-		}
-
-		fmt.Println(FormatOutput(jsonOutput, output, nil))
-		return nil
 	},
 }
 

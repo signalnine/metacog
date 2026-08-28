@@ -26,20 +26,10 @@ narrator, late Stevens, Carson's Plainwater. Witness invokes that stance.`,
 			return err
 		}
 
-		sm := DefaultStateManager()
 		output := formatWitness(witnessPosition, witnessObserved, witnessDistance)
-
-		err := sm.SaveWithLock(func(s *State) error {
+		return runPrimitive(cmd, "witness", output, func(s *State) {
 			applyWitness(s, witnessPosition, witnessObserved, witnessDistance)
-			ValidatePrimitiveForStratagem(s, "witness")
-			return nil
 		})
-		if err != nil {
-			fmt.Fprintf(cmd.ErrOrStderr(), "Warning: could not save state: %v\n", err)
-		}
-
-		fmt.Println(FormatOutput(jsonOutput, output, nil))
-		return nil
 	},
 }
 

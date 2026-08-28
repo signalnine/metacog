@@ -20,20 +20,10 @@ var becomeCmd = &cobra.Command{
 			return fmt.Errorf("--name, --lens, and --env are all required.\n  Usage: metacog become --name NAME --lens LENS --env ENVIRONMENT")
 		}
 
-		sm := DefaultStateManager()
 		output := formatBecome(becomeName, becomeLens, becomeEnv)
-
-		err := sm.SaveWithLock(func(s *State) error {
+		return runPrimitive(cmd, "become", output, func(s *State) {
 			applyBecome(s, becomeName, becomeLens, becomeEnv)
-			ValidatePrimitiveForStratagem(s, "become")
-			return nil
 		})
-		if err != nil {
-			fmt.Fprintf(cmd.ErrOrStderr(), "Warning: could not save state: %v\n", err)
-		}
-
-		fmt.Println(FormatOutput(jsonOutput, output, nil))
-		return nil
 	},
 }
 

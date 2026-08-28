@@ -20,20 +20,10 @@ var meditateCmd = &cobra.Command{
 			return fmt.Errorf("--release and --duration are required.\n  Usage: metacog meditate --release RELEASE [--focus FOCUS] --duration DURATION")
 		}
 
-		sm := DefaultStateManager()
 		output := formatMeditate(meditateRelease, meditateFocus, meditateDur)
-
-		err := sm.SaveWithLock(func(s *State) error {
+		return runPrimitive(cmd, "meditate", output, func(s *State) {
 			applyMeditate(s, meditateRelease, meditateFocus, meditateDur)
-			ValidatePrimitiveForStratagem(s, "meditate")
-			return nil
 		})
-		if err != nil {
-			fmt.Fprintf(cmd.ErrOrStderr(), "Warning: could not save state: %v\n", err)
-		}
-
-		fmt.Println(FormatOutput(jsonOutput, output, nil))
-		return nil
 	},
 }
 

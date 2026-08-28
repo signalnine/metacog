@@ -27,20 +27,10 @@ both a refusal and a citation.`,
 			return err
 		}
 
-		sm := DefaultStateManager()
 		output := formatApophasis(apoSubject, apoNegations, apoResidue)
-
-		err := sm.SaveWithLock(func(s *State) error {
+		return runPrimitive(cmd, "apophasis", output, func(s *State) {
 			applyApophasis(s, apoSubject, apoNegations, apoResidue)
-			ValidatePrimitiveForStratagem(s, "apophasis")
-			return nil
 		})
-		if err != nil {
-			fmt.Fprintf(cmd.ErrOrStderr(), "Warning: could not save state: %v\n", err)
-		}
-
-		fmt.Println(FormatOutput(jsonOutput, output, nil))
-		return nil
 	},
 }
 

@@ -21,20 +21,10 @@ var ritualCmd = &cobra.Command{
 			return fmt.Errorf("--threshold, --steps, and --result are all required.\n  Usage: metacog ritual --threshold THRESHOLD --steps step1 --steps step2 --result RESULT")
 		}
 
-		sm := DefaultStateManager()
 		output := formatRitual(ritualThreshold, ritualSteps, ritualResult)
-
-		err := sm.SaveWithLock(func(s *State) error {
+		return runPrimitive(cmd, "ritual", output, func(s *State) {
 			applyRitual(s, ritualThreshold, ritualSteps, ritualResult)
-			ValidatePrimitiveForStratagem(s, "ritual")
-			return nil
 		})
-		if err != nil {
-			fmt.Fprintf(cmd.ErrOrStderr(), "Warning: could not save state: %v\n", err)
-		}
-
-		fmt.Println(FormatOutput(jsonOutput, output, nil))
-		return nil
 	},
 }
 

@@ -24,20 +24,10 @@ var counterfactualCmd = &cobra.Command{
 			return err
 		}
 
-		sm := DefaultStateManager()
 		output := formatCounterfactual(cfSituation, cfFitness, cfWalls, cfPruned, cfRemove, cfInverse)
-
-		err := sm.SaveWithLock(func(s *State) error {
+		return runPrimitive(cmd, "counterfactual", output, func(s *State) {
 			applyCounterfactual(s, cfSituation, cfFitness, cfWalls, cfPruned, cfRemove, cfInverse)
-			ValidatePrimitiveForStratagem(s, "counterfactual")
-			return nil
 		})
-		if err != nil {
-			fmt.Fprintf(cmd.ErrOrStderr(), "Warning: could not save state: %v\n", err)
-		}
-
-		fmt.Println(FormatOutput(jsonOutput, output, nil))
-		return nil
 	},
 }
 

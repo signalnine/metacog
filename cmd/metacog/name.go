@@ -20,20 +20,10 @@ var nameCmd = &cobra.Command{
 			return fmt.Errorf("--unnamed, --named, and --power are all required.\n  Usage: metacog name --unnamed UNNAMED --named NAMED --power POWER")
 		}
 
-		sm := DefaultStateManager()
 		output := formatName(nameUnnamed, nameNamed, namePower)
-
-		err := sm.SaveWithLock(func(s *State) error {
+		return runPrimitive(cmd, "name", output, func(s *State) {
 			applyName(s, nameUnnamed, nameNamed, namePower)
-			ValidatePrimitiveForStratagem(s, "name")
-			return nil
 		})
-		if err != nil {
-			fmt.Fprintf(cmd.ErrOrStderr(), "Warning: could not save state: %v\n", err)
-		}
-
-		fmt.Println(FormatOutput(jsonOutput, output, nil))
-		return nil
 	},
 }
 

@@ -20,20 +20,10 @@ var silenceCmd = &cobra.Command{
 			return err
 		}
 
-		sm := DefaultStateManager()
 		output := formatSilence(silAbout, silReason, silDuration)
-
-		err := sm.SaveWithLock(func(s *State) error {
+		return runPrimitive(cmd, "silence", output, func(s *State) {
 			applySilence(s, silAbout, silReason, silDuration)
-			ValidatePrimitiveForStratagem(s, "silence")
-			return nil
 		})
-		if err != nil {
-			fmt.Fprintf(cmd.ErrOrStderr(), "Warning: could not save state: %v\n", err)
-		}
-
-		fmt.Println(FormatOutput(jsonOutput, output, nil))
-		return nil
 	},
 }
 

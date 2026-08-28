@@ -38,20 +38,10 @@ var synthesisCmd = &cobra.Command{
 			return err
 		}
 
-		sm := DefaultStateManager()
 		output := formatSynthesis(synProblem, a, b, c, synTension)
-
-		err := sm.SaveWithLock(func(s *State) error {
+		return runPrimitive(cmd, "synthesis", output, func(s *State) {
 			applySynthesis(s, synProblem, a, b, c, synTension)
-			ValidatePrimitiveForStratagem(s, "synthesis")
-			return nil
 		})
-		if err != nil {
-			fmt.Fprintf(cmd.ErrOrStderr(), "Warning: could not save state: %v\n", err)
-		}
-
-		fmt.Println(FormatOutput(jsonOutput, output, nil))
-		return nil
 	},
 }
 

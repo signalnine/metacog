@@ -20,20 +20,10 @@ var disjunctionCmd = &cobra.Command{
 			return err
 		}
 
-		sm := DefaultStateManager()
 		output := formatDisjunction(disjA, disjB, disjWhyBoth)
-
-		err := sm.SaveWithLock(func(s *State) error {
+		return runPrimitive(cmd, "disjunction", output, func(s *State) {
 			applyDisjunction(s, disjA, disjB, disjWhyBoth)
-			ValidatePrimitiveForStratagem(s, "disjunction")
-			return nil
 		})
-		if err != nil {
-			fmt.Fprintf(cmd.ErrOrStderr(), "Warning: could not save state: %v\n", err)
-		}
-
-		fmt.Println(FormatOutput(jsonOutput, output, nil))
-		return nil
 	},
 }
 

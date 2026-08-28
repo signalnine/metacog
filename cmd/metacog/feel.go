@@ -21,20 +21,10 @@ var feelCmd = &cobra.Command{
 			return fmt.Errorf("--somewhere, --quality, and --sigil are all required.\n  Usage: metacog feel --somewhere SOMEWHERE --quality QUALITY --sigil SIGIL [--since-last DIFF]")
 		}
 
-		sm := DefaultStateManager()
 		output := formatFeel(feelSomewhere, feelQuality, feelSigil, feelSinceLast)
-
-		err := sm.SaveWithLock(func(s *State) error {
+		return runPrimitive(cmd, "feel", output, func(s *State) {
 			applyFeel(s, feelSomewhere, feelQuality, feelSigil, feelSinceLast)
-			ValidatePrimitiveForStratagem(s, "feel")
-			return nil
 		})
-		if err != nil {
-			fmt.Fprintf(cmd.ErrOrStderr(), "Warning: could not save state: %v\n", err)
-		}
-
-		fmt.Println(FormatOutput(jsonOutput, output, nil))
-		return nil
 	},
 }
 

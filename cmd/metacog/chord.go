@@ -20,20 +20,10 @@ var chordCmd = &cobra.Command{
 			return err
 		}
 
-		sm := DefaultStateManager()
 		output := formatChord(chordModes, chordTarget)
-
-		err := sm.SaveWithLock(func(s *State) error {
+		return runPrimitive(cmd, "chord", output, func(s *State) {
 			applyChord(s, chordModes, chordTarget)
-			ValidatePrimitiveForStratagem(s, "chord")
-			return nil
 		})
-		if err != nil {
-			fmt.Fprintf(cmd.ErrOrStderr(), "Warning: could not save state: %v\n", err)
-		}
-
-		fmt.Println(FormatOutput(jsonOutput, output, nil))
-		return nil
 	},
 }
 

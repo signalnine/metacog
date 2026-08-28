@@ -20,20 +20,10 @@ var registerCmd = &cobra.Command{
 			return err
 		}
 
-		sm := DefaultStateManager()
 		output := formatRegister(regFrom, regTo, regRationale)
-
-		err := sm.SaveWithLock(func(s *State) error {
+		return runPrimitive(cmd, "register", output, func(s *State) {
 			applyRegister(s, regFrom, regTo, regRationale)
-			ValidatePrimitiveForStratagem(s, "register")
-			return nil
 		})
-		if err != nil {
-			fmt.Fprintf(cmd.ErrOrStderr(), "Warning: could not save state: %v\n", err)
-		}
-
-		fmt.Println(FormatOutput(jsonOutput, output, nil))
-		return nil
 	},
 }
 

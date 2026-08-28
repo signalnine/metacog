@@ -573,3 +573,80 @@ func TestIntegrationExitCodes(t *testing.T) {
 		t.Error("expected error for next with no stratagem")
 	}
 }
+
+func TestIntegrationErrorsDoNotDumpUsage(t *testing.T) {
+	binary := buildBinary(t)
+	stateDir := t.TempDir()
+	out, err := runMetacog(t, binary, stateDir, "stratagem", "next")
+	if err == nil {
+		t.Fatal("expected failure with no active stratagem")
+	}
+	if strings.Contains(out, "Usage:") {
+		t.Errorf("errors should not dump usage:\n%s", out)
+	}
+	if !strings.Contains(out, "no active stratagem") {
+		t.Errorf("error text missing:\n%s", out)
+	}
+}
+
+func TestIntegrationWhitespaceOnlyFlagsRejected(t *testing.T) {
+	binary := buildBinary(t)
+	stateDir := t.TempDir()
+	out, err := runMetacog(t, binary, stateDir, "become", "--name", "  ", "--lens", "\t", "--env", " ")
+	if err == nil {
+		t.Fatalf("whitespace-only flags should be rejected:\n%s", out)
+	}
+	if !strings.Contains(out, "--name") || !strings.Contains(out, "blank") {
+		t.Errorf("expected the blank flag to be named:\n%s", out)
+	}
+	// An explicitly empty optional flag is still allowed (meditate --focus "" = shikantaza).
+	out, err = runMetacog(t, binary, stateDir, "meditate", "--release", "r", "--focus", "", "--duration", "d")
+	if err != nil {
+		t.Fatalf("explicit empty --focus must still be accepted:\n%s", out)
+	}
+	if !strings.Contains(out, "shikantaza") {
+		t.Errorf("empty focus should produce shikantaza output:\n%s", out)
+	}
+	// Inner whitespace is never touched: a fragment with leading spaces survives verbatim.
+	out, err = runMetacog(t, binary, stateDir, "excerpt", "--source", "s", "--fragment", "  two leading spaces", "--why", "w")
+	if err != nil || !strings.Contains(out, "  two leading spaces") {
+		t.Errorf("flag values must not be altered: %v\n%s", err, out)
+	}
+}
+
+func TestIntegrationPrimitiveExitsNonZeroWhenStateUnsaveable(t *testing.T) {
+	binary := buildBinary(t)
+	stateDir := t.TempDir()
+	os.MkdirAll(stateDir, 0755)
+	os.WriteFile(filepath.Join(stateDir, "state.json"), []byte(`{"version": 99, "history": []}`), 0644)
+
+	out, err := runMetacog(t, binary, stateDir, "feel", "--somewhere", "x", "--quality", "y", "--sigil", "z")
+	if err == nil {
+		t.Fatalf("primitive must exit non-zero when state cannot be saved:\n%s", out)
+	}
+	if !strings.Contains(out, "NOT recorded") {
+		t.Errorf("error should say the event was not recorded:\n%s", out)
+	}
+	if !strings.Contains(out, "You are now attending to") {
+		t.Errorf("output should still be rendered:\n%s", out)
+	}
+}
+
+func TestIntegrationStratagemNoteOnStderr(t *testing.T) {
+	binary := buildBinary(t)
+	stateDir := t.TempDir()
+	if _, err := runMetacog(t, binary, stateDir, "stratagem", "start", "pivot"); err != nil {
+		t.Fatal(err)
+	}
+	out, err := runMetacog(t, binary, stateDir, "drugs", "--substance", "s", "--method", "m", "--qualia", "q")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(out, "step 1/5 satisfied") {
+		t.Errorf("expected stratagem note:\n%s", out)
+	}
+	out, _ = runMetacog(t, binary, stateDir, "feel", "--somewhere", "x", "--quality", "y", "--sigil", "z")
+	if !strings.Contains(out, "recorded as freestyle") {
+		t.Errorf("expected off-script note:\n%s", out)
+	}
+}
