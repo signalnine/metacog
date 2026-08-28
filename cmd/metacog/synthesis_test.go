@@ -49,16 +49,16 @@ func TestSynthesisUpdatesState(t *testing.T) {
 		t.Errorf("action: %s", h.Action)
 	}
 	checks := map[string]string{
-		"problem":           "p",
-		"lens_a_name":       "an",
-		"lens_a_verdict":    "av",
-		"lens_a_blindspot":  "ab",
-		"lens_b_name":       "bn",
-		"lens_b_verdict":    "bv",
-		"lens_b_blindspot":  "bb",
-		"lens_c_name":       "cn",
-		"lens_c_verdict":    "cv",
-		"lens_c_blindspot":  "cb",
+		"problem":            "p",
+		"lens_a_name":        "an",
+		"lens_a_verdict":     "av",
+		"lens_a_blindspot":   "ab",
+		"lens_b_name":        "bn",
+		"lens_b_verdict":     "bv",
+		"lens_b_blindspot":   "bb",
+		"lens_c_name":        "cn",
+		"lens_c_verdict":     "cv",
+		"lens_c_blindspot":   "cb",
 		"suppressed_tension": "tension",
 	}
 	for k, v := range checks {

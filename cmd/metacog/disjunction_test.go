@@ -7,10 +7,10 @@ import (
 
 func TestDisjunctionValidatesRequired(t *testing.T) {
 	cases := []struct {
-		name      string
-		propA     string
-		propB     string
-		whyBoth   string
+		name    string
+		propA   string
+		propB   string
+		whyBoth string
 	}{
 		{"missing_a", "", "B", "both load-bearing"},
 		{"missing_b", "A", "", "both load-bearing"},
