@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"strings"
 	"testing"
 )
@@ -317,5 +318,24 @@ func TestValidateNoStratagemNoNote(t *testing.T) {
 	s := NewState()
 	if note := ValidatePrimitiveForStratagem(s, "feel"); note != "" {
 		t.Errorf("expected empty note, got %q", note)
+	}
+}
+
+func TestFormatStratagemListCoversAll(t *testing.T) {
+	out := FormatStratagemList()
+	for name, def := range Stratagems {
+		if !strings.Contains(out, name) || !strings.Contains(out, def.Name) {
+			t.Errorf("list missing %s / %s", name, def.Name)
+		}
+	}
+	if !strings.HasPrefix(out, fmt.Sprintf("%d stratagems", len(Stratagems))) {
+		t.Errorf("list should open with the count:\n%s", out)
+	}
+	views := StratagemListView()
+	if len(views) != len(Stratagems) {
+		t.Errorf("view count %d != %d", len(views), len(Stratagems))
+	}
+	if views[0].Name != "anchor" || len(views[0].Steps) == 0 {
+		t.Errorf("views should be sorted and carry steps: %+v", views[0])
 	}
 }

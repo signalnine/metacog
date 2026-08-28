@@ -4,6 +4,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -730,5 +731,29 @@ func TestIntegrationStructuredJSON(t *testing.T) {
 	out, _ = runMetacog(t, binary, stateDir, "stratagem", "status", "--json")
 	if err := json.Unmarshal([]byte(strings.TrimSpace(out)), &ss); err != nil || ss.Stratagem == nil || ss.Stratagem.Name != "pivot" {
 		t.Errorf("stratagem status --json: %v\n%s", err, out)
+	}
+}
+
+func TestIntegrationStratagemListJSON(t *testing.T) {
+	binary := buildBinary(t)
+	stateDir := t.TempDir()
+	var list []struct {
+		Name  string   `json:"name"`
+		Title string   `json:"title"`
+		Steps []string `json:"steps"`
+	}
+	out, err := runMetacog(t, binary, stateDir, "stratagem", "list", "--json")
+	if err != nil {
+		t.Fatalf("stratagem list --json: %v\n%s", err, out)
+	}
+	if err := json.Unmarshal([]byte(strings.TrimSpace(out)), &list); err != nil {
+		t.Fatalf("not valid JSON: %v\n%s", err, out)
+	}
+	if len(list) != len(Stratagems) || list[0].Name != "anchor" || len(list[0].Steps) == 0 {
+		t.Errorf("unexpected list view: %d entries, first %+v", len(list), list[0])
+	}
+	out, _ = runMetacog(t, binary, stateDir, "stratagem", "list")
+	if !strings.HasPrefix(out, fmt.Sprintf("%d stratagems", len(Stratagems))) {
+		t.Errorf("text list should open with the count:\n%s", out)
 	}
 }

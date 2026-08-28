@@ -574,6 +574,45 @@ func StratagemViewOf(s *State) *StratagemView {
 	return v
 }
 
+type StratagemListEntry struct {
+	Name  string   `json:"name"`
+	Title string   `json:"title"`
+	Steps []string `json:"steps"`
+}
+
+// StratagemListView returns every stratagem, sorted by name, with its step kinds.
+func StratagemListView() []StratagemListEntry {
+	var out []StratagemListEntry
+	for _, name := range allStratagemNames() {
+		def := Stratagems[name]
+		kinds := make([]string, len(def.Steps))
+		for i, st := range def.Steps {
+			kinds[i] = string(st.Kind)
+		}
+		out = append(out, StratagemListEntry{Name: name, Title: def.Name, Steps: kinds})
+	}
+	return out
+}
+
+func FormatStratagemList() string {
+	entries := StratagemListView()
+	nameW, titleW := 0, 0
+	for _, e := range entries {
+		if len(e.Name) > nameW {
+			nameW = len(e.Name)
+		}
+		if len(e.Title) > titleW {
+			titleW = len(e.Title)
+		}
+	}
+	var b strings.Builder
+	b.WriteString(fmt.Sprintf("%d stratagems (start one with 'metacog stratagem start <name>'):\n", len(entries)))
+	for _, e := range entries {
+		b.WriteString(fmt.Sprintf("  %-*s  %-*s  %s\n", nameW, e.Name, titleW, e.Title, strings.Join(e.Steps, " > ")))
+	}
+	return b.String()
+}
+
 func formatStepInstructions(def StratagemDef, step int) string {
 	s := def.Steps[step]
 	var b strings.Builder
@@ -691,6 +730,15 @@ var stratagemNextCmd = &cobra.Command{
 	},
 }
 
+var stratagemListCmd = &cobra.Command{
+	Use:   "list",
+	Short: "List available stratagems with their step sequences",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		fmt.Println(FormatStructured(jsonOutput, FormatStratagemList(), StratagemListView()))
+		return nil
+	},
+}
+
 var stratagemStatusCmd = &cobra.Command{
 	Use:   "status",
 	Short: "Show current stratagem position",
@@ -721,6 +769,7 @@ func init() {
 	stratagemCmd.AddCommand(stratagemStartCmd)
 	stratagemCmd.AddCommand(stratagemNextCmd)
 	stratagemCmd.AddCommand(stratagemStatusCmd)
+	stratagemCmd.AddCommand(stratagemListCmd)
 	stratagemCmd.AddCommand(stratagemAbortCmd)
 	rootCmd.AddCommand(stratagemCmd)
 }
