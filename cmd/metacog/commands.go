@@ -59,6 +59,15 @@ func FormatHistory(s *State) string {
 	return b.String()
 }
 
+// StatusView is the --json shape of `metacog status`.
+type StatusView struct {
+	SessionID string         `json:"session_id"`
+	Session   string         `json:"session,omitempty"`
+	Identity  *Identity      `json:"identity"`
+	Substrate *Substrate     `json:"substrate"`
+	Stratagem *StratagemView `json:"stratagem"`
+}
+
 var statusCmd = &cobra.Command{
 	Use:   "status",
 	Short: "Show current state",
@@ -68,7 +77,8 @@ var statusCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
-		fmt.Println(FormatOutput(jsonOutput, FormatStatus(s), nil))
+		view := StatusView{SessionID: s.SessionID, Session: s.Session, Identity: s.Identity, Substrate: s.Substrate, Stratagem: StratagemViewOf(s)}
+		fmt.Println(FormatStructured(jsonOutput, FormatStatus(s), view))
 		return nil
 	},
 }
@@ -123,13 +133,18 @@ var historyCmd = &cobra.Command{
 				return err
 			}
 		}
+		entries := s.History
 		var output string
 		if historySession != "" {
+			entries = filterHistoryBySession(s.History, historySession)
 			output = FormatHistoryFiltered(s, historySession)
 		} else {
 			output = FormatHistory(s)
 		}
-		fmt.Println(FormatOutput(jsonOutput, output, nil))
+		if entries == nil {
+			entries = []HistoryEntry{} // marshal as [] not null
+		}
+		fmt.Println(FormatStructured(jsonOutput, output, entries))
 		return nil
 	},
 }

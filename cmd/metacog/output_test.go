@@ -33,3 +33,13 @@ func TestPlainOutput(t *testing.T) {
 		t.Errorf("expected plain output, got %q", output)
 	}
 }
+
+func TestFormatStructured(t *testing.T) {
+	v := map[string]int{"a": 1}
+	if got := FormatStructured(false, "text", v); got != "text" {
+		t.Errorf("plain mode should return text, got %q", got)
+	}
+	if got := FormatStructured(true, "text", v); got != `{"a":1}` {
+		t.Errorf("json mode should marshal v, got %q", got)
+	}
+}

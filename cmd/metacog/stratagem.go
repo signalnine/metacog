@@ -540,6 +540,40 @@ func StratagemStatus(s *State) string {
 	return b.String()
 }
 
+type StratagemStepView struct {
+	Kind        string `json:"kind"`
+	Description string `json:"description"`
+	State       string `json:"state"` // done | current | pending
+}
+
+type StratagemView struct {
+	Name      string              `json:"name"`
+	Title     string              `json:"title"`
+	Step      int                 `json:"step"` // 1-based
+	Total     int                 `json:"total"`
+	StartedAt string              `json:"started_at"`
+	Steps     []StratagemStepView `json:"steps"`
+}
+
+// StratagemViewOf returns the active stratagem as data, or nil.
+func StratagemViewOf(s *State) *StratagemView {
+	if s.Stratagem == nil {
+		return nil
+	}
+	def := Stratagems[s.Stratagem.Name]
+	v := &StratagemView{Name: s.Stratagem.Name, Title: def.Name, Step: s.Stratagem.Step + 1, Total: len(def.Steps), StartedAt: s.Stratagem.StartedAt}
+	for i, st := range def.Steps {
+		state := "pending"
+		if i < s.Stratagem.Step {
+			state = "done"
+		} else if i == s.Stratagem.Step {
+			state = "current"
+		}
+		v.Steps = append(v.Steps, StratagemStepView{Kind: string(st.Kind), Description: st.Description, State: state})
+	}
+	return v
+}
+
 func formatStepInstructions(def StratagemDef, step int) string {
 	s := def.Steps[step]
 	var b strings.Builder
@@ -666,7 +700,7 @@ var stratagemStatusCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
-		fmt.Println(FormatOutput(jsonOutput, StratagemStatus(s), nil))
+		fmt.Println(FormatStructured(jsonOutput, StratagemStatus(s), map[string]any{"stratagem": StratagemViewOf(s)}))
 		return nil
 	},
 }

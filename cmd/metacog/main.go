@@ -56,7 +56,10 @@ var versionCmd = &cobra.Command{
 	Use:   "version",
 	Short: "Print version information",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println(FormatOutput(jsonOutput, formatVersion(), nil))
+		fmt.Println(FormatStructured(jsonOutput, formatVersion(), map[string]any{
+			"version": Version, "schema_version": StateSchemaVersion,
+			"primitives": PrimitiveNames(), "stratagems": allStratagemNames(),
+		}))
 	},
 }
 

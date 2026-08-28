@@ -51,21 +51,26 @@ func ListSessions(s *State) []string {
 	return names
 }
 
-func FormatHistoryFiltered(s *State, session string) string {
-	if len(s.History) == 0 {
-		return "No history."
-	}
-	var filtered []HistoryEntry
-	for _, h := range s.History {
+// filterHistoryBySession returns the entries tagged with session (never nil).
+func filterHistoryBySession(entries []HistoryEntry, session string) []HistoryEntry {
+	filtered := []HistoryEntry{}
+	for _, h := range entries {
 		if h.Session == session {
 			filtered = append(filtered, h)
 		}
 	}
+	return filtered
+}
+
+func FormatHistoryFiltered(s *State, session string) string {
+	if len(s.History) == 0 {
+		return "No history."
+	}
+	filtered := filterHistoryBySession(s.History, session)
 	if len(filtered) == 0 {
 		return fmt.Sprintf("No history for session %q.", session)
 	}
-	tmp := &State{History: filtered}
-	return FormatHistory(tmp)
+	return FormatHistory(&State{History: filtered})
 }
 
 var sessionCmd = &cobra.Command{

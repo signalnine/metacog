@@ -235,7 +235,7 @@ var inspireCmd = &cobra.Command{
 		if inspireList {
 			names := ListPoolNames(pools)
 			output := fmt.Sprintf("%d pools:\n%s", len(names), strings.Join(names, "\n"))
-			fmt.Println(FormatOutput(jsonOutput, output, nil))
+			fmt.Println(FormatStructured(jsonOutput, output, map[string]any{"pools": names}))
 			return nil
 		}
 
@@ -245,7 +245,11 @@ var inspireCmd = &cobra.Command{
 		}
 
 		output := fmt.Sprintf("[%s]\nWho: %s\nWhere: %s\nLens: %s", pool, stance.Who, stance.Where, stance.Lens)
-		fmt.Println(FormatOutput(jsonOutput, output, nil))
+		view := struct {
+			Pool string `json:"pool"`
+			Stance
+		}{pool, *stance}
+		fmt.Println(FormatStructured(jsonOutput, output, view))
 		return nil
 	},
 }

@@ -650,3 +650,85 @@ func TestIntegrationStratagemNoteOnStderr(t *testing.T) {
 		t.Errorf("expected off-script note:\n%s", out)
 	}
 }
+
+func TestIntegrationStructuredJSON(t *testing.T) {
+	binary := buildBinary(t)
+	stateDir := t.TempDir()
+	runMetacog(t, binary, stateDir, "feel", "--somewhere", "x", "--quality", "y", "--sigil", "z")
+	runMetacog(t, binary, stateDir, "stratagem", "start", "pivot")
+
+	var status struct {
+		SessionID string `json:"session_id"`
+		Stratagem *struct {
+			Name  string `json:"name"`
+			Step  int    `json:"step"`
+			Total int    `json:"total"`
+			Steps []struct {
+				Kind  string `json:"kind"`
+				State string `json:"state"`
+			} `json:"steps"`
+		} `json:"stratagem"`
+	}
+	out, _ := runMetacog(t, binary, stateDir, "status", "--json")
+	if err := json.Unmarshal([]byte(strings.TrimSpace(out)), &status); err != nil {
+		t.Fatalf("status --json: %v\n%s", err, out)
+	}
+	if status.SessionID == "" || status.Stratagem == nil || status.Stratagem.Name != "pivot" || status.Stratagem.Total != 5 || status.Stratagem.Steps[0].State != "current" {
+		t.Errorf("unexpected status view: %+v", status)
+	}
+
+	var history []struct {
+		Action string            `json:"action"`
+		Params map[string]string `json:"params"`
+	}
+	out, _ = runMetacog(t, binary, stateDir, "history", "--json")
+	if err := json.Unmarshal([]byte(strings.TrimSpace(out)), &history); err != nil {
+		t.Fatalf("history --json: %v\n%s", err, out)
+	}
+	if len(history) != 2 || history[0].Action != "feel" || history[0].Params["somewhere"] != "x" {
+		t.Errorf("unexpected history view: %+v", history)
+	}
+
+	// --session filter applies to JSON too; empty result is [] not null.
+	out, _ = runMetacog(t, binary, stateDir, "history", "--json", "--session", "nope")
+	if strings.TrimSpace(out) != "[]" {
+		t.Errorf("filtered-empty history --json should be []:\n%s", out)
+	}
+	empty := t.TempDir()
+	out, _ = runMetacog(t, binary, empty, "history", "--json")
+	if strings.TrimSpace(out) != "[]" {
+		t.Errorf("empty history --json should be []:\n%s", out)
+	}
+
+	var stance struct{ Pool, Who, Where, Lens string }
+	out, _ = runMetacog(t, binary, stateDir, "inspire", "--json")
+	if err := json.Unmarshal([]byte(strings.TrimSpace(out)), &stance); err != nil {
+		t.Fatalf("inspire --json: %v\n%s", err, out)
+	}
+	if stance.Pool == "" || stance.Who == "" || stance.Lens == "" {
+		t.Errorf("unexpected stance view: %+v", stance)
+	}
+
+	var version struct {
+		Version    string   `json:"version"`
+		Primitives []string `json:"primitives"`
+		Stratagems []string `json:"stratagems"`
+	}
+	out, _ = runMetacog(t, binary, stateDir, "version", "--json")
+	if err := json.Unmarshal([]byte(strings.TrimSpace(out)), &version); err != nil {
+		t.Fatalf("version --json: %v\n%s", err, out)
+	}
+	if version.Version != Version || len(version.Primitives) != len(PrimitiveKinds) || len(version.Stratagems) != len(Stratagems) {
+		t.Errorf("unexpected version view: %+v", version)
+	}
+
+	var ss struct {
+		Stratagem *struct {
+			Name string `json:"name"`
+		} `json:"stratagem"`
+	}
+	out, _ = runMetacog(t, binary, stateDir, "stratagem", "status", "--json")
+	if err := json.Unmarshal([]byte(strings.TrimSpace(out)), &ss); err != nil || ss.Stratagem == nil || ss.Stratagem.Name != "pivot" {
+		t.Errorf("stratagem status --json: %v\n%s", err, out)
+	}
+}
