@@ -431,11 +431,7 @@ var Stratagems = map[string]StratagemDef{
 func StartStratagem(s *State, name string, force bool) (string, error) {
 	def, ok := Stratagems[name]
 	if !ok {
-		available := make([]string, 0, len(Stratagems))
-		for k := range Stratagems {
-			available = append(available, k)
-		}
-		return "", fmt.Errorf("unknown stratagem %q. Available: %s", name, strings.Join(available, ", "))
+		return "", fmt.Errorf("unknown stratagem %q. Available: %s", name, strings.Join(allStratagemNames(), ", "))
 	}
 
 	if s.Stratagem != nil {
@@ -563,19 +559,53 @@ func formatStepInstructions(def StratagemDef, step int) string {
 	return b.String()
 }
 
-// ValidatePrimitiveForStratagem checks if a primitive call satisfies the current stratagem step.
-// Called by primitive commands when a stratagem is active.
-func ValidatePrimitiveForStratagem(s *State, primitive string) {
+// ValidatePrimitiveForStratagem records a primitive call against the active
+// stratagem and returns a one-line note for stderr ("" when no stratagem is
+// active). Three cases:
+//
+//   - the call matches the current step: mark it satisfied;
+//   - the current step is already satisfied and the NEXT step wants the same
+//     primitive (anchor-duo's two excerpts, chorus's three becomes): advance to
+//     that step and mark it, so "excerpt, excerpt, next" behaves as written;
+//   - the call does not match: the primitive is still recorded as freestyle
+//     history, and the note says which primitive the step actually wants.
+func ValidatePrimitiveForStratagem(s *State, primitive string) string {
 	if s.Stratagem == nil {
-		return
+		return ""
 	}
 	def := Stratagems[s.Stratagem.Name]
-	if s.Stratagem.Step < len(def.Steps) {
-		currentStep := def.Steps[s.Stratagem.Step]
-		if string(currentStep.Kind) == primitive {
-			s.Stratagem.StepsCompleted = append(s.Stratagem.StepsCompleted, primitive)
+	total := len(def.Steps)
+	if s.Stratagem.Step >= total {
+		return ""
+	}
+	current := def.Steps[s.Stratagem.Step]
+	stepNo := s.Stratagem.Step + 1
+
+	if string(current.Kind) != primitive {
+		return fmt.Sprintf("stratagem: %s step %d/%d expects '%s'; this '%s' was recorded as freestyle",
+			def.Name, stepNo, total, current.Kind, primitive)
+	}
+
+	alreadySatisfied := false
+	for _, done := range s.Stratagem.StepsCompleted {
+		if done == primitive {
+			alreadySatisfied = true
+			break
 		}
 	}
+	if !alreadySatisfied {
+		s.Stratagem.StepsCompleted = append(s.Stratagem.StepsCompleted, primitive)
+		return fmt.Sprintf("stratagem: %s step %d/%d satisfied; run 'metacog stratagem next'", def.Name, stepNo, total)
+	}
+
+	next := s.Stratagem.Step + 1
+	if next < total && string(def.Steps[next].Kind) == primitive {
+		s.Stratagem.Step = next
+		s.Stratagem.StepsCompleted = []string{primitive}
+		return fmt.Sprintf("stratagem: %s step %d/%d satisfied (auto-advanced from step %d, same primitive); run 'metacog stratagem next'",
+			def.Name, next+1, total, stepNo)
+	}
+	return fmt.Sprintf("stratagem: %s step %d/%d already satisfied; run 'metacog stratagem next'", def.Name, stepNo, total)
 }
 
 // --- Cobra commands ---

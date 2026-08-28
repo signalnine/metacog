@@ -213,3 +213,109 @@ func TestAdvanceWithoutActiveStratagemSuggestsValidCommand(t *testing.T) {
 		t.Errorf("error message should reference 'metacog stratagem start <name>', got: %s", msg)
 	}
 }
+
+func TestUnknownStratagemListsSorted(t *testing.T) {
+	s := NewState()
+	_, err := StartStratagem(s, "nope", false)
+	if err == nil {
+		t.Fatal("expected error")
+	}
+	if !strings.Contains(err.Error(), "anchor, anchor-duo, antinomy") {
+		t.Errorf("available list should be sorted: %v", err)
+	}
+}
+
+func TestValidateSameKindAutoAdvances(t *testing.T) {
+	s := NewState()
+	// anchor-duo: commitment, excerpt, excerpt, fork, ritual
+	if _, err := StartStratagem(s, "anchor-duo", false); err != nil {
+		t.Fatal(err)
+	}
+	ValidatePrimitiveForStratagem(s, "commitment")
+	if _, err := AdvanceStratagem(s); err != nil {
+		t.Fatal(err)
+	}
+	note1 := ValidatePrimitiveForStratagem(s, "excerpt")
+	if s.Stratagem.Step != 1 {
+		t.Fatalf("first excerpt should mark step 2 without advancing, at %d", s.Stratagem.Step)
+	}
+	if !strings.Contains(note1, "step 2/5 satisfied") {
+		t.Errorf("note should say the step is satisfied: %q", note1)
+	}
+	note2 := ValidatePrimitiveForStratagem(s, "excerpt")
+	if s.Stratagem.Step != 2 {
+		t.Fatalf("second consecutive excerpt should auto-advance to step 3, at %d", s.Stratagem.Step)
+	}
+	if !strings.Contains(note2, "auto-advanced") {
+		t.Errorf("note should mention auto-advance: %q", note2)
+	}
+	if len(s.Stratagem.StepsCompleted) != 1 || s.Stratagem.StepsCompleted[0] != "excerpt" {
+		t.Errorf("step 3 should be marked satisfied by the second excerpt: %v", s.Stratagem.StepsCompleted)
+	}
+	if _, err := AdvanceStratagem(s); err != nil {
+		t.Fatalf("next after two excerpts should reach fork: %v", err)
+	}
+	if s.Stratagem.Step != 3 || Stratagems["anchor-duo"].Steps[3].Kind != StepFork {
+		t.Errorf("expected to be at fork (step 4), at %d", s.Stratagem.Step)
+	}
+}
+
+func TestValidateThreeConsecutiveSameKind(t *testing.T) {
+	s := NewState()
+	// chorus: become, become, become, fork, ritual
+	if _, err := StartStratagem(s, "chorus", false); err != nil {
+		t.Fatal(err)
+	}
+	for i := 0; i < 3; i++ {
+		ValidatePrimitiveForStratagem(s, "become")
+		if s.Stratagem.Step != i {
+			t.Fatalf("after become #%d expected step index %d, got %d", i+1, i, s.Stratagem.Step)
+		}
+	}
+	// A fourth become has nowhere to go: step 3 is fork.
+	note := ValidatePrimitiveForStratagem(s, "become")
+	if s.Stratagem.Step != 2 || !strings.Contains(note, "already satisfied") {
+		t.Errorf("fourth become must not advance into fork: step=%d note=%q", s.Stratagem.Step, note)
+	}
+	if _, err := AdvanceStratagem(s); err != nil {
+		t.Fatal(err)
+	}
+	if s.Stratagem.Step != 3 || Stratagems["chorus"].Steps[3].Kind != StepFork {
+		t.Errorf("expected fork at step index 3, at %d", s.Stratagem.Step)
+	}
+	if _, err := AdvanceStratagem(s); err == nil {
+		t.Error("next without fork must fail")
+	}
+}
+
+func TestValidateDoesNotAutoAdvanceAcrossDifferentKinds(t *testing.T) {
+	s := NewState()
+	StartStratagem(s, "pivot", false) // drugs, THINK, become, THINK, ritual
+	ValidatePrimitiveForStratagem(s, "drugs")
+	note := ValidatePrimitiveForStratagem(s, "drugs")
+	if s.Stratagem.Step != 0 {
+		t.Errorf("a repeated drugs must not skip the THINK step, at %d", s.Stratagem.Step)
+	}
+	if !strings.Contains(note, "already satisfied") {
+		t.Errorf("note should say already satisfied: %q", note)
+	}
+}
+
+func TestValidateOffScriptNote(t *testing.T) {
+	s := NewState()
+	StartStratagem(s, "pivot", false)
+	note := ValidatePrimitiveForStratagem(s, "feel")
+	if !strings.Contains(note, "expects 'drugs'") || !strings.Contains(note, "freestyle") {
+		t.Errorf("off-script note should name the expected primitive and say freestyle: %q", note)
+	}
+	if len(s.Stratagem.StepsCompleted) != 0 {
+		t.Error("off-script primitive must not mark the step")
+	}
+}
+
+func TestValidateNoStratagemNoNote(t *testing.T) {
+	s := NewState()
+	if note := ValidatePrimitiveForStratagem(s, "feel"); note != "" {
+		t.Errorf("expected empty note, got %q", note)
+	}
+}

@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/spf13/pflag"
 	"os"
 	"strings"
 
@@ -12,8 +13,32 @@ var Version = "6.11.0"
 var StateSchemaVersion = 1
 
 var rootCmd = &cobra.Command{
-	Use:   "metacog",
-	Short: "Metacognitive compositional engine",
+	Use:               "metacog",
+	Short:             "Metacognitive compositional engine",
+	SilenceUsage:      true,
+	PersistentPreRunE: rejectBlankStringFlags,
+}
+
+func cobraTraverseRunHooksEnabled() bool { return cobra.EnableTraverseRunHooks }
+
+// rejectBlankStringFlags fails any string flag that was set to whitespace
+// only ("--name '  '"). Values are never altered: an explicit empty string
+// (meditate --focus "") stays legal, and inner/leading whitespace in a real
+// value (an excerpt fragment) is preserved verbatim.
+func rejectBlankStringFlags(cmd *cobra.Command, args []string) error {
+	var blank []string
+	cmd.Flags().VisitAll(func(f *pflag.Flag) {
+		if f.Changed && f.Value.Type() == "string" {
+			v := f.Value.String()
+			if v != "" && strings.TrimSpace(v) == "" {
+				blank = append(blank, "--"+f.Name)
+			}
+		}
+	})
+	if len(blank) > 0 {
+		return fmt.Errorf("%s must not be blank (whitespace only)", strings.Join(blank, ", "))
+	}
+	return nil
 }
 
 var jsonOutput bool
@@ -36,6 +61,9 @@ var versionCmd = &cobra.Command{
 }
 
 func init() {
+	// Run root's PersistentPreRunE even if a subcommand later defines its own
+	// hook (cobra otherwise runs only the nearest one). main_test.go guards this.
+	cobra.EnableTraverseRunHooks = true
 	rootCmd.PersistentFlags().BoolVar(&jsonOutput, "json", false, "Output in JSON format")
 	rootCmd.AddCommand(versionCmd)
 }
