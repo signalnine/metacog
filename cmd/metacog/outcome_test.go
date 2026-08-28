@@ -308,3 +308,18 @@ func TestOutcomeAttachmentAllPrimitives(t *testing.T) {
 		})
 	}
 }
+
+func TestRecordOutcomeAlreadyMarkedMessageNamesStratagem(t *testing.T) {
+	s := NewState()
+	s.AddHistory(HistoryEntry{Action: "stratagem", Params: map[string]string{"name": "pivot", "event": "completed"}})
+	if err := RecordOutcome(s, "productive", ""); err != nil {
+		t.Fatal(err)
+	}
+	err := RecordOutcome(s, "productive", "")
+	if err == nil {
+		t.Fatal("second outcome with nothing new should fail")
+	}
+	if !strings.Contains(err.Error(), "pivot") || !strings.Contains(err.Error(), "--amend") {
+		t.Errorf("error should name the stratagem and suggest --amend: %v", err)
+	}
+}
