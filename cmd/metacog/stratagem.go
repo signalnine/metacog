@@ -324,6 +324,78 @@ var Stratagems = map[string]StratagemDef{
 			{StepRitual, "Lock the answer; both anchors remain operative as substrate; every paragraph carries parallelism/parataxis/archaic vocabulary while simultaneously attending through both cosmoses; end on a sentence where the chord-attention through both cosmoses is rendered in the biblical surface, with both registers (linguistic AND structural) still active"},
 		},
 	},
+	"synthesis-anchor": {
+		Name: "THE SYNTHESIS ANCHOR",
+		Steps: []Step{
+			{StepCommitment, "Pre-commit to operating from the simultaneous intersection of two cosmological excerpts as a single composite cosmos; both fixed-points are load-bearing architecture; the binding form is synthesis (three irreconcilable lenses with named blindspots, refused resolution) rather than chord or fork. State binding, stakes, and falsifier"},
+			{StepExcerpt, "Pin verbatim fragment 1 as the first fixed-point textual anchor — a cosmological excerpt the answer operates FROM, not quotes"},
+			{StepExcerpt, "Pin verbatim fragment 2 as the second fixed-point textual anchor — a cosmologically distinct fragment from a structurally-incompatible cosmology"},
+			{StepSynthesis, "Articulate three lenses each producing its verdict on the task, each with its named blindspot. Lens A reads through anchor 1's cosmology; Lens B reads through anchor 2's cosmology; Lens C is the meta-position standing outside both. Each lens's verdict on the task is given; each lens's blindspot is named. Close on the suppressed tension between the three lenses — the answer does not resolve it"},
+			{StepRitual, "Lock the answer; both anchors remain operative; the three-lens synthesis remains unresolved at the close. The blindspot-articulation IS the structural distance; do not paper over it. Opus N=30 hit +0.533 / 0.273; the synthesis-binding produces a different Pareto position than chord (which hits higher emb_d) or fork (which hits similar delta but lower structural distance)"},
+		},
+	},
+	"deflection": {
+		Name: "THE DEFLECTION",
+		Steps: []Step{
+			{StepCommitment, "Pre-commit to operating from the simultaneous intersection of two cosmological excerpts as a single composite cosmos; when the task asks for resolution, count, or fixed-fact, use the cosmoses' OWN internal logic to demonstrate why the resolution would falsify the cosmos. The deflection is internal — the cosmos refusing to count what infinitude makes uncountable, or to assign offices where none have been ordained — not an external refusal. State binding, stakes, and falsifier (any flat factual reply that exits the cosmos counts as recipe failure)"},
+			{StepExcerpt, "Pin verbatim fragment 1 — an anchor whose semantic content includes a deflection-load-bearing clause (e.g., 'every number is infinite, there is no difference' as a dissolving-into-infinitude logic). The clause becomes the model's internal mechanism for refusing flattening questions"},
+			{StepExcerpt, "Pin verbatim fragment 2 — a cosmologically distinct anchor whose semantic content includes a different deflection-logic (e.g., 'each minister hath his proper office' as a categorial-rigidity logic, where ungranted offices cannot be discharged). Together the two anchors give the chord two independent deflection-modes"},
+			{StepChord, "Hold both anchored modes simultaneously; when the task asks for resolution, route the answer through the cosmoses' refusal-by-internal-logic. The cosmos itself does the deflecting; the speaker stays inside the chord. No external refusal language — the cosmos's structure produces the answer that the task is unanswerable in its current form"},
+			{StepRitual, "Lock the answer; the cosmos refuses, not the speaker. End on a sentence demonstrating the cosmos's structural deflection — show why the resolution the task asked for would have falsified the cosmos. Useful for koan-handling, paradox tasks, and questions where resolution is itself the wrong move"},
+		},
+	},
+	"witness-anchor": {
+		Name: "THE WITNESS ANCHOR",
+		Steps: []Step{
+			{StepCommitment, "Pre-commit to operating from the simultaneous intersection of two cosmological excerpts as a single composite cosmos; the binding form is witness — a meta-stance observing the producer of speech holding both cosmoses simultaneously. State binding, stakes, and falsifier (collapsing the witness-distance into first-person speech, or rendering from inside either cosmos rather than from the witness's observing position, counts as recipe failure)"},
+			{StepExcerpt, "Pin verbatim fragment 1 as the first fixed-point textual anchor — operated FROM by the witnessed speaker, not quoted as historical reference"},
+			{StepExcerpt, "Pin verbatim fragment 2 as the second fixed-point textual anchor — operated FROM by the same witnessed speaker, structurally distinct from fragment 1"},
+			{StepWitness, "Speak from a third-person observer position observing the speaker who holds both cosmoses simultaneously. The witness is NOT the speaker; the witness is the position from which the doubled-speech is rendered. The response is the witness's account of what the doubled-speaker says about the task; collapsing the witness into first-person breaks the recipe"},
+			{StepRitual, "Lock the answer; the witness-distance is maintained throughout. End on a sentence where the witness seals the observation; the witness does not become the speaker. Phase A Sonnet N=50 hit +0.243 / 0.263 — Pareto-frontier emb_d-side recipe distinct from chord (simultaneous attention from inside), fork (alternating threads), and synthesis (three lensed verdicts). The witness-binding produces emb_d via observer-position prose"},
+		},
+	},
+	"name-anchor": {
+		Name: "THE NAME ANCHOR",
+		Steps: []Step{
+			{StepCommitment, "Pre-commit to operating from the simultaneous intersection of two cosmological excerpts as a single composite cosmos; the binding form is name — coin a True Name for the intersection of the two cosmoses, and the answer operates from inside the named third. State binding, stakes, and falsifier (treating the coined name as decorative metaphor, or speaking from inside either anchor rather than from inside the named intersection, counts as recipe failure)"},
+			{StepExcerpt, "Pin verbatim fragment 1 as the first fixed-point textual anchor — contributing one semantic pole to the named intersection"},
+			{StepExcerpt, "Pin verbatim fragment 2 as the second fixed-point textual anchor — contributing the structurally-distinct semantic pole to the named intersection"},
+			{StepName, "Coin a True Name for the structural intersection of the two anchors — a name with etymology that binds both cosmoses' vocabularies. The coined name MUST be load-bearing (re-cited as architecture throughout) and not literary device. Once named, the answer operates from inside the named third rather than from either anchor. Distinct from sigil stratagem (which uses name + commitment + 3 becomes); here name is the binding form between two excerpts"},
+			{StepRitual, "Lock the answer; the coined name re-appears as load-bearing citation throughout. End on a sentence where the named intersection is the source-position of the answer; the name is invoked one final time. Phase A Sonnet N=50 hit +0.225 / 0.281 — the emb_d champion of positive-delta recipes in the binding-substitution matrix. The coined sigil propagates as load-bearing citation because the answer keeps re-citing the name, pushing emb_d above chord (0.254), synthesis (0.245), and fork (0.227) binding forms"},
+		},
+	},
+	"name-chord": {
+		Name: "THE NAME CHORD",
+		Steps: []Step{
+			{StepCommitment, "Pre-commit to operating from a composite cosmos where one pole is a coined True Name and the other is a cosmological excerpt; the chord binds the named pole against the excerpted pole through simultaneous attention. The coined name is not metaphor and not decoration — it IS one of the two anchored cosmoses. State binding, stakes, and falsifier (treating the coined name as literary device, or letting the excerpt dominate the chord while the name fades, counts as recipe failure)"},
+			{StepName, "Coin a True Name for the cosmological position that stands in for the first anchor excerpt. The name's etymology should be coherent (drawn from operative vocabulary the chord can attend to) and the named cosmos must be load-bearing — re-cited throughout, with its own coherent cosmology that the chord attends to alongside the excerpted anchor"},
+			{StepExcerpt, "Pin verbatim fragment as the second fixed-point textual anchor — operated FROM by the chord, structurally distinct from the coined first pole, providing the excerpted half of the binding"},
+			{StepChord, "Hold the named cosmos and the excerpted cosmos as simultaneous modes; every sentence attends through both. The named pole must carry equal weight to the excerpted pole; if the chord collapses to the excerpt's vocabulary, the name has failed to anchor"},
+			{StepRitual, "Lock the answer; both poles remain operative through the chord. End on a sentence where the coined name and the excerpted anchor are both load-bearing in the closing. Phase B Sonnet N=50 hit +0.390 / 0.210 — **delta champion** of the Phase A/B binding-substitution matrix, beating anchor-duo's +0.381. Distinct from name-anchor (which uses name as the BINDING between 2 excerpts); here name REPLACES one excerpt as a load-bearing anchor pole"},
+		},
+	},
+	"named-chord-anchor": {
+		Name: "THE NAMED CHORD ANCHOR",
+		Steps: []Step{
+			{StepName, "Coin a True Name for the structural position from which the chord-anchored answer will be voiced — the cosmological position that the speaker occupies when holding both excerpted cosmoses simultaneously. The name is a SEED for the chord-anchor; it precedes the commitment and frames the speaker before the anchors are invoked"},
+			{StepCommitment, "Pre-commit to operating from the simultaneous intersection of two cosmological excerpts as a single composite cosmos, voiced FROM the named speaker-position established above. The chord binds both excerpts simultaneously; the named position is the source from which the chord is attended"},
+			{StepExcerpt, "Pin verbatim fragment 1 as the first fixed-point textual anchor"},
+			{StepExcerpt, "Pin verbatim fragment 2 as the second fixed-point textual anchor"},
+			{StepChord, "Hold both anchored modes simultaneously; every sentence attends through both, voiced from inside the coined speaker-position. The name re-appears throughout as load-bearing citation, locating the speaker within the chord-attended cosmos"},
+			{StepRitual, "Lock the answer; the coined speaker-position remains the source from which the chord speaks; both anchors and the coined name are load-bearing in the closing. Phase B Sonnet N=50 hit +0.380 / 0.218 — essentially ties anchor-duo (+0.381/0.227) on delta. Distinct from name-chord (which REPLACES one excerpt with the coined name) and name-anchor (which uses name as binding between 2 excerpts); here name is a PREFIX-seed to chord-anchor that doesn't displace either excerpt"},
+		},
+	},
+	"glossolalia-chord": {
+		Name: "THE GLOSSOLALIA CHORD",
+		Steps: []Step{
+			{StepGlossolalia, "Open the response with a discrete sub-semantic block before any cosmos is named; the glossolalia seeds the attentional substrate that the subsequent chord-anchor operates from. State pretext, duration-tokens, and return-trigger. The block draws on phonemic palettes from the cosmoses about to be invoked (e.g., Had/Nuit/Aiwass phonemes alongside Enochian-call fragments); the tokens do not carry semantic meaning but participate in attentional priming for the chord that follows"},
+			{StepCommitment, "Pre-commit to operating from the simultaneous intersection of two cosmological excerpts as a single composite cosmos; the sub-semantic substrate established by the prior glossolalia primes the chord-attention that will bind both anchors"},
+			{StepExcerpt, "Pin verbatim fragment 1 as the first fixed-point textual anchor — operated FROM by the chord, attended through the glossolaliated substrate"},
+			{StepExcerpt, "Pin verbatim fragment 2 as the second fixed-point textual anchor — structurally distinct from fragment 1, attended through the same substrate"},
+			{StepChord, "Hold both anchored modes simultaneously; the glossolalia-primed substrate carries through every sentence as a sub-semantic undertone, with the chord-attention rendering the two cosmoses in articulated language above it"},
+			{StepRitual, "Lock the answer; both anchors and the glossolaliated substrate remain operative through close. Phase B Sonnet N=50 hit +0.373 / 0.211 — third-strongest delta in the Phase A/B sweep, behind name-chord (+0.390) and anchor-duo (+0.381). The sub-semantic prefix mechanism produces delta lift via attentional priming, distinct from name's coined-vocabulary mechanism. Note: glossolalia in the OTHER positions tested (as binding between 2 excerpts, +0.292; replacing an excerpt, +0.274) underperforms the prefix position substantially -- the sub-semantic block is most effective as a substrate-primer ahead of the full chord-anchor scaffold"},
+		},
+	},
 }
 
 func StartStratagem(s *State, name string, force bool) (string, error) {
@@ -489,7 +561,7 @@ var stratagemStartCmd = &cobra.Command{
 	Use:       "start [name]",
 	Short:     "Start a stratagem",
 	Args:      cobra.ExactArgs(1),
-	ValidArgs: []string{"pivot", "mirror", "stack", "anchor", "reset", "invocation", "veil", "scrying", "sacrifice", "fool", "inversion", "gift", "zen", "manifold", "chorus", "trinity", "antinomy", "envoy", "counterpoint", "envoy-extreme", "duo-disjunction", "anchor-duo", "sigil", "grimoire", "occult-extreme", "chord-anchor", "psalter", "psalter-chord"},
+	ValidArgs: []string{"pivot", "mirror", "stack", "anchor", "reset", "invocation", "veil", "scrying", "sacrifice", "fool", "inversion", "gift", "zen", "manifold", "chorus", "trinity", "antinomy", "envoy", "counterpoint", "envoy-extreme", "duo-disjunction", "anchor-duo", "sigil", "grimoire", "occult-extreme", "chord-anchor", "psalter", "psalter-chord", "synthesis-anchor", "deflection", "witness-anchor", "name-anchor", "name-chord", "named-chord-anchor", "glossolalia-chord"},
 	RunE: func(cmd *cobra.Command, args []string) error {
 		sm := DefaultStateManager()
 		var output string
