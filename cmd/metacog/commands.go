@@ -136,14 +136,18 @@ var historyCmd = &cobra.Command{
 
 var repairCmd = &cobra.Command{
 	Use:   "repair",
-	Short: "Validate and fix corrupted state file",
+	Short: "Validate the state file; back up and replace it only if it is corrupt",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		sm := DefaultStateManager()
-		err := sm.Repair()
+		backup, err := sm.Repair()
 		if err != nil {
 			return err
 		}
-		fmt.Println("State file repaired.")
+		if backup == "" {
+			fmt.Println(FormatOutput(jsonOutput, "State file is healthy. Nothing to repair.", nil))
+			return nil
+		}
+		fmt.Println(FormatOutput(jsonOutput, fmt.Sprintf("State file was corrupted. Original preserved at %s; fresh state written.", backup), nil))
 		return nil
 	},
 }

@@ -242,16 +242,114 @@ func TestRepair(t *testing.T) {
 	os.WriteFile(statePath, []byte("corrupt"), 0644)
 
 	sm := NewStateManager(dir)
-	err := sm.Repair()
+	backup, err := sm.Repair()
 	if err != nil {
 		t.Fatalf("repair failed: %v", err)
+	}
+	if backup == "" {
+		t.Fatal("expected a backup path for a corrupt file")
+	}
+	data, err := os.ReadFile(backup)
+	if err != nil {
+		t.Fatalf("backup not readable: %v", err)
+	}
+	if string(data) != "corrupt" {
+		t.Errorf("backup should hold the original bytes, got %q", data)
+	}
+	if !strings.HasPrefix(filepath.Base(backup), "state.corrupt.") {
+		t.Errorf("backup name should start with state.corrupt., got %s", backup)
 	}
 
 	s, err := sm.Load()
 	if err != nil {
 		t.Fatalf("load after repair failed: %v", err)
 	}
-	if s.Version != StateSchemaVersion {
+	if s.Version != StateSchemaVersion || len(s.History) != 0 {
 		t.Error("repaired state should be fresh")
+	}
+}
+
+func TestRepairHealthyIsNoop(t *testing.T) {
+	dir := t.TempDir()
+	sm := NewStateManager(dir)
+	s := NewState()
+	s.AddHistory(HistoryEntry{Action: "feel", Params: map[string]string{"somewhere": "x"}})
+	if err := sm.Save(s); err != nil {
+		t.Fatal(err)
+	}
+
+	backup, err := sm.Repair()
+	if err != nil {
+		t.Fatalf("repair on healthy file errored: %v", err)
+	}
+	if backup != "" {
+		t.Errorf("healthy file should not be backed up, got %q", backup)
+	}
+	reloaded, _ := sm.Load()
+	if len(reloaded.History) != 1 || reloaded.SessionID != s.SessionID {
+		t.Error("healthy state must be untouched by repair")
+	}
+}
+
+func TestRepairRefusesNewerVersion(t *testing.T) {
+	dir := t.TempDir()
+	statePath := filepath.Join(dir, "state.json")
+	newer := []byte(`{"version": 99, "session_id": "keep-me", "history": [{"action":"feel","params":{},"timestamp":"t"}]}`)
+	os.WriteFile(statePath, newer, 0644)
+
+	sm := NewStateManager(dir)
+	_, err := sm.Repair()
+	if err == nil {
+		t.Fatal("repair must refuse a newer-version state file")
+	}
+	if !strings.Contains(err.Error(), "Upgrade metacog") {
+		t.Errorf("error should tell the user to upgrade, got: %v", err)
+	}
+	after, _ := os.ReadFile(statePath)
+	if string(after) != string(newer) {
+		t.Error("newer-version state file must be byte-for-byte untouched")
+	}
+	entries, _ := filepath.Glob(filepath.Join(dir, "state.corrupt.*"))
+	if len(entries) != 0 {
+		t.Error("no backup should be written when repair refuses")
+	}
+}
+
+func TestSaveWithLockNewerVersionDoesNotSuggestRepair(t *testing.T) {
+	dir := t.TempDir()
+	os.WriteFile(filepath.Join(dir, "state.json"), []byte(`{"version": 99, "history": []}`), 0644)
+	sm := NewStateManager(dir)
+	err := sm.SaveWithLock(func(s *State) error { return nil })
+	if err == nil {
+		t.Fatal("expected error")
+	}
+	if strings.Contains(err.Error(), "metacog repair'") && !strings.Contains(err.Error(), "Do not run") {
+		t.Errorf("must not suggest repair for a version mismatch: %v", err)
+	}
+	if !strings.Contains(err.Error(), "Upgrade") {
+		t.Errorf("should suggest upgrading: %v", err)
+	}
+}
+
+func TestLoadCorruptSuggestsRepair(t *testing.T) {
+	dir := t.TempDir()
+	os.WriteFile(filepath.Join(dir, "state.json"), []byte("{{{"), 0644)
+	sm := NewStateManager(dir)
+	_, err := sm.Load()
+	if err == nil || !strings.Contains(err.Error(), "metacog repair") {
+		t.Errorf("read-only commands hit corrupt files through Load; it must carry the repair hint: %v", err)
+	}
+}
+
+func TestSaveWithLockCorruptSuggestsRepair(t *testing.T) {
+	dir := t.TempDir()
+	os.WriteFile(filepath.Join(dir, "state.json"), []byte("{{{"), 0644)
+	sm := NewStateManager(dir)
+	err := sm.SaveWithLock(func(s *State) error { return nil })
+	if err == nil || !strings.Contains(err.Error(), "metacog repair") {
+		t.Errorf("corrupt file should suggest repair: %v", err)
+	}
+	if strings.Contains(err.Error(), "metacog reset") {
+		t.Errorf("reset cannot run on a corrupt file; do not suggest it: %v", err)
 	}
 }

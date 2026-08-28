@@ -166,6 +166,13 @@ func TestIntegrationRepair(t *testing.T) {
 	if err != nil {
 		t.Fatalf("repair: %v\n%s", err, out)
 	}
+	if !strings.Contains(out, "Original preserved at") {
+		t.Errorf("repair should report the backup: %s", out)
+	}
+	backups, _ := filepath.Glob(filepath.Join(stateDir, "state.corrupt.*"))
+	if len(backups) != 1 {
+		t.Errorf("expected one backup file, got %v", backups)
+	}
 
 	// Should work now
 	_, err = runMetacog(t, binary, stateDir, "status")

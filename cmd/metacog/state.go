@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -117,6 +118,27 @@ func (sm *StateManager) unlock(f *os.File) {
 	f.Close()
 }
 
+// NewerStateError means the state file was written by a newer metacog whose
+// schema this binary does not understand. It is a version mismatch, not
+// corruption: the fix is to upgrade, never to repair.
+type NewerStateError struct {
+	FileVersion int
+}
+
+func (e *NewerStateError) Error() string {
+	return fmt.Sprintf("state file version %d requires a newer metacog. You're running v%s", e.FileVersion, Version)
+}
+
+// loadErrorWithHint wraps a loadUnlocked failure with the action the user
+// should take. Version mismatches must never be "repaired".
+func loadErrorWithHint(err error) error {
+	var newer *NewerStateError
+	if errors.As(err, &newer) {
+		return fmt.Errorf("cannot load state: %w\n  Upgrade metacog. Do not run 'metacog repair': it would discard this state", err)
+	}
+	return fmt.Errorf("cannot load state: %w\n  Run 'metacog repair' (the corrupt file is preserved as state.corrupt.<timestamp>.json)", err)
+}
+
 func (sm *StateManager) Load() (*State, error) {
 	lockFile, err := sm.lock()
 	if err != nil {
@@ -124,7 +146,11 @@ func (sm *StateManager) Load() (*State, error) {
 	}
 	defer sm.unlock(lockFile)
 
-	return sm.loadUnlocked()
+	s, err := sm.loadUnlocked()
+	if err != nil {
+		return nil, loadErrorWithHint(err)
+	}
+	return s, nil
 }
 
 func (sm *StateManager) loadUnlocked() (*State, error) {
@@ -144,7 +170,7 @@ func (sm *StateManager) loadUnlocked() (*State, error) {
 		return nil, fmt.Errorf("state file corrupted (invalid JSON): %w", err)
 	}
 	if versionCheck.Version > StateSchemaVersion {
-		return nil, fmt.Errorf("state file version %d requires a newer metacog. You're running v%s", versionCheck.Version, Version)
+		return nil, &NewerStateError{FileVersion: versionCheck.Version}
 	}
 
 	var s State
@@ -217,7 +243,7 @@ func (sm *StateManager) SaveWithLock(fn func(s *State) error) error {
 
 	s, err := sm.loadUnlocked()
 	if err != nil {
-		return fmt.Errorf("cannot load state: %w\n  Run 'metacog repair' to fix corrupted state, or 'metacog reset' to start fresh", err)
+		return loadErrorWithHint(err)
 	}
 
 	if err := fn(s); err != nil {
@@ -301,19 +327,32 @@ func (sm *StateManager) LoadHistoryArchive() ([]HistoryEntry, error) {
 	return entries, nil
 }
 
-func (sm *StateManager) Repair() error {
+// Repair validates the state file. A healthy (or absent) file returns ("", nil).
+// A corrupt file is moved aside to state.corrupt.<timestamp>.json, a fresh
+// state is written, and the backup path is returned. A file written by a newer
+// metacog is refused untouched: that is a version mismatch, not corruption.
+func (sm *StateManager) Repair() (string, error) {
 	lockFile, err := sm.lock()
 	if err != nil {
-		return err
+		return "", err
 	}
 	defer sm.unlock(lockFile)
 
-	// Try loading; if it works, no repair needed
-	if _, err := sm.loadUnlocked(); err == nil {
-		return nil
+	_, loadErr := sm.loadUnlocked()
+	if loadErr == nil {
+		return "", nil
+	}
+	var newer *NewerStateError
+	if errors.As(loadErr, &newer) {
+		return "", fmt.Errorf("refusing to repair: %w\n  This is a version mismatch, not corruption. Upgrade metacog instead", loadErr)
 	}
 
-	// Reset to fresh state
-	s := NewState()
-	return sm.saveUnlocked(s)
+	backup := filepath.Join(sm.dir, fmt.Sprintf("state.corrupt.%s.json", time.Now().UTC().Format("20060102T150405.000000000Z")))
+	if err := os.Rename(sm.filePath, backup); err != nil {
+		return "", fmt.Errorf("cannot back up corrupt state file: %w", err)
+	}
+	if err := sm.saveUnlocked(NewState()); err != nil {
+		return "", err
+	}
+	return backup, nil
 }
