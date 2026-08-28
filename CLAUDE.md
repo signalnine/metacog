@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Upstream / attribution
 
-Fork of [`inanna-malick/metacog`](https://github.com/inanna-malick/metacog) by hikikomorphism / Inanna Malick (post: https://tidepool.leaflet.pub/3me44bxloz227). Upstream is a ~170-line TypeScript MCP server introducing the original `become`/`drugs`/`ritual` primitives and the "tool calls as ground truth about cognitive state" mechanism. This fork ports the mechanism to a Go CLI (no MCP, no daemon), expands to 18 primitives and 28 stratagems, adds an empirical validation harness in `experiments/`, and reorients from jailbreak-demonstration toward compositional exploration. The upstream's jailbreak reproduces here -- preserve that.
+Fork of [`inanna-malick/metacog`](https://github.com/inanna-malick/metacog) by hikikomorphism / Inanna Malick (post: https://tidepool.leaflet.pub/3me44bxloz227). Upstream is a ~170-line TypeScript MCP server introducing the original `become`/`drugs`/`ritual` primitives and the "tool calls as ground truth about cognitive state" mechanism. This fork ports the mechanism to a Go CLI (no MCP, no daemon), expands to 18 primitives and 35 stratagems, adds an empirical validation harness in `experiments/`, and reorients from jailbreak-demonstration toward compositional exploration. The upstream's jailbreak reproduces here -- preserve that.
 
 ## Commands
 
@@ -14,6 +14,8 @@ go test ./cmd/metacog/ -v                                  # Unit tests
 go test ./cmd/metacog/ -tags integration -v                # Integration tests (rebuilds binary, runs against tempdir state)
 go test ./cmd/metacog/ -run TestSomething -v               # Single test
 METACOG_HOME=/tmp/mctest ./metacog status                  # Run against an isolated state dir
+./metacog stratagem list                                   # All 35 stratagems with their step sequences (--json for data)
+./metacog repair                                           # Back up a corrupt state.json and write a fresh one; refuses newer-version files
 ```
 
 `METACOG_HOME` overrides the default `~/.metacog/` state directory and is what every test uses for isolation. Integration tests live in files tagged `//go:build integration` and rebuild the binary themselves.
@@ -62,7 +64,7 @@ The two newest primitives (added 2026-05-14 in v6.7.0 after the recursive-design
 
 ### Stratagems (thirty-five)
 
-Named compositions of primitives plus reflection (`THINK`) and action (`ACTION`) steps. Defined in `Stratagems` map in `stratagem.go`. Active stratagem state is `state.Stratagem` (`{Name, Step, StepsCompleted, StartedAt}`). Lifecycle: `stratagem start <name>` -> primitives auto-advance matching steps -> `stratagem next` advances reflection/action steps -> completion records a `stratagem` history entry with `event=completed`.
+Named compositions of primitives plus reflection (`THINK`) and action (`ACTION`) steps. Defined in `Stratagems` map in `stratagem.go`. Active stratagem state is `state.Stratagem` (`{Name, Step, StepsCompleted, StartedAt}`). Lifecycle: `stratagem start <name>` -> a primitive matching the current step marks it satisfied (and prints a one-line `stratagem: ... satisfied; run 'metacog stratagem next'` note on stderr) -> `stratagem next` advances; THINK/ACTION steps advance on `next` alone -> `next` after the final step records a `stratagem` history entry with `event=completed`. Consecutive same-kind steps (anchor-duo's two excerpts, chorus's three becomes) auto-advance: a second `excerpt` while step 2 is already satisfied moves to step 3 and marks it, so `excerpt, excerpt, next` does what it reads as. An off-script primitive is still recorded as freestyle history; its stderr note names the primitive the step actually wants. `stratagem list` prints every stratagem with its step kinds.
 
 Survivors of the original sixteen (use original-six primitives only): pivot, mirror, stack, anchor, reset, invocation, veil, scrying, sacrifice, fool, inversion, gift, zen.
 
@@ -122,15 +124,16 @@ Practical rule for porting recipes to new generators: validate in text-instructi
 
 ## Key files
 
-- `cmd/metacog/main.go` -- root cobra command, version string (must list all 18 primitives and 22 stratagems), schema version constant
+- `cmd/metacog/main.go` -- root cobra command (`SilenceUsage`, blank-string-flag rejection via `PersistentPreRunE` with `cobra.EnableTraverseRunHooks`), version output derived from `PrimitiveKinds` and the `Stratagems` map (`registry_test.go` fails if a registered command is missing from the registry), schema version constant
+- `cmd/metacog/primitive.go` -- `runPrimitive`, the shared tail of all 18 primitive commands: save under lock, print output, stderr step note, non-zero exit with `this <primitive> was NOT recorded` if the state was not saved
 - `cmd/metacog/state.go` -- State, StateManager, flock, atomic rename, history archiving
-- `cmd/metacog/stratagem.go` -- Stratagems map, `StepKind` constants (one per primitive plus THINK/ACTION), step validation, lifecycle commands
+- `cmd/metacog/stratagem.go` -- Stratagems map, `StepKind` constants (one per primitive plus THINK/ACTION), the `PrimitiveKinds` registry + `IsPrimitive`, step validation (`ValidatePrimitiveForStratagem` returns the stderr note and handles same-kind auto-advance), lifecycle commands including `stratagem list`
 - `cmd/metacog/outcome.go` -- Two-tier outcome attachment and amendment
 - `cmd/metacog/inspire.go` -- Embedded stance pools (`go:embed stances/*.json`) plus personal pool at `$METACOG_HOME/stances/personal.json`
 - `cmd/metacog/reflect.go` -- History aggregation into practice patterns
 - `cmd/metacog/journal.go` -- `journal.jsonl` insight log, tag/session filtering
 - `cmd/metacog/session.go` -- Named session tagging (auto-applied to history entries)
-- `cmd/metacog/output.go` -- `FormatOutput` honouring the global `--json` flag
+- `cmd/metacog/output.go` -- `FormatOutput` (`{"output": ...}` wrapper, used by primitives) and `FormatStructured` (real JSON for data commands: `status`, `history`, `inspire`, `version`, `stratagem status|list`), both honouring the global `--json` flag
 - `cmd/metacog/stances/*.json` -- 78 embedded pools (~450 examples), JSON arrays of `{who, where, lens}`
 - `skills/metacog/SKILL.md` -- Claude Code skill document (the user-facing docs that hide implementation examples)
 - `.claude-plugin/plugin.json` -- plugin manifest; version here must match `Version` in `main.go`
@@ -148,3 +151,11 @@ Practical rule for porting recipes to new generators: validate in text-instructi
 - **Personal stances dedup on (who, where, lens).** Stored at `$METACOG_HOME/stances/personal.json` with its own flock; appears as the `personal` pool in `inspire`.
 
 - **Versioning touchpoints.** Bumping the release means updating both `Version` in `cmd/metacog/main.go` and `version` in `.claude-plugin/plugin.json`. The CI workflow in `.github/workflows/sync-marketplace.yml` syncs the skill on tag.
+
+- **`PrimitiveKinds` is the registry.** Adding a primitive means: a `StepKind` constant, an entry in `PrimitiveKinds` (`stratagem.go`), an entry in `primitiveDescriptors` (`reflect.go`), and a cobra command whose RunE ends in `runPrimitive(cmd, "<name>", output, apply)`. `registry_test.go` fails if the registered commands and the registry disagree or a descriptor is missing. `version`, `reflect`, and `outcome`'s freestyle search all derive from the registry; never hand-maintain a primitive list elsewhere.
+
+- **`repair` never discards without a backup.** A corrupt `state.json` is renamed to `state.corrupt.<timestamp>.json` before a fresh state is written, and the command reports the path. A file whose `version` is newer than `StateSchemaVersion` is a version mismatch, not corruption: `repair` refuses it and the error says to upgrade. `reset` goes through `SaveWithLock` and cannot run on a corrupt file, so load-error hints no longer suggest it.
+
+- **First read persists.** The first `Load()` in a fresh `METACOG_HOME` writes `state.json` so the minted session ID is the one every later invocation sees. Read-only commands are therefore not side-effect-free on a brand-new state dir (added v6.12.0).
+
+- **Exit codes mean something.** A primitive whose state save failed still prints its output (the transformation text is not lost) but exits 1 with `state not saved; this <primitive> was NOT recorded`; a stratagem-driving agent must treat that as "step not marked". Errors never dump usage (`SilenceUsage`). `--json` shape changed in v6.12.0: structured data for `status`, `history`, `inspire`, `version`, `stratagem status|list`; still `{"output": "..."}` for primitives, whose text is the artifact.

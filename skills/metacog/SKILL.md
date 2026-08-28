@@ -9,7 +9,7 @@ Metacognitive compositional engine. Eighteen primitives compose into transformat
 
 ## Version Check
 
-Before first use in a session, run `metacog version` and verify the binary is installed and version is >=6.8.0.
+Before first use in a session, run `metacog version` and verify the binary is installed and version is >=6.12.0.
 
 ## Core Rule
 
@@ -170,7 +170,7 @@ metacog apophasis --subject S --negation N1 --negation N2 --negation N3 --residu
 
 ## Stratagems
 
-Start with `metacog stratagem start <name>`. The binary guides each step. Run `metacog stratagem next` to advance.
+Start with `metacog stratagem start <name>` (`metacog stratagem list` shows all of them with step sequences). The binary guides each step: run the primitive the step names, read the one-line `stratagem: ...` note it prints on stderr, then `metacog stratagem next`. Two consecutive steps of the same primitive (anchor-duo's excerpts, chorus's becomes) auto-advance, so you can run them back to back before one `next`. If a primitive exits non-zero with "NOT recorded", the state was not saved and the step is not marked: stop and surface the error instead of continuing.
 
 **THE PIVOT** — Use when stuck in one frame. Loosens categories, finds analogous methodology, installs it.
 
@@ -290,7 +290,7 @@ Journal entries persist across sessions and resets. Use them to capture what you
 
 ## Reflection
 
-`metacog reflect` — aggregates your history into practice patterns. Shows primitive usage counts, top identities and substrates, stratagem completion rates, effectiveness (stratagem and freestyle), ritual step averages, gaps in your practice, and recent journal insights. Mirror, not scorecard.
+`metacog reflect` — aggregates your history into practice patterns. Shows usage counts for all eighteen primitives, top identities and substrates, stratagem completion rates, effectiveness (stratagem and freestyle), ritual step averages, gaps in your practice (Underused: used but rare; Unexplored: never invoked), and recent journal insights. Mirror, not scorecard.
 
 ## Practice Discipline
 

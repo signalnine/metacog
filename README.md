@@ -1,6 +1,6 @@
 # Metacog
 
-Metacognitive compositional engine. Eighteen primitives compose into twenty-seven transformation stratagems.
+Metacognitive compositional engine. Eighteen primitives compose into thirty-five transformation stratagems.
 
 ## Attribution
 
@@ -85,7 +85,7 @@ Each primitive is a verb that is also a tool-call event in the transcript. The s
 
 ## Stratagems
 
-Named compositional recipes. Start with `metacog stratagem start <name>`, advance with `metacog stratagem next`.
+Named compositional recipes. `metacog stratagem list` shows every stratagem with its step sequence. Start with `metacog stratagem start <name>`; run the primitive each step names, then `metacog stratagem next`. While a stratagem is active every primitive prints a one-line step note on stderr (satisfied / already satisfied / off-script, recorded as freestyle). Consecutive same-kind steps auto-advance, so two `excerpt` calls in a row satisfy two excerpt steps before a single `next`.
 
 ### Survivors of the original sixteen
 
@@ -123,7 +123,7 @@ See `experiments/FINDINGS.md` for the full empirical history (rounds 0 through 2
 
 ## Reflection
 
-`metacog reflect` aggregates history into practice patterns: primitive counts, top identities and substrates, stratagem completion rates, ritual step averages, recent journal insights.
+`metacog reflect` aggregates history into practice patterns: usage counts for all eighteen primitives, top identities and substrates, stratagem completion rates, ritual step averages, used-but-rare primitives (Underused) and never-used ones (Unexplored), recent journal insights.
 
 ## State
 
@@ -131,9 +131,13 @@ See `experiments/FINDINGS.md` for the full empirical history (rounds 0 through 2
 metacog status    # Current state
 metacog history   # Full history
 metacog reset     # Return to baseline
-metacog repair    # Fix corrupted state
+metacog repair    # Back up a corrupt state.json (state.corrupt.<timestamp>.json) and write a fresh one; refuses newer-version files
 metacog version   # Version info
 ```
+
+### JSON and exit codes
+
+`--json` returns structured data for `status`, `history`, `inspire`, `version`, `stratagem status`, and `stratagem list` (shape changed in v6.12.0; before that every command returned `{"output": "..."}`). Primitives keep the `{"output": "..."}` wrapper because the text itself is the artifact. A primitive whose state could not be saved still prints its output but exits 1 with `this <primitive> was NOT recorded`. Errors never dump the usage table.
 
 ## Composition
 
